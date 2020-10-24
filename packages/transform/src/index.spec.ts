@@ -319,4 +319,81 @@ var surelyAge = library_1.default('21', Joi.alternatives().try(Joi.number(), Joi
       });
     });
   });
+  describe("any", () => {
+    describe("inline type", () => {
+      const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+const age = '21'
+
+const whatever = is<any>(age);`;
+      it("should transform correctly", () => {
+        expect(sourceCode).toBeTransformedTo(
+          transformer,
+          `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var age = '21';
+var whatever = library_1.default(age, Joi.any());`.trim()
+        );
+      });
+      describe("inline value", () => {
+        const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+const whatever = is<any>('21');`;
+        it("should transform correctly", () => {
+          expect(sourceCode).toBeTransformedTo(
+            transformer,
+            `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var whatever = library_1.default('21', Joi.any());`.trim()
+          );
+        });
+      });
+    });
+
+    describe("type alias", () => {
+      const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+const age = '21'
+
+type Any = any
+
+const whatever = is<Any>(age);`;
+      it("should transform correctly", () => {
+        expect(sourceCode).toBeTransformedTo(
+          transformer,
+          `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var age = '21';
+var whatever = library_1.default(age, Joi.any());`.trim()
+        );
+      });
+      describe("inline value", () => {
+        const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+type Any = any
+
+const whatever = is<Any>('21');`;
+        it("should transform correctly", () => {
+          expect(sourceCode).toBeTransformedTo(
+            transformer,
+            `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var whatever = library_1.default('21', Joi.any());`.trim()
+          );
+        });
+      });
+    });
+  });
 });
