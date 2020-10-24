@@ -54,9 +54,9 @@ var surelyName = library_1.default(name, Joi.string());`.trim()
       const sourceCode = `
 import is from "@typescript-runtime-schema/library";
 
-const name = 10
+const age = 21 as any
 
-const surelyName = is<number>(name);`;
+const surelyAge = is<number>(name);`;
       it("should transform correctly", () => {
         expect(sourceCode).toBeTransformedTo(
           transformer,
@@ -64,8 +64,8 @@ const surelyName = is<number>(name);`;
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
-var name = 10;
-var surelyName = library_1.default(name, Joi.number());`.trim()
+var age = 21;
+var surelyAge = library_1.default(name, Joi.number());`.trim()
         );
       });
     });
@@ -74,11 +74,11 @@ var surelyName = library_1.default(name, Joi.number());`.trim()
       const sourceCode = `
 import is from "@typescript-runtime-schema/library";
 
-const num = 10
+const num = 21
 
-type Num = number
+type Age = number
 
-const surelyName = is<Num>(name);
+const surelyAge = is<Age>(num);
       `;
       it("should transform correctly", () => {
         expect(sourceCode).toBeTransformedTo(
@@ -87,8 +87,8 @@ const surelyName = is<Num>(name);
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
-var num = 10;
-var surelyName = library_1.default(name, Joi.number());`.trim()
+var num = 21;
+var surelyAge = library_1.default(num, Joi.number());`.trim()
         );
       });
     });
