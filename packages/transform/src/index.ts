@@ -14,37 +14,47 @@ const keywordConstraintMap = new Map([
   [
     ts.SyntaxKind.StringKeyword,
     pipe(
-      factory.createPropertyAccessExpression("string"),
-      factory.createCallExpression(undefined, [])
-    )(factory.createIdentifier("Joi")),
+      () => ts.factory.createStringLiteral("string"),
+      factory.createPropertyAssignment("type"),
+      (propertyAssignment) =>
+        factory.createObjectLiteralExpression(false)([propertyAssignment])
+    )(),
   ],
   [
     ts.SyntaxKind.NumberKeyword,
     pipe(
-      factory.createPropertyAccessExpression("number"),
-      factory.createCallExpression(undefined, [])
-    )(factory.createIdentifier("Joi")),
+      () => ts.factory.createStringLiteral("number"),
+      factory.createPropertyAssignment("type"),
+      (propertyAssignment) =>
+        factory.createObjectLiteralExpression(false)([propertyAssignment])
+    )(),
   ],
   [
     ts.SyntaxKind.BooleanKeyword,
     pipe(
-      factory.createPropertyAccessExpression("boolean"),
-      factory.createCallExpression(undefined, [])
-    )(factory.createIdentifier("Joi")),
+      () => ts.factory.createStringLiteral("boolean"),
+      factory.createPropertyAssignment("type"),
+      (propertyAssignment) =>
+        factory.createObjectLiteralExpression(false)([propertyAssignment])
+    )(),
   ],
   [
     ts.SyntaxKind.ObjectKeyword,
     pipe(
-      factory.createPropertyAccessExpression("object"),
-      factory.createCallExpression(undefined, [])
-    )(factory.createIdentifier("Joi")),
+      () => ts.factory.createStringLiteral("object"),
+      factory.createPropertyAssignment("type"),
+      (propertyAssignment) =>
+        factory.createObjectLiteralExpression(false)([propertyAssignment])
+    )(),
   ],
   [
     ts.SyntaxKind.AnyKeyword,
     pipe(
-      factory.createPropertyAccessExpression("any"),
-      factory.createCallExpression(undefined, [])
-    )(factory.createIdentifier("Joi")),
+      () => ts.factory.createStringLiteral("any"),
+      factory.createPropertyAssignment("type"),
+      (propertyAssignment) =>
+        factory.createObjectLiteralExpression(false)([propertyAssignment])
+    )(),
   ],
 ]);
 
@@ -184,7 +194,7 @@ const createVisitor = (program: ts.Program) => (
           return factory.updateCallExpression(
             callExpressionIdentifier,
             undefined,
-            [...args, createSchemaUnion(schemas)]
+            [...args, ts.factory.createArrayLiteralExpression(schemas)]
           )(callExpression);
         }
         // Retrieves the first type argument identifier (assuming there's only one for now)

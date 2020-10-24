@@ -20,7 +20,7 @@ const surelyName = is<string>(name);`;
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
 var name = "Morpheus";
-var surelyName = library_1.default(name, Joi.string());`.trim()
+var surelyName = library_1.default(name, { type: "string" });`.trim()
         );
       });
       describe("inline value", () => {
@@ -35,7 +35,7 @@ const surelyName = is<string>("Morpheus");`;
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
-var surelyName = library_1.default("Morpheus", Joi.string());`.trim()
+var surelyName = library_1.default("Morpheus", { type: "string" });`.trim()
           );
         });
       });
@@ -59,7 +59,7 @@ const surelyName = is<Name>(name);
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
 var name = "Morpheus";
-var surelyName = library_1.default(name, Joi.string());`.trim()
+var surelyName = library_1.default(name, { type: "string" });`.trim()
         );
       });
       describe("inline value", () => {
@@ -76,7 +76,7 @@ const surelyName = is<Name>("Morpheus");`;
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
-var surelyName = library_1.default("Morpheus", Joi.string());`.trim()
+var surelyName = library_1.default("Morpheus", { type: "string" });`.trim()
           );
         });
       });
@@ -99,7 +99,7 @@ const surelyAge = is<number>(age);`;
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
 var age = 21;
-var surelyAge = library_1.default(age, Joi.number());`.trim()
+var surelyAge = library_1.default(age, { type: "number" });`.trim()
         );
       });
       describe("inline value", () => {
@@ -114,7 +114,7 @@ var surelyAge = library_1.default(age, Joi.number());`.trim()
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
-var surelyAge = library_1.default(21, Joi.number());`.trim()
+var surelyAge = library_1.default(21, { type: "number" });`.trim()
           );
         });
       });
@@ -138,7 +138,7 @@ const surelyAge = is<Age>(num);
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
 var num = 21;
-var surelyAge = library_1.default(num, Joi.number());`.trim()
+var surelyAge = library_1.default(num, { type: "number" });`.trim()
         );
       });
       describe("inline value", () => {
@@ -155,7 +155,7 @@ const surelyAge = is<Age>(21);`
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
-var surelyAge = library_1.default(21, Joi.number());`.trim()
+var surelyAge = library_1.default(21, { type: "number" });`.trim()
           );
         });
       });
@@ -177,7 +177,7 @@ const definitelyOn = is<boolean>(on);`;
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
 var on = true;
-var definitelyOn = library_1.default(on, Joi.boolean());`.trim()
+var definitelyOn = library_1.default(on, { type: "boolean" });`.trim()
         );
       });
       describe("inline value", () => {
@@ -192,7 +192,7 @@ const definitelyOn = is<boolean>(true);`;
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
-var definitelyOn = library_1.default(true, Joi.boolean());`.trim()
+var definitelyOn = library_1.default(true, { type: "boolean" });`.trim()
           );
         });
       });
@@ -216,7 +216,7 @@ const definitelyOn = is<Bool>(on);
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
 var on = true;
-var definitelyOn = library_1.default(on, Joi.boolean());`.trim()
+var definitelyOn = library_1.default(on, { type: "boolean" });`.trim()
         );
       });
     });
@@ -235,7 +235,7 @@ const definitelyOn = is<Bool>(true);
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
-var definitelyOn = library_1.default(true, Joi.boolean());`.trim()
+var definitelyOn = library_1.default(true, { type: "boolean" });`.trim()
         );
       });
     });
@@ -256,7 +256,7 @@ const surelyAge = is<number | string>(age);`;
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
 var age = '21';
-var surelyAge = library_1.default(age, Joi.alternatives().try(Joi.number(), Joi.string()));`.trim()
+var surelyAge = library_1.default(age, [{ type: "number" }, { type: "string" }]);`.trim()
         );
       });
       describe("inline value", () => {
@@ -271,7 +271,7 @@ const surelyAge = is<number | string>('21');`;
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
-var surelyAge = library_1.default('21', Joi.alternatives().try(Joi.number(), Joi.string()));`.trim()
+var surelyAge = library_1.default('21', [{ type: "number" }, { type: "string" }]);`.trim()
           );
         });
       });
@@ -295,7 +295,7 @@ const surelyAge = is<Num | Str>(age);`;
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
 var age = '21';
-var surelyAge = library_1.default(age, Joi.alternatives().try(Joi.number(), Joi.string()));`.trim()
+var surelyAge = library_1.default(age, [{ type: "number" }, { type: "string" }]);`.trim()
         );
       });
       describe("inline value", () => {
@@ -313,7 +313,7 @@ const surelyAge = is<Num | Str>('21');`;
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
-var surelyAge = library_1.default('21', Joi.alternatives().try(Joi.number(), Joi.string()));`.trim()
+var surelyAge = library_1.default('21', [{ type: "number" }, { type: "string" }]);`.trim()
           );
         });
       });
@@ -335,7 +335,7 @@ const whatever = is<any>(age);`;
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
 var age = '21';
-var whatever = library_1.default(age, Joi.any());`.trim()
+var whatever = library_1.default(age, { type: "any" });`.trim()
         );
       });
       describe("inline value", () => {
@@ -350,7 +350,7 @@ const whatever = is<any>('21');`;
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
-var whatever = library_1.default('21', Joi.any());`.trim()
+var whatever = library_1.default('21', { type: "any" });`.trim()
           );
         });
       });
@@ -373,7 +373,7 @@ const whatever = is<Any>(age);`;
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
 var age = '21';
-var whatever = library_1.default(age, Joi.any());`.trim()
+var whatever = library_1.default(age, { type: "any" });`.trim()
         );
       });
       describe("inline value", () => {
@@ -390,7 +390,7 @@ const whatever = is<Any>('21');`;
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
-var whatever = library_1.default('21', Joi.any());`.trim()
+var whatever = library_1.default('21', { type: "any" });`.trim()
           );
         });
       });
@@ -412,7 +412,7 @@ const object = is<object>(person);`;
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
 var person = { name: 'Kim' };
-var object = library_1.default(person, Joi.object());`.trim()
+var object = library_1.default(person, { type: "object" });`.trim()
         );
       });
       describe("inline value", () => {
@@ -427,7 +427,7 @@ const object = is<object>({ name: 'Kim' });`;
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
-var object = library_1.default({ name: 'Kim' }, Joi.object());`.trim()
+var object = library_1.default({ name: 'Kim' }, { type: "object" });`.trim()
           );
         });
       });
@@ -450,7 +450,7 @@ const object = is<Obj>(age);`;
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
 var person = { name: 'Kim' };
-var object = library_1.default(age, Joi.object());`.trim()
+var object = library_1.default(age, { type: "object" });`.trim()
         );
       });
       describe("inline value", () => {
@@ -467,7 +467,7 @@ const object = is<Obj>({ name: 'Kim' });`;
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
-var object = library_1.default({ name: 'Kim' }, Joi.object());`.trim()
+var object = library_1.default({ name: 'Kim' }, { type: "object" });`.trim()
           );
         });
       });
