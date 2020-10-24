@@ -45,19 +45,6 @@ const parseLibraryTypeAliasDeclaration = (
   debugger;
 };
 
-const parseLibraryTypeReference = (
-  typeReference: ts.TypeReferenceNode,
-  checker: ts.TypeChecker
-): void => {
-  const parent = typeReference.parent;
-  if (ts.isTypeAliasDeclaration(parent)) {
-    const declarations = checker.getSymbolAtLocation(typeReference);
-    const children = parent.getChildren();
-    const kids = typeReference.getChildren();
-    debugger;
-  }
-};
-
 const findCallExpressionIdentifier = (
   node: ts.CallExpression
 ): ts.Identifier | undefined => {
@@ -136,10 +123,7 @@ const createVisitor = (program: ts.Program) => (
           checker
         );
         rootTypeArgumentIdentifier.parent;
-        // const resolvedType = resolveType(rootTypeArgumentIdentifier, checker)
-        if (ts.isTypeReferenceNode(rootTypeArgumentIdentifier.parent)) {
-          parseLibraryTypeReference(rootTypeArgumentIdentifier.parent, checker);
-        }
+
         // type Foo = string
         if (ts.isTypeAliasDeclaration(rootTypeArgumentIdentifier.parent)) {
           return pipe(
