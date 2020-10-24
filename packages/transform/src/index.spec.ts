@@ -93,4 +93,48 @@ var surelyName = library_1.default(name, Joi.number());`.trim()
       });
     });
   });
+  describe("boolean", () => {
+    describe("inline type", () => {
+      const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+const on = true as any
+
+const definitelyOn = is<boolean>(on);`;
+      it("should transform correctly", () => {
+        expect(sourceCode).toBeTransformedTo(
+          transformer,
+          `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var on = true;
+var definitelyOn = library_1.default(on, Joi.boolean());`.trim()
+        );
+      });
+    });
+
+    describe("type alias", () => {
+      const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+const on = true as any
+
+type Bool = boolean
+
+const definitelyOn = is<Bool>(on);
+      `;
+      it("should transform correctly", () => {
+        expect(sourceCode).toBeTransformedTo(
+          transformer,
+          `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var on = true;
+var definitelyOn = library_1.default(on, Joi.boolean());`.trim()
+        );
+      });
+    });
+  });
 });
