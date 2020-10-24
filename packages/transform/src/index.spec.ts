@@ -396,4 +396,81 @@ var whatever = library_1.default('21', Joi.any());`.trim()
       });
     });
   });
+  describe("object", () => {
+    describe("inline type", () => {
+      const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+const person = { name: 'Kim' }
+
+const object = is<object>(person);`;
+      it("should transform correctly", () => {
+        expect(sourceCode).toBeTransformedTo(
+          transformer,
+          `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var person = { name: 'Kim' };
+var object = library_1.default(person, Joi.object());`.trim()
+        );
+      });
+      describe("inline value", () => {
+        const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+const object = is<object>({ name: 'Kim' });`;
+        it("should transform correctly", () => {
+          expect(sourceCode).toBeTransformedTo(
+            transformer,
+            `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var object = library_1.default({ name: 'Kim' }, Joi.object());`.trim()
+          );
+        });
+      });
+    });
+
+    describe("type alias", () => {
+      const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+const person = { name: 'Kim' }
+
+type Obj = object
+
+const object = is<Obj>(age);`;
+      it("should transform correctly", () => {
+        expect(sourceCode).toBeTransformedTo(
+          transformer,
+          `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var person = { name: 'Kim' };
+var object = library_1.default(age, Joi.object());`.trim()
+        );
+      });
+      describe("inline value", () => {
+        const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+type Obj = object
+
+const object = is<Obj>({ name: 'Kim' });`;
+        it("should transform correctly", () => {
+          expect(sourceCode).toBeTransformedTo(
+            transformer,
+            `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var object = library_1.default({ name: 'Kim' }, Joi.object());`.trim()
+          );
+        });
+      });
+    });
+  });
 });

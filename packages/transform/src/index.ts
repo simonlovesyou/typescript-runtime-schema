@@ -33,6 +33,13 @@ const keywordConstraintMap = new Map([
     )(factory.createIdentifier("Joi")),
   ],
   [
+    ts.SyntaxKind.ObjectKeyword,
+    pipe(
+      factory.createPropertyAccessExpression("object"),
+      factory.createCallExpression(undefined, [])
+    )(factory.createIdentifier("Joi")),
+  ],
+  [
     ts.SyntaxKind.AnyKeyword,
     pipe(
       factory.createPropertyAccessExpression("any"),
@@ -60,6 +67,9 @@ const parseLibraryTypeAliasDeclaration = (
     return parseKeywordWithExpression(typeAliasDeclaration.type.kind);
   }
   if (typeAliasDeclaration.type.kind === ts.SyntaxKind.AnyKeyword) {
+    return parseKeywordWithExpression(typeAliasDeclaration.type.kind);
+  }
+  if (typeAliasDeclaration.type.kind === ts.SyntaxKind.ObjectKeyword) {
     return parseKeywordWithExpression(typeAliasDeclaration.type.kind);
   }
 };
