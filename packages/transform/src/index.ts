@@ -52,7 +52,6 @@ const parseLibraryTypeAliasDeclaration = (
   if (typeAliasDeclaration.type.kind === ts.SyntaxKind.BooleanKeyword) {
     return parseKeywordWithExpression(typeAliasDeclaration.type.kind);
   }
-  debugger;
 };
 
 const findCallExpressionIdentifier = (
@@ -86,6 +85,24 @@ const findSchemaIdentifiers = (node: ts.Node): ts.Identifier[] | undefined => {
     return tsquery(node, "Identifier") as ts.Identifier[] | undefined;
   }
 };
+
+const generateSchemaByIdentifer = (identifier: ts.Identifier) => {
+  if (ts.isTypeAliasDeclaration(identifier.parent)) {
+    return parseLibraryTypeAliasDeclaration(identifier.parent);
+  }
+  throw new Error(
+    `Cannot generate schema for ${getArbitraryNodeName(identifier.parent)}`
+  );
+};
+
+const createSchemaUnion = (schemas: ts.Expression[]): ts.Expression =>
+  pipe(
+    () => factory.createIdentifier("Joi"),
+    factory.createPropertyAccessExpression("alternatives"),
+    factory.createCallExpression([], []),
+    factory.createPropertyAccessExpression("try"),
+    factory.createCallExpression([], schemas)
+  )();
 
 const createVisitor = (program: ts.Program) => (
   ctx: ts.TransformationContext,
@@ -121,6 +138,35 @@ const createVisitor = (program: ts.Program) => (
             [...args, parseKeywordWithExpression(typeArgument.kind)]
           )(callExpression);
         }
+        if (ts.isUnionTypeNode(typeArgument)) {
+          const types = typeArgument.types;
+          const typeIdentifiers = types.map(
+            (type) =>
+              tsquery(type, "Identifier")[0] as ts.Identifier | undefined
+          );
+          const rootTypeArgumentIdentifiers = typeIdentifiers.map(
+            (typeIdentifier): ts.Identifier | undefined =>
+              typeIdentifier === undefined
+                ? typeIdentifier
+                : findRootIdentifier(typeIdentifier, checker)
+          );
+          const schemas = rootTypeArgumentIdentifiers.map(
+            (rootTypeArgumentIdentifier, index) => {
+              const type = types[index];
+              if (rootTypeArgumentIdentifier === undefined) {
+                if (isKeyword(type)) {
+                  return parseKeywordWithExpression(type.kind);
+                }
+              }
+              return generateSchemaByIdentifer(rootTypeArgumentIdentifier);
+            }
+          );
+          return factory.updateCallExpression(
+            callExpressionIdentifier,
+            undefined,
+            [...args, createSchemaUnion(schemas)]
+          )(callExpression);
+        }
         // Retrieves the first type argument identifier (assuming there's only one for now)
         const typeArgumentIdentifier = tsquery(
           typeArgument,
@@ -134,18 +180,11 @@ const createVisitor = (program: ts.Program) => (
         rootTypeArgumentIdentifier.parent;
 
         // type Foo = string
-        if (ts.isTypeAliasDeclaration(rootTypeArgumentIdentifier.parent)) {
-          return factory.updateCallExpression(
-            callExpressionIdentifier,
-            undefined,
-            [...args, parseLibraryTypeAliasDeclaration(
-              rootTypeArgumentIdentifier.parent
-            )]
-          )(callExpression);
-        }
-        if (ts.isInterfaceDeclaration(rootTypeArgumentIdentifier.parent)) {
-          throw new Error('Interfaces are not yet implemented in this version.')
-        }
+        return factory.updateCallExpression(
+          callExpressionIdentifier,
+          undefined,
+          [...args, generateSchemaByIdentifer(rootTypeArgumentIdentifier)]
+        )(callExpression);
       }
       return node;
     }

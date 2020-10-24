@@ -240,16 +240,14 @@ var definitelyOn = library_1.default(true, Joi.boolean());`.trim()
       });
     });
   });
-});
-
-/*describe.skip("enum", () => {
+  describe("enum", () => {
     describe("inline type", () => {
       const sourceCode = `
 import is from "@typescript-runtime-schema/library";
 
 const age = '21'
 
-const  = is<number | string>(age);`;
+const surelyAge = is<number | string>(age);`;
       it("should transform correctly", () => {
         expect(sourceCode).toBeTransformedTo(
           transformer,
@@ -257,9 +255,25 @@ const  = is<number | string>(age);`;
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
-var on = true;
-var definitelyOn = library_1.default(on, Joi.boolean());`.trim()
+var age = '21';
+var surelyAge = library_1.default(age, Joi.alternatives().try(Joi.number(), Joi.string()));`.trim()
         );
+      });
+      describe("inline value", () => {
+        const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+const surelyAge = is<number | string>('21');`;
+        it("should transform correctly", () => {
+          expect(sourceCode).toBeTransformedTo(
+            transformer,
+            `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var surelyAge = library_1.default('21', Joi.alternatives().try(Joi.number(), Joi.string()));`.trim()
+          );
+        });
       });
     });
 
@@ -267,12 +281,12 @@ var definitelyOn = library_1.default(on, Joi.boolean());`.trim()
       const sourceCode = `
 import is from "@typescript-runtime-schema/library";
 
-const on = true as any
+const age = '21'
 
-type Bool = boolean
+type Num = number
+type Str = string
 
-const definitelyOn = is<Bool>(on);
-      `;
+const surelyAge = is<Num | Str>(age);`;
       it("should transform correctly", () => {
         expect(sourceCode).toBeTransformedTo(
           transformer,
@@ -280,9 +294,29 @@ const definitelyOn = is<Bool>(on);
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
-var on = true;
-var definitelyOn = library_1.default(on, Joi.boolean());`.trim()
+var age = '21';
+var surelyAge = library_1.default(age, Joi.alternatives().try(Joi.number(), Joi.string()));`.trim()
         );
       });
+      describe("inline value", () => {
+        const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+type Num = number
+type Str = string
+
+const surelyAge = is<Num | Str>('21');`;
+        it("should transform correctly", () => {
+          expect(sourceCode).toBeTransformedTo(
+            transformer,
+            `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var surelyAge = library_1.default('21', Joi.alternatives().try(Joi.number(), Joi.string()));`.trim()
+          );
+        });
+      });
     });
-  });*/
+  });
+});
