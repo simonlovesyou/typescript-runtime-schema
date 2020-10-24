@@ -1,0 +1,21 @@
+{
+  "name": "typescript-runtime-schema",
+  "version": "0.0.1",
+  "description": "Another typescript runtime utility for converting typescript types to schemas for runtime validation",
+  "main": "index.js",
+  "repository": "git@github.com:simonlovesyou/typescript-schema.git",
+  "author": "Simon Johansson <simonljohansson92@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "test": "lerna run test",
+    "lint": "lerna run lint",
+    "scaffold": "node ./.bin/scaffold",
+    "bootstrap": "lerna bootstrap",
+    "clean": "find . -type d -name node_modules -exec rm -rf {} \\;"
+  },
+  "devDependencies": {
+    "lerna": "^3.22.1",
+    "unorepo": "^0.1.0"
+  }
+}

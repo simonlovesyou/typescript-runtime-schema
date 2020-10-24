@@ -1,0 +1,27 @@
+{
+  "name": "@typescript-runtime-schema/expect-to-be-compiled-to",
+  "version": "1.0.0",
+  "description": "Create a Joi string validation schema using typescript",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "test": "jest src/",
+    "build": "yarn build:ts",
+    "build:ts": "./node_modules/.bin/tsc --project tsconfig.json",
+    "prepublish": "yarn build"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.14",
+    "@types/node": "^14.11.8",
+    "jest": "^26.5.3",
+    "ts-jest": "^26.4.1",
+    "typescript": "^4.0.3"
+  },
+  "dependencies": {
+    "@types/ramda": "^0.27.27",
+    "@typescript-runtime-schema/format-ast": "^1.0.0",
+    "@typescript-runtime-schema/parse-node-to-source-text": "^1.0.0",
+    "ramda": "^0.27.1"
+  }
+}
