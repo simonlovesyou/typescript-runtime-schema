@@ -105,12 +105,11 @@ const createVisitor = (program: ts.Program) => (
         const [typeArgument] = typeArguments;
 
         if (isKeyword(typeArgument)) {
-          return ts.factory.updateCallExpression(
-            callExpression,
+          return factory.updateCallExpression(
             callExpressionIdentifier,
             undefined,
             [...args, parseKeywordWithExpression(typeArgument.kind)]
-          );
+          )(callExpression);
         }
         // Retrieves the first type argument identifier (assuming there's only one for now)
         const typeArgumentIdentifier = tsquery(
@@ -126,15 +125,13 @@ const createVisitor = (program: ts.Program) => (
 
         // type Foo = string
         if (ts.isTypeAliasDeclaration(rootTypeArgumentIdentifier.parent)) {
-          return pipe(
-            () => factory.createIdentifier("is"),
-            factory.createCallExpression(undefined, [
-              ...args,
-              parseLibraryTypeAliasDeclaration(
-                rootTypeArgumentIdentifier.parent
-              ),
-            ])
-          )();
+          return factory.updateCallExpression(
+            callExpressionIdentifier,
+            undefined,
+            [...args, parseLibraryTypeAliasDeclaration(
+              rootTypeArgumentIdentifier.parent
+            )]
+          )(callExpression);
         }
         if (ts.isInterfaceDeclaration(rootTypeArgumentIdentifier.parent)) {
           throw new Error('Interfaces are not yet implemented in this version.')
