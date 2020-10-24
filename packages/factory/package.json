@@ -1,7 +1,7 @@
 {
-  "name": "@typescript-runtime-schema/factory-utilities",
+  "name": "@typescript-runtime-schema/factory",
   "version": "1.0.0",
-  "description": "A collection of Typescript factory utilities",
+  "description": "A wrapper for the typescript factory that provide sensible currying to the API",
   "main": "dist/index.js",
   "license": "MIT",
   "private": true,
