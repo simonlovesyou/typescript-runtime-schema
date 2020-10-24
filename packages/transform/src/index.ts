@@ -1,36 +1,49 @@
 import * as ts from "typescript";
 import { inspect } from "util";
 import { tsquery } from "@phenomnomnominal/tsquery";
-import { either, find, is } from "ramda";
-import { findRootIdentifier, createCall } from "@typescript-runtime-schema/compiler-utilities";
+import { either, find, is, pipe, last } from "ramda";
+import {
+  findRootIdentifier,
+  resolveType,
+  isKeyword,
+  addDeclarationToSymbol,
+} from "@typescript-runtime-schema/compiler-utilities";
+import * as factory from "@typescript-runtime-schema/factory";
 import getArbitraryNodeName from "@typescript-runtime-schema/get-arbitrary-node-name";
 
 interface TransformerOptions {}
 
+const keywordConstraintMap = new Map([
+  [
+    ts.SyntaxKind.StringKeyword,
+    pipe(
+      factory.createPropertyAccessExpression("string"),
+      factory.createCallExpression(undefined, [])
+    )(factory.createIdentifier("Joi")),
+  ],
+  [
+    ts.SyntaxKind.NumberKeyword,
+    pipe(
+      factory.createPropertyAccessExpression("number"),
+      factory.createCallExpression(undefined, [])
+    )(factory.createIdentifier("Joi")),
+  ],
+]);
+
 const parseKeywordWithExpression = (
-  keywordKind: ts.SyntaxKind,
-  expression: ts.Expression
+  keywordKind: ts.SyntaxKind
 ): ts.Expression => {
-  if (keywordKind === ts.SyntaxKind.StringKeyword) {
-    return ts.factory.createCallExpression(
-      ts.factory.createPropertyAccessExpression(
-        expression,
-        ts.factory.createIdentifier("string")
-      ),
-      undefined,
-      []
-    );
-  }
+  return keywordConstraintMap.get(keywordKind);
 };
 
 const parseLibraryTypeAliasDeclaration = (
   typeAliasDeclaration: ts.TypeAliasDeclaration
 ): ts.Expression => {
   if (typeAliasDeclaration.type.kind === ts.SyntaxKind.StringKeyword) {
-    return parseKeywordWithExpression(
-      typeAliasDeclaration.type.kind,
-      ts.factory.createIdentifier("Joi")
-    );
+    return parseKeywordWithExpression(typeAliasDeclaration.type.kind);
+  }
+  if (typeAliasDeclaration.type.kind === ts.SyntaxKind.NumberKeyword) {
+    return parseKeywordWithExpression(typeAliasDeclaration.type.kind);
   }
   debugger;
 };
@@ -73,10 +86,7 @@ const parseLibraryInterfaceDeclaration = (
             if (ts.isPropertySignature(member)) {
               return ts.factory.createPropertyAssignment(
                 member.name,
-                parseKeywordWithExpression(
-                  member.type.kind,
-                  ts.factory.createIdentifier("Joi")
-                )
+                parseKeywordWithExpression(member.type.kind)
               );
             }
           }),
@@ -95,6 +105,10 @@ const findCallExpressionIdentifier = (
   return children.find((node) => {
     if (ts.isIdentifier(node)) {
       return node;
+    }
+    if (ts.isPropertyAccessExpression(node)) {
+      const identifiers = tsquery<ts.Identifier>(node, "Identifier");
+      return last(identifiers);
     }
     return false;
   }) as ts.Identifier | undefined;
@@ -129,7 +143,7 @@ const createVisitor = (program: ts.Program) => (
     node._name = getArbitraryNodeName(node);
 
     if (ts.isCallExpression(node)) {
-      const callExpression = node as ts.CallExpression;
+      const callExpression = node;
       const callExpressionIdentifier = findCallExpressionIdentifier(
         callExpression
       );
@@ -141,14 +155,13 @@ const createVisitor = (program: ts.Program) => (
       if (rootIdentifier.escapedText === libraryIdentifier.escapedText) {
         const { typeArguments, arguments: args } = callExpression;
         const [typeArgument] = typeArguments;
-        if(typeArgument.kind === ts.SyntaxKind.StringKeyword) {
-          return ts.factory.createCallExpression(
-            ts.factory.createIdentifier("is"),
+
+        if (isKeyword(typeArgument)) {
+          return ts.factory.updateCallExpression(
+            callExpression,
+            callExpressionIdentifier,
             undefined,
-            [
-              ...args,
-              parseKeywordWithExpression(typeArgument.kind, ts.factory.createIdentifier('Joi'))
-            ]
+            [...args, parseKeywordWithExpression(typeArgument.kind)]
           );
         }
         // Retrieves the first type argument identifier (assuming there's only one for now)
@@ -157,50 +170,40 @@ const createVisitor = (program: ts.Program) => (
           "Identifier"
         )[0] as ts.Identifier;
 
-        debugger;
         const rootTypeArgumentIdentifier = findRootIdentifier(
           typeArgumentIdentifier,
           checker
         );
         rootTypeArgumentIdentifier.parent;
+        // const resolvedType = resolveType(rootTypeArgumentIdentifier, checker)
         if (ts.isTypeReferenceNode(rootTypeArgumentIdentifier.parent)) {
-          debugger;
           parseLibraryTypeReference(rootTypeArgumentIdentifier.parent, checker);
-          // return ts.factory.createCallExpression(
-          //   ts.factory.createIdentifier("assert"),
-          //   [typeArgument],
-          //   [parseLibraryTypeAliasDeclaration(matchingDeclaration, schemaIdentifiers), ...args]
-          // );
         }
         // type Foo = string
         if (ts.isTypeAliasDeclaration(rootTypeArgumentIdentifier.parent)) {
-          debugger;
-          return ts.factory.createCallExpression(
-            ts.factory.createIdentifier("is"),
-            undefined,
-            [
+          return pipe(
+            () => factory.createIdentifier("is"),
+            factory.createCallExpression(undefined, [
               ...args,
               parseLibraryTypeAliasDeclaration(
                 rootTypeArgumentIdentifier.parent
               ),
-            ]
-          );
+            ])
+          )();
         }
-        if(ts.isInterfaceDeclaration(rootTypeArgumentIdentifier.parent)) {
-          return ts.factory.createCallExpression(
-            ts.factory.createIdentifier("is"),
-            undefined,
-            [
+        if (ts.isInterfaceDeclaration(rootTypeArgumentIdentifier.parent)) {
+          return pipe(
+            () => factory.createIdentifier("is"),
+            factory.createCallExpression(undefined, [
               ...args,
               parseLibraryInterfaceDeclaration(
                 rootTypeArgumentIdentifier.parent
               ),
-            ]
-          )
+            ])
+          )();
         }
-        // debugger;
       }
-      return;
+      return node;
     }
     return ts.visitEachChild(node, visitor, ctx);
   };
