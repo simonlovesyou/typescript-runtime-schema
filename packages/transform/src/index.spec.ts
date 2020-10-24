@@ -93,40 +93,4 @@ var surelyName = library_1.default(name, Joi.number());`.trim()
       });
     });
   });
-
-
-  it("should transform correctly", () => {
-    expect(
-      `
-import is from "@typescript-runtime-schema/library";
-
-const sa = is
-let lol = sa
-const hello = lol
-
-type Name = string
-
-interface Foo {
-  name: Name
-}
-
-const name = "hello";
-
-const shortName = hello<Foo>(name);  
-    `.trim()
-    ).toBeTransformedTo(
-      transformer,
-      `
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var library_1 = require("@typescript-runtime-schema/library");
-var sa = library_1.default;
-var lol = sa;
-var hello = lol;
-var name = "hello";
-var shortName = library_1.default(name, Joi.object().keys({
-    name: Joi.string()
-}));`.trim()
-    );
-  });
 });

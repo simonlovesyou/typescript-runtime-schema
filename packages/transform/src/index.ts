@@ -61,42 +61,6 @@ const parseLibraryTypeReference = (
   }
 };
 
-const parseLibraryInterfaceDeclaration = (
-  interfaceDeclaration: ts.InterfaceDeclaration
-): ts.Expression => {
-  const members = interfaceDeclaration.members;
-
-  return ts.factory.createCallExpression(
-    ts.factory.createPropertyAccessExpression(
-      ts.factory.createCallExpression(
-        ts.factory.createPropertyAccessExpression(
-          ts.factory.createIdentifier("Joi"),
-          ts.factory.createIdentifier("object")
-        ),
-        undefined,
-        []
-      ),
-      ts.factory.createIdentifier("keys")
-    ),
-    undefined,
-    [
-      ts.factory.createObjectLiteralExpression(
-        [
-          ...members.map((member) => {
-            if (ts.isPropertySignature(member)) {
-              return ts.factory.createPropertyAssignment(
-                member.name,
-                parseKeywordWithExpression(member.type.kind)
-              );
-            }
-          }),
-        ],
-        true
-      ),
-    ]
-  );
-};
-
 const findCallExpressionIdentifier = (
   node: ts.CallExpression
 ): ts.Identifier | undefined => {
@@ -192,15 +156,7 @@ const createVisitor = (program: ts.Program) => (
           )();
         }
         if (ts.isInterfaceDeclaration(rootTypeArgumentIdentifier.parent)) {
-          return pipe(
-            () => factory.createIdentifier("is"),
-            factory.createCallExpression(undefined, [
-              ...args,
-              parseLibraryInterfaceDeclaration(
-                rootTypeArgumentIdentifier.parent
-              ),
-            ])
-          )();
+          throw new Error('Interfaces are not yet implemented in this version.')
         }
       }
       return node;
