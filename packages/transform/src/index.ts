@@ -1,12 +1,9 @@
 import * as ts from "typescript";
-import { inspect } from "util";
 import { tsquery } from "@phenomnomnominal/tsquery";
-import { either, find, is, pipe, last } from "ramda";
+import { pipe, last } from "ramda";
 import {
   findRootIdentifier,
-  resolveType,
   isKeyword,
-  addDeclarationToSymbol,
 } from "@typescript-runtime-schema/compiler-utilities";
 import * as factory from "@typescript-runtime-schema/factory";
 import getArbitraryNodeName from "@typescript-runtime-schema/get-arbitrary-node-name";
