@@ -39,8 +39,6 @@ const toBeTransformedTo = (
 ) => {
   const setParentNodes = true;
 
-  console.log(received, transformer, expectedOutput)
-
   const sourceFile = ts.createSourceFile(
     "whatever.ts",
     received,
