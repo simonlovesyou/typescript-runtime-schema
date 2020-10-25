@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "license": "MIT",
   "private": true,
+  "types": "typings/index.d.ts",
   "scripts": {
     "test": "jest src/",
     "build": "yarn build:ts",
