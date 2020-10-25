@@ -136,7 +136,7 @@ const createSchemaUnion = (schemas: ts.Expression[]): ts.Expression =>
 
 const createVisitor = (program: ts.Program) => (
   ctx: ts.TransformationContext,
-  sf: ts.SourceFile
+  sourceFile: ts.SourceFile
 ) => {
   const checker = program.getTypeChecker();
   let libraryIdentifier: ts.Identifier | undefined = undefined;
