@@ -473,4 +473,82 @@ var object = library_1.default({ name: 'Kim' }, { type: "object" });`.trim()
       });
     });
   });
+  describe("undefined", () => {
+    describe("inline type", () => {
+      const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+const undef = undefined
+
+const definitelyUndefined = is<undefined>(undef);`;
+      it("should transform correctly", () => {
+        expect(sourceCode).toBeTransformedTo(
+          transformer,
+          `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var undef = undefined;
+var definitelyUndefined = library_1.default(undef, { type: "undefined" });`.trim()
+        );
+      });
+      describe("inline value", () => {
+        const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+const definitelyUndefined = is<undefined>(undefined);`;
+        it("should transform correctly", () => {
+          expect(sourceCode).toBeTransformedTo(
+            transformer,
+            `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var definitelyUndefined = library_1.default(undefined, { type: "undefined" });`.trim()
+          );
+        });
+      });
+    });
+
+    describe("type alias", () => {
+      const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+const undef = undefined
+
+type Undef = undefined
+
+const definitelyUndefined = is<Undef>(undef);
+      `;
+      it("should transform correctly", () => {
+        expect(sourceCode).toBeTransformedTo(
+          transformer,
+          `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var undef = undefined;
+var definitelyUndefined = library_1.default(undef, { type: "undefined" });`.trim()
+        );
+      });
+      describe("inline value", () => {
+        const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+type Undef = undefined
+
+const definitelyUndefined = is<Undef>(undefined);`;
+        it("should transform correctly", () => {
+          expect(sourceCode).toBeTransformedTo(
+            transformer,
+            `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var definitelyUndefined = library_1.default(undefined, { type: "undefined" });`.trim()
+          );
+        });
+      });
+    });
+  });
 });

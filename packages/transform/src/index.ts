@@ -56,6 +56,15 @@ const keywordConstraintMap = new Map([
         factory.createObjectLiteralExpression(false)([propertyAssignment])
     )(),
   ],
+  [
+    ts.SyntaxKind.UndefinedKeyword,
+    pipe(
+      () => ts.factory.createStringLiteral("undefined"),
+      factory.createPropertyAssignment("type"),
+      (propertyAssignment) =>
+        factory.createObjectLiteralExpression(false)([propertyAssignment])
+    )(),
+  ],
 ]);
 
 const parseKeywordWithExpression = (
