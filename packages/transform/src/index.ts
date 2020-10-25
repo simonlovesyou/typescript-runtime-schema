@@ -67,21 +67,11 @@ const parseKeywordWithExpression = (
 const parseLibraryTypeAliasDeclaration = (
   typeAliasDeclaration: ts.TypeAliasDeclaration
 ): ts.Expression => {
-  if (typeAliasDeclaration.type.kind === ts.SyntaxKind.StringKeyword) {
-    return parseKeywordWithExpression(typeAliasDeclaration.type.kind);
+  const parsedExpression = parseKeywordWithExpression(typeAliasDeclaration.type.kind)
+  if(!parsedExpression) {
+    throw new Error(`Cannot parse keyword kind ${getArbitraryNodeName(typeAliasDeclaration.type)}`)
   }
-  if (typeAliasDeclaration.type.kind === ts.SyntaxKind.NumberKeyword) {
-    return parseKeywordWithExpression(typeAliasDeclaration.type.kind);
-  }
-  if (typeAliasDeclaration.type.kind === ts.SyntaxKind.BooleanKeyword) {
-    return parseKeywordWithExpression(typeAliasDeclaration.type.kind);
-  }
-  if (typeAliasDeclaration.type.kind === ts.SyntaxKind.AnyKeyword) {
-    return parseKeywordWithExpression(typeAliasDeclaration.type.kind);
-  }
-  if (typeAliasDeclaration.type.kind === ts.SyntaxKind.ObjectKeyword) {
-    return parseKeywordWithExpression(typeAliasDeclaration.type.kind);
-  }
+  return parsedExpression
 };
 
 const findCallExpressionIdentifier = (
