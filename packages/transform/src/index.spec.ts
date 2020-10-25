@@ -629,4 +629,83 @@ var definitelyNull = library_1.default(null, { type: "null" });`.trim()
       });
     });
   });
+  describe("void", () => {
+    describe("inline type", () => {
+      const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+const something = null
+
+const definitelyNil = is<void>(something);`;
+      it("should transform correctly", () => {
+        expect(sourceCode).toBeTransformedTo(
+          transformer,
+          `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var something = null;
+var definitelyNil = library_1.default(something, [{ type: "null" }, { type: "undefined" }]);`.trim()
+        );
+      });
+      describe("inline value", () => {
+        const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+const definitelyNil = is<void>(null);`;
+        it("should transform correctly", () => {
+          expect(sourceCode).toBeTransformedTo(
+            transformer,
+            `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var definitelyNil = library_1.default(null, [{ type: "null" }, { type: "undefined" }]);`.trim()
+          );
+        });
+      });
+    });
+
+    describe("type alias", () => {
+      const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+const something = null
+
+type Nil = void
+
+const definitelyNil = is<Nil>(something);
+      `;
+      it("should transform correctly", () => {
+        expect(sourceCode).toBeTransformedTo(
+          transformer,
+          `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var something = null;
+var definitelyNil = library_1.default(something, [{ type: "null" }, { type: "undefined" }]);`.trim()
+        );
+      });
+      describe("inline value", () => {
+        const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+type Nil = void
+
+const definitelyNil = is<Nil>(null);`;
+        it("should transform correctly", () => {
+          expect(sourceCode).toBeTransformedTo(
+            transformer,
+            `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var definitelyNil = library_1.default(null, [{ type: "null" }, { type: "undefined" }]);`.trim()
+          );
+        });
+      });
+    });
+  });
+
 });

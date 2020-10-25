@@ -79,6 +79,15 @@ const keywordConstraintMap = new Map([
 const parseKeywordWithExpression = (
   keywordKind: ts.SyntaxKind
 ): ts.Expression => {
+  if (keywordKind === ts.SyntaxKind.VoidKeyword) {
+    return ts.factory.createArrayLiteralExpression(
+      [
+        parseKeywordWithExpression(ts.SyntaxKind.NullKeyword),
+        parseKeywordWithExpression(ts.SyntaxKind.UndefinedKeyword),
+      ],
+      false
+    );
+  }
   return keywordConstraintMap.get(keywordKind);
 };
 
