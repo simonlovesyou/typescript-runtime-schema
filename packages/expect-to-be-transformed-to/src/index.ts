@@ -66,7 +66,7 @@ const toBeTransformedTo = (
         received
       )} to transform to ${printExpected(
         expectedOutput
-      )} using the passed in transformer but it compiled to ${result}\n\n${printDiffOrStringify(
+      )} using the passed in transformer but it compiled to \n${printReceived(result)}\n\n${printDiffOrStringify(
         expectedOutput,
         result,
         "expected",
