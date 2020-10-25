@@ -65,6 +65,15 @@ const keywordConstraintMap = new Map([
         factory.createObjectLiteralExpression(false)([propertyAssignment])
     )(),
   ],
+  [
+    ts.SyntaxKind.NullKeyword,
+    pipe(
+      () => ts.factory.createStringLiteral("null"),
+      factory.createPropertyAssignment("type"),
+      (propertyAssignment) =>
+        factory.createObjectLiteralExpression(false)([propertyAssignment])
+    )(),
+  ],
 ]);
 
 const parseKeywordWithExpression = (
@@ -76,11 +85,28 @@ const parseKeywordWithExpression = (
 const parseLibraryTypeAliasDeclaration = (
   typeAliasDeclaration: ts.TypeAliasDeclaration
 ): ts.Expression => {
-  const parsedExpression = parseKeywordWithExpression(typeAliasDeclaration.type.kind)
-  if(!parsedExpression) {
-    throw new Error(`Cannot parse keyword kind ${getArbitraryNodeName(typeAliasDeclaration.type)}`)
+  const type = typeAliasDeclaration.type;
+  if (ts.isLiteralTypeNode(type)) {
+    const parsedExpression = parseKeywordWithExpression(type.literal.kind);
+
+    if (!parsedExpression) {
+      throw new Error(
+        `Cannot parse keyword kind ${getArbitraryNodeName(
+          typeAliasDeclaration.type
+        )}`
+      );
+    }
+    return parsedExpression;
   }
-  return parsedExpression
+  const parsedExpression = parseKeywordWithExpression(type.kind);
+  if (!parsedExpression) {
+    throw new Error(
+      `Cannot parse keyword kind ${getArbitraryNodeName(
+        typeAliasDeclaration.type
+      )}`
+    );
+  }
+  return parsedExpression;
 };
 
 const findCallExpressionIdentifier = (
@@ -159,12 +185,23 @@ const createVisitor = (program: ts.Program) => (
       if (rootIdentifier.escapedText === libraryIdentifier.escapedText) {
         const { typeArguments, arguments: args } = callExpression;
         const [typeArgument] = typeArguments;
-
-        if (isKeyword(typeArgument)) {
+        const typeArgumentLiteral = (typeArgument as ts.LiteralTypeNode)
+          .literal;
+        if (
+          isKeyword(typeArgument) ||
+          (typeArgumentLiteral && isKeyword(typeArgumentLiteral))
+        ) {
           return factory.updateCallExpression(
             callExpressionIdentifier,
             undefined,
-            [...args, parseKeywordWithExpression(typeArgument.kind)]
+            [
+              ...args,
+              parseKeywordWithExpression(
+                typeArgumentLiteral && isKeyword(typeArgumentLiteral)
+                  ? typeArgumentLiteral.kind
+                  : typeArgument.kind
+              ),
+            ]
           )(callExpression);
         }
         if (ts.isUnionTypeNode(typeArgument)) {
@@ -185,6 +222,9 @@ const createVisitor = (program: ts.Program) => (
               if (rootTypeArgumentIdentifier === undefined) {
                 if (isKeyword(type)) {
                   return parseKeywordWithExpression(type.kind);
+                }
+                if (ts.isLiteralTypeNode(type)) {
+                  return parseKeywordWithExpression(type.literal.kind);
                 }
               }
               return generateSchemaByIdentifer(rootTypeArgumentIdentifier);

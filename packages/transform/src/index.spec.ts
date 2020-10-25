@@ -551,4 +551,82 @@ var definitelyUndefined = library_1.default(undefined, { type: "undefined" });`.
       });
     });
   });
+  describe("null", () => {
+    describe("inline type", () => {
+      const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+const something = null
+
+const definitelyNull = is<null>(something);`;
+      it("should transform correctly", () => {
+        expect(sourceCode).toBeTransformedTo(
+          transformer,
+          `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var something = null;
+var definitelyNull = library_1.default(something, { type: "null" });`.trim()
+        );
+      });
+      describe("inline value", () => {
+        const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+const definitelyNull = is<null>(null);`;
+        it("should transform correctly", () => {
+          expect(sourceCode).toBeTransformedTo(
+            transformer,
+            `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var definitelyNull = library_1.default(null, { type: "null" });`.trim()
+          );
+        });
+      });
+    });
+
+    describe("type alias", () => {
+      const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+const something = null
+
+type Nul = null
+
+const definitelyNull = is<Nul>(something);
+      `;
+      it("should transform correctly", () => {
+        expect(sourceCode).toBeTransformedTo(
+          transformer,
+          `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var something = null;
+var definitelyNull = library_1.default(something, { type: "null" });`.trim()
+        );
+      });
+      describe("inline value", () => {
+        const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+type Nul = null
+
+const definitelyNull = is<Nul>(null);`;
+        it("should transform correctly", () => {
+          expect(sourceCode).toBeTransformedTo(
+            transformer,
+            `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var definitelyNull = library_1.default(null, { type: "null" });`.trim()
+          );
+        });
+      });
+    });
+  });
 });
