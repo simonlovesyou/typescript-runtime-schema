@@ -200,17 +200,15 @@ const createVisitor = (program: ts.Program) => (
           isKeyword(typeArgument) ||
           (typeArgumentLiteral && isKeyword(typeArgumentLiteral))
         ) {
-          return factory.updateCallExpression(
-            callExpressionIdentifier,
-            undefined,
-            [
-              ...args,
+          return pipe(
+            factory.updateCallExpression(callExpressionIdentifier, undefined, [
               parseKeywordWithExpression(
                 typeArgumentLiteral && isKeyword(typeArgumentLiteral)
                   ? typeArgumentLiteral.kind
                   : typeArgument.kind
               ),
-            ]
+            ]),
+            factory.createCallExpression(undefined, args)
           )(callExpression);
         }
         if (ts.isUnionTypeNode(typeArgument)) {
@@ -239,10 +237,11 @@ const createVisitor = (program: ts.Program) => (
               return generateSchemaByIdentifer(rootTypeArgumentIdentifier);
             }
           );
-          return factory.updateCallExpression(
-            callExpressionIdentifier,
-            undefined,
-            [...args, ts.factory.createArrayLiteralExpression(schemas)]
+          return pipe(
+            factory.updateCallExpression(callExpressionIdentifier, undefined, [
+              ts.factory.createArrayLiteralExpression(schemas),
+            ]),
+            factory.createCallExpression(undefined, args)
           )(callExpression);
         }
         // Retrieves the first type argument identifier (assuming there's only one for now)
@@ -258,10 +257,11 @@ const createVisitor = (program: ts.Program) => (
         rootTypeArgumentIdentifier.parent;
 
         // type Foo = string
-        return factory.updateCallExpression(
-          callExpressionIdentifier,
-          undefined,
-          [...args, generateSchemaByIdentifer(rootTypeArgumentIdentifier)]
+        return pipe(
+          factory.updateCallExpression(callExpressionIdentifier, undefined, [
+            generateSchemaByIdentifer(rootTypeArgumentIdentifier),
+          ]),
+          factory.createCallExpression(undefined, args)
         )(callExpression);
       }
       return node;
