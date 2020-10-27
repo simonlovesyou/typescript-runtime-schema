@@ -384,7 +384,7 @@ const createVisitor = (program: ts.Program) => (
           factory.createCallExpression(undefined, args)
         )(callExpression);
       }
-      return node;
+      return ts.visitEachChild(node, visitor, ctx);
     }
     return ts.visitEachChild(node, visitor, ctx);
   };
