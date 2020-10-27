@@ -707,5 +707,96 @@ var definitelyNil = library_1.default([{ type: "null" }, { type: "undefined" }])
       });
     });
   });
+  describe("interface", () => {
+    describe("type alias", () => {
+      const sourceCode = `
+import is from "@typescript-runtime-schema/library";
 
+const person = { name: "Morpheus", age: 21 } as any
+
+interface Address {
+  streetAddress: string
+  city: string
+}
+
+interface Person {
+  name: string
+  age: number
+  address: Address
+}
+
+const isPerson = is<Person>(person);
+        `;
+      it("should transform correctly", () => {
+        expect(sourceCode).toBeTransformedTo(
+          transformer,
+`
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var person = { name: "Morpheus", age: 21 };
+var isPerson = library_1.default({
+    type: "object",
+    properties: {
+        name: { type: "string" },
+        age: { type: "number" },
+        address: {
+            type: "object",
+            properties: {
+                type: "object",
+                properties: {
+                    streetAddress: { type: "string" },
+                    city: { type: "string" }
+                }
+            }
+        }
+    }
+})(person);`.trim()
+        );
+      });
+      describe("inline value", () => {
+        const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+interface Address {
+  streetAddress: string
+  city: string
+}
+
+interface Person {
+  name: string | number
+  age: number
+  address: Address
+}
+
+const isPerson = is<Person>({ name: "Morpheus", age: 21 });`;
+        it("should transform correctly", () => {
+          expect(sourceCode).toBeTransformedTo(
+            transformer,
+            `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var isPerson = library_1.default({
+    type: "object",
+    properties: {
+        name: { type: "string" },
+        age: { type: "number" },
+        address: {
+            type: "object",
+            properties: {
+                type: "object",
+                properties: {
+                    streetAddress: { type: "string" },
+                    city: { type: "string" }
+                }
+            }
+        }
+    }
+})({ name: "Morpheus", age: 21 });`.trim()
+          );
+        });
+      });
+    });
+  });
 });

@@ -118,6 +118,132 @@ const parseLibraryTypeAliasDeclaration = (
   return parsedExpression;
 };
 
+const parseTypeLiteral = (typeLiteral: ts.TypeLiteralNode, checker: ts.TypeChecker): ts.Expression => {
+  const members = typeLiteral.members;
+
+  return factory.createObjectLiteralExpression(true)([
+    ...members.map((member) => {
+      if (ts.isPropertySignature(member)) {
+        if (ts.isTypeLiteralNode(member.type)) {
+          return ts.factory.createPropertyAssignment(
+            member.name,
+            parseTypeLiteral(member.type, checker)
+          );
+        }
+        if (ts.isInterfaceDeclaration(member.type)) {
+          return ts.factory.createPropertyAssignment(
+            member.name,
+            parseInterfaceDeclaration(member.type, checker)
+          );
+        }
+        if(ts.isTypeReferenceNode(member.type)) {
+          const name = member.type.typeName as ts.Identifier
+          const rootIdentifier = findRootIdentifier(name, checker)
+
+          const parent = rootIdentifier.parent
+          if(ts.isTypeAliasDeclaration(parent)) {
+            return ts.factory.createPropertyAssignment(
+              member.name,
+              parseLibraryTypeAliasDeclaration(parent)
+            );
+          }
+          if(ts.isInterfaceDeclaration(parent)) {
+            return ts.factory.createPropertyAssignment(
+              member.name,
+              factory.createObjectLiteralExpression(true)([
+                factory.createPropertyAssignment("type")(
+                  ts.factory.createStringLiteral("object")
+                ),
+                factory.createPropertyAssignment("properties")(
+                  parseInterfaceDeclaration(parent, checker)
+                ),
+              ])
+            );
+          }
+        }
+        return ts.factory.createPropertyAssignment(
+          member.name,
+          parseKeywordWithExpression(member.type.kind)
+        );
+      }
+    }),
+  ]);
+};
+
+const parseInterfaceDeclaration = (
+  interfaceDeclaration: ts.InterfaceDeclaration,
+  checker: ts.TypeChecker
+): ts.Expression => {
+  const members = interfaceDeclaration.members;
+
+  return factory.createObjectLiteralExpression(true)([
+    factory.createPropertyAssignment("type")(
+      ts.factory.createStringLiteral("object")
+    ),
+    factory.createPropertyAssignment("properties")(
+      factory.createObjectLiteralExpression(true)([
+        ...members.map((member) => {
+          if (ts.isPropertySignature(member)) {
+            if (ts.isTypeLiteralNode(member.type)) {
+              return ts.factory.createPropertyAssignment(
+                member.name,
+                factory.createObjectLiteralExpression(true)([
+                  factory.createPropertyAssignment("type")(
+                    ts.factory.createStringLiteral("object")
+                  ),
+                  factory.createPropertyAssignment("properties")(
+                    parseTypeLiteral(member.type, checker)
+                  ),
+                ])
+              );
+            }
+            if (ts.isInterfaceDeclaration(member.type)) {
+              debugger;
+              return ts.factory.createPropertyAssignment(
+                member.name,
+                parseInterfaceDeclaration(member.type, checker)
+              );
+            }
+            if(ts.isUnionTypeNode(member.type)) {
+              console.log("Member type!")
+            }
+            if(ts.isTypeReferenceNode(member.type)) {
+              const name = member.type.typeName as ts.Identifier
+              const rootIdentifier = findRootIdentifier(name, checker)
+
+              const parent = rootIdentifier.parent
+              debugger;
+              if(ts.isTypeAliasDeclaration(parent)) {
+                return ts.factory.createPropertyAssignment(
+                  member.name,
+                  parseLibraryTypeAliasDeclaration(parent)
+                );
+              }
+              if(ts.isInterfaceDeclaration(parent)) {
+                return ts.factory.createPropertyAssignment(
+                  member.name,
+                  factory.createObjectLiteralExpression(true)([
+                    factory.createPropertyAssignment("type")(
+                      ts.factory.createStringLiteral("object")
+                    ),
+                    factory.createPropertyAssignment("properties")(
+                      parseInterfaceDeclaration(parent, checker)
+                    ),
+                  ])
+                );
+              }
+            }
+            return ts.factory.createPropertyAssignment(
+              member.name,
+              parseKeywordWithExpression(member.type.kind)
+            );
+          }
+        }),
+      ])
+    ),
+  ]);
+};
+
 const findCallExpressionIdentifier = (
   node: ts.CallExpression
 ): ts.Identifier | undefined => {
@@ -150,23 +276,18 @@ const findSchemaIdentifiers = (node: ts.Node): ts.Identifier[] | undefined => {
   }
 };
 
-const generateSchemaByIdentifer = (identifier: ts.Identifier) => {
+const generateSchemaByIdentifer = (identifier: ts.Identifier, checker: ts.TypeChecker) => {
   if (ts.isTypeAliasDeclaration(identifier.parent)) {
     return parseLibraryTypeAliasDeclaration(identifier.parent);
   }
+  if (ts.isInterfaceDeclaration(identifier.parent)) {
+    return parseInterfaceDeclaration(identifier.parent, checker);
+  }
+
   throw new Error(
     `Cannot generate schema for ${getArbitraryNodeName(identifier.parent)}`
   );
 };
-
-const createSchemaUnion = (schemas: ts.Expression[]): ts.Expression =>
-  pipe(
-    () => factory.createIdentifier("Joi"),
-    factory.createPropertyAccessExpression("alternatives"),
-    factory.createCallExpression([], []),
-    factory.createPropertyAccessExpression("try"),
-    factory.createCallExpression([], schemas)
-  )();
 
 const createVisitor = (program: ts.Program) => (
   ctx: ts.TransformationContext,
@@ -234,7 +355,7 @@ const createVisitor = (program: ts.Program) => (
                   return parseKeywordWithExpression(type.literal.kind);
                 }
               }
-              return generateSchemaByIdentifer(rootTypeArgumentIdentifier);
+              return generateSchemaByIdentifer(rootTypeArgumentIdentifier, checker);
             }
           );
           return pipe(
@@ -256,10 +377,9 @@ const createVisitor = (program: ts.Program) => (
         );
         rootTypeArgumentIdentifier.parent;
 
-        // type Foo = string
         return pipe(
           factory.updateCallExpression(callExpressionIdentifier, undefined, [
-            generateSchemaByIdentifer(rootTypeArgumentIdentifier),
+            generateSchemaByIdentifer(rootTypeArgumentIdentifier, checker),
           ]),
           factory.createCallExpression(undefined, args)
         )(callExpression);
