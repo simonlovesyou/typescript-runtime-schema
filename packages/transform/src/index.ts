@@ -103,20 +103,10 @@ const createVisitor = (program: ts.Program) => (
             factory.createCallExpression(undefined, args)
           )(callExpression);
         }
-        // Retrieves the first type argument identifier (assuming there's only one for now)
-        const typeArgumentIdentifier = tsquery(
-          typeArgument,
-          "Identifier"
-        )[0] as ts.Identifier;
 
-        const rootTypeArgumentIdentifier = findRootIdentifier(
-          typeArgumentIdentifier,
-          checker
-        );
-        rootTypeArgumentIdentifier.parent;
         return pipe(
           factory.updateCallExpression(callExpressionIdentifier, undefined, [
-            mutate(rootTypeArgumentIdentifier, checker) as ts.Expression,
+            mutate(typeArgument, checker) as ts.Expression,
           ]),
           factory.createCallExpression(undefined, args)
         )(callExpression);
