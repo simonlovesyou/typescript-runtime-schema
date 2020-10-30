@@ -43,3 +43,6 @@ export const updateCallExpression = (
 export const createArrayLiteralExpression = (multiLine?: boolean) => (
   elements: readonly ts.Expression[]
 ) => ts.factory.createArrayLiteralExpression(elements, multiLine);
+
+export const createStringLiteral = (singleLine?: boolean) => (string: string) =>
+  ts.factory.createStringLiteral(string, singleLine);
