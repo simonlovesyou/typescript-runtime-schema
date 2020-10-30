@@ -1,8 +1,6 @@
 import transformer from ".";
 import "@typescript-runtime-schema/expect-to-be-transformed-to";
 
-import * as ts from "typescript";
-
 describe("transform", () => {
   describe("string", () => {
     describe("inline type", () => {
