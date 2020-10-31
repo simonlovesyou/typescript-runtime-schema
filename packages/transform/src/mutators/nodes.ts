@@ -45,6 +45,9 @@ const interfaceDeclaration = (
   const members = interfaceDeclaration.members;
 
   return createSchemaDescriptor(factory.createStringLiteral()("object"), [
+    factory.createPropertyAssignment("title")(
+      factory.createStringLiteral()(interfaceDeclaration.name.getText())
+    ),
     factory.createPropertyAssignment("properties")(
       factory.createObjectLiteralExpression(true)([
         ...members.map((member: ts.PropertySignature) => {
