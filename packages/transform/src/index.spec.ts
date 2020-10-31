@@ -820,17 +820,18 @@ interface Person {
   address: Address
 }
 
-const isPerson = is<Person>(person);
+is<Person>(person);
         `;
       it("should transform correctly", () => {
         expect(sourceCode).toBeTransformedTo(
           transformer,
-`"use strict";
+          `"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
 var person = { name: "Morpheus", age: 21 };
-var isPerson = library_1.default({
+library_1.default({
     type: "object",
+    title: "Person",
     properties: {
         name: {
             type: "string"
@@ -840,6 +841,7 @@ var isPerson = library_1.default({
         },
         address: {
             type: "object",
+            title: "Address",
             properties: {
                 streetAddress: {
                     type: "string"
@@ -848,10 +850,12 @@ var isPerson = library_1.default({
                     type: "string"
                 }
             },
-            required: ["streetAddress", "city"]
+            required: ["streetAddress", "city"],
+            additionalProperties: false
         }
     },
-    required: ["name", "address"]
+    required: ["name", "address"],
+    additionalProperties: false
 })(person);`.trim()
         );
       });
@@ -869,7 +873,7 @@ interface Person {
   address: Address
 }
 
-const isPerson = is<Person>({ name: "Morpheus", age: 21 });`;
+is<Person>({ name: "Morpheus", age: 21 });`;
         it("should transform correctly", () => {
           expect(sourceCode).toBeTransformedTo(
             transformer,
@@ -877,8 +881,9 @@ const isPerson = is<Person>({ name: "Morpheus", age: 21 });`;
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
-var isPerson = library_1.default({
+library_1.default({
     type: "object",
+    title: "Person",
     properties: {
         age: {
             type: "number"
@@ -895,10 +900,61 @@ var isPerson = library_1.default({
             }
         }
     },
-    required: ["age", "address"]
+    required: ["age", "address"],
+    additionalProperties: false
 })({ name: "Morpheus", age: 21 });`.trim()
           );
         });
+      });
+    });
+    describe("heritage", () => {
+      const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+const person = { name: "Morpheus", age: 21 } as any
+
+interface Human {
+  name: string
+}
+
+interface Person extends Human {
+  gender: string
+}
+
+is<Person>(person);`;
+      it("should transform correctly", () => {
+        expect(sourceCode).toBeTransformedTo(
+          transformer,
+          `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var person = { name: "Morpheus", age: 21 };
+library_1.default({
+    type: "object",
+    title: "Person",
+    properties: {
+        gender: {
+            type: "string"
+        }
+    },
+    required: ["gender"],
+    allOf: [
+        {
+            type: "object",
+            title: "Human",
+            properties: {
+                name: {
+                    type: "string"
+                }
+            },
+            required: ["name"],
+            additionalProperties: false
+        }
+    ],
+    additionalProperties: false
+})(person);`.trim()
+        );
       });
     });
   });

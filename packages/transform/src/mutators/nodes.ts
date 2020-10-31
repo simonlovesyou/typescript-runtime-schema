@@ -1,4 +1,5 @@
 import * as ts from "typescript";
+import { map } from "ramda";
 import * as factory from "@typescript-runtime-schema/factory";
 import { createSchemaDescriptor } from "../create";
 import mutateUpwards, { MutateMap } from ".";
@@ -38,6 +39,18 @@ const identifier = (identifier: ts.Identifier, checker: ts.TypeChecker) => {
   return mutateUpwards(rootIdentifier.parent, checker) as ts.Node;
 };
 
+const heritageClause = (
+  heritageClause: ts.HeritageClause,
+  checker: ts.TypeChecker
+) => {
+  const types = heritageClause.types;
+  const result = types.map((type) =>
+  mutateUpwards(type.expression, checker)
+) as ts.Expression[];
+  debugger;
+  return result[0]
+};
+
 const interfaceDeclaration = (
   interfaceDeclaration: ts.InterfaceDeclaration,
   checker: ts.TypeChecker
@@ -58,14 +71,27 @@ const interfaceDeclaration = (
     factory.createPropertyAssignment("required")(
       factory.createArrayLiteralExpression(false)([
         ...members.reduce((acc, member: ts.PropertySignature) => {
-          return member.questionToken ? acc : [...acc, factory.createStringLiteral()(member.name.getText())];
+          return member.questionToken
+            ? acc
+            : [...acc, factory.createStringLiteral()(member.name.getText())];
         }, []),
       ])
     ),
+    interfaceDeclaration.heritageClauses &&
+      factory.createPropertyAssignment("allOf")(
+        factory.createArrayLiteralExpression(true)([
+          ...map((heritageClause: ts.HeritageClause) => {
+            return mutateUpwards(
+              heritageClause,
+              checker
+            ) as ts.ObjectLiteralExpression;
+          })(interfaceDeclaration.heritageClauses || []),
+        ])
+      ),
     factory.createPropertyAssignment("additionalProperties")(
       ts.factory.createFalse()
     ),
-  ]);
+  ].filter(node => node));
 };
 
 const typeLiteralNode = (
@@ -91,6 +117,7 @@ const MUTATE_MAP: MutateMap = {
   [ts.SyntaxKind.PropertySignature]: propertySignature,
   [ts.SyntaxKind.Identifier]: identifier,
   [ts.SyntaxKind.TypeAliasDeclaration]: typeAliasDeclaration,
+  [ts.SyntaxKind.HeritageClause]: heritageClause,
 };
 
 export default MUTATE_MAP;
