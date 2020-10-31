@@ -796,7 +796,7 @@ interface Address {
 
 interface Person {
   name: string
-  age: number
+  age?: number
   address: Address
 }
 
@@ -827,9 +827,11 @@ var isPerson = library_1.default({
                 city: {
                     type: "string"
                 }
-            }
+            },
+            required: ["streetAddress", "city"]
         }
-    }
+    },
+    required: ["name", "address"]
 })(person);`.trim()
         );
       });
@@ -872,7 +874,8 @@ var isPerson = library_1.default({
                 }
             }
         }
-    }
+    },
+    required: ["age", "address"]
 })({ name: "Morpheus", age: 21 });`.trim()
           );
         });

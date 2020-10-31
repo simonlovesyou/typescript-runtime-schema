@@ -47,10 +47,16 @@ const interfaceDeclaration = (
   return createSchemaDescriptor(factory.createStringLiteral()("object"), [
     factory.createPropertyAssignment("properties")(
       factory.createObjectLiteralExpression(true)([
-        ...members.map(
-          (member: ts.PropertySignature) =>
-            mutateUpwards(member, checker) as ts.ObjectLiteralElementLike
-        ),
+        ...members.map((member: ts.PropertySignature) => {
+          return mutateUpwards(member, checker) as ts.ObjectLiteralElementLike;
+        }),
+      ])
+    ),
+    factory.createPropertyAssignment("required")(
+      factory.createArrayLiteralExpression(false)([
+        ...members.reduce((acc, member: ts.PropertySignature) => {
+          return member.questionToken ? acc : [...acc, factory.createStringLiteral()(member.name.getText())];
+        }, []),
       ])
     ),
   ]);
