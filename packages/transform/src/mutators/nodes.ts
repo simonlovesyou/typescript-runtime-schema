@@ -45,10 +45,9 @@ const heritageClause = (
 ) => {
   const types = heritageClause.types;
   const result = types.map((type) =>
-  mutateUpwards(type.expression, checker)
-) as ts.Expression[];
-  debugger;
-  return result[0]
+    mutateUpwards(type.expression, checker)
+  ) as ts.Expression[];
+  return result[0];
 };
 
 const interfaceDeclaration = (
@@ -56,42 +55,47 @@ const interfaceDeclaration = (
   checker: ts.TypeChecker
 ) => {
   const members = interfaceDeclaration.members;
-
-  return createSchemaDescriptor(factory.createStringLiteral()("object"), [
-    factory.createPropertyAssignment("title")(
-      factory.createStringLiteral()(interfaceDeclaration.name.getText())
-    ),
-    factory.createPropertyAssignment("properties")(
-      factory.createObjectLiteralExpression(true)([
-        ...members.map((member: ts.PropertySignature) => {
-          return mutateUpwards(member, checker) as ts.ObjectLiteralElementLike;
-        }),
-      ])
-    ),
-    factory.createPropertyAssignment("required")(
-      factory.createArrayLiteralExpression(false)([
-        ...members.reduce((acc, member: ts.PropertySignature) => {
-          return member.questionToken
-            ? acc
-            : [...acc, factory.createStringLiteral()(member.name.getText())];
-        }, []),
-      ])
-    ),
-    interfaceDeclaration.heritageClauses &&
-      factory.createPropertyAssignment("allOf")(
-        factory.createArrayLiteralExpression(true)([
-          ...map((heritageClause: ts.HeritageClause) => {
+  return createSchemaDescriptor(
+    factory.createStringLiteral()("object"),
+    [
+      factory.createPropertyAssignment("title")(
+        factory.createStringLiteral()(interfaceDeclaration.name.getText())
+      ),
+      factory.createPropertyAssignment("properties")(
+        factory.createObjectLiteralExpression(true)([
+          ...members.map((member: ts.PropertySignature) => {
             return mutateUpwards(
-              heritageClause,
+              member,
               checker
-            ) as ts.ObjectLiteralExpression;
-          })(interfaceDeclaration.heritageClauses || []),
+            ) as ts.ObjectLiteralElementLike;
+          }),
         ])
       ),
-    factory.createPropertyAssignment("additionalProperties")(
-      ts.factory.createFalse()
-    ),
-  ].filter(node => node));
+      factory.createPropertyAssignment("required")(
+        factory.createArrayLiteralExpression(false)([
+          ...members.reduce((acc, member: ts.PropertySignature) => {
+            return member.questionToken
+              ? acc
+              : [...acc, factory.createStringLiteral()(member.name.getText())];
+          }, []),
+        ])
+      ),
+      interfaceDeclaration.heritageClauses &&
+        factory.createPropertyAssignment("allOf")(
+          factory.createArrayLiteralExpression(true)([
+            ...map((heritageClause: ts.HeritageClause) => {
+              return mutateUpwards(
+                heritageClause,
+                checker
+              ) as ts.ObjectLiteralExpression;
+            })(interfaceDeclaration.heritageClauses || []),
+          ])
+        ),
+      factory.createPropertyAssignment("additionalProperties")(
+        ts.factory.createFalse()
+      ),
+    ].filter((node) => node)
+  );
 };
 
 const typeLiteralNode = (

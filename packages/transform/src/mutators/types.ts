@@ -1,7 +1,9 @@
 import * as ts from "typescript";
+import { map } from "ramda";
 import { findRootIdentifier } from "@typescript-runtime-schema/compiler-utilities";
 import mutateUpwards, { MutateMap } from ".";
 import { createSchemaDescriptor } from "../create";
+import * as factory from '@typescript-runtime-schema/factory'
 
 const literalTypeNode = (
   literalTypeNode: ts.LiteralTypeNode,
@@ -18,7 +20,9 @@ export const typeReferenceNode = (
   const result = mutateUpwards(parent, checker) as ts.Node;
 
   if (ts.isStringLiteral(result)) {
-    return mutateUpwards(parent, checker) as ts.StringLiteral | ts.StringLiteral[]
+    return mutateUpwards(parent, checker) as
+      | ts.StringLiteral
+      | ts.StringLiteral[];
   }
   return result;
 };
@@ -34,10 +38,26 @@ export const unionTypeNode = (
   );
 };
 
+export const intersectionType = (
+  intersection: ts.IntersectionType,
+  checker: ts.TypeChecker
+) => {
+  const types = intersection.types as unknown as ts.TypeNode[];
+  debugger;
+  return factory.createObjectLiteralExpression(true)([
+    factory.createPropertyAssignment('allOf')(
+      factory.createArrayLiteralExpression(true)([
+        ...map((type: ts.TypeNode) => mutateUpwards(type, checker))(types as ts.TypeNode[]) as ts.Expression[]
+      ])
+    )
+  ])
+};
+
 const MUTATE_MAP: MutateMap = {
   [ts.SyntaxKind.LiteralType]: literalTypeNode,
   [ts.SyntaxKind.TypeReference]: typeReferenceNode,
   [ts.SyntaxKind.UnionType]: unionTypeNode,
+  [ts.SyntaxKind.IntersectionType]: intersectionType,
 };
 
 export default MUTATE_MAP;

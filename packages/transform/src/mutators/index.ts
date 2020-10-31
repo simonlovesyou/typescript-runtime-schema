@@ -5,7 +5,7 @@ import keywords from "./keywords";
 import ts from "typescript";
 
 export type Mutator = (
-  node: ts.Node,
+  node: ts.Node | ts.IntersectionType,
   checker: ts.TypeChecker
 ) => ts.Expression | ts.Expression[] | ts.Node | ts.StringLiteral | ts.StringLiteral[];
 

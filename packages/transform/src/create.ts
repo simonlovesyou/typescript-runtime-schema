@@ -10,7 +10,7 @@ export const createSchemaDescriptor = (
     return pipe(
       () => type,
       map((type) =>
-        createSchemaDescriptor(type)
+        ts.isObjectLiteralExpression(type) ? type : createSchemaDescriptor(type)
       ),
       factory.createArrayLiteralExpression(true),
       factory.createPropertyAssignment("anyOf"),

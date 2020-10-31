@@ -959,4 +959,59 @@ library_1.default({
       });
     });
   });
+  describe("intersection", () => {
+    const sourceCode = `
+import is from "@typescript-runtime-schema/library";
+
+const person = { name: "Morpheus", age: 21 } as any
+
+interface Human {
+  name: string
+}
+
+type Person = { age: number } & Human | string
+
+is<Person>(person);`;
+    it("should transform correctly", () => {
+      expect(sourceCode).toBeTransformedTo(
+        transformer,
+        `
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var library_1 = require("@typescript-runtime-schema/library");
+var person = { name: "Morpheus", age: 21 };
+library_1.default({
+    anyOf: [
+        {
+            allOf: [
+                {
+                    type: "object",
+                    properties: {
+                        age: {
+                            type: "number"
+                        }
+                    },
+                    additionalProperties: false
+                },
+                {
+                    type: "object",
+                    title: "Human",
+                    properties: {
+                        name: {
+                            type: "string"
+                        }
+                    },
+                    required: ["name"],
+                    additionalProperties: false
+                }
+            ]
+        },
+        {
+            type: "string"
+        }
+    ]
+})(person);`.trim()
+      );
+    });
+  });
 });
