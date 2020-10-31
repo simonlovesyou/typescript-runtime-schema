@@ -108,6 +108,9 @@ const typeLiteralNode = (
         ),
       ])
     ),
+    factory.createPropertyAssignment("additionalProperties")(
+      ts.factory.createFalse()
+    ),
   ]);
 };
 

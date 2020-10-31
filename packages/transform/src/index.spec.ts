@@ -897,7 +897,8 @@ library_1.default({
                 city: {
                     type: "string"
                 }
-            }
+            },
+            additionalProperties: false
         }
     },
     required: ["age", "address"],
