@@ -1,14 +1,29 @@
 import * as ts from "typescript";
-import { pipe, ifElse } from "ramda";
+import { pipe, map, ifElse } from "ramda";
 import * as factory from "@typescript-runtime-schema/factory";
 
-export const createSchemaDescriptor = (type: ts.StringLiteral | ts.StringLiteral[], additionalProperties?: ts.ObjectLiteralElementLike[]) => pipe(
-  ifElse(
-    Array.isArray,
-    () => factory.createArrayLiteralExpression()(type as ts.StringLiteral[]),
-    literal => literal,
-  ),
-  factory.createPropertyAssignment("type"),
-  propertyAssignment => [propertyAssignment, ...(additionalProperties || [])],
-  factory.createObjectLiteralExpression(true)
-)(type)
+export const createSchemaDescriptor = (
+  type: ts.StringLiteral | ts.StringLiteral[],
+  additionalProperties?: ts.ObjectLiteralElementLike[]
+): ts.ObjectLiteralExpression => {
+  if (Array.isArray(type)) {
+    return pipe(
+      () => type,
+      map((type) =>
+        createSchemaDescriptor(type)
+      ),
+      factory.createArrayLiteralExpression(true),
+      factory.createPropertyAssignment("anyOf"),
+      (property) => [property],
+      factory.createObjectLiteralExpression(true),
+    )();
+  }
+  return pipe(
+    factory.createPropertyAssignment("type"),
+    (propertyAssignment) => [
+      propertyAssignment,
+      ...(additionalProperties || []),
+    ],
+    factory.createObjectLiteralExpression(true)
+  )(type);
+};

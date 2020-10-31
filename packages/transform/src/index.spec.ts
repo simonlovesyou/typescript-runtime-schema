@@ -269,7 +269,7 @@ import is from "@typescript-runtime-schema/library";
 
 const age = '21'
 
-const surelyAge = is<number | string>(age);`;
+is<number | string>(age);`;
       it("should transform correctly", () => {
         expect(sourceCode).toBeTransformedTo(
           transformer,
@@ -278,8 +278,15 @@ const surelyAge = is<number | string>(age);`;
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
 var age = '21';
-var surelyAge = library_1.default({
-    type: ["number", "string"]
+library_1.default({
+    anyOf: [
+        {
+            type: "number"
+        },
+        {
+            type: "string"
+        }
+    ]
 })(age);`.trim()
         );
       });
@@ -287,7 +294,7 @@ var surelyAge = library_1.default({
         const sourceCode = `
 import is from "@typescript-runtime-schema/library";
 
-const surelyAge = is<number | string>('21');`;
+is<number | string>('21');`;
         it("should transform correctly", () => {
           expect(sourceCode).toBeTransformedTo(
             transformer,
@@ -295,8 +302,15 @@ const surelyAge = is<number | string>('21');`;
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
-var surelyAge = library_1.default({
-    type: ["number", "string"]
+library_1.default({
+    anyOf: [
+        {
+            type: "number"
+        },
+        {
+            type: "string"
+        }
+    ]
 })('21');`.trim()
           );
         });
@@ -310,7 +324,7 @@ import is from "@typescript-runtime-schema/library";
 type Num = number
 type Str = string
 
-const surelyAge = is<Num | Str>(age);`;
+is<Num | Str>(age);`;
       it("should transform correctly", () => {
         expect(sourceCode).toBeTransformedTo(
           transformer,
@@ -318,12 +332,15 @@ const surelyAge = is<Num | Str>(age);`;
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
-var surelyAge = library_1.default({
-    type: [{
+library_1.default({
+    anyOf: [
+        {
             type: "number"
-        }, {
+        },
+        {
             type: "string"
-        }]
+        }
+    ]
 })(age);`.trim()
         );
       });
@@ -334,7 +351,7 @@ import is from "@typescript-runtime-schema/library";
 type Num = number
 type Str = string
 
-const surelyAge = is<Num | Str>('21');`;
+is<Num | Str>('21');`;
         it("should transform correctly", () => {
           expect(sourceCode).toBeTransformedTo(
             transformer,
@@ -342,12 +359,15 @@ const surelyAge = is<Num | Str>('21');`;
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var library_1 = require("@typescript-runtime-schema/library");
-var surelyAge = library_1.default({
-    type: [{
+library_1.default({
+    anyOf: [
+        {
             type: "number"
-        }, {
+        },
+        {
             type: "string"
-        }]
+        }
+    ]
 })('21');`.trim()
           );
         });

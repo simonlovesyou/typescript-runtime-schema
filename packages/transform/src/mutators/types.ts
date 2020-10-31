@@ -18,9 +18,7 @@ export const typeReferenceNode = (
   const result = mutateUpwards(parent, checker) as ts.Node;
 
   if (ts.isStringLiteral(result)) {
-    return createSchemaDescriptor(
-      mutateUpwards(parent, checker) as ts.StringLiteral | ts.StringLiteral[]
-    );
+    return mutateUpwards(parent, checker) as ts.StringLiteral | ts.StringLiteral[]
   }
   return result;
 };
