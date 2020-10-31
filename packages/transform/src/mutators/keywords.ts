@@ -1,6 +1,7 @@
 import * as ts from "typescript";
 import { createSchemaDescriptor } from "../create";
-import { MutateMap } from '.'
+import { MutateMap } from ".";
+import * as factory from '@typescript-runtime-schema/factory'
 
 const keywordTypeMap = new Map([
   [ts.SyntaxKind.StringKeyword, "string"],
@@ -12,7 +13,7 @@ const keywordTypeMap = new Map([
   [ts.SyntaxKind.NullKeyword, "null"],
 ]);
 
-export const keyword = (kind: ts.SyntaxKind): ts.Expression => {
+export const keyword = (kind: ts.SyntaxKind): ts.StringLiteral | ts.ArrayLiteralExpression => {
   if (kind === ts.SyntaxKind.VoidKeyword) {
     return ts.factory.createArrayLiteralExpression(
       [
@@ -22,9 +23,8 @@ export const keyword = (kind: ts.SyntaxKind): ts.Expression => {
       false
     );
   }
-  return createSchemaDescriptor(keywordTypeMap.get(kind));
+  return factory.createStringLiteral(false)(keywordTypeMap.get(kind));
 };
-
 
 export const mutate = (node: ts.Node) => {
   return keyword(node.kind);
@@ -38,7 +38,7 @@ const MUTATE_MAP: MutateMap = {
   [ts.SyntaxKind.AnyKeyword]: mutate,
   [ts.SyntaxKind.UndefinedKeyword]: mutate,
   [ts.SyntaxKind.NullKeyword]: mutate,
-  [ts.SyntaxKind.VoidKeyword]: mutate
-}
+  [ts.SyntaxKind.VoidKeyword]: mutate,
+};
 
-export default MUTATE_MAP
+export default MUTATE_MAP;

@@ -3,14 +3,25 @@ import * as factory from "@typescript-runtime-schema/factory";
 import { createSchemaDescriptor } from "../create";
 import mutateUpwards, { MutateMap } from ".";
 import { findRootIdentifier } from "@typescript-runtime-schema/compiler-utilities";
+import { mutate } from "./keywords";
 
 const propertySignature = (
   propertySignature: ts.PropertySignature,
   checker: ts.TypeChecker
 ) => {
-  const type = propertySignature.type;
+  const result = mutateUpwards(
+    propertySignature.type,
+    checker
+  ) as ts.Expression;
 
-  return mutateUpwards(type, checker);
+  if (ts.isStringLiteral(result)) {
+    return ts.factory.createPropertyAssignment(
+      propertySignature.name,
+      createSchemaDescriptor(result)
+    );
+  }
+
+  return ts.factory.createPropertyAssignment(propertySignature.name, result);
 };
 
 const typeAliasDeclaration = (
@@ -33,14 +44,12 @@ const interfaceDeclaration = (
 ) => {
   const members = interfaceDeclaration.members;
 
-  return createSchemaDescriptor("object", [
+  return createSchemaDescriptor(factory.createStringLiteral()("object"), [
     factory.createPropertyAssignment("properties")(
       factory.createObjectLiteralExpression(true)([
-        ...members.map((member) =>
-          ts.factory.createPropertyAssignment(
-            member.name,
-            mutateUpwards(member, checker) as ts.Expression
-          )
+        ...members.map(
+          (member: ts.PropertySignature) =>
+            mutateUpwards(member, checker) as ts.ObjectLiteralElementLike
         ),
       ])
     ),
@@ -52,16 +61,13 @@ const typeLiteralNode = (
   checker: ts.TypeChecker
 ) => {
   const members = typeLiteralNode.members;
-
-  return createSchemaDescriptor("object", [
+  return createSchemaDescriptor(factory.createStringLiteral()("object"), [
     factory.createPropertyAssignment("properties")(
       factory.createObjectLiteralExpression(true)([
-        ...members.map((member) => {
-          return ts.factory.createPropertyAssignment(
-            member.name,
-            mutateUpwards(member, checker) as ts.Expression
-          );
-        }),
+        ...members.map(
+          (member) =>
+            mutateUpwards(member, checker) as ts.ObjectLiteralElementLike
+        ),
       ])
     ),
   ]);

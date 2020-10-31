@@ -7,7 +7,7 @@ import ts from "typescript";
 export type Mutator = (
   node: ts.Node,
   checker: ts.TypeChecker
-) => ts.Expression | ts.Expression[] | ts.Node;
+) => ts.Expression | ts.Expression[] | ts.Node | ts.StringLiteral | ts.StringLiteral[];
 
 export type MutateMap = Partial<Record<ts.SyntaxKind, Mutator>>;
 
@@ -19,8 +19,8 @@ const mutateOver = (mutateMap: MutateMap) => (
 };
 
 export default mutateOver({
+  ...keywords,
   ...literals,
   ...types,
   ...nodes,
-  ...keywords,
 });
