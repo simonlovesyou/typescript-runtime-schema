@@ -62,6 +62,9 @@ const interfaceDeclaration = (
         }, []),
       ])
     ),
+    factory.createPropertyAssignment("additionalProperties")(
+      ts.factory.createFalse()
+    ),
   ]);
 };
 
