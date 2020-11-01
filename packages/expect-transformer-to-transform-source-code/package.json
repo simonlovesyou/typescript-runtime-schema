@@ -1,5 +1,5 @@
 {
-  "name": "@typescript-runtime-schema/expect-to-be-transformed-to",
+  "name": "@typescript-runtime-schema/expect-transformer-to-transform-source-code",
   "version": "1.0.0",
   "description": "Expect a piece of source code to be transformed to using the provided transformer",
   "main": "dist/index.js",

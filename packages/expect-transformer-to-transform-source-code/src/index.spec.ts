@@ -27,6 +27,6 @@ const transformer = (program: ts.Program) => {
 describe("expect-to-be-transformed-to", () => {
   it('should transform the typescript code using the transformer', () => {
     //@ts-ignore
-    expect(`"foo"`).toBeTransformedTo(transformer, `"bar";`)
+    expect(transformer).toTransformSourceCode(`"foo"`, `"bar";`)
   })
 });

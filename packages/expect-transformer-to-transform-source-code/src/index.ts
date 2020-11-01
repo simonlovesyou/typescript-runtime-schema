@@ -17,7 +17,7 @@ declare global {
        * @example
        * expect(new Date('2020-01-01')).toBeAfter(new Date('2019-12-31'));
        */
-      toBeTransformedTo(transformer: Transformer, string: string): R;
+      toTransformSourceCode(sourceCode: string, transpiledCode: string): R
     }
     interface Expect {
       /**
@@ -27,14 +27,14 @@ declare global {
        *   expect.toBeAfter(new Date('2019-12-31'))
        * );
        */
-      toBeTransformedTo<T>(string: string): JestMatchers<T>;
+      toTransformSourceCode<T>(transformer: Transformer): JestMatchers<T>;
     }
   }
 }
 
-const toBeTransformedTo = (
-  received: string,
+const toTransformSourceCode = (
   transformer: Transformer,
+  received: string,
   expectedOutput: string,
 ) => {
   const setParentNodes = true;
@@ -77,4 +77,4 @@ const toBeTransformedTo = (
   };
 };
 
-expect.extend({ toBeTransformedTo });
+expect.extend({ toTransformSourceCode });
