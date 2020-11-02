@@ -14,7 +14,6 @@ import {
   createPropertyAssignment,
   createIdentifier,
 } from ".";
-import "@typescript-runtime-schema/expect-to-be-compiled-to";
 import * as ts from "typescript";
 
 describe("factory-utilities", () => {
