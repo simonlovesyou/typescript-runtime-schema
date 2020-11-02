@@ -13,21 +13,11 @@ declare global {
   namespace jest {
     interface Matchers<R> {
       /**
-       * Asserts that ${value} is a valid instance of `Date` whose value occurs after that of ${otherDate}.
+       * Asserts that the passed in transformer can produce the expected output based on provided source code.
        * @example
-       * expect(new Date('2020-01-01')).toBeAfter(new Date('2019-12-31'));
+       * expect(transformer: (program: ts.Program) => ts.TranformerFactory<ts.SourceFile>).toTransformSourceCode('"foo";', '"bar";);
        */
       toTransformSourceCode(sourceCode: string, transpiledCode: string): R
-    }
-    interface Expect {
-      /**
-       * Asserts that ${value} is a valid instance of `Date` whose value occurs after that of ${otherDate}.
-       * @example
-       * expect(new Date('2020-01-01')).toEqual(
-       *   expect.toBeAfter(new Date('2019-12-31'))
-       * );
-       */
-      toTransformSourceCode<T>(transformer: Transformer): JestMatchers<T>;
     }
   }
 }
