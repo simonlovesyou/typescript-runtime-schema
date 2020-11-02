@@ -15,6 +15,7 @@
     "@types/dedent": "^0.7.0",
     "@types/jest": "^26.0.14",
     "@types/node": "^14.11.8",
+    "@typescript-runtime-schema/expect-transformer-to-transform-program": "^1.0.0",
     "@typescript-runtime-schema/expect-transformer-to-transform-source-code": "^1.0.0",
     "dedent": "^0.7.0",
     "jest": "^26.5.3",

@@ -1,5 +1,6 @@
 import transformer from ".";
 import "@typescript-runtime-schema/expect-transformer-to-transform-source-code";
+import "@typescript-runtime-schema/expect-transformer-to-transform-program";
 
 import dedent from "dedent";
 
@@ -1023,6 +1024,63 @@ const definitelyOn = is<boolean>(true);`;
             })(person);
           `.trim()
         );
+      });
+    });
+    describe("import", () => {
+      const sourceFiles = {
+        "./lib.ts": dedent`
+          import is from "@typescript-runtime-schema/library";
+          import {Person} from './person'
+
+          const person = { name: "Morpheus", age: 21 } as any
+
+          is<Person>(person);`.trim(),
+
+        "./person.ts": dedent`
+          interface Human {
+            name: string
+          }
+
+          export interface Person extends Human {
+            gender: string
+          }
+
+          export default Person
+        `.trim(),
+      };
+      it("should produce the correct files", () => {
+        expect(transformer).toTransformProgram(sourceFiles, {
+          "./lib.js": dedent`
+            "use strict";
+            exports.__esModule = true;
+            var library_1 = require("@typescript-runtime-schema/library");
+            var person = { name: "Morpheus", age: 21 };
+            library_1["default"]({
+                type: "object",
+                title: "Person",
+                properties: {
+                    gender: {
+                        type: "string"
+                    }
+                },
+                required: ["gender"],
+                allOf: [
+                    {
+                        type: "object",
+                        title: "Human",
+                        properties: {
+                            name: {
+                                type: "string"
+                            }
+                        },
+                        required: ["name"],
+                        additionalProperties: false
+                    }
+                ],
+                additionalProperties: false
+            })(person);
+          `.trim(),
+        });
       });
     });
   });
