@@ -51,6 +51,31 @@ export const findRootIdentifier = (
   if (ts.isInterfaceDeclaration(declaration)) {
     return declaration.name;
   }
+  if (ts.isImportClause(declaration)) {
+    // TODO: Remove this ugly hack
+    if(!declaration.getText().includes('is')) {
+      const parent = declaration.parent
+      if(ts.isImportDeclaration(parent)) {
+        const moduleSymbol = checker.getSymbolAtLocation(declaration.parent.moduleSpecifier)
+        const defaultExport = moduleSymbol.exports.get(ts.escapeLeadingUnderscores('default'))
+        const expressionA = (defaultExport.declarations[0] as ts.ExportAssignment).expression as ts.Identifier
+        return findRootIdentifier(expressionA, checker)
+      }
+    }
+    return (declaration && declaration.name) || identifier;
+  }
+  if (ts.isImportSpecifier(declaration)) {
+    const importDeclaration = declaration.parent.parent.parent
+    if(!importDeclaration.getText().includes('is')) {
+      if(ts.isImportDeclaration(importDeclaration)) {
+        const moduleSymbol = checker.getSymbolAtLocation(importDeclaration.moduleSpecifier)
+        const defaultExport = moduleSymbol.exports.get(ts.escapeLeadingUnderscores('default'))
+        const expressionA = (defaultExport.declarations[0] as ts.ExportAssignment).expression as ts.Identifier
+        return findRootIdentifier(expressionA, checker)
+      }
+    }
+    return (declaration && declaration.name) || identifier;
+  }
   return identifier;
 };
 
