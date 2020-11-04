@@ -94,6 +94,34 @@ describe("transform", () => {
         });
       });
     });
+    describe("import", () => {
+      const sourceCode = dedent`
+        import is from "@typescript-runtime-schema/library";
+        import Str from './str'
+
+        const name = "Morpheus" as any
+
+        is<Str>(name);
+      `;
+      it("should transform correctly", () => {
+        expect(transformer).toTransformProgram(
+          {
+            "./lib.ts": sourceCode,
+            "./str.ts": "type Str = string; export default Str",
+          },
+          {
+            "./lib.js": dedent`
+              "use strict";
+              exports.__esModule = true;
+              var library_1 = require("@typescript-runtime-schema/library");
+              var name = "Morpheus";
+              library_1["default"]({
+                  type: "string"
+              })(name);`.trim(),
+          }
+        );
+      });
+    });
   });
 
   describe("number", () => {
