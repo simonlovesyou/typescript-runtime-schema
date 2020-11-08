@@ -1,5 +1,5 @@
 import * as ts from "typescript";
-import { map } from "ramda";
+import { compose, map } from "ramda";
 import * as factory from "@typescript-runtime-schema/factory";
 import { createSchemaDescriptor } from "../create";
 import mutateUpwards, { MutateMap } from ".";
@@ -55,6 +55,7 @@ const interfaceDeclaration = (
   checker: ts.TypeChecker
 ) => {
   const members = interfaceDeclaration.members;
+
   return createSchemaDescriptor(
     factory.createStringLiteral()("object"),
     [
@@ -62,34 +63,34 @@ const interfaceDeclaration = (
         factory.createStringLiteral()(interfaceDeclaration.name.getText())
       ),
       factory.createPropertyAssignment("properties")(
-        factory.createObjectLiteralExpression(true)([
-          ...members.map((member: ts.PropertySignature) => {
+        factory.createObjectLiteralExpression(true)(
+          map((member: ts.Node) => {
             return mutateUpwards(
               member,
               checker
             ) as ts.ObjectLiteralElementLike;
-          }),
-        ])
+          })(members),
+        )
       ),
       factory.createPropertyAssignment("required")(
-        factory.createArrayLiteralExpression(false)([
-          ...members.reduce((acc, member: ts.PropertySignature) => {
+        factory.createArrayLiteralExpression(false)(
+          members.reduce((acc, member: ts.PropertySignature) => {
             return member.questionToken
               ? acc
               : [...acc, factory.createStringLiteral()(member.name.getText())];
           }, []),
-        ])
+        )
       ),
       interfaceDeclaration.heritageClauses &&
         factory.createPropertyAssignment("allOf")(
-          factory.createArrayLiteralExpression(true)([
-            ...map((heritageClause: ts.HeritageClause) => {
+          factory.createArrayLiteralExpression(true)(
+            map((heritageClause: ts.HeritageClause) => {
               return mutateUpwards(
                 heritageClause,
                 checker
               ) as ts.ObjectLiteralExpression;
             })(interfaceDeclaration.heritageClauses || []),
-          ])
+          )
         ),
       factory.createPropertyAssignment("additionalProperties")(
         ts.factory.createFalse()
@@ -103,15 +104,16 @@ const typeLiteralNode = (
   checker: ts.TypeChecker
 ) => {
   const members = typeLiteralNode.members;
+
   return createSchemaDescriptor(factory.createStringLiteral()("object"), [
-    factory.createPropertyAssignment("properties")(
-      factory.createObjectLiteralExpression(true)([
-        ...members.map(
-          (member) =>
-            mutateUpwards(member, checker) as ts.ObjectLiteralElementLike
-        ),
-      ])
-    ),
+    compose(
+      factory.createPropertyAssignment("properties"),
+      factory.createObjectLiteralExpression(true),
+      map(
+        (member: ts.TypeElement) =>
+          mutateUpwards(member, checker) as ts.ObjectLiteralElementLike
+      )
+    )(members),
     factory.createPropertyAssignment("additionalProperties")(
       ts.factory.createFalse()
     ),
