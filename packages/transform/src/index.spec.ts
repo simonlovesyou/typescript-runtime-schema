@@ -920,6 +920,122 @@ const definitelyOn = is<boolean>(true);`;
       });
     });
   });
+  describe("union", () => {
+    describe("inline type", () => {
+      const sourceCode = dedent`
+        import is from "@typescript-runtime-schema/library";
+
+        const name = "Morpheus"
+
+        is<'Morpheus' | 'Kim'>(name);`;
+      it("should transform correctly", () => {
+        expect(transformer).toTransformSourceCode(
+          sourceCode,
+          dedent`
+            "use strict";
+            Object.defineProperty(exports, "__esModule", { value: true });
+            var library_1 = require("@typescript-runtime-schema/library");
+            var name = "Morpheus";
+            library_1.default({
+                anyOf: [
+                    {
+                        const: 'Morpheus'
+                    },
+                    {
+                        const: 'Kim'
+                    }
+                ]
+            })(name);
+          `.trim()
+        );
+      });
+      describe("inline value", () => {
+        const sourceCode = dedent`
+          import is from "@typescript-runtime-schema/library";
+
+          is<'Morpheus' | 'Kim'>("Morpheus");`;
+        it("should transform correctly", () => {
+          expect(transformer).toTransformSourceCode(
+            sourceCode,
+            dedent`
+              "use strict";
+              Object.defineProperty(exports, "__esModule", { value: true });
+              var library_1 = require("@typescript-runtime-schema/library");
+              library_1.default({
+                  anyOf: [
+                      {
+                          const: 'Morpheus'
+                      },
+                      {
+                          const: 'Kim'
+                      }
+                  ]
+              })("Morpheus");
+            `.trim()
+          );
+        });
+      });
+    });
+    describe("type reference", () => {
+      const sourceCode = dedent`
+        import is from "@typescript-runtime-schema/library";
+
+        const name = "Morpheus"
+
+        type Name = 'Morpheus' | 'Kim'
+
+        is<Name>(name);`;
+      it("should transform correctly", () => {
+        expect(transformer).toTransformSourceCode(
+          sourceCode,
+          dedent`
+            "use strict";
+            Object.defineProperty(exports, "__esModule", { value: true });
+            var library_1 = require("@typescript-runtime-schema/library");
+            var name = "Morpheus";
+            library_1.default({
+                anyOf: [
+                    {
+                        const: 'Morpheus'
+                    },
+                    {
+                        const: 'Kim'
+                    }
+                ]
+            })(name);
+          `.trim()
+        );
+      });
+      describe("inline value", () => {
+        const sourceCode = dedent`
+          import is from "@typescript-runtime-schema/library";
+
+          type Name = 'Morpheus' | 'Kim'
+
+          is<Name>("Morpheus");`;
+        it("should transform correctly", () => {
+          expect(transformer).toTransformSourceCode(
+            sourceCode,
+            dedent`
+              "use strict";
+              Object.defineProperty(exports, "__esModule", { value: true });
+              var library_1 = require("@typescript-runtime-schema/library");
+              library_1.default({
+                  anyOf: [
+                      {
+                          const: 'Morpheus'
+                      },
+                      {
+                          const: 'Kim'
+                      }
+                  ]
+              })("Morpheus");
+            `.trim()
+          );
+        });
+      });
+    });
+  });
   describe("interface", () => {
     describe("type alias", () => {
       const sourceCode = dedent`
