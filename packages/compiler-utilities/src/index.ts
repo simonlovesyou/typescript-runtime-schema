@@ -98,6 +98,29 @@ export const findRootIdentifier = (
   return identifier;
 };
 
+export const createArrayLiteralFrom = (
+  array: unknown[],
+  multiLine?: boolean
+): ts.ArrayLiteralExpression => {
+  return ts.factory.createArrayLiteralExpression(
+    map((item) =>
+      is(Array)(item)
+        ? createArrayLiteralFrom(item as unknown[], multiLine)
+        : isNode(item) &&
+          (ts.isStringLiteral(item) ||
+            ts.isObjectLiteralExpression(item) ||
+            ts.isNumericLiteral(item))
+        ? item
+        : is(Object)(item)
+        ? createObjectLiteralFrom(item as Record<string, unknown>)
+        : is(Number)(item)
+        ? ts.factory.createNumericLiteral(item as string)
+        : item
+    )(array) as ts.Expression[],
+    multiLine
+  );
+};
+
 export const createObjectLiteralFrom = (
   object: Record<string, unknown>,
   multiLine?: boolean
@@ -109,11 +132,10 @@ export const createObjectLiteralFrom = (
           key,
           (isNode(value) && ts.isObjectLiteralExpression(value)) ||
             ts.isArrayLiteralExpression(value) ||
-            ts.isStringLiteral(value) ||
-            ts.isNumericLiteral(value)
+            ts.isStringLiteral(value) || ts.isNumericLiteral(value)
             ? value
-            : equals(null)(value)
-            ? ts.factory.createNull()
+            : is(Array)(value)
+            ? createArrayLiteralFrom(value, multiLine)
             : is(Object)(value)
             ? createObjectLiteralFrom(value, multiLine)
             : is(String)(value)
