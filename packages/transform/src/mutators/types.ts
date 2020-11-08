@@ -1,8 +1,10 @@
 import * as ts from "typescript";
-import { map, compose } from "ramda";
-import { findRootIdentifier } from "@typescript-runtime-schema/compiler-utilities";
+import { map } from "ramda";
+import {
+  findRootIdentifier,
+  createObjectLiteralFrom,
+} from "@typescript-runtime-schema/compiler-utilities";
 import mutateUpwards, { MutateMap } from ".";
-import * as factory from "@typescript-runtime-schema/factory";
 
 const literalTypeNode = (
   literalTypeNode: ts.LiteralTypeNode,
@@ -32,13 +34,15 @@ export const unionTypeNode = (
 ) => {
   const types = unionTypeNode.types;
 
-  return compose(
-    factory.createObjectLiteralExpression(true),
-    (propertyAssignment) => [propertyAssignment],
-    factory.createPropertyAssignment("anyOf"),
-    factory.createArrayLiteralExpression(true),
-    map((type: ts.TypeNode) => mutateUpwards(type, checker) as ts.ObjectLiteralExpression),
-  )(types);
+  return createObjectLiteralFrom(
+    {
+      anyOf: map(
+        (type: ts.TypeNode) =>
+          mutateUpwards(type, checker) as ts.ObjectLiteralExpression
+      )(types),
+    },
+    true
+  );
 };
 
 export const intersectionType = (
@@ -47,13 +51,30 @@ export const intersectionType = (
 ) => {
   const types = (intersection.types as unknown) as ts.TypeNode[];
 
-  return compose(
-    factory.createObjectLiteralExpression(true),
-    Array.of,
-    factory.createPropertyAssignment("allOf"),
-    factory.createArrayLiteralExpression(true),
-    map((type: ts.TypeNode) => mutateUpwards(type, checker) as ts.ObjectLiteralExpression),
-  )(types)
+  return createObjectLiteralFrom(
+    {
+      allOf: map(
+        (type: ts.TypeNode) =>
+          mutateUpwards(type, checker) as ts.ObjectLiteralExpression
+      )(types),
+    },
+    true
+  );
+};
+
+export const arrayType = (
+  arrayTypeNode: ts.ArrayTypeNode,
+  checker: ts.TypeChecker
+) => {
+  const elementType = arrayTypeNode.elementType;
+
+  return createObjectLiteralFrom(
+    {
+      type: "array",
+      items: mutateUpwards(elementType, checker),
+    },
+    true
+  );
 };
 
 const MUTATE_MAP: MutateMap = {
@@ -61,6 +82,7 @@ const MUTATE_MAP: MutateMap = {
   [ts.SyntaxKind.TypeReference]: typeReferenceNode,
   [ts.SyntaxKind.UnionType]: unionTypeNode,
   [ts.SyntaxKind.IntersectionType]: intersectionType,
+  [ts.SyntaxKind.ArrayType]: arrayType,
 };
 
 export default MUTATE_MAP;

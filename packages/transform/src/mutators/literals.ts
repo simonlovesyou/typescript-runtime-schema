@@ -2,6 +2,7 @@ import * as ts from "typescript";
 import { keyword } from "./keywords";
 import { MutateMap } from ".";
 import { compose } from "ramda";
+import { createObjectLiteralFrom } from "@typescript-runtime-schema/compiler-utilities";
 import * as factory from '@typescript-runtime-schema/factory'
 
 const literalTypeNode = (
@@ -13,11 +14,9 @@ const literalTypeNode = (
     | ts.PrefixUnaryExpression
 ) => keyword(literal.kind);
 
-const stringLiteral = (literal: ts.StringLiteral) => compose(
-  factory.createObjectLiteralExpression(true),
-  Array.of,
-  factory.createPropertyAssignment('const')
-)(literal);
+const stringLiteral = (literal: ts.StringLiteral) => createObjectLiteralFrom({
+  const: literal
+}, true)
 
 const MUTATE_MAP: MutateMap = {
   [ts.SyntaxKind.LiteralType]: literalTypeNode,

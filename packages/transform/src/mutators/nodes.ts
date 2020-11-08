@@ -1,10 +1,9 @@
 import * as ts from "typescript";
-import { compose, map } from "ramda";
+import { map } from "ramda";
 import * as factory from "@typescript-runtime-schema/factory";
-import { createSchemaDescriptor } from "../create";
 import mutateUpwards, { MutateMap } from ".";
 import { findRootIdentifier } from "@typescript-runtime-schema/compiler-utilities";
-import { mutate } from "./keywords";
+import { createObjectLiteralFrom } from "@typescript-runtime-schema/compiler-utilities";
 
 const propertySignature = (
   propertySignature: ts.PropertySignature,
@@ -15,14 +14,9 @@ const propertySignature = (
     checker
   ) as ts.Expression;
 
-  if (ts.isStringLiteral(result)) {
-    return ts.factory.createPropertyAssignment(
-      propertySignature.name,
-      createSchemaDescriptor(result)
-    );
-  }
-
-  return ts.factory.createPropertyAssignment(propertySignature.name, result);
+  return createObjectLiteralFrom({
+    [propertySignature.name.getText()]: result
+  }, true)
 };
 
 const typeAliasDeclaration = (
@@ -56,46 +50,33 @@ const interfaceDeclaration = (
 ) => {
   const members = interfaceDeclaration.members;
 
-  return createSchemaDescriptor(
-    factory.createStringLiteral()("object"),
-    [
-      factory.createPropertyAssignment("title")(
-        factory.createStringLiteral()(interfaceDeclaration.name.getText())
+  return createObjectLiteralFrom(
+    {
+      type: "object",
+      title: interfaceDeclaration.name.getText(),
+      properties: factory.createObjectLiteralExpression(true)(
+        members.map((member: ts.PropertySignature) => {
+          return mutateUpwards(member, checker) as ts.ObjectLiteralElementLike;
+        })
       ),
-      factory.createPropertyAssignment("properties")(
-        factory.createObjectLiteralExpression(true)(
-          map((member: ts.Node) => {
-            return mutateUpwards(
-              member,
-              checker
-            ) as ts.ObjectLiteralElementLike;
-          })(members),
-        )
-      ),
-      factory.createPropertyAssignment("required")(
-        factory.createArrayLiteralExpression(false)(
-          members.reduce((acc, member: ts.PropertySignature) => {
-            return member.questionToken
-              ? acc
-              : [...acc, factory.createStringLiteral()(member.name.getText())];
-          }, []),
-        )
-      ),
-      interfaceDeclaration.heritageClauses &&
-        factory.createPropertyAssignment("allOf")(
-          factory.createArrayLiteralExpression(true)(
-            map((heritageClause: ts.HeritageClause) => {
+      required: members.reduce((acc, member: ts.PropertySignature) => {
+        return member.questionToken
+          ? acc
+          : [...acc, factory.createStringLiteral(false)(member.name.getText())];
+      }, []),
+      ...(interfaceDeclaration.heritageClauses
+        ? {
+            allOf: map((heritageClause: ts.HeritageClause) => {
               return mutateUpwards(
                 heritageClause,
                 checker
               ) as ts.ObjectLiteralExpression;
-            })(interfaceDeclaration.heritageClauses || []),
-          )
-        ),
-      factory.createPropertyAssignment("additionalProperties")(
-        ts.factory.createFalse()
-      ),
-    ].filter((node) => node)
+            })(interfaceDeclaration.heritageClauses),
+          }
+        : {}),
+      additionalProperties: false,
+    },
+    true
   );
 };
 
@@ -105,19 +86,16 @@ const typeLiteralNode = (
 ) => {
   const members = typeLiteralNode.members;
 
-  return createSchemaDescriptor(factory.createStringLiteral()("object"), [
-    compose(
-      factory.createPropertyAssignment("properties"),
-      factory.createObjectLiteralExpression(true),
+  return createObjectLiteralFrom({
+    type: "object",
+    properties: factory.createObjectLiteralExpression(true)(
       map(
         (member: ts.TypeElement) =>
           mutateUpwards(member, checker) as ts.ObjectLiteralElementLike
-      )
-    )(members),
-    factory.createPropertyAssignment("additionalProperties")(
-      ts.factory.createFalse()
+      )(members)
     ),
-  ]);
+    additionalProperties: false,
+  }, true);
 };
 
 const MUTATE_MAP: MutateMap = {
