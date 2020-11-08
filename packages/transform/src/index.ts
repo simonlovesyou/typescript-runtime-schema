@@ -1,15 +1,10 @@
 import * as ts from "typescript";
 import { tsquery } from "@phenomnomnominal/tsquery";
 import { pipe, last, map } from "ramda";
-import {
-  findRootIdentifier,
-  isKeyword,
-} from "@typescript-runtime-schema/compiler-utilities";
+import { findRootIdentifier } from "@typescript-runtime-schema/compiler-utilities";
 import * as factory from "@typescript-runtime-schema/factory";
 import getArbitraryNodeName from "@typescript-runtime-schema/get-arbitrary-node-name";
 import mutate from "./mutators";
-import { createSchemaDescriptor } from "./create";
-import { assert } from "console";
 
 interface TransformerOptions {}
 
@@ -81,66 +76,9 @@ const createVisitor = (program: ts.Program) => (
       if (rootIdentifier.escapedText === libraryIdentifier.escapedText) {
         const { typeArguments, arguments: args } = callExpression;
         const [typeArgument] = typeArguments;
-        const typeArgumentLiteral = (typeArgument as ts.LiteralTypeNode)
-          .literal;
-
-        if (isKeyword(typeArgument)) {
-          const result = mutate(typeArgument, checker) as ts.StringLiteral;
-          debugger;
-          return pipe(
-            factory.updateCallExpression(callExpressionIdentifier, undefined, [
-              createSchemaDescriptor(result),
-            ]),
-            factory.createCallExpression(undefined, args)
-          )(callExpression);
-        }
-
-        if (ts.isLiteralTypeNode(typeArgument)) {
-          return pipe(
-            factory.updateCallExpression(callExpressionIdentifier, undefined, [
-              createSchemaDescriptor(mutate(typeArgument, checker) as ts.StringLiteral),
-            ]),
-            factory.createCallExpression(undefined, args)
-          )(callExpression);
-        }
-
-        if (typeArgumentLiteral && isKeyword(typeArgumentLiteral)) {
-          return pipe(
-            factory.updateCallExpression(callExpressionIdentifier, undefined, [
-              createSchemaDescriptor(
-                mutate(
-                  typeArgumentLiteral || typeArgument,
-                  checker
-                ) as ts.StringLiteral
-              ),
-            ]),
-            factory.createCallExpression(undefined, args)
-          )(callExpression);
-        }
-        if (ts.isUnionTypeNode(typeArgument)) {
-          const types = typeArgument.types;
-          return pipe(
-            factory.updateCallExpression(callExpressionIdentifier, undefined, [
-              createSchemaDescriptor(
-                types.map((type) => mutate(type, checker) as ts.StringLiteral)
-              ),
-            ]),
-            factory.createCallExpression(undefined, args)
-          )(callExpression);
-        }
-        const mutationResults = mutate(typeArgument, checker) as ts.Expression
-
-        if(ts.isStringLiteral(mutationResults) || ts.isArrayLiteralExpression(mutationResults)) {
-          return pipe(
-            factory.updateCallExpression(callExpressionIdentifier, undefined, [
-              createSchemaDescriptor(mutationResults as ts.StringLiteral | ts.StringLiteral[]),
-            ]),
-            factory.createCallExpression(undefined, args)
-          )(callExpression);
-        }
         return pipe(
           factory.updateCallExpression(callExpressionIdentifier, undefined, [
-           mutationResults as ts.Expression,
+            mutate(typeArgument, checker) as ts.Expression,
           ]),
           factory.createCallExpression(undefined, args)
         )(callExpression);

@@ -817,7 +817,14 @@ const definitelyOn = is<boolean>(true);`;
             var library_1 = require("@typescript-runtime-schema/library");
             var something = null;
             var definitelyNil = library_1.default({
-                type: ["null", "undefined"]
+                anyOf: [
+                    {
+                        type: "null"
+                    },
+                    {
+                        type: "undefined"
+                    }
+                ]
             })(something);
           `.trim()
         );
@@ -836,7 +843,14 @@ const definitelyOn = is<boolean>(true);`;
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
               var definitelyNil = library_1.default({
-                  type: ["null", "undefined"]
+                  anyOf: [
+                      {
+                          type: "null"
+                      },
+                      {
+                          type: "undefined"
+                      }
+                  ]
               })(null);
             `.trim()
           );
@@ -863,7 +877,14 @@ const definitelyOn = is<boolean>(true);`;
             var library_1 = require("@typescript-runtime-schema/library");
             var something = null;
             var definitelyNil = library_1.default({
-                type: ["null", "undefined"]
+                anyOf: [
+                    {
+                        type: "null"
+                    },
+                    {
+                        type: "undefined"
+                    }
+                ]
             })(something);
           `.trim()
         );
@@ -884,7 +905,14 @@ const definitelyOn = is<boolean>(true);`;
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
               var definitelyNil = library_1.default({
-                  type: ["null", "undefined"]
+                  anyOf: [
+                      {
+                          type: "null"
+                      },
+                      {
+                          type: "undefined"
+                      }
+                  ]
               })(null);
             `.trim()
           );

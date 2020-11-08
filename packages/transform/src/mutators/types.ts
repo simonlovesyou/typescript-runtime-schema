@@ -1,9 +1,8 @@
 import * as ts from "typescript";
-import { map } from "ramda";
+import { map, compose } from "ramda";
 import { findRootIdentifier } from "@typescript-runtime-schema/compiler-utilities";
 import mutateUpwards, { MutateMap } from ".";
-import { createSchemaDescriptor } from "../create";
-import * as factory from '@typescript-runtime-schema/factory'
+import * as factory from "@typescript-runtime-schema/factory";
 
 const literalTypeNode = (
   literalTypeNode: ts.LiteralTypeNode,
@@ -33,24 +32,28 @@ export const unionTypeNode = (
 ) => {
   const types = unionTypeNode.types;
 
-  return createSchemaDescriptor(
-    types.map((type) => mutateUpwards(type, checker) as ts.StringLiteral)
-  );
+  return compose(
+    factory.createObjectLiteralExpression(true),
+    (propertyAssignment) => [propertyAssignment],
+    factory.createPropertyAssignment("anyOf"),
+    factory.createArrayLiteralExpression(true),
+    map((type: ts.TypeNode) => mutateUpwards(type, checker) as ts.ObjectLiteralExpression),
+  )(types);
 };
 
 export const intersectionType = (
   intersection: ts.IntersectionType,
   checker: ts.TypeChecker
 ) => {
-  const types = intersection.types as unknown as ts.TypeNode[];
-  debugger;
-  return factory.createObjectLiteralExpression(true)([
-    factory.createPropertyAssignment('allOf')(
-      factory.createArrayLiteralExpression(true)([
-        ...map((type: ts.TypeNode) => mutateUpwards(type, checker))(types as ts.TypeNode[]) as ts.Expression[]
-      ])
-    )
-  ])
+  const types = (intersection.types as unknown) as ts.TypeNode[];
+
+  return compose(
+    factory.createObjectLiteralExpression(true),
+    Array.of,
+    factory.createPropertyAssignment("allOf"),
+    factory.createArrayLiteralExpression(true),
+    map((type: ts.TypeNode) => mutateUpwards(type, checker) as ts.ObjectLiteralExpression),
+  )(types)
 };
 
 const MUTATE_MAP: MutateMap = {
