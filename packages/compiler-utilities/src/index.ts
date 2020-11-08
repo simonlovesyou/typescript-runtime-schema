@@ -1,5 +1,14 @@
 import * as ts from "typescript";
-import { pipe, anyPass, propEq } from "ramda";
+import {
+  pipe,
+  anyPass,
+  propEq,
+  is,
+  map,
+  toPairs,
+  equals,
+  propSatisfies,
+} from "ramda";
 
 export const addPropertyAccessToIdentifier = (
   property: ts.Identifier | ts.PrivateIdentifier
@@ -53,30 +62,84 @@ export const findRootIdentifier = (
   }
   if (ts.isImportClause(declaration)) {
     // TODO: Remove this ugly hack
-    if(!declaration.getText().includes('is')) {
-      const parent = declaration.parent
-      if(ts.isImportDeclaration(parent)) {
-        const moduleSymbol = checker.getSymbolAtLocation(declaration.parent.moduleSpecifier)
-        const defaultExport = moduleSymbol.exports.get(ts.escapeLeadingUnderscores('default'))
-        const expressionA = (defaultExport.declarations[0] as ts.ExportAssignment).expression as ts.Identifier
-        return findRootIdentifier(expressionA, checker)
+    if (!declaration.getText().includes("is")) {
+      const parent = declaration.parent;
+      if (ts.isImportDeclaration(parent)) {
+        const moduleSymbol = checker.getSymbolAtLocation(
+          declaration.parent.moduleSpecifier
+        );
+        const defaultExport = moduleSymbol.exports.get(
+          ts.escapeLeadingUnderscores("default")
+        );
+        const expressionA = (defaultExport
+          .declarations[0] as ts.ExportAssignment).expression as ts.Identifier;
+        return findRootIdentifier(expressionA, checker);
       }
     }
     return (declaration && declaration.name) || identifier;
   }
   if (ts.isImportSpecifier(declaration)) {
-    const importDeclaration = declaration.parent.parent.parent
-    if(!importDeclaration.getText().includes('is')) {
-      if(ts.isImportDeclaration(importDeclaration)) {
-        const moduleSymbol = checker.getSymbolAtLocation(importDeclaration.moduleSpecifier)
-        const defaultExport = moduleSymbol.exports.get(ts.escapeLeadingUnderscores('default'))
-        const expressionA = (defaultExport.declarations[0] as ts.ExportAssignment).expression as ts.Identifier
-        return findRootIdentifier(expressionA, checker)
+    const importDeclaration = declaration.parent.parent.parent;
+    if (!importDeclaration.getText().includes("is")) {
+      if (ts.isImportDeclaration(importDeclaration)) {
+        const moduleSymbol = checker.getSymbolAtLocation(
+          importDeclaration.moduleSpecifier
+        );
+        const defaultExport = moduleSymbol.exports.get(
+          ts.escapeLeadingUnderscores("default")
+        );
+        const expressionA = (defaultExport
+          .declarations[0] as ts.ExportAssignment).expression as ts.Identifier;
+        return findRootIdentifier(expressionA, checker);
       }
     }
     return (declaration && declaration.name) || identifier;
   }
   return identifier;
+};
+
+export const createObjectLiteralFrom = (
+  object: Record<string, unknown>,
+  multiLine?: boolean
+): ts.ObjectLiteralExpression => {
+  return ts.factory.createObjectLiteralExpression(
+    map(
+      ([key, value]): ts.PropertyAssignment => {
+        return ts.factory.createPropertyAssignment(
+          key,
+          (isNode(value) && ts.isObjectLiteralExpression(value)) ||
+            ts.isArrayLiteralExpression(value) ||
+            ts.isStringLiteral(value) ||
+            ts.isNumericLiteral(value)
+            ? value
+            : equals(null)(value)
+            ? ts.factory.createNull()
+            : is(Object)(value)
+            ? createObjectLiteralFrom(value, multiLine)
+            : is(String)(value)
+            ? ts.factory.createStringLiteral(value, true)
+            : is(Number)(value)
+            ? ts.factory.createNumericLiteral(value)
+            : equals(value, true)
+            ? ts.factory.createTrue()
+            : equals(value, false)
+            ? ts.factory.createFalse()
+            : value
+        );
+      }
+    )(toPairs(object)),
+    multiLine
+  );
+};
+
+export const isNode = (node: unknown): node is ts.Node => {
+  if (!is(Object)(node)) {
+    return false;
+  }
+  if (propSatisfies(is(Number), "kind")(node)) {
+    return true;
+  }
+  return false;
 };
 
 export const isKeyword = (node: ts.Node): boolean => {
