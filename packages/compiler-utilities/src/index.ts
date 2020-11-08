@@ -80,6 +80,7 @@ export const findRootIdentifier = (
   }
   if (ts.isImportSpecifier(declaration)) {
     const importDeclaration = declaration.parent.parent.parent;
+    // TODO: Remove this ugly hack
     if (!importDeclaration.getText().includes("is")) {
       if (ts.isImportDeclaration(importDeclaration)) {
         const moduleSymbol = checker.getSymbolAtLocation(
