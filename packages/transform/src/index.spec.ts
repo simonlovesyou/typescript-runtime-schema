@@ -1375,30 +1375,20 @@ const definitelyOn = is<boolean>(true);`;
           library_1.default({
               anyOf: [
                   {
-                      allOf: [
-                          {
-                              type: 'object',
-                              properties: {
-                                  age: {
-                                      type: 'number'
-                                  }
-                              },
-                              additionalProperties: false
+                      type: 'object',
+                      title: 'Human',
+                      properties: {
+                          name: {
+                              type: 'string'
                           },
-                          {
-                              type: 'object',
-                              title: 'Human',
-                              properties: {
-                                  name: {
-                                      type: 'string'
-                                  }
-                              },
-                              required: [
-                                  "name"
-                              ],
-                              additionalProperties: false
+                          age: {
+                              type: 'number'
                           }
-                      ]
+                      },
+                      required: [
+                          "name"
+                      ],
+                      additionalProperties: false
                   },
                   {
                       type: 'string'

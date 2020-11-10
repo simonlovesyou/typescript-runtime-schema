@@ -1,8 +1,9 @@
 import * as ts from "typescript";
-import { map } from "ramda";
+import { map, reduce } from "ramda";
 import {
   findRootIdentifier,
   createObjectLiteralFrom,
+  mergeObjectLiteralsRecursivelyLeft,
 } from "@typescript-runtime-schema/compiler-utilities";
 import mutateUpwards, { MutateMap } from ".";
 
@@ -51,15 +52,14 @@ export const intersectionType = (
 ) => {
   const types = (intersection.types as unknown) as ts.TypeNode[];
 
-  return createObjectLiteralFrom(
-    {
-      allOf: map(
-        (type: ts.TypeNode) =>
-          mutateUpwards(type, checker) as ts.ObjectLiteralExpression
-      )(types),
-    },
-    true
-  );
+  return reduce(
+    (acc, type: ts.TypeNode) =>
+      mergeObjectLiteralsRecursivelyLeft(
+        acc,
+        mutateUpwards(type, checker) as ts.ObjectLiteralExpression
+      ),
+    createObjectLiteralFrom({})
+  )(types);
 };
 
 export const arrayType = (
