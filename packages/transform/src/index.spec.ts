@@ -1239,7 +1239,11 @@ const definitelyOn = is<boolean>(true);`;
                                   type: 'string'
                               }
                           },
-                          additionalProperties: false
+                          additionalProperties: false,
+                          required: [
+                              "streetAddress",
+                              "city"
+                          ]
                       }
                   },
                   required: [
@@ -1385,9 +1389,7 @@ const definitelyOn = is<boolean>(true);`;
                               type: 'number'
                           }
                       },
-                      required: [
-                          "name"
-                      ],
+                      required: ["age", "name"],
                       additionalProperties: false
                   },
                   {

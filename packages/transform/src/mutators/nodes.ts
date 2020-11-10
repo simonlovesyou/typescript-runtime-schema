@@ -100,6 +100,11 @@ const typeLiteralNode = (
         )(members)
       ),
       additionalProperties: false,
+      required: members.reduce((acc, member: ts.PropertySignature) => {
+        return member.questionToken
+          ? acc
+          : [...acc, factory.createStringLiteral(false)(member.name.getText())];
+      }, []),
     },
     true
   );
