@@ -1,0 +1,22 @@
+{
+  "name": "@typescript-runtime-schema/typescript-template-tag",
+  "version": "1.0.0",
+  "description": "A typescript template tag for making sure the template string contains valid typescript",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "test": "jest src/",
+    "build": "yarn build:ts",
+    "build:ts": "./node_modules/.bin/tsc --project tsconfig.json",
+    "prepublish": "yarn build"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.14",
+    "jest": "^26.6.3",
+    "typescript": "^4.0.5"
+  },
+  "dependencies": {
+    "@typescript-eslint/typescript-estree": "^4.7.0"
+  }
+}
