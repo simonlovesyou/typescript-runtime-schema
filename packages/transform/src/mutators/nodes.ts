@@ -1,5 +1,5 @@
 import * as ts from "typescript";
-import { map } from "ramda";
+import { map, reduce } from "ramda";
 import * as factory from "@typescript-runtime-schema/factory";
 import mutateUpwards, { MutateMap } from ".";
 import { findRootIdentifier } from "@typescript-runtime-schema/compiler-utilities";
@@ -48,7 +48,7 @@ const interfaceDeclaration = (
 ) => {
   const members = interfaceDeclaration.members;
 
-  const inheritFrom = interfaceDeclaration.heritageClauses
+  const inheritsFrom = interfaceDeclaration.heritageClauses
     ? map((heritageClause: ts.HeritageClause) => {
         return mutateUpwards(
           heritageClause,
@@ -57,31 +57,31 @@ const interfaceDeclaration = (
       })(interfaceDeclaration.heritageClauses)
     : [factory.createObjectLiteralExpression()([])];
 
-  return mergeObjectLiteralsRecursivelyLeft(
-    inheritFrom[0],
-    createObjectLiteralFrom(
-      {
-        type: "object",
-        title: interfaceDeclaration.name.getText(),
-        properties: factory.createObjectLiteralExpression(true)(
-          members.map(
-            (member: ts.PropertySignature) =>
-              mutateUpwards(member, checker) as ts.ObjectLiteralElementLike
-          )
-        ),
-        required: members.reduce((acc, member: ts.PropertySignature) => {
-          return member.questionToken
-            ? acc
-            : [
-                ...acc,
-                factory.createStringLiteral(false)(member.name.getText()),
-              ];
-        }, []),
-        additionalProperties: false,
-      },
-      true
-    )
+  const base = createObjectLiteralFrom(
+    {
+      type: "object",
+      title: interfaceDeclaration.name.getText(),
+      properties: factory.createObjectLiteralExpression(true)(
+        members.map(
+          (member: ts.PropertySignature) =>
+            mutateUpwards(member, checker) as ts.ObjectLiteralElementLike
+        )
+      ),
+      required: members.reduce((acc, member: ts.PropertySignature) => {
+        return member.questionToken
+          ? acc
+          : [...acc, factory.createStringLiteral(false)(member.name.getText())];
+      }, []),
+      additionalProperties: false,
+    },
+    true
   );
+
+  return reduce(
+    (acc, objectLiteral: ts.ObjectLiteralExpression) =>
+      mergeObjectLiteralsRecursivelyLeft(objectLiteral, acc),
+    base
+  )(inheritsFrom)
 };
 
 const typeLiteralNode = (

@@ -1263,7 +1263,11 @@ const definitelyOn = is<boolean>(true);`;
           name: string
         }
 
-        interface Person extends Human {
+        interface Animal {
+          hasTail: boolean
+        }
+
+        interface Person extends Human extends Animal {
           gender: string
         }
 
@@ -1286,9 +1290,12 @@ const definitelyOn = is<boolean>(true);`;
                   },
                   name: {
                       type: 'string'
+                  },
+                  hasTail: {
+                      type: 'boolean'
                   }
               },
-              required: ["name", "gender"],
+              required: ["hasTail", "name", "gender"],
               additionalProperties: false
           })(person);
           `.trim()
