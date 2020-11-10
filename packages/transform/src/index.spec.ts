@@ -1,13 +1,24 @@
 import transformer from ".";
 import "@typescript-runtime-schema/expect-transformer-to-transform-source-code";
 import "@typescript-runtime-schema/expect-transformer-to-transform-program";
-
+import js from "@typescript-runtime-schema/javascript-template-tag";
+import tsTag from "@typescript-runtime-schema/typescript-template-tag";
 import dedent from "dedent";
+
+const jsCode = (strings: TemplateStringsArray) => {
+  js(strings);
+  return dedent(strings);
+};
+
+const tsCode = (strings: TemplateStringsArray) => {
+  tsTag(strings);
+  return dedent(strings);
+};
 
 describe("transform", () => {
   describe("string", () => {
     describe("inline type", () => {
-      const sourceCode = dedent`
+      const sourceCode = tsCode`
         import is from "@typescript-runtime-schema/library";
 
         const name = "Morpheus"
@@ -16,7 +27,7 @@ describe("transform", () => {
       it("should transform correctly", () => {
         expect(transformer).toTransformSourceCode(
           sourceCode,
-          dedent`
+          jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
             var library_1 = require("@typescript-runtime-schema/library");
@@ -28,14 +39,14 @@ describe("transform", () => {
         );
       });
       describe("inline value", () => {
-        const sourceCode = dedent`
+        const sourceCode = tsCode`
           import is from "@typescript-runtime-schema/library";
 
           const surelyName = is<string>("Morpheus");`;
         it("should transform correctly", () => {
           expect(transformer).toTransformSourceCode(
             sourceCode,
-            dedent`
+            jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
@@ -49,7 +60,7 @@ describe("transform", () => {
     });
 
     describe("type alias", () => {
-      const sourceCode = dedent`
+      const sourceCode = tsCode`
         import is from "@typescript-runtime-schema/library";
 
         const name = "Morpheus"
@@ -61,7 +72,7 @@ describe("transform", () => {
       it("should transform correctly", () => {
         expect(transformer).toTransformSourceCode(
           sourceCode,
-          dedent`
+          jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
             var library_1 = require("@typescript-runtime-schema/library");
@@ -72,7 +83,7 @@ describe("transform", () => {
         );
       });
       describe("inline value", () => {
-        const sourceCode = dedent`
+        const sourceCode = tsCode`
           import is from "@typescript-runtime-schema/library";
 
           type Name = string
@@ -82,7 +93,7 @@ describe("transform", () => {
         it("should transform correctly", () => {
           expect(transformer).toTransformSourceCode(
             sourceCode,
-            dedent`
+            jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
@@ -95,7 +106,7 @@ describe("transform", () => {
       });
     });
     describe("import", () => {
-      const sourceCode = dedent`
+      const sourceCode = tsCode`
         import is from "@typescript-runtime-schema/library";
         import Str from './str'
 
@@ -110,7 +121,7 @@ describe("transform", () => {
             "./str.ts": "type Str = string; export default Str",
           },
           {
-            "./lib.js": dedent`
+            "./lib.js": jsCode`
               "use strict";
               exports.__esModule = true;
               var library_1 = require("@typescript-runtime-schema/library");
@@ -126,7 +137,7 @@ describe("transform", () => {
 
   describe("number", () => {
     describe("inline type", () => {
-      const sourceCode = dedent`
+      const sourceCode = tsCode`
         import is from "@typescript-runtime-schema/library";
 
         const age = 21 as any
@@ -136,7 +147,7 @@ describe("transform", () => {
       it("should transform correctly", () => {
         expect(transformer).toTransformSourceCode(
           sourceCode,
-          dedent`
+          jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
             var library_1 = require("@typescript-runtime-schema/library");
@@ -148,7 +159,7 @@ describe("transform", () => {
         );
       });
       describe("inline value", () => {
-        const sourceCode = dedent`
+        const sourceCode = tsCode`
           import is from "@typescript-runtime-schema/library";
           
           const surelyAge = is<number>(21);
@@ -156,7 +167,7 @@ describe("transform", () => {
         it("should transform correctly", () => {
           expect(transformer).toTransformSourceCode(
             sourceCode,
-            dedent`
+            jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
@@ -170,7 +181,7 @@ describe("transform", () => {
     });
 
     describe("type alias", () => {
-      const sourceCode = dedent`
+      const sourceCode = tsCode`
         import is from "@typescript-runtime-schema/library";
 
         const num = 21
@@ -182,7 +193,7 @@ describe("transform", () => {
       it("should transform correctly", () => {
         expect(transformer).toTransformSourceCode(
           sourceCode,
-          dedent`
+          jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
             var library_1 = require("@typescript-runtime-schema/library");
@@ -194,7 +205,7 @@ describe("transform", () => {
         );
       });
       describe("inline value", () => {
-        const sourceCode = dedent`
+        const sourceCode = tsCode`
           import is from "@typescript-runtime-schema/library";
 
           type Age = number
@@ -204,7 +215,7 @@ describe("transform", () => {
         it("should transform correctly", () => {
           expect(transformer).toTransformSourceCode(
             sourceCode,
-            dedent`
+            jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
@@ -219,7 +230,7 @@ describe("transform", () => {
   });
   describe("boolean", () => {
     describe("inline type", () => {
-      const sourceCode = dedent`
+      const sourceCode = tsCode`
         import is from "@typescript-runtime-schema/library";
 
         const on = true as any
@@ -229,7 +240,7 @@ describe("transform", () => {
       it("should transform correctly", () => {
         expect(transformer).toTransformSourceCode(
           sourceCode,
-          dedent`
+          jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
             var library_1 = require("@typescript-runtime-schema/library");
@@ -241,14 +252,14 @@ describe("transform", () => {
         );
       });
       describe("inline value", () => {
-        const sourceCode = dedent`
+        const sourceCode = tsCode`
 import is from "@typescript-runtime-schema/library";
 
 const definitelyOn = is<boolean>(true);`;
         it("should transform correctly", () => {
           expect(transformer).toTransformSourceCode(
             sourceCode,
-            dedent`
+            jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
@@ -262,7 +273,7 @@ const definitelyOn = is<boolean>(true);`;
     });
 
     describe("type alias", () => {
-      const sourceCode = dedent`
+      const sourceCode = tsCode`
         import is from "@typescript-runtime-schema/library";
 
         const on = true as any
@@ -274,7 +285,7 @@ const definitelyOn = is<boolean>(true);`;
       it("should transform correctly", () => {
         expect(transformer).toTransformSourceCode(
           sourceCode,
-          dedent`
+          jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
             var library_1 = require("@typescript-runtime-schema/library");
@@ -287,7 +298,7 @@ const definitelyOn = is<boolean>(true);`;
       });
     });
     describe("inline value", () => {
-      const sourceCode = dedent`
+      const sourceCode = tsCode`
         import is from "@typescript-runtime-schema/library";
 
         type Bool = boolean
@@ -297,7 +308,7 @@ const definitelyOn = is<boolean>(true);`;
       it("should transform correctly", () => {
         expect(transformer).toTransformSourceCode(
           sourceCode,
-          dedent`
+          jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
             var library_1 = require("@typescript-runtime-schema/library");
@@ -310,7 +321,7 @@ const definitelyOn = is<boolean>(true);`;
   });
   describe("enum", () => {
     describe("inline type", () => {
-      const sourceCode = dedent`
+      const sourceCode = tsCode`
         import is from "@typescript-runtime-schema/library";
 
         const age = '21'
@@ -320,7 +331,7 @@ const definitelyOn = is<boolean>(true);`;
       it("should transform correctly", () => {
         expect(transformer).toTransformSourceCode(
           sourceCode,
-          dedent`
+          jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
             var library_1 = require("@typescript-runtime-schema/library");
@@ -338,7 +349,7 @@ const definitelyOn = is<boolean>(true);`;
         );
       });
       describe("inline value", () => {
-        const sourceCode = dedent`
+        const sourceCode = tsCode`
           import is from "@typescript-runtime-schema/library";
 
           is<number | string>('21');
@@ -346,7 +357,7 @@ const definitelyOn = is<boolean>(true);`;
         it("should transform correctly", () => {
           expect(transformer).toTransformSourceCode(
             sourceCode,
-            dedent`
+            jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
@@ -367,7 +378,7 @@ const definitelyOn = is<boolean>(true);`;
     });
 
     describe("type alias", () => {
-      const sourceCode = dedent`
+      const sourceCode = tsCode`
         import is from "@typescript-runtime-schema/library";
 
         type Num = number
@@ -378,7 +389,7 @@ const definitelyOn = is<boolean>(true);`;
       it("should transform correctly", () => {
         expect(transformer).toTransformSourceCode(
           sourceCode,
-          dedent`
+          jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
             var library_1 = require("@typescript-runtime-schema/library");
@@ -396,7 +407,7 @@ const definitelyOn = is<boolean>(true);`;
         );
       });
       describe("inline value", () => {
-        const sourceCode = dedent`
+        const sourceCode = tsCode`
           import is from "@typescript-runtime-schema/library";
 
           type Num = number
@@ -407,7 +418,7 @@ const definitelyOn = is<boolean>(true);`;
         it("should transform correctly", () => {
           expect(transformer).toTransformSourceCode(
             sourceCode,
-            dedent`
+            jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
@@ -429,7 +440,7 @@ const definitelyOn = is<boolean>(true);`;
   });
   describe("any", () => {
     describe("inline type", () => {
-      const sourceCode = dedent`
+      const sourceCode = tsCode`
         import is from "@typescript-runtime-schema/library";
 
         const age = '21'
@@ -439,7 +450,7 @@ const definitelyOn = is<boolean>(true);`;
       it("should transform correctly", () => {
         expect(transformer).toTransformSourceCode(
           sourceCode,
-          dedent`
+          jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
             var library_1 = require("@typescript-runtime-schema/library");
@@ -451,7 +462,7 @@ const definitelyOn = is<boolean>(true);`;
         );
       });
       describe("inline value", () => {
-        const sourceCode = dedent`
+        const sourceCode = tsCode`
           import is from "@typescript-runtime-schema/library";
 
           const whatever = is<any>('21');
@@ -459,7 +470,7 @@ const definitelyOn = is<boolean>(true);`;
         it("should transform correctly", () => {
           expect(transformer).toTransformSourceCode(
             sourceCode,
-            dedent`
+            jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
@@ -473,7 +484,7 @@ const definitelyOn = is<boolean>(true);`;
     });
 
     describe("type alias", () => {
-      const sourceCode = dedent`
+      const sourceCode = tsCode`
         import is from "@typescript-runtime-schema/library";
 
         const age = '21'
@@ -485,7 +496,7 @@ const definitelyOn = is<boolean>(true);`;
       it("should transform correctly", () => {
         expect(transformer).toTransformSourceCode(
           sourceCode,
-          dedent`
+          jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
             var library_1 = require("@typescript-runtime-schema/library");
@@ -497,7 +508,7 @@ const definitelyOn = is<boolean>(true);`;
         );
       });
       describe("inline value", () => {
-        const sourceCode = dedent`
+        const sourceCode = tsCode`
           import is from "@typescript-runtime-schema/library";
 
           type Any = any
@@ -507,7 +518,7 @@ const definitelyOn = is<boolean>(true);`;
         it("should transform correctly", () => {
           expect(transformer).toTransformSourceCode(
             sourceCode,
-            dedent`
+            jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
@@ -522,7 +533,7 @@ const definitelyOn = is<boolean>(true);`;
   });
   describe("object", () => {
     describe("inline type", () => {
-      const sourceCode = dedent`
+      const sourceCode = tsCode`
           import is from "@typescript-runtime-schema/library";
 
           const person = { name: 'Kim' }
@@ -532,7 +543,7 @@ const definitelyOn = is<boolean>(true);`;
       it("should transform correctly", () => {
         expect(transformer).toTransformSourceCode(
           sourceCode,
-          dedent`
+          jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
             var library_1 = require("@typescript-runtime-schema/library");
@@ -544,7 +555,7 @@ const definitelyOn = is<boolean>(true);`;
         );
       });
       describe("inline value", () => {
-        const sourceCode = dedent`
+        const sourceCode = tsCode`
           import is from "@typescript-runtime-schema/library";
 
           const object = is<object>({ name: 'Kim' });
@@ -552,7 +563,7 @@ const definitelyOn = is<boolean>(true);`;
         it("should transform correctly", () => {
           expect(transformer).toTransformSourceCode(
             sourceCode,
-            dedent`
+            jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
@@ -566,7 +577,7 @@ const definitelyOn = is<boolean>(true);`;
     });
 
     describe("type alias", () => {
-      const sourceCode = dedent`
+      const sourceCode = tsCode`
         import is from "@typescript-runtime-schema/library";
 
         const person = { name: 'Kim' }
@@ -578,7 +589,7 @@ const definitelyOn = is<boolean>(true);`;
       it("should transform correctly", () => {
         expect(transformer).toTransformSourceCode(
           sourceCode,
-          dedent`
+          jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
             var library_1 = require("@typescript-runtime-schema/library");
@@ -590,7 +601,7 @@ const definitelyOn = is<boolean>(true);`;
         );
       });
       describe("inline value", () => {
-        const sourceCode = dedent`
+        const sourceCode = tsCode`
           import is from "@typescript-runtime-schema/library";
 
           type Obj = object
@@ -600,7 +611,7 @@ const definitelyOn = is<boolean>(true);`;
         it("should transform correctly", () => {
           expect(transformer).toTransformSourceCode(
             sourceCode,
-            dedent`
+            jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
@@ -615,7 +626,7 @@ const definitelyOn = is<boolean>(true);`;
   });
   describe("undefined", () => {
     describe("inline type", () => {
-      const sourceCode = dedent`
+      const sourceCode = tsCode`
         import is from "@typescript-runtime-schema/library";
 
         const undef = undefined
@@ -625,7 +636,7 @@ const definitelyOn = is<boolean>(true);`;
       it("should transform correctly", () => {
         expect(transformer).toTransformSourceCode(
           sourceCode,
-          dedent`
+          jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
             var library_1 = require("@typescript-runtime-schema/library");
@@ -637,7 +648,7 @@ const definitelyOn = is<boolean>(true);`;
         );
       });
       describe("inline value", () => {
-        const sourceCode = dedent`
+        const sourceCode = tsCode`
           import is from "@typescript-runtime-schema/library";
 
           const definitelyUndefined = is<undefined>(undefined);
@@ -645,7 +656,7 @@ const definitelyOn = is<boolean>(true);`;
         it("should transform correctly", () => {
           expect(transformer).toTransformSourceCode(
             sourceCode,
-            dedent`
+            jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
@@ -659,7 +670,7 @@ const definitelyOn = is<boolean>(true);`;
     });
 
     describe("type alias", () => {
-      const sourceCode = dedent`
+      const sourceCode = tsCode`
         import is from "@typescript-runtime-schema/library";
 
         const undef = undefined
@@ -671,7 +682,7 @@ const definitelyOn = is<boolean>(true);`;
       it("should transform correctly", () => {
         expect(transformer).toTransformSourceCode(
           sourceCode,
-          dedent`
+          jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
             var library_1 = require("@typescript-runtime-schema/library");
@@ -683,7 +694,7 @@ const definitelyOn = is<boolean>(true);`;
         );
       });
       describe("inline value", () => {
-        const sourceCode = dedent`
+        const sourceCode = tsCode`
           import is from "@typescript-runtime-schema/library";
 
           type Undef = undefined
@@ -693,7 +704,7 @@ const definitelyOn = is<boolean>(true);`;
         it("should transform correctly", () => {
           expect(transformer).toTransformSourceCode(
             sourceCode,
-            dedent`
+            jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
@@ -708,7 +719,7 @@ const definitelyOn = is<boolean>(true);`;
   });
   describe("null", () => {
     describe("inline type", () => {
-      const sourceCode = dedent`
+      const sourceCode = tsCode`
         import is from "@typescript-runtime-schema/library";
 
         const something = null
@@ -718,7 +729,7 @@ const definitelyOn = is<boolean>(true);`;
       it("should transform correctly", () => {
         expect(transformer).toTransformSourceCode(
           sourceCode,
-          dedent`
+          jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
             var library_1 = require("@typescript-runtime-schema/library");
@@ -730,7 +741,7 @@ const definitelyOn = is<boolean>(true);`;
         );
       });
       describe("inline value", () => {
-        const sourceCode = dedent`
+        const sourceCode = tsCode`
           import is from "@typescript-runtime-schema/library";
 
           const definitelyNull = is<null>(null);
@@ -738,7 +749,7 @@ const definitelyOn = is<boolean>(true);`;
         it("should transform correctly", () => {
           expect(transformer).toTransformSourceCode(
             sourceCode,
-            dedent`
+            jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
@@ -752,7 +763,7 @@ const definitelyOn = is<boolean>(true);`;
     });
 
     describe("type alias", () => {
-      const sourceCode = dedent`
+      const sourceCode = tsCode`
         import is from "@typescript-runtime-schema/library";
 
         const something = null
@@ -764,7 +775,7 @@ const definitelyOn = is<boolean>(true);`;
       it("should transform correctly", () => {
         expect(transformer).toTransformSourceCode(
           sourceCode,
-          dedent`
+          jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
             var library_1 = require("@typescript-runtime-schema/library");
@@ -776,7 +787,7 @@ const definitelyOn = is<boolean>(true);`;
         );
       });
       describe("inline value", () => {
-        const sourceCode = dedent`
+        const sourceCode = tsCode`
           import is from "@typescript-runtime-schema/library";
 
           type Nul = null
@@ -786,7 +797,7 @@ const definitelyOn = is<boolean>(true);`;
         it("should transform correctly", () => {
           expect(transformer).toTransformSourceCode(
             sourceCode,
-            dedent`
+            jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
@@ -801,7 +812,7 @@ const definitelyOn = is<boolean>(true);`;
   });
   describe("void", () => {
     describe("inline type", () => {
-      const sourceCode = dedent`
+      const sourceCode = tsCode`
         import is from "@typescript-runtime-schema/library";
 
         const something = null
@@ -811,7 +822,7 @@ const definitelyOn = is<boolean>(true);`;
       it("should transform correctly", () => {
         expect(transformer).toTransformSourceCode(
           sourceCode,
-          dedent`
+          jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
             var library_1 = require("@typescript-runtime-schema/library");
@@ -826,7 +837,7 @@ const definitelyOn = is<boolean>(true);`;
         );
       });
       describe("inline value", () => {
-        const sourceCode = dedent`
+        const sourceCode = tsCode`
           import is from "@typescript-runtime-schema/library";
 
           const definitelyNil = is<void>(null);
@@ -834,7 +845,7 @@ const definitelyOn = is<boolean>(true);`;
         it("should transform correctly", () => {
           expect(transformer).toTransformSourceCode(
             sourceCode,
-            dedent`
+            jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
@@ -851,7 +862,7 @@ const definitelyOn = is<boolean>(true);`;
     });
 
     describe("type alias", () => {
-      const sourceCode = dedent`
+      const sourceCode = tsCode`
         import is from "@typescript-runtime-schema/library";
 
         const something = null
@@ -863,7 +874,7 @@ const definitelyOn = is<boolean>(true);`;
       it("should transform correctly", () => {
         expect(transformer).toTransformSourceCode(
           sourceCode,
-          dedent`
+          jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
             var library_1 = require("@typescript-runtime-schema/library");
@@ -878,7 +889,7 @@ const definitelyOn = is<boolean>(true);`;
         );
       });
       describe("inline value", () => {
-        const sourceCode = dedent`
+        const sourceCode = tsCode`
           import is from "@typescript-runtime-schema/library";
 
           type Nil = void
@@ -888,7 +899,7 @@ const definitelyOn = is<boolean>(true);`;
         it("should transform correctly", () => {
           expect(transformer).toTransformSourceCode(
             sourceCode,
-            dedent`
+            jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
@@ -906,7 +917,7 @@ const definitelyOn = is<boolean>(true);`;
   });
   describe("union", () => {
     describe("inline type", () => {
-      const sourceCode = dedent`
+      const sourceCode = tsCode`
         import is from "@typescript-runtime-schema/library";
 
         const name = "Morpheus"
@@ -915,7 +926,7 @@ const definitelyOn = is<boolean>(true);`;
       it("should transform correctly", () => {
         expect(transformer).toTransformSourceCode(
           sourceCode,
-          dedent`
+          jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
             var library_1 = require("@typescript-runtime-schema/library");
@@ -934,14 +945,14 @@ const definitelyOn = is<boolean>(true);`;
         );
       });
       describe("inline value", () => {
-        const sourceCode = dedent`
+        const sourceCode = tsCode`
           import is from "@typescript-runtime-schema/library";
 
           is<'Morpheus' | 'Kim'>("Morpheus");`;
         it("should transform correctly", () => {
           expect(transformer).toTransformSourceCode(
             sourceCode,
-            dedent`
+            jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
@@ -961,7 +972,7 @@ const definitelyOn = is<boolean>(true);`;
       });
     });
     describe("type reference", () => {
-      const sourceCode = dedent`
+      const sourceCode = tsCode`
         import is from "@typescript-runtime-schema/library";
 
         const name = "Morpheus"
@@ -972,7 +983,7 @@ const definitelyOn = is<boolean>(true);`;
       it("should transform correctly", () => {
         expect(transformer).toTransformSourceCode(
           sourceCode,
-          dedent`
+          jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
             var library_1 = require("@typescript-runtime-schema/library");
@@ -991,7 +1002,7 @@ const definitelyOn = is<boolean>(true);`;
         );
       });
       describe("inline value", () => {
-        const sourceCode = dedent`
+        const sourceCode = tsCode`
           import is from "@typescript-runtime-schema/library";
 
           type Name = 'Morpheus' | 'Kim'
@@ -1000,7 +1011,7 @@ const definitelyOn = is<boolean>(true);`;
         it("should transform correctly", () => {
           expect(transformer).toTransformSourceCode(
             sourceCode,
-            dedent`
+            jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
@@ -1023,7 +1034,7 @@ const definitelyOn = is<boolean>(true);`;
   describe("array", () => {
     describe("[]", () => {
       describe("inline type", () => {
-        const sourceCode = dedent`
+        const sourceCode = tsCode`
           import is from "@typescript-runtime-schema/library";
   
           const strings = ["foo", "bar"]
@@ -1032,7 +1043,7 @@ const definitelyOn = is<boolean>(true);`;
         it("should transform correctly", () => {
           expect(transformer).toTransformSourceCode(
             sourceCode,
-            dedent`
+            jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
@@ -1047,14 +1058,14 @@ const definitelyOn = is<boolean>(true);`;
           );
         });
         describe("inline value", () => {
-          const sourceCode = dedent`
+          const sourceCode = tsCode`
             import is from "@typescript-runtime-schema/library";
   
             is<string[]>(["Morpheus"]);`;
           it("should transform correctly", () => {
             expect(transformer).toTransformSourceCode(
               sourceCode,
-              dedent`
+              jsCode`
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var library_1 = require("@typescript-runtime-schema/library");
@@ -1070,7 +1081,7 @@ const definitelyOn = is<boolean>(true);`;
         });
       });
       describe("type reference", () => {
-        const sourceCode = dedent`
+        const sourceCode = tsCode`
           import is from "@typescript-runtime-schema/library";
   
           const strings = ["foo", "bar"]
@@ -1081,7 +1092,7 @@ const definitelyOn = is<boolean>(true);`;
         it("should transform correctly", () => {
           expect(transformer).toTransformSourceCode(
             sourceCode,
-            dedent`
+            jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
@@ -1096,7 +1107,7 @@ const definitelyOn = is<boolean>(true);`;
           );
         });
         describe("inline value", () => {
-          const sourceCode = dedent`
+          const sourceCode = tsCode`
             import is from "@typescript-runtime-schema/library";
   
     
@@ -1106,7 +1117,7 @@ const definitelyOn = is<boolean>(true);`;
           it("should transform correctly", () => {
             expect(transformer).toTransformSourceCode(
               sourceCode,
-              dedent`
+              jsCode`
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var library_1 = require("@typescript-runtime-schema/library");
@@ -1125,7 +1136,7 @@ const definitelyOn = is<boolean>(true);`;
   });
   describe("interface", () => {
     describe("type alias", () => {
-      const sourceCode = dedent`
+      const sourceCode = tsCode`
         import is from "@typescript-runtime-schema/library";
 
         const person = { name: "Morpheus", age: 21 } as any
@@ -1146,7 +1157,7 @@ const definitelyOn = is<boolean>(true);`;
       it("should transform correctly", () => {
         expect(transformer).toTransformSourceCode(
           sourceCode,
-          dedent`
+          jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
             var library_1 = require("@typescript-runtime-schema/library");
@@ -1189,7 +1200,7 @@ const definitelyOn = is<boolean>(true);`;
         );
       });
       describe("inline value", () => {
-        const sourceCode = dedent`
+        const sourceCode = tsCode`
           import is from "@typescript-runtime-schema/library";
 
           type Address = {
@@ -1207,7 +1218,7 @@ const definitelyOn = is<boolean>(true);`;
         it("should transform correctly", () => {
           expect(transformer).toTransformSourceCode(
             sourceCode,
-            dedent`
+            jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
@@ -1243,7 +1254,7 @@ const definitelyOn = is<boolean>(true);`;
       });
     });
     describe("heritage", () => {
-      const sourceCode = dedent`
+      const sourceCode = tsCode`
         import is from "@typescript-runtime-schema/library";
 
         const person = { name: "Morpheus", age: 21 } as any
@@ -1261,7 +1272,7 @@ const definitelyOn = is<boolean>(true);`;
       it("should transform correctly", () => {
         expect(transformer).toTransformSourceCode(
           sourceCode,
-          dedent`
+          jsCode`
           "use strict";
           Object.defineProperty(exports, "__esModule", { value: true });
           var library_1 = require("@typescript-runtime-schema/library");
@@ -1286,7 +1297,7 @@ const definitelyOn = is<boolean>(true);`;
     });
     describe("import", () => {
       const sourceFiles = {
-        "./lib.ts": dedent`
+        "./lib.ts": tsCode`
           import is from "@typescript-runtime-schema/library";
           import {Person} from './person'
 
@@ -1294,7 +1305,7 @@ const definitelyOn = is<boolean>(true);`;
 
           is<Person>(person);`.trim(),
 
-        "./person.ts": dedent`
+        "./person.ts": tsCode`
           interface Human {
             name: string
           }
@@ -1308,7 +1319,7 @@ const definitelyOn = is<boolean>(true);`;
       };
       it("should produce the correct files", () => {
         expect(transformer).toTransformProgram(sourceFiles, {
-          "./lib.js": dedent`
+          "./lib.js": jsCode`
             "use strict";
             exports.__esModule = true;
             var library_1 = require("@typescript-runtime-schema/library");
@@ -1333,7 +1344,7 @@ const definitelyOn = is<boolean>(true);`;
     });
   });
   describe("intersection", () => {
-    const sourceCode = dedent`
+    const sourceCode = tsCode`
       import is from "@typescript-runtime-schema/library";
 
       const person = { name: "Morpheus", age: 21 } as any
@@ -1349,7 +1360,7 @@ const definitelyOn = is<boolean>(true);`;
     it("should transform correctly", () => {
       expect(transformer).toTransformSourceCode(
         sourceCode,
-        dedent`
+        jsCode`
           "use strict";
           Object.defineProperty(exports, "__esModule", { value: true });
           var library_1 = require("@typescript-runtime-schema/library");
