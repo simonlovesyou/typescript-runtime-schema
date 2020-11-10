@@ -27,16 +27,7 @@ const toTransformSourceCode = (
   received: string,
   expectedOutput: string,
 ) => {
-  const setParentNodes = true;
-
-  const sourceFile = ts.createSourceFile(
-    "whatever.ts",
-    received,
-    ts.ScriptTarget.ES2015,
-    setParentNodes
-  );
-
-  const host = ts.createCompilerHost({}, setParentNodes);
+  const host = ts.createCompilerHost({}, true);
 
   const program = ts.createProgram({
     rootNames: ["whatever.ts"],
