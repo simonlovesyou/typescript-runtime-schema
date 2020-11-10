@@ -8,6 +8,7 @@ import {
   toPairs,
   equals,
   propSatisfies,
+  mapObjIndexed,
 } from "ramda";
 
 export const addPropertyAccessToIdentifier = (
@@ -31,6 +32,81 @@ export const addMethodCallToExpression = (
     addPropertyAccessToIdentifier(ts.factory.createIdentifier(methodName)),
     createCall([], [])
   )();
+
+export const mergeObjectLiteralsRecursivelyLeft = (
+  objectLiteralA: ts.ObjectLiteralExpression,
+  objectLiteralB: ts.ObjectLiteralExpression
+): ts.ObjectLiteralExpression => {
+  if (objectLiteralA.properties.length === 0) {
+    return objectLiteralB;
+  }
+  if (objectLiteralB.properties.length === 0) {
+    return objectLiteralA;
+  }
+  return ts.factory.updateObjectLiteralExpression(objectLiteralA, [
+    ...map(
+      (property: ts.ObjectLiteralElementLike): ts.PropertyAssignment => {
+        if (ts.isPropertyAssignment(property)) {
+          const correspondingItem = objectLiteralA.properties.find(
+            (node: ts.Node) => {
+              const propertyAssignment = node as ts.PropertySignature;
+              return (
+                (propertyAssignment.name as ts.Identifier).escapedText ===
+                (property.name as ts.Identifier).escapedText
+              );
+            }
+          ) as ts.PropertyAssignment;
+          const initializer = property.initializer;
+          if (
+            correspondingItem &&
+            ts.isObjectLiteralExpression(initializer) &&
+            ts.isObjectLiteralExpression(correspondingItem.initializer)
+          ) {
+            const res = mergeObjectLiteralsRecursivelyLeft(
+              correspondingItem.initializer,
+              initializer
+            );
+            return ts.factory.createPropertyAssignment(property.name, res);
+          }
+          if (
+            correspondingItem &&
+            ts.isArrayLiteralExpression(initializer) &&
+            ts.isArrayLiteralExpression(correspondingItem.initializer)
+          ) {
+            return ts.factory.createPropertyAssignment(
+              property.name,
+              ts.factory.createArrayLiteralExpression([
+                ...correspondingItem.initializer.elements,
+                ...initializer.elements,
+              ])
+            );
+          }
+          return property;
+        }
+        return (property as unknown) as ts.PropertyAssignment;
+      }
+    )(objectLiteralB.properties),
+    ...map(
+      (property: ts.ObjectLiteralElementLike): ts.PropertyAssignment => {
+        if (ts.isPropertyAssignment(property)) {
+          const correspondingItem = objectLiteralB.properties.find(
+            (node: ts.Node) => {
+              const propertyAssignment = node as ts.PropertySignature;
+              return (
+                (propertyAssignment.name as ts.Identifier).escapedText ===
+                (property.name as ts.Identifier).escapedText
+              );
+            }
+          ) as ts.PropertyAssignment;
+          if (!correspondingItem) {
+            return property;
+          }
+        }
+        return undefined;
+      }
+    )(objectLiteralA.properties).filter((property) => property),
+  ]);
+};
 
 export const findRootIdentifier = (
   identifier: ts.Identifier,
