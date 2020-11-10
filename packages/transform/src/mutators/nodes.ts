@@ -3,20 +3,18 @@ import { map } from "ramda";
 import * as factory from "@typescript-runtime-schema/factory";
 import mutateUpwards, { MutateMap } from ".";
 import { findRootIdentifier } from "@typescript-runtime-schema/compiler-utilities";
-import { createObjectLiteralFrom } from "@typescript-runtime-schema/compiler-utilities";
+import {
+  createObjectLiteralFrom,
+  mergeObjectLiteralsRecursivelyLeft,
+} from "@typescript-runtime-schema/compiler-utilities";
 
 const propertySignature = (
   propertySignature: ts.PropertySignature,
   checker: ts.TypeChecker
 ) => {
-  const result = mutateUpwards(
-    propertySignature.type,
-    checker
-  ) as ts.Expression;
-
-  return createObjectLiteralFrom({
-    [propertySignature.name.getText()]: result
-  }, true)
+  return factory.createPropertyAssignment(propertySignature.name)(
+    mutateUpwards(propertySignature.type, checker) as ts.Expression
+  );
 };
 
 const typeAliasDeclaration = (
@@ -50,33 +48,39 @@ const interfaceDeclaration = (
 ) => {
   const members = interfaceDeclaration.members;
 
-  return createObjectLiteralFrom(
-    {
-      type: "object",
-      title: interfaceDeclaration.name.getText(),
-      properties: factory.createObjectLiteralExpression(true)(
-        members.map((member: ts.PropertySignature) => {
-          return mutateUpwards(member, checker) as ts.ObjectLiteralElementLike;
-        })
-      ),
-      required: members.reduce((acc, member: ts.PropertySignature) => {
-        return member.questionToken
-          ? acc
-          : [...acc, factory.createStringLiteral(false)(member.name.getText())];
-      }, []),
-      ...(interfaceDeclaration.heritageClauses
-        ? {
-            allOf: map((heritageClause: ts.HeritageClause) => {
-              return mutateUpwards(
-                heritageClause,
-                checker
-              ) as ts.ObjectLiteralExpression;
-            })(interfaceDeclaration.heritageClauses),
-          }
-        : {}),
-      additionalProperties: false,
-    },
-    true
+  const inheritFrom = interfaceDeclaration.heritageClauses
+    ? map((heritageClause: ts.HeritageClause) => {
+        return mutateUpwards(
+          heritageClause,
+          checker
+        ) as ts.ObjectLiteralExpression;
+      })(interfaceDeclaration.heritageClauses)
+    : [factory.createObjectLiteralExpression()([])];
+
+  return mergeObjectLiteralsRecursivelyLeft(
+    inheritFrom[0],
+    createObjectLiteralFrom(
+      {
+        type: "object",
+        title: interfaceDeclaration.name.getText(),
+        properties: factory.createObjectLiteralExpression(true)(
+          members.map(
+            (member: ts.PropertySignature) =>
+              mutateUpwards(member, checker) as ts.ObjectLiteralElementLike
+          )
+        ),
+        required: members.reduce((acc, member: ts.PropertySignature) => {
+          return member.questionToken
+            ? acc
+            : [
+                ...acc,
+                factory.createStringLiteral(false)(member.name.getText()),
+              ];
+        }, []),
+        additionalProperties: false,
+      },
+      true
+    )
   );
 };
 
@@ -86,16 +90,19 @@ const typeLiteralNode = (
 ) => {
   const members = typeLiteralNode.members;
 
-  return createObjectLiteralFrom({
-    type: "object",
-    properties: factory.createObjectLiteralExpression(true)(
-      map(
-        (member: ts.TypeElement) =>
-          mutateUpwards(member, checker) as ts.ObjectLiteralElementLike
-      )(members)
-    ),
-    additionalProperties: false,
-  }, true);
+  return createObjectLiteralFrom(
+    {
+      type: "object",
+      properties: factory.createObjectLiteralExpression(true)(
+        map(
+          (member: ts.TypeElement) =>
+            mutateUpwards(member, checker) as ts.ObjectLiteralElementLike
+        )(members)
+      ),
+      additionalProperties: false,
+    },
+    true
+  );
 };
 
 const MUTATE_MAP: MutateMap = {

@@ -22,7 +22,7 @@ describe("transform", () => {
             var library_1 = require("@typescript-runtime-schema/library");
             var name = "Morpheus";
             var surelyName = library_1.default({
-                type: "string"
+                type: 'string'
             })(name);
           `.trim()
         );
@@ -40,7 +40,7 @@ describe("transform", () => {
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
               var surelyName = library_1.default({
-                  type: "string"
+                  type: 'string'
               })("Morpheus");
             `.trim()
           );
@@ -67,7 +67,7 @@ describe("transform", () => {
             var library_1 = require("@typescript-runtime-schema/library");
             var name = "Morpheus";
             var surelyName = library_1.default({
-                type: "string"
+                type: 'string'
             })(name);`.trim()
         );
       });
@@ -87,7 +87,7 @@ describe("transform", () => {
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
               var surelyName = library_1.default({
-                  type: "string"
+                  type: 'string'
               })("Morpheus");
             `.trim()
           );
@@ -116,7 +116,7 @@ describe("transform", () => {
               var library_1 = require("@typescript-runtime-schema/library");
               var name = "Morpheus";
               library_1["default"]({
-                  type: "string"
+                  type: 'string'
               })(name);`.trim(),
           }
         );
@@ -142,7 +142,7 @@ describe("transform", () => {
             var library_1 = require("@typescript-runtime-schema/library");
             var age = 21;
             var surelyAge = library_1.default({
-                type: "number"
+                type: 'number'
             })(age);
           `.trim()
         );
@@ -161,7 +161,7 @@ describe("transform", () => {
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
               var surelyAge = library_1.default({
-                  type: "number"
+                  type: 'number'
               })(21);
             `.trim()
           );
@@ -188,7 +188,7 @@ describe("transform", () => {
             var library_1 = require("@typescript-runtime-schema/library");
             var num = 21;
             var surelyAge = library_1.default({
-                type: "number"
+                type: 'number'
             })(num);
           `.trim()
         );
@@ -209,7 +209,7 @@ describe("transform", () => {
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
               var surelyAge = library_1.default({
-                  type: "number"
+                  type: 'number'
               })(21);
             `.trim()
           );
@@ -235,7 +235,7 @@ describe("transform", () => {
             var library_1 = require("@typescript-runtime-schema/library");
             var on = true;
             var definitelyOn = library_1.default({
-                type: "boolean"
+                type: 'boolean'
             })(on);
           `.trim()
         );
@@ -253,7 +253,7 @@ const definitelyOn = is<boolean>(true);`;
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
               var definitelyOn = library_1.default({
-                  type: "boolean"
+                  type: 'boolean'
               })(true);
             `.trim()
           );
@@ -280,7 +280,7 @@ const definitelyOn = is<boolean>(true);`;
             var library_1 = require("@typescript-runtime-schema/library");
             var on = true;
             var definitelyOn = library_1.default({
-                type: "boolean"
+                type: 'boolean'
             })(on);
           `.trim()
         );
@@ -302,7 +302,7 @@ const definitelyOn = is<boolean>(true);`;
             Object.defineProperty(exports, "__esModule", { value: true });
             var library_1 = require("@typescript-runtime-schema/library");
             var definitelyOn = library_1.default({
-                type: "boolean"
+                type: 'boolean'
             })(true);`.trim()
         );
       });
@@ -328,10 +328,10 @@ const definitelyOn = is<boolean>(true);`;
             library_1.default({
                 anyOf: [
                     {
-                        type: "number"
+                        type: 'number'
                     },
                     {
-                        type: "string"
+                        type: 'string'
                     }
                 ]
             })(age);`.trim()
@@ -353,10 +353,10 @@ const definitelyOn = is<boolean>(true);`;
               library_1.default({
                   anyOf: [
                       {
-                          type: "number"
+                          type: 'number'
                       },
                       {
-                          type: "string"
+                          type: 'string'
                       }
                   ]
               })('21');
@@ -385,10 +385,10 @@ const definitelyOn = is<boolean>(true);`;
             library_1.default({
                 anyOf: [
                     {
-                        type: "number"
+                        type: 'number'
                     },
                     {
-                        type: "string"
+                        type: 'string'
                     }
                 ]
             })(age);
@@ -414,10 +414,10 @@ const definitelyOn = is<boolean>(true);`;
               library_1.default({
                   anyOf: [
                       {
-                          type: "number"
+                          type: 'number'
                       },
                       {
-                          type: "string"
+                          type: 'string'
                       }
                   ]
               })('21');
@@ -445,7 +445,7 @@ const definitelyOn = is<boolean>(true);`;
             var library_1 = require("@typescript-runtime-schema/library");
             var age = '21';
             var whatever = library_1.default({
-                type: "any"
+                type: 'any'
             })(age);
           `.trim()
         );
@@ -464,7 +464,7 @@ const definitelyOn = is<boolean>(true);`;
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
               var whatever = library_1.default({
-                  type: "any"
+                  type: 'any'
               })('21');
             `.trim()
           );
@@ -491,7 +491,7 @@ const definitelyOn = is<boolean>(true);`;
             var library_1 = require("@typescript-runtime-schema/library");
             var age = '21';
             var whatever = library_1.default({
-                type: "any"
+                type: 'any'
             })(age);
           `.trim()
         );
@@ -512,7 +512,7 @@ const definitelyOn = is<boolean>(true);`;
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
               var whatever = library_1.default({
-                  type: "any"
+                  type: 'any'
               })('21');
             `.trim()
           );
@@ -538,7 +538,7 @@ const definitelyOn = is<boolean>(true);`;
             var library_1 = require("@typescript-runtime-schema/library");
             var person = { name: 'Kim' };
             var object = library_1.default({
-                type: "object"
+                type: 'object'
             })(person);
           `.trim()
         );
@@ -557,7 +557,7 @@ const definitelyOn = is<boolean>(true);`;
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
               var object = library_1.default({
-                  type: "object"
+                  type: 'object'
               })({ name: 'Kim' });
             `.trim()
           );
@@ -584,7 +584,7 @@ const definitelyOn = is<boolean>(true);`;
             var library_1 = require("@typescript-runtime-schema/library");
             var person = { name: 'Kim' };
             var object = library_1.default({
-                type: "object"
+                type: 'object'
             })(age);
           `.trim()
         );
@@ -605,7 +605,7 @@ const definitelyOn = is<boolean>(true);`;
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
               var object = library_1.default({
-                  type: "object"
+                  type: 'object'
               })({ name: 'Kim' });
             `.trim()
           );
@@ -631,7 +631,7 @@ const definitelyOn = is<boolean>(true);`;
             var library_1 = require("@typescript-runtime-schema/library");
             var undef = undefined;
             var definitelyUndefined = library_1.default({
-                type: "undefined"
+                type: 'undefined'
             })(undef);
           `.trim()
         );
@@ -650,7 +650,7 @@ const definitelyOn = is<boolean>(true);`;
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
               var definitelyUndefined = library_1.default({
-                  type: "undefined"
+                  type: 'undefined'
               })(undefined);
             `.trim()
           );
@@ -677,7 +677,7 @@ const definitelyOn = is<boolean>(true);`;
             var library_1 = require("@typescript-runtime-schema/library");
             var undef = undefined;
             var definitelyUndefined = library_1.default({
-                type: "undefined"
+                type: 'undefined'
             })(undef);
           `.trim()
         );
@@ -698,7 +698,7 @@ const definitelyOn = is<boolean>(true);`;
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
               var definitelyUndefined = library_1.default({
-                  type: "undefined"
+                  type: 'undefined'
               })(undefined);
             `.trim()
           );
@@ -724,7 +724,7 @@ const definitelyOn = is<boolean>(true);`;
             var library_1 = require("@typescript-runtime-schema/library");
             var something = null;
             var definitelyNull = library_1.default({
-                type: "null"
+                type: 'null'
             })(something);
           `.trim()
         );
@@ -743,7 +743,7 @@ const definitelyOn = is<boolean>(true);`;
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
               var definitelyNull = library_1.default({
-                  type: "null"
+                  type: 'null'
               })(null);
             `.trim()
           );
@@ -770,7 +770,7 @@ const definitelyOn = is<boolean>(true);`;
             var library_1 = require("@typescript-runtime-schema/library");
             var something = null;
             var definitelyNull = library_1.default({
-                type: "null"
+                type: 'null'
             })(something);
           `.trim()
         );
@@ -791,7 +791,7 @@ const definitelyOn = is<boolean>(true);`;
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
               var definitelyNull = library_1.default({
-                  type: "null"
+                  type: 'null'
               })(null);
             `.trim()
           );
@@ -818,8 +818,8 @@ const definitelyOn = is<boolean>(true);`;
             var something = null;
             var definitelyNil = library_1.default({
                 anyOf: [
-                    { type: "null" },
-                    { type: "undefined" }
+                    { type: 'null' },
+                    { type: 'undefined' }
                 ]
             })(something);
           `.trim()
@@ -840,8 +840,8 @@ const definitelyOn = is<boolean>(true);`;
               var library_1 = require("@typescript-runtime-schema/library");
               var definitelyNil = library_1.default({
                   anyOf: [
-                      { type: "null" },
-                      { type: "undefined" }
+                      { type: 'null' },
+                      { type: 'undefined' }
                   ]
               })(null);
             `.trim()
@@ -870,8 +870,8 @@ const definitelyOn = is<boolean>(true);`;
             var something = null;
             var definitelyNil = library_1.default({
                 anyOf: [
-                    { type: "null" },
-                    { type: "undefined" }
+                    { type: 'null' },
+                    { type: 'undefined' }
                 ]
             })(something);
           `.trim()
@@ -894,8 +894,8 @@ const definitelyOn = is<boolean>(true);`;
               var library_1 = require("@typescript-runtime-schema/library");
               var definitelyNil = library_1.default({
                   anyOf: [
-                      { type: "null" },
-                      { type: "undefined" }
+                      { type: 'null' },
+                      { type: 'undefined' }
                   ]
               })(null);
             `.trim()
@@ -1038,9 +1038,9 @@ const definitelyOn = is<boolean>(true);`;
               var library_1 = require("@typescript-runtime-schema/library");
               var strings = ["foo", "bar"];
               library_1.default({
-                  type: "array",
+                  type: 'array',
                   items: {
-                      type: "string"
+                      type: 'string'
                   }
               })(strings);
             `.trim()
@@ -1059,9 +1059,9 @@ const definitelyOn = is<boolean>(true);`;
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var library_1 = require("@typescript-runtime-schema/library");
                 library_1.default({
-                    type: "array",
+                    type: 'array',
                     items: {
-                        type: "string"
+                        type: 'string'
                     }
                 })(["Morpheus"]);
               `.trim()
@@ -1087,9 +1087,9 @@ const definitelyOn = is<boolean>(true);`;
               var library_1 = require("@typescript-runtime-schema/library");
               var strings = ["foo", "bar"];
               library_1.default({
-                  type: "array",
+                  type: 'array',
                   items: {
-                      type: "string"
+                      type: 'string'
                   }
               })(strings);
             `.trim()
@@ -1111,9 +1111,9 @@ const definitelyOn = is<boolean>(true);`;
                 Object.defineProperty(exports, "__esModule", { value: true });
                 var library_1 = require("@typescript-runtime-schema/library");
                 library_1.default({
-                    type: "array",
+                    type: 'array',
                     items: {
-                        type: "string"
+                        type: 'string'
                     }
                 })(["foo", "bar"]);
               `.trim()
@@ -1152,41 +1152,31 @@ const definitelyOn = is<boolean>(true);`;
             var library_1 = require("@typescript-runtime-schema/library");
             var person = { name: "Morpheus", age: 21 };
             library_1.default({
-                type: "object",
-                title: "Person",
+                type: 'object',
+                title: 'Person',
                 properties: {
-                    {
-                        name: {
-                            type: "string"
-                        }
+                    name: {
+                        type: 'string'
                     },
-                    {
-                        age: {
-                            type: "number"
-                        }
+                    age: {
+                        type: 'number'
                     },
-                    {
-                        address: {
-                            type: "object",
-                            title: "Address",
-                            properties: {
-                                {
-                                    streetAddress: {
-                                        type: "string"
-                                    }
-                                },
-                                {
-                                    city: {
-                                        type: "string"
-                                    }
-                                }
+                    address: {
+                        type: 'object',
+                        title: 'Address',
+                        properties: {
+                            streetAddress: {
+                                type: 'string'
                             },
-                            required: [
-                                "streetAddress",
-                                "city"
-                            ],
-                            additionalProperties: false
-                        }
+                            city: {
+                                type: 'string'
+                            }
+                        },
+                        required: [
+                            "streetAddress",
+                            "city"
+                        ],
+                        additionalProperties: false
                     }
                 },
                 required: [
@@ -1222,31 +1212,23 @@ const definitelyOn = is<boolean>(true);`;
               Object.defineProperty(exports, "__esModule", { value: true });
               var library_1 = require("@typescript-runtime-schema/library");
               library_1.default({
-                  type: "object",
-                  title: "Person",
+                  type: 'object',
+                  title: 'Person',
                   properties: {
-                      {
-                          age: {
-                              type: "number"
-                          }
+                      age: {
+                          type: 'number'
                       },
-                      {
-                          address: {
-                              type: "object",
-                              properties: {
-                                  {
-                                      streetAddress: {
-                                          type: "string"
-                                      }
-                                  },
-                                  {
-                                      city: {
-                                          type: "string"
-                                      }
-                                  }
+                      address: {
+                          type: 'object',
+                          properties: {
+                              streetAddress: {
+                                  type: 'string'
                               },
-                              additionalProperties: false
-                          }
+                              city: {
+                                  type: 'string'
+                              }
+                          },
+                          additionalProperties: false
                       }
                   },
                   required: [
@@ -1280,42 +1262,24 @@ const definitelyOn = is<boolean>(true);`;
         expect(transformer).toTransformSourceCode(
           sourceCode,
           dedent`
-            "use strict";
-            Object.defineProperty(exports, "__esModule", { value: true });
-            var library_1 = require("@typescript-runtime-schema/library");
-            var person = { name: "Morpheus", age: 21 };
-            library_1.default({
-                type: "object",
-                title: "Person",
-                properties: {
-                    {
-                        gender: {
-                            type: "string"
-                        }
-                    }
-                },
-                required: [
-                    "gender"
-                ],
-                allOf: [
-                    {
-                        type: "object",
-                        title: "Human",
-                        properties: {
-                            {
-                                name: {
-                                    type: "string"
-                                }
-                            }
-                        },
-                        required: [
-                            "name"
-                        ],
-                        additionalProperties: false
-                    }
-                ],
-                additionalProperties: false
-            })(person);
+          "use strict";
+          Object.defineProperty(exports, "__esModule", { value: true });
+          var library_1 = require("@typescript-runtime-schema/library");
+          var person = { name: "Morpheus", age: 21 };
+          library_1.default({
+              type: 'object',
+              title: 'Person',
+              properties: {
+                  gender: {
+                      type: 'string'
+                  },
+                  name: {
+                      type: 'string'
+                  }
+              },
+              required: ["name", "gender"],
+              additionalProperties: false
+          })(person);
           `.trim()
         );
       });
@@ -1350,35 +1314,17 @@ const definitelyOn = is<boolean>(true);`;
             var library_1 = require("@typescript-runtime-schema/library");
             var person = { name: "Morpheus", age: 21 };
             library_1["default"]({
-                type: "object",
-                title: "Person",
+                type: 'object',
+                title: 'Person',
                 properties: {
-                    {
-                        gender: {
-                            type: "string"
-                        }
+                    gender: {
+                        type: 'string'
+                    },
+                    name: {
+                        type: 'string'
                     }
                 },
-                required: [
-                    "gender"
-                ],
-                allOf: [
-                    {
-                        type: "object",
-                        title: "Human",
-                        properties: {
-                            {
-                                name: {
-                                    type: "string"
-                                }
-                            }
-                        },
-                        required: [
-                            "name"
-                        ],
-                        additionalProperties: false
-                    }
-                ],
+                required: ["name", "gender"],
                 additionalProperties: false
             })(person);
           `.trim(),
@@ -1413,24 +1359,20 @@ const definitelyOn = is<boolean>(true);`;
                   {
                       allOf: [
                           {
-                              type: "object",
+                              type: 'object',
                               properties: {
-                                  {
-                                      age: {
-                                          type: "number"
-                                      }
+                                  age: {
+                                      type: 'number'
                                   }
                               },
                               additionalProperties: false
                           },
                           {
-                              type: "object",
-                              title: "Human",
+                              type: 'object',
+                              title: 'Human',
                               properties: {
-                                  {
-                                      name: {
-                                          type: "string"
-                                      }
+                                  name: {
+                                      type: 'string'
                                   }
                               },
                               required: [
@@ -1441,7 +1383,7 @@ const definitelyOn = is<boolean>(true);`;
                       ]
                   },
                   {
-                      type: "string"
+                      type: 'string'
                   }
               ]
           })(person);
