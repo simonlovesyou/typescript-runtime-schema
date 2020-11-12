@@ -1326,27 +1326,17 @@ const definitelyOn = is<boolean>(true);`;
         expect(transformer).toTransformSourceCode(
           sourceCode,
           jsCode`
-          "use strict";
-          Object.defineProperty(exports, "__esModule", { value: true });
-          var library_1 = require("@typescript-runtime-schema/library");
-          var person = { name: "Morpheus", age: 21 };
-          library_1.default({
-              type: 'object',
-              title: 'Person',
-              properties: {
-                  gender: {
-                      type: 'string'
-                  },
-                  name: {
-                      type: 'string'
-                  },
-                  hasTail: {
-                      type: 'boolean'
-                  }
-              },
-              required: ["hasTail", "name", "gender"],
-              additionalProperties: false
-          })(person);
+            "use strict";
+            Object.defineProperty(exports, "__esModule", { value: true });
+            var library_1 = require("@typescript-runtime-schema/library");
+            var person = { name: "Morpheus", age: 21 };
+            library_1.default({ type: 'object', title: 'Person', properties: { gender: {
+                        type: 'string'
+                    }, name: {
+                        type: 'string'
+                    }, hasTail: {
+                        type: 'boolean'
+                    } }, required: ["hasTail", "name", "gender"], additionalProperties: false })(person);
           `.trim()
         );
       });
@@ -1380,20 +1370,11 @@ const definitelyOn = is<boolean>(true);`;
             exports.__esModule = true;
             var library_1 = require("@typescript-runtime-schema/library");
             var person = { name: "Morpheus", age: 21 };
-            library_1["default"]({
-                type: 'object',
-                title: 'Person',
-                properties: {
-                    gender: {
+            library_1["default"]({ type: 'object', title: 'Person', properties: { gender: {
                         type: 'string'
-                    },
-                    name: {
+                    }, name: {
                         type: 'string'
-                    }
-                },
-                required: ["name", "gender"],
-                additionalProperties: false
-            })(person);
+                    } }, required: ["name", "gender"], additionalProperties: false })(person);
           `.trim(),
         });
       });
@@ -1423,20 +1404,11 @@ const definitelyOn = is<boolean>(true);`;
           var person = { name: "Morpheus", age: 21 };
           library_1.default({
               anyOf: [
-                  {
-                      type: 'object',
-                      title: 'Human',
-                      properties: {
-                          name: {
+                  { type: 'object', title: 'Human', properties: { name: {
                               type: 'string'
-                          },
-                          age: {
+                          }, age: {
                               type: 'number'
-                          }
-                      },
-                      required: ["age", "name"],
-                      additionalProperties: false
-                  },
+                          } }, required: ["age", "name"], additionalProperties: false },
                   {
                       type: 'string'
                   }
