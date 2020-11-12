@@ -1418,4 +1418,52 @@ const definitelyOn = is<boolean>(true);`;
       );
     });
   });
+  describe("tuple", () => {
+    const sourceCode = tsCode`
+      import is from "@typescript-runtime-schema/library";
+
+      const strings = ["foo", "bar"]
+
+      type Address = [number, string, 'Street' | 'Avenue' | 'Boulevard']
+
+      is<Address>(strings);
+    `;
+
+    it("should transform correctly", () => {
+      expect(transformer).toTransformSourceCode(
+        sourceCode,
+        jsCode`
+          "use strict";
+          Object.defineProperty(exports, "__esModule", { value: true });
+          var library_1 = require("@typescript-runtime-schema/library");
+          var strings = ["foo", "bar"];
+          library_1.default({
+              type: 'array',
+              items: [
+                  {
+                      type: 'number'
+                  },
+                  {
+                      type: 'string'
+                  },
+                  {
+                      anyOf: [
+                          {
+                              const: 'Street'
+                          },
+                          {
+                              const: 'Avenue'
+                          },
+                          {
+                              const: 'Boulevard'
+                          }
+                      ]
+                  }
+              ],
+              additionalItems: false
+          })(strings);
+        `.trim()
+      );
+    });
+  });
 });

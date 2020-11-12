@@ -86,12 +86,34 @@ export const arrayType = (
   );
 };
 
+export const tupleType = (
+  tupleType: ts.TupleType,
+  checker: ts.TypeChecker
+) => {
+  // `elements` does not exist on TupleType for some reason, although it's there
+  const elements = (tupleType as any).elements || [];
+
+  return createObjectLiteralFrom(
+    {
+      type: "array",
+      items: map((element) =>
+        mutateUpwards<
+          TypeKeyword | ts.SyntaxKind.TypeReference | ts.SyntaxKind.LiteralType
+        >(element, checker)
+      )(elements),
+      additionalItems: false
+    },
+    true
+  );
+};
+
 const MUTATE_MAP = {
   [ts.SyntaxKind.LiteralType]: literalTypeNode,
   [ts.SyntaxKind.TypeReference]: typeReferenceNode,
   [ts.SyntaxKind.UnionType]: unionTypeNode,
   [ts.SyntaxKind.IntersectionType]: intersectionType,
   [ts.SyntaxKind.ArrayType]: arrayType,
+  [ts.SyntaxKind.TupleType]: tupleType,
 };
 
 export default MUTATE_MAP;
