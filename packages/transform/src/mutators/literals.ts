@@ -1,7 +1,5 @@
 import * as ts from "typescript";
 import { keyword } from "./keywords";
-import { MutateMap } from ".";
-import { compose } from "ramda";
 import { createObjectLiteralFrom } from "@typescript-runtime-schema/compiler-utilities";
 import * as factory from '@typescript-runtime-schema/factory'
 
@@ -18,7 +16,7 @@ const stringLiteral = (literal: ts.StringLiteral) => createObjectLiteralFrom({
   const: factory.createStringLiteral(true)(literal.text)
 }, true)
 
-const MUTATE_MAP: MutateMap = {
+const MUTATE_MAP = {
   [ts.SyntaxKind.LiteralType]: literalTypeNode,
   [ts.SyntaxKind.StringLiteral]: stringLiteral
 };

@@ -4,23 +4,20 @@ import nodes from "./nodes";
 import keywords from "./keywords";
 import ts from "typescript";
 
-export type Mutator = (
-  node: ts.Node | ts.IntersectionType,
-  checker: ts.TypeChecker
-) => ts.Expression | ts.Expression[] | ts.Node | ts.StringLiteral | ts.StringLiteral[];
-
-export type MutateMap = Partial<Record<ts.SyntaxKind, Mutator>>;
-
-const mutateOver = (mutateMap: MutateMap) => (
-  node: ts.Node,
-  checker: ts.TypeChecker
-): ReturnType<Mutator> => {
-  return mutateMap[node.kind](node, checker);
-};
-
-export default mutateOver({
+const mutateMap = {
   ...keywords,
   ...literals,
   ...types,
   ...nodes,
-});
+}
+
+type MutationSyntaxKind = keyof typeof mutateMap;
+
+const mutateOver = <T extends MutationSyntaxKind>(
+  node: any,
+  checker: ts.TypeChecker
+): ReturnType<typeof mutateMap[T]> => {
+  return mutateMap[node.kind as MutationSyntaxKind](node, checker) as ReturnType<typeof mutateMap[T]>
+};
+
+export default mutateOver

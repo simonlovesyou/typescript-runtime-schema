@@ -1,19 +1,30 @@
 import * as ts from "typescript";
 import { map, reduce } from "ramda";
 import * as factory from "@typescript-runtime-schema/factory";
-import mutateUpwards, { MutateMap } from ".";
+import mutateUpwards from ".";
 import { findRootIdentifier } from "@typescript-runtime-schema/compiler-utilities";
 import {
   createObjectLiteralFrom,
   mergeObjectLiteralsRecursivelyLeft,
 } from "@typescript-runtime-schema/compiler-utilities";
 
+type TypeKeyword =
+  | ts.SyntaxKind.StringKeyword
+  | ts.SyntaxKind.NumberKeyword
+  | ts.SyntaxKind.BooleanKeyword
+  | ts.SyntaxKind.AnyKeyword
+  | ts.SyntaxKind.VoidKeyword
+  | ts.SyntaxKind.IntersectionType
+  | ts.SyntaxKind.ObjectKeyword;
+
 const propertySignature = (
   propertySignature: ts.PropertySignature,
   checker: ts.TypeChecker
-) => {
+): ts.PropertyAssignment => {
   return factory.createPropertyAssignment(propertySignature.name)(
-    mutateUpwards(propertySignature.type, checker) as ts.Expression
+    mutateUpwards<
+      TypeKeyword | ts.SyntaxKind.UnionType | ts.SyntaxKind.TypeReference
+    >(propertySignature.type, checker) as ts.Expression
   );
 };
 
@@ -22,13 +33,16 @@ const typeAliasDeclaration = (
   checker: ts.TypeChecker
 ) => {
   const type = typeAliasDeclaration.type;
-
-  return mutateUpwards(type, checker);
+  return mutateUpwards<TypeKeyword>(type, checker);
 };
 
 const identifier = (identifier: ts.Identifier, checker: ts.TypeChecker) => {
   const rootIdentifier = findRootIdentifier(identifier, checker);
-  return mutateUpwards(rootIdentifier.parent, checker) as ts.Node;
+
+  return mutateUpwards<ts.SyntaxKind.InterfaceDeclaration>(
+    rootIdentifier.parent,
+    checker
+  );
 };
 
 const heritageClause = (
@@ -37,8 +51,8 @@ const heritageClause = (
 ) => {
   const types = heritageClause.types;
   const result = types.map((type) =>
-    mutateUpwards(type.expression, checker)
-  ) as ts.Expression[];
+    mutateUpwards<ts.SyntaxKind.Identifier>(type.expression, checker)
+  );
   return result[0];
 };
 
@@ -50,21 +64,20 @@ const interfaceDeclaration = (
 
   const inheritsFrom = interfaceDeclaration.heritageClauses
     ? map((heritageClause: ts.HeritageClause) => {
-        return mutateUpwards(
+        return mutateUpwards<ts.SyntaxKind.HeritageClause>(
           heritageClause,
           checker
-        ) as ts.ObjectLiteralExpression;
+        );
       })(interfaceDeclaration.heritageClauses)
     : [factory.createObjectLiteralExpression()([])];
 
   const base = createObjectLiteralFrom(
     {
       type: "object",
-      title: interfaceDeclaration.name.getText(),
+      title: interfaceDeclaration.name.escapedText,
       properties: factory.createObjectLiteralExpression(true)(
-        members.map(
-          (member: ts.PropertySignature) =>
-            mutateUpwards(member, checker) as ts.ObjectLiteralElementLike
+        members.map((member: ts.PropertySignature) =>
+          mutateUpwards<ts.SyntaxKind.PropertySignature>(member, checker)
         )
       ),
       required: members.reduce((acc, member: ts.PropertySignature) => {
@@ -77,26 +90,26 @@ const interfaceDeclaration = (
     true
   );
 
-  return reduce(
+  const result = reduce(
     (acc, objectLiteral: ts.ObjectLiteralExpression) =>
       mergeObjectLiteralsRecursivelyLeft(objectLiteral, acc),
     base
-  )(inheritsFrom)
+  )(inheritsFrom);
+  return result;
 };
 
 const typeLiteralNode = (
   typeLiteralNode: ts.TypeLiteralNode,
   checker: ts.TypeChecker
-) => {
+): ts.ObjectLiteralExpression => {
   const members = typeLiteralNode.members;
 
   return createObjectLiteralFrom(
     {
       type: "object",
       properties: factory.createObjectLiteralExpression(true)(
-        map(
-          (member: ts.TypeElement) =>
-            mutateUpwards(member, checker) as ts.ObjectLiteralElementLike
+        map((member: ts.TypeElement) =>
+          mutateUpwards<ts.SyntaxKind.PropertySignature>(member, checker)
         )(members)
       ),
       additionalProperties: false,
@@ -110,7 +123,7 @@ const typeLiteralNode = (
   );
 };
 
-const MUTATE_MAP: MutateMap = {
+const MUTATE_MAP = {
   [ts.SyntaxKind.TypeLiteral]: typeLiteralNode,
   [ts.SyntaxKind.InterfaceDeclaration]: interfaceDeclaration,
   [ts.SyntaxKind.PropertySignature]: propertySignature,

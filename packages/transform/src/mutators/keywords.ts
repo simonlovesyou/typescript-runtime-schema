@@ -1,9 +1,5 @@
 import * as ts from "typescript";
-import { MutateMap } from ".";
-import {
-  createObjectLiteralFrom,
-} from "@typescript-runtime-schema/compiler-utilities";
-import * as factory from "@typescript-runtime-schema/factory";
+import { createObjectLiteralFrom } from "@typescript-runtime-schema/compiler-utilities";
 
 const keywordTypeMap = new Map([
   [ts.SyntaxKind.StringKeyword, "string"],
@@ -13,11 +9,10 @@ const keywordTypeMap = new Map([
   [ts.SyntaxKind.AnyKeyword, "any"],
   [ts.SyntaxKind.UndefinedKeyword, "undefined"],
   [ts.SyntaxKind.NullKeyword, "null"],
+  [ts.SyntaxKind.ObjectKeyword, "object"],
 ]);
 
-export const keyword = (
-  kind: ts.SyntaxKind
-): ts.ObjectLiteralExpression | ts.ArrayLiteralExpression => {
+export const keyword = (kind: ts.SyntaxKind): ts.ObjectLiteralExpression => {
   if (kind === ts.SyntaxKind.VoidKeyword) {
     return createObjectLiteralFrom(
       { anyOf: [{ type: "null" }, { type: "undefined" }] },
@@ -37,7 +32,7 @@ export const mutate = (node: ts.Node) => {
   return keyword(node.kind);
 };
 
-const MUTATE_MAP: MutateMap = {
+const MUTATE_MAP = {
   [ts.SyntaxKind.StringKeyword]: mutate,
   [ts.SyntaxKind.NumberKeyword]: mutate,
   [ts.SyntaxKind.BooleanKeyword]: mutate,
