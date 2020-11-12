@@ -1030,6 +1030,51 @@ const definitelyOn = is<boolean>(true);`;
         });
       });
     });
+    describe("import", () => {
+      const sourceFiles = {
+        "./lib.ts": tsCode`
+          import is from "@typescript-runtime-schema/library";
+          import Human from './human'
+
+          const person = { name: "Morpheus", age: 21 } as any
+
+          is<Human>(person);`.trim(),
+
+        "./human.ts": tsCode`
+          interface Animal {
+            type: 'vertebrates' | 'invertebrates'
+          }
+
+          interface Human extends Animal {
+            name: string
+          }
+
+          export default Human
+        `.trim(),
+      };
+      it("should produce the correct files", () => {
+        expect(transformer).toTransformProgram(sourceFiles, {
+          "./lib.js": jsCode`
+            "use strict";
+            exports.__esModule = true;
+            var library_1 = require("@typescript-runtime-schema/library");
+            var person = { name: "Morpheus", age: 21 };
+            library_1["default"]({ type: 'object', title: 'Human', properties: { name: {
+                        type: 'string'
+                    }, type: {
+                        anyOf: [
+                            {
+                                "const": 'vertebrates'
+                            },
+                            {
+                                "const": 'invertebrates'
+                            }
+                        ]
+                    } }, required: ["type", "name"], additionalProperties: false })(person);
+          `.trim(),
+        });
+      });
+    });
   });
   describe("array", () => {
     describe("[]", () => {

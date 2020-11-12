@@ -15,7 +15,7 @@ const literalTypeNode = (
 ) => keyword(literal.kind);
 
 const stringLiteral = (literal: ts.StringLiteral) => createObjectLiteralFrom({
-  const: literal
+  const: factory.createStringLiteral(true)(literal.text)
 }, true)
 
 const MUTATE_MAP: MutateMap = {
