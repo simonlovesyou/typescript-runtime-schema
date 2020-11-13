@@ -8,23 +8,6 @@ import mutate from "./mutators";
 
 interface TransformerOptions {}
 
-const findCallExpressionIdentifier = (
-  node: ts.CallExpression
-): ts.Identifier | undefined => {
-  const children = node.getChildren();
-
-  return children.find((node) => {
-    if (ts.isIdentifier(node)) {
-      return node;
-    }
-    if (ts.isPropertyAccessExpression(node)) {
-      const identifiers = tsquery<ts.Identifier>(node, "Identifier");
-      return last(identifiers);
-    }
-    return false;
-  }) as ts.Identifier | undefined;
-};
-
 const findLibraryIdentifier = (node: ts.Node): ts.Identifier | undefined => {
   if (ts.isImportDeclaration(node)) {
     return tsquery<ts.Identifier>(node, 'Identifier[escapedText="is"]')[0];
@@ -46,45 +29,32 @@ const createVisitor = (program: ts.Program) => (
 ) => {
   const checker = program.getTypeChecker();
   let libraryIdentifier: ts.Identifier | undefined = undefined;
-  let schemaIdentifiers: ts.Identifier[] | undefined = undefined;
+  let schemaIdentifiers: ts.Identifier[] | undefined = undefined
+
   const visitor: ts.Visitor = (node: ts.Node) => {
     libraryIdentifier = libraryIdentifier || findLibraryIdentifier(node);
     schemaIdentifiers = schemaIdentifiers || findSchemaIdentifiers(node);
-    // @ts-ignore
-    node._name = getArbitraryNodeName(node);
-    // @ts-ignore
-    map((value: ts.Node) => {
-      try {
-        const name = getArbitraryNodeName(value);
-        if (name) {
-          // @ts-ignore
-          value._name = name;
-        }
-      } catch (error) {}
-    }, node);
-
     if (ts.isCallExpression(node)) {
       const callExpression = node;
-      const callExpressionIdentifier = findCallExpressionIdentifier(
-        callExpression
-      );
-      const rootIdentifier = findRootIdentifier(
-        callExpressionIdentifier,
-        checker,
-        { includeImports: false }
-      );
+      if (ts.isIdentifier(callExpression.expression)) {
+        const rootIdentifier = findRootIdentifier(
+          callExpression.expression,
+          checker,
+          { includeImports: false }
+        );
 
-      if (rootIdentifier.escapedText === libraryIdentifier.escapedText) {
-        const { typeArguments, arguments: args } = callExpression;
-        const [typeArgument] = typeArguments;
-        return pipe(
-          factory.updateCallExpression(callExpressionIdentifier, undefined, [
-            mutate(typeArgument, checker) as ts.Expression,
-          ]),
-          factory.createCallExpression(undefined, args)
-        )(callExpression);
+        if (rootIdentifier.escapedText === libraryIdentifier.escapedText) {
+          const { typeArguments, arguments: args } = callExpression;
+          const [typeArgument] = typeArguments;
+          return pipe(
+            factory.updateCallExpression(callExpression.expression, undefined, [
+              mutate(typeArgument, checker) as ts.Expression,
+            ]),
+            factory.createCallExpression(undefined, args)
+          )(callExpression);
+        }
+        return ts.visitEachChild(node, visitor, ctx);
       }
-      return ts.visitEachChild(node, visitor, ctx);
     }
     return ts.visitEachChild(node, visitor, ctx);
   };
