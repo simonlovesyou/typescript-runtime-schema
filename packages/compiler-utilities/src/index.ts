@@ -87,7 +87,8 @@ export const mergeObjectLiteralsRecursivelyLeft = (
 
 export const findRootIdentifier = (
   identifier: ts.Identifier,
-  checker: ts.TypeChecker
+  checker: ts.TypeChecker,
+  options: { includeImports?: boolean } = { includeImports: true }
 ): ts.Identifier => {
   const symbol = checker.getSymbolAtLocation(identifier);
   const declaration = symbol.declarations[0];
@@ -113,39 +114,31 @@ export const findRootIdentifier = (
   if (ts.isInterfaceDeclaration(declaration)) {
     return declaration.name;
   }
-  if (ts.isImportClause(declaration)) {
-    // TODO: Remove this ugly hack
-    if (!declaration.getText().includes("is")) {
-      const parent = declaration.parent;
-      if (ts.isImportDeclaration(parent)) {
-        const moduleSymbol = checker.getSymbolAtLocation(
-          declaration.parent.moduleSpecifier
-        );
-        const defaultExport = moduleSymbol.exports.get(
-          ts.escapeLeadingUnderscores("default")
-        );
-        const expressionA = (defaultExport
-          .declarations[0] as ts.ExportAssignment).expression as ts.Identifier;
-        return findRootIdentifier(expressionA, checker);
-      }
+  if (ts.isImportClause(declaration) && !options.includeImports === false) {
+    const parent = declaration.parent;
+    if (ts.isImportDeclaration(parent)) {
+      const moduleSymbol = checker.getSymbolAtLocation(parent.moduleSpecifier);
+      const defaultExport = moduleSymbol.exports.get(
+        ts.escapeLeadingUnderscores("default")
+      );
+      const expressionA = (defaultExport.declarations[0] as ts.ExportAssignment)
+        .expression as ts.Identifier;
+      return findRootIdentifier(expressionA, checker);
     }
     return (declaration && declaration.name) || identifier;
   }
-  if (ts.isImportSpecifier(declaration)) {
+  if (ts.isImportSpecifier(declaration) && !options.includeImports === false) {
     const importDeclaration = declaration.parent.parent.parent;
-    // TODO: Remove this ugly hack
-    if (!importDeclaration.getText().includes("is")) {
-      if (ts.isImportDeclaration(importDeclaration)) {
-        const moduleSymbol = checker.getSymbolAtLocation(
-          importDeclaration.moduleSpecifier
-        );
-        const defaultExport = moduleSymbol.exports.get(
-          ts.escapeLeadingUnderscores("default")
-        );
-        const expressionA = (defaultExport
-          .declarations[0] as ts.ExportAssignment).expression as ts.Identifier;
-        return findRootIdentifier(expressionA, checker);
-      }
+    if (ts.isImportDeclaration(importDeclaration)) {
+      const moduleSymbol = checker.getSymbolAtLocation(
+        importDeclaration.moduleSpecifier
+      );
+      const defaultExport = moduleSymbol.exports.get(
+        ts.escapeLeadingUnderscores("default")
+      );
+      const expressionA = (defaultExport.declarations[0] as ts.ExportAssignment)
+        .expression as ts.Identifier;
+      return findRootIdentifier(expressionA, checker);
     }
     return (declaration && declaration.name) || identifier;
   }
