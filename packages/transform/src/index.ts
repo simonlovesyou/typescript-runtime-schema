@@ -13,27 +13,16 @@ const findLibraryIdentifier = (node: ts.Node): ts.Identifier | undefined => {
     return tsquery<ts.Identifier>(node, 'Identifier[escapedText="is"]')[0];
   }
 };
-
-const findSchemaIdentifiers = (node: ts.Node): ts.Identifier[] | undefined => {
-  if (
-    ts.isImportDeclaration(node) &&
-    node.getFullText().includes('from "@typescript-runtime-schema/schemas";')
-  ) {
-    return tsquery(node, "Identifier") as ts.Identifier[] | undefined;
-  }
-};
-
 const createVisitor = (program: ts.Program) => (
   ctx: ts.TransformationContext,
   sourceFile: ts.SourceFile
 ) => {
   const checker = program.getTypeChecker();
   let libraryIdentifier: ts.Identifier | undefined = undefined;
-  let schemaIdentifiers: ts.Identifier[] | undefined = undefined
 
   const visitor: ts.Visitor = (node: ts.Node) => {
     libraryIdentifier = libraryIdentifier || findLibraryIdentifier(node);
-    schemaIdentifiers = schemaIdentifiers || findSchemaIdentifiers(node);
+
     if (ts.isCallExpression(node)) {
       const callExpression = node;
       if (ts.isIdentifier(callExpression.expression)) {
