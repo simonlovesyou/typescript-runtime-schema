@@ -70,7 +70,8 @@ const createVisitor = (program: ts.Program) => (
       );
       const rootIdentifier = findRootIdentifier(
         callExpressionIdentifier,
-        checker
+        checker,
+        { includeImports: false }
       );
 
       if (rootIdentifier.escapedText === libraryIdentifier.escapedText) {
