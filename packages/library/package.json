@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "joi": "^17.3.0",
+    "jsonschema": "^1.4.0",
     "ramda": "^0.27.1"
   }
 }
