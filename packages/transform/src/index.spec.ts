@@ -1059,9 +1059,14 @@ const definitelyOn = is<boolean>(true);`;
             exports.__esModule = true;
             var library_1 = require("@typescript-runtime-schema/library");
             var person = { name: "Morpheus", age: 21 };
-            library_1["default"]({ type: 'object', title: 'Human', properties: { name: {
+            library_1["default"]({
+                type: 'object',
+                title: 'Human',
+                properties: {
+                    name: {
                         type: 'string'
-                    }, type: {
+                    },
+                    type: {
                         anyOf: [
                             {
                                 "const": 'vertebrates'
@@ -1070,7 +1075,11 @@ const definitelyOn = is<boolean>(true);`;
                                 "const": 'invertebrates'
                             }
                         ]
-                    } }, required: ["type", "name"], additionalProperties: false })(person);
+                    }
+                },
+                required: ["type", "name"],
+                additionalProperties: false
+            })(person);
           `.trim(),
         });
       });
@@ -1177,6 +1186,55 @@ const definitelyOn = is<boolean>(true);`;
           });
         });
       });
+    });
+  });
+  describe("heritage", () => {
+    const sourceCode = tsCode`
+      import is from "@typescript-runtime-schema/library";
+
+      const person = { name: "Morpheus", age: 21 } as any
+
+      interface Human {
+        name: string
+      }
+
+      interface Animal {
+        hasTail: boolean
+      }
+
+      interface Person extends Human extends Animal {
+        gender: string
+      }
+
+      is<Person>(person);
+    `;
+    it("should transform correctly", () => {
+      expect(transformer).toTransformSourceCode(
+        sourceCode,
+        jsCode`
+          "use strict";
+          Object.defineProperty(exports, "__esModule", { value: true });
+          var library_1 = require("@typescript-runtime-schema/library");
+          var person = { name: "Morpheus", age: 21 };
+          library_1.default({
+              type: 'object',
+              title: 'Person',
+              properties: {
+                  gender: {
+                      type: 'string'
+                  },
+                  name: {
+                      type: 'string'
+                  },
+                  hasTail: {
+                      type: 'boolean'
+                  }
+              },
+              required: ["hasTail", "name", "gender"],
+              additionalProperties: false
+          })(person);
+        `.trim()
+      );
     });
   });
   describe("interface", () => {
@@ -1302,45 +1360,6 @@ const definitelyOn = is<boolean>(true);`;
         });
       });
     });
-    describe("heritage", () => {
-      const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
-
-        const person = { name: "Morpheus", age: 21 } as any
-
-        interface Human {
-          name: string
-        }
-
-        interface Animal {
-          hasTail: boolean
-        }
-
-        interface Person extends Human extends Animal {
-          gender: string
-        }
-
-        is<Person>(person);
-      `;
-      it("should transform correctly", () => {
-        expect(transformer).toTransformSourceCode(
-          sourceCode,
-          jsCode`
-            "use strict";
-            Object.defineProperty(exports, "__esModule", { value: true });
-            var library_1 = require("@typescript-runtime-schema/library");
-            var person = { name: "Morpheus", age: 21 };
-            library_1.default({ type: 'object', title: 'Person', properties: { gender: {
-                        type: 'string'
-                    }, name: {
-                        type: 'string'
-                    }, hasTail: {
-                        type: 'boolean'
-                    } }, required: ["hasTail", "name", "gender"], additionalProperties: false })(person);
-          `.trim()
-        );
-      });
-    });
     describe("import", () => {
       const sourceFiles = {
         "./lib.ts": tsCode`
@@ -1370,11 +1389,20 @@ const definitelyOn = is<boolean>(true);`;
             exports.__esModule = true;
             var library_1 = require("@typescript-runtime-schema/library");
             var person = { name: "Morpheus", age: 21 };
-            library_1["default"]({ type: 'object', title: 'Person', properties: { gender: {
+            library_1["default"]({
+                type: 'object',
+                title: 'Person',
+                properties: {
+                    gender: {
                         type: 'string'
-                    }, name: {
+                    },
+                    name: {
                         type: 'string'
-                    } }, required: ["name", "gender"], additionalProperties: false })(person);
+                    }
+                },
+                required: ["name", "gender"],
+                additionalProperties: false
+            })(person);
           `.trim(),
         });
       });
@@ -1404,11 +1432,20 @@ const definitelyOn = is<boolean>(true);`;
           var person = { name: "Morpheus", age: 21 };
           library_1.default({
               anyOf: [
-                  { type: 'object', title: 'Human', properties: { name: {
+                  {
+                      type: 'object',
+                      title: 'Human',
+                      properties: {
+                          name: {
                               type: 'string'
-                          }, age: {
+                          },
+                          age: {
                               type: 'number'
-                          } }, required: ["age", "name"], additionalProperties: false },
+                          }
+                      },
+                      required: ["age", "name"],
+                      additionalProperties: false
+                  },
                   {
                       type: 'string'
                   }
