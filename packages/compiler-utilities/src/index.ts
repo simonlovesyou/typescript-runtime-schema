@@ -8,30 +8,7 @@ import {
   toPairs,
   equals,
   propSatisfies,
-  mapObjIndexed,
 } from "ramda";
-
-export const addPropertyAccessToIdentifier = (
-  property: ts.Identifier | ts.PrivateIdentifier
-) => (identifier: ts.Expression) =>
-  ts.createPropertyAccess(identifier, property);
-
-export const createCall = (
-  typeArguments: readonly ts.TypeNode[],
-  argumentsArray: readonly ts.Expression[]
-) => (expression: ts.Expression) =>
-  ts.createCall(expression, typeArguments, argumentsArray);
-
-export const addMethodCallToExpression = (
-  methodName: string,
-  typeArguments: readonly ts.TypeNode[],
-  argumentsArray: readonly ts.Expression[] = []
-) => (identifier: ts.Expression) =>
-  pipe(
-    () => identifier,
-    addPropertyAccessToIdentifier(ts.factory.createIdentifier(methodName)),
-    createCall([], [])
-  )();
 
 export const mergeObjectLiteralsRecursivelyLeft = (
   objectLiteralA: ts.ObjectLiteralExpression,

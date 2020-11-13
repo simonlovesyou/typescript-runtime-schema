@@ -1,7 +1,4 @@
 import {
-  addPropertyAccessToIdentifier,
-  createCall,
-  addMethodCallToExpression,
   createObjectLiteralFrom,
   mergeObjectLiteralsRecursivelyLeft,
 } from ".";
@@ -9,11 +6,6 @@ import * as ts from "typescript";
 import "@typescript-runtime-schema/expect-node-to-equal-source-code";
 
 describe("compiler-utilities", () => {
-  describe("createCall", () => {
-    it("should be exported", () => {
-      expect(createCall).toBeDefined();
-    });
-  });
   describe("mergeObjectLiteralsRecursivelyLeft", () => {
     describe("similar nested object literals", () => {
       const objectLiteralA = createObjectLiteralFrom({
