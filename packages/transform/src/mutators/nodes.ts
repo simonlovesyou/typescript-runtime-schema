@@ -1,5 +1,5 @@
 import * as ts from "typescript";
-import { map, reduce } from "ramda";
+import { map, reduce, pipe, filter, reject, equals } from "ramda";
 import * as factory from "@typescript-runtime-schema/factory";
 import mutateUpwards from ".";
 import { findRootIdentifier } from "@typescript-runtime-schema/compiler-utilities";
@@ -62,6 +62,14 @@ const interfaceDeclaration = (
 ) => {
   const members = interfaceDeclaration.members;
 
+  const propertySignatures = filter(ts.isPropertySignature)(
+    (members as unknown) as ts.Node[]
+  ) as ts.PropertySignature[];
+
+  const propertyNames = filter(ts.isIndexSignatureDeclaration)(
+    (members as unknown) as ts.Node[]
+  ) as ts.IndexSignatureDeclaration[];
+
   const inheritsFrom = interfaceDeclaration.heritageClauses
     ? map((heritageClause: ts.HeritageClause) => {
         return mutateUpwards<ts.SyntaxKind.HeritageClause>(
@@ -72,21 +80,50 @@ const interfaceDeclaration = (
     : [factory.createObjectLiteralExpression()([])];
 
   const base = createObjectLiteralFrom(
-    {
+    reject(equals(null))({
       type: "object",
       title: interfaceDeclaration.name.escapedText,
-      properties: factory.createObjectLiteralExpression(true)(
-        members.map((member: ts.PropertySignature) =>
-          mutateUpwards<ts.SyntaxKind.PropertySignature>(member, checker)
-        )
-      ),
-      required: members.reduce((acc, member: ts.PropertySignature) => {
-        return member.questionToken
-          ? acc
-          : [...acc, factory.createStringLiteral(false)(member.name.getText())];
-      }, []),
-      additionalProperties: false,
-    },
+      properties:
+        propertySignatures.length > 0
+          ? factory.createObjectLiteralExpression(true)(
+              propertySignatures.map((member) =>
+                mutateUpwards<ts.SyntaxKind.PropertySignature>(member, checker)
+              )
+            )
+          : null,
+      propertyNames:
+        propertyNames.length > 1
+          ? {
+              anyOf: map((member: ts.IndexSignatureDeclaration) => {
+                // Assume only one parameter
+                const parameter = member.parameters[0];
+
+                return mutateUpwards<ts.SyntaxKind.Parameter>(
+                  parameter,
+                  checker
+                );
+              })(propertyNames),
+            }
+          : propertyNames.length === 0
+          ? null
+          : mutateUpwards<ts.SyntaxKind.Parameter>(
+              // Assume only one parameter
+              propertyNames[0].parameters[0],
+              checker
+            ),
+      required:
+        propertySignatures.length > 0
+          ? propertySignatures.reduce((acc, member) => {
+              return member.questionToken
+                ? acc
+                : [
+                    ...acc,
+                    factory.createStringLiteral(false)(member.name.getText()),
+                  ];
+            }, [])
+          : null,
+      additionalProperties: propertyNames.length > 0,
+    }),
     true
   );
 
@@ -104,23 +141,72 @@ const typeLiteralNode = (
 ): ts.ObjectLiteralExpression => {
   const members = typeLiteralNode.members;
 
+  const propertySignatures = filter(ts.isPropertySignature)(
+    (members as unknown) as ts.Node[]
+  ) as ts.PropertySignature[];
+
+  const propertyNames = filter(ts.isIndexSignatureDeclaration)(
+    (members as unknown) as ts.Node[]
+  ) as ts.IndexSignatureDeclaration[];
+
   return createObjectLiteralFrom(
-    {
+    reject(equals(null))({
       type: "object",
-      properties: factory.createObjectLiteralExpression(true)(
-        map((member: ts.TypeElement) =>
-          mutateUpwards<ts.SyntaxKind.PropertySignature>(member, checker)
-        )(members)
-      ),
-      additionalProperties: false,
-      required: members.reduce((acc, member: ts.PropertySignature) => {
-        return member.questionToken
-          ? acc
-          : [...acc, factory.createStringLiteral(false)(member.name.getText())];
-      }, []),
-    },
+      properties:
+        propertySignatures.length > 0
+          ? factory.createObjectLiteralExpression(true)(
+              pipe(
+                map((member: ts.PropertySignature) => {
+                  return mutateUpwards<ts.SyntaxKind.PropertySignature>(
+                    member,
+                    checker
+                  );
+                })
+              )(propertySignatures)
+            )
+          : null,
+      propertyNames:
+        propertyNames.length > 1
+          ? {
+              anyOf: propertyNames.map((member) => {
+                // Assume only one parameter
+                const parameter = member.parameters[0];
+
+                return mutateUpwards<ts.SyntaxKind.Parameter>(
+                  parameter,
+                  checker
+                );
+              }),
+            }
+          : propertyNames.length === 0
+          ? null
+          : mutateUpwards<ts.SyntaxKind.Parameter>(
+              // Assume only one parameter
+              propertyNames[0].parameters[0],
+              checker
+            ),
+      additionalProperties: propertyNames.length > 0,
+      required:
+        propertySignatures.length > 0
+          ? propertySignatures.reduce((acc, member) => {
+              return member.questionToken
+                ? acc
+                : [
+                    ...acc,
+                    factory.createStringLiteral(false)(member.name.getText()),
+                  ];
+            }, [])
+          : null,
+    }),
     true
   );
+};
+
+const parameter = (
+  parameter: ts.ParameterDeclaration,
+  checker: ts.TypeChecker
+) => {
+  return mutateUpwards<TypeKeyword>(parameter.type, checker);
 };
 
 const MUTATE_MAP = {
@@ -130,6 +216,7 @@ const MUTATE_MAP = {
   [ts.SyntaxKind.Identifier]: identifier,
   [ts.SyntaxKind.TypeAliasDeclaration]: typeAliasDeclaration,
   [ts.SyntaxKind.HeritageClause]: heritageClause,
+  [ts.SyntaxKind.Parameter]: parameter,
 };
 
 export default MUTATE_MAP;

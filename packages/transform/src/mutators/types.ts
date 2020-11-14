@@ -16,6 +16,21 @@ type TypeKeyword =
   | ts.SyntaxKind.IntersectionType
   | ts.SyntaxKind.ObjectKeyword;
 
+const indexSignature = (
+  indexSignature: ts.IndexSignatureDeclaration,
+  checker: ts.TypeChecker
+): ts.ObjectLiteralExpression => {
+  return createObjectLiteralFrom({
+    type: "object",
+    propertyNames: {
+      anyOf: map((parameter) => mutateUpwards<TypeKeyword>(parameter, checker))(
+        indexSignature.parameters
+      ),
+    },
+    additionalProperties: mutateUpwards(indexSignature.type, checker)
+  });
+};
+
 const literalTypeNode = (
   literalTypeNode: ts.LiteralTypeNode,
   checker: ts.TypeChecker
@@ -86,10 +101,7 @@ export const arrayType = (
   );
 };
 
-export const tupleType = (
-  tupleType: ts.TupleType,
-  checker: ts.TypeChecker
-) => {
+export const tupleType = (tupleType: ts.TupleType, checker: ts.TypeChecker) => {
   // `elements` does not exist on TupleType for some reason, although it's there
   const elements = (tupleType as any).elements || [];
 
@@ -101,7 +113,7 @@ export const tupleType = (
           TypeKeyword | ts.SyntaxKind.TypeReference | ts.SyntaxKind.LiteralType
         >(element, checker)
       )(elements),
-      additionalItems: false
+      additionalItems: false,
     },
     true
   );
@@ -114,6 +126,7 @@ const MUTATE_MAP = {
   [ts.SyntaxKind.IntersectionType]: intersectionType,
   [ts.SyntaxKind.ArrayType]: arrayType,
   [ts.SyntaxKind.TupleType]: tupleType,
+  [ts.SyntaxKind.IndexSignature]: indexSignature
 };
 
 export default MUTATE_MAP;

@@ -1359,6 +1359,33 @@ const definitelyOn = is<boolean>(true);`;
           );
         });
       });
+      describe("index signature", () => {
+        const sourceCode = tsCode`
+          import is from "@typescript-runtime-schema/library";
+
+          interface StringMap { [index: string]: string }
+
+          is<StringMap>({"string": "string"});
+        `;
+        it('should transform correctly', () => {
+          expect(transformer).toTransformSourceCode(
+            sourceCode,
+            jsCode`
+              "use strict";
+              Object.defineProperty(exports, "__esModule", { value: true });
+              var library_1 = require("@typescript-runtime-schema/library");
+              library_1.default({
+                  type: 'object',
+                  title: 'StringMap',
+                  propertyNames: {
+                      type: 'string'
+                  },
+                  additionalProperties: true
+              })({ "string": "string" });
+            `.trim()
+          );
+        })
+      });
     });
     describe("import", () => {
       const sourceFiles = {
@@ -1501,6 +1528,34 @@ const definitelyOn = is<boolean>(true);`;
           })(strings);
         `.trim()
       );
+    });
+  });
+  describe("object literal", () => {
+    describe("index signature", () => {
+      const sourceCode = tsCode`
+        import is from "@typescript-runtime-schema/library";
+
+        type StringMap = { [index: string]: string }
+
+        is<StringMap>({"string": "string"});
+      `;
+      it('should transform correctly', () => {
+        expect(transformer).toTransformSourceCode(
+          sourceCode,
+          jsCode`
+            "use strict";
+            Object.defineProperty(exports, "__esModule", { value: true });
+            var library_1 = require("@typescript-runtime-schema/library");
+            library_1.default({
+                type: 'object',
+                propertyNames: {
+                    type: 'string'
+                },
+                additionalProperties: true
+            })({ "string": "string" });
+          `.trim()
+        );
+      })
     });
   });
 });
