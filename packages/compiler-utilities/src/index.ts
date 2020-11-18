@@ -85,6 +85,27 @@ export const mergeObjectLiteralsRecursivelyLeft = (
   ]);
 };
 
+/* It's not really a ts.Type, but some sort of "TypeObject" where there's no externally available type */
+export const convertTypeToTypeNode = (type: ts.Type): ts.TypeNode => {
+  if (type.flags === ts.TypeFlags.Union) {
+    const types = (type as any).types as ts.Type[];
+
+    return ts.factory.createUnionTypeNode(
+      types.map((typeObject) => {
+        const createLiteral =
+          typeObject.flags === ts.TypeFlags.NumberLiteral
+            ? ts.factory.createNumericLiteral
+            : ts.factory.createStringLiteral;
+
+        return ts.factory.createLiteralTypeNode(
+          createLiteral((typeObject as any).value)
+        );
+      })
+    );
+  }
+  throw new Error(`Cannot convert symbol with type flags ${type.flags}`);
+};
+
 export const findRootIdentifier = (
   identifier: ts.Identifier,
   checker: ts.TypeChecker,

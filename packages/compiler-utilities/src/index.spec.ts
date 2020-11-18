@@ -1,6 +1,7 @@
 import {
   createObjectLiteralFrom,
   mergeObjectLiteralsRecursivelyLeft,
+  convertTypeToTypeNode
 } from ".";
 import * as ts from "typescript";
 import "@typescript-runtime-schema/expect-node-to-equal-source-code";
@@ -128,4 +129,55 @@ describe("compiler-utilities", () => {
       });
     });
   });
+  describe('convertTypeToTypeNode', () => {
+    // Couldn't bother figuring out how to unit test this properly
+    describe('typeObject describing a union type node', () => {
+      const typeObject: any = {
+        aliasSymbol: undefined,
+        aliasTypeArguments: undefined,
+        checker: {},
+        flags: 1048576,
+        id: 81,
+        objectFlags: 262144,
+        types: [{
+          checker: {},
+          flags: 256,
+          freshType: {},
+          id: 78,
+          regularType: {},
+          symbol: undefined,
+          value: 42,
+          typeArguments: undefined,
+        }, {
+          checker: {},
+          flags: 128,
+          id: 80,
+          regularType: {},
+          symbol: undefined,
+          value: "name",
+        }],
+        symbol: undefined,
+        value: "name",
+      }
+      it('should return a union type node', () => {
+        expect(ts.isUnionTypeNode(convertTypeToTypeNode(typeObject))).toBe(true)
+      })
+      it('should return two types', () => {
+        const unionTypeNode = convertTypeToTypeNode(typeObject) as ts.UnionTypeNode
+        expect(unionTypeNode.types).toHaveLength(2)
+      })
+      it('first type should be numeric literal', () => {
+        const unionTypeNode = convertTypeToTypeNode(typeObject) as ts.UnionTypeNode
+        const firstMember = unionTypeNode.types[0]
+        expect(ts.isLiteralTypeNode(firstMember)).toBe(true)
+        expect(ts.isNumericLiteral((firstMember as ts.LiteralTypeNode).literal)).toBe(true)
+      })
+      it('second type should be string literal', () => {
+        const unionTypeNode = convertTypeToTypeNode(typeObject) as ts.UnionTypeNode
+        const secondMember = unionTypeNode.types[1]
+        expect(ts.isLiteralTypeNode(secondMember)).toBe(true)
+        expect(ts.isStringLiteral((secondMember as ts.LiteralTypeNode).literal)).toBe(true)
+      })
+    })
+  })
 });
