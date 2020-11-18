@@ -46,3 +46,7 @@ export const createArrayLiteralExpression = (multiLine?: boolean) => (
 
 export const createStringLiteral = (singleLine?: boolean) => (string: string) =>
   ts.factory.createStringLiteral(string, singleLine);
+
+export const createNumericLiteral = (numericLiteralFlags?: ts.TokenFlags) => (
+  text: string
+) => ts.factory.createNumericLiteral(Number(text), numericLiteralFlags);
