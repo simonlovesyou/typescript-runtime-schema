@@ -12,13 +12,18 @@ const literalTypeNode = (
     | ts.PrefixUnaryExpression
 ) => keyword(literal.kind);
 
-const stringLiteral = (literal: ts.StringLiteral) => createObjectLiteralFrom({
-  const: factory.createStringLiteral(true)(literal.text)
+const stringLiteral = (stringLiteral: ts.StringLiteral) => createObjectLiteralFrom({
+  const: factory.createStringLiteral(true)(stringLiteral.text)
+}, true)
+
+const numericLiteral = (numericLiteral: ts.NumericLiteral) => createObjectLiteralFrom({
+  const: factory.createNumericLiteral()(numericLiteral.text)
 }, true)
 
 const MUTATE_MAP = {
   [ts.SyntaxKind.LiteralType]: literalTypeNode,
-  [ts.SyntaxKind.StringLiteral]: stringLiteral
+  [ts.SyntaxKind.StringLiteral]: stringLiteral,
+  [ts.SyntaxKind.NumericLiteral]: numericLiteral
 };
 
 export default MUTATE_MAP;

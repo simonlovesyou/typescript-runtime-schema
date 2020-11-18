@@ -1558,4 +1558,35 @@ const definitelyOn = is<boolean>(true);`;
       })
     });
   });
+  describe("keyof operator", () => {
+    describe("inline", () => {
+      const sourceCode = tsCode`
+        import is from "@typescript-runtime-schema/library";
+
+        type Person = { 42: number, name: string }
+
+        is<keyof Person>("string");
+      `;
+      it('should transform correctly', () => {
+        expect(transformer).toTransformSourceCode(
+          sourceCode,
+          jsCode`
+            "use strict";
+            Object.defineProperty(exports, "__esModule", { value: true });
+            var library_1 = require("@typescript-runtime-schema/library");
+            library_1.default({
+                anyOf: [
+                    {
+                        const: 42
+                    },
+                    {
+                        const: 'name'
+                    }
+                ]
+            })("string");
+          `.trim()
+        );
+      })
+    });
+  });
 });

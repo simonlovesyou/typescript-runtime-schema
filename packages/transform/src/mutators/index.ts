@@ -2,6 +2,7 @@ import literals from "./literals";
 import types from "./types";
 import nodes from "./nodes";
 import keywords from "./keywords";
+import operators from "./operators";
 import ts from "typescript";
 
 const mutateMap = {
@@ -9,6 +10,7 @@ const mutateMap = {
   ...literals,
   ...types,
   ...nodes,
+  ...operators,
 }
 
 type MutationSyntaxKind = keyof typeof mutateMap;
