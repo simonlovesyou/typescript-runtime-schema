@@ -1,10 +1,11 @@
 import * as ts from "typescript";
-import mutateUpwards from ".";
-import { convertTypeToTypeNode } from '@typescript-runtime-schema/compiler-utilities'
+import mutateUpwards, { Context } from ".";
+import { convertTypeToTypeNode } from "@typescript-runtime-schema/compiler-utilities";
 
 const typeOperator = (
   typeOperatorNode: ts.TypeOperatorNode,
-  checker: ts.TypeChecker
+  checker: ts.TypeChecker,
+  context: Context
 ) => {
   switch (typeOperatorNode.operator) {
     case ts.SyntaxKind.KeyOfKeyword: {
@@ -13,10 +14,12 @@ const typeOperator = (
       if (ts.isTypeReferenceNode(type)) {
         const typeSymbol = checker.getTypeFromTypeNode(typeOperatorNode);
 
-        debugger;
-        const unionTypeNode = convertTypeToTypeNode(typeSymbol)
-        debugger;
-        return mutateUpwards<ts.SyntaxKind.UnionType>(unionTypeNode, checker)
+        const unionTypeNode = convertTypeToTypeNode(typeSymbol);
+        return mutateUpwards<ts.SyntaxKind.UnionType>(
+          unionTypeNode,
+          checker,
+          context
+        );
       }
     }
     default: {

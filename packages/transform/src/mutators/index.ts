@@ -11,15 +11,25 @@ const mutateMap = {
   ...types,
   ...nodes,
   ...operators,
-}
+};
 
 type MutationSyntaxKind = keyof typeof mutateMap;
 
-const mutateOver = <T extends MutationSyntaxKind>(
-  node: any,
-  checker: ts.TypeChecker
-): ReturnType<typeof mutateMap[T]> => {
-  return mutateMap[node.kind as MutationSyntaxKind](node, checker) as ReturnType<typeof mutateMap[T]>
+export type Context = {
+  typeArguments?: ts.TypeNode[] | ts.NodeArray<ts.TypeNode>;
+  typeArgumentMap?: Map<string, ts.TypeNode>;
 };
 
-export default mutateOver
+const mutateOver = <T extends MutationSyntaxKind>(
+  node: any,
+  checker: ts.TypeChecker,
+  context: Context
+): ReturnType<typeof mutateMap[T]> => {
+  return mutateMap[node.kind as MutationSyntaxKind](
+    node,
+    checker,
+    context
+  ) as ReturnType<typeof mutateMap[T]>;
+};
+
+export default mutateOver;

@@ -37,7 +37,7 @@ const createVisitor = (program: ts.Program) => (
           const [typeArgument] = typeArguments;
           return pipe(
             factory.updateCallExpression(callExpression.expression, undefined, [
-              mutate(typeArgument, checker) as ts.Expression,
+              mutate(typeArgument, checker, {}) as ts.Expression,
             ]),
             factory.createCallExpression(undefined, args)
           )(callExpression);

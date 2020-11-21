@@ -1589,4 +1589,43 @@ const definitelyOn = is<boolean>(true);`;
       })
     });
   });
+  describe("utility types", () => {
+    describe("Record", () => {
+      const sourceCode = tsCode`
+        import is from "@typescript-runtime-schema/library";
+
+        type Identity<T> = T
+
+        type StringMap = Record<Identity<string> | undefined, string>
+
+        is<StringMap>({whatever: "string"});
+      `;
+      it('should transform correctly', () => {
+        expect(transformer).toTransformSourceCode(
+          sourceCode,
+          jsCode`
+            "use strict";
+            Object.defineProperty(exports, "__esModule", { value: true });
+            var library_1 = require("@typescript-runtime-schema/library");
+            library_1.default({
+                additionalProperties: {
+                    type: 'string'
+                },
+                propertyNames: {
+                    anyOf: [
+                        {
+                            type: 'string'
+                        },
+                        {
+                            type: 'undefined'
+                        }
+                    ]
+                },
+                minProperties: 1
+            })({ whatever: "string" });
+          `.trim()
+        );
+      })
+    });
+  });
 });

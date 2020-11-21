@@ -5,7 +5,7 @@ import {
   createObjectLiteralFrom,
   mergeObjectLiteralsRecursivelyLeft,
 } from "@typescript-runtime-schema/compiler-utilities";
-import mutateUpwards from ".";
+import mutateUpwards, { Context } from ".";
 
 type TypeKeyword =
   | ts.SyntaxKind.StringKeyword
@@ -18,52 +18,94 @@ type TypeKeyword =
 
 const indexSignature = (
   indexSignature: ts.IndexSignatureDeclaration,
-  checker: ts.TypeChecker
+  checker: ts.TypeChecker,
+  context: Context
 ): ts.ObjectLiteralExpression => {
   return createObjectLiteralFrom({
     type: "object",
     propertyNames: {
-      anyOf: map((parameter) => mutateUpwards<TypeKeyword>(parameter, checker))(
-        indexSignature.parameters
-      ),
+      anyOf: map((parameter) =>
+        mutateUpwards<TypeKeyword>(parameter, checker, context)
+      )(indexSignature.parameters),
     },
-    additionalProperties: mutateUpwards(indexSignature.type, checker)
+    additionalProperties: mutateUpwards(indexSignature.type, checker, context),
   });
 };
 
 const literalTypeNode = (
   literalTypeNode: ts.LiteralTypeNode,
-  checker: ts.TypeChecker
+  checker: ts.TypeChecker,
+  context: Context
 ) =>
   mutateUpwards<ts.SyntaxKind.StringLiteral | ts.SyntaxKind.NullKeyword>(
     literalTypeNode.literal,
-    checker
+    checker,
+    context
   );
 export const typeReferenceNode = (
   typeReferenceNode: ts.TypeReferenceNode,
-  checker: ts.TypeChecker
-) => {
+  checker: ts.TypeChecker,
+  context: Context
+): any => {
   const name = typeReferenceNode.typeName as ts.Identifier;
-  const rootIdentifier = findRootIdentifier(name, checker);
-  const parent = rootIdentifier.parent;
-  const result = mutateUpwards<
+
+  const nextIdentifier = findRootIdentifier(
+    name,
+    checker,
+    { includeImports: true },
+    ts.isTypeAliasDeclaration
+  );
+
+  const someTypeSymbol = checker.getTypeAtLocation(typeReferenceNode).symbol;
+  if (
+    someTypeSymbol !== undefined &&
+    ts.SymbolFlags.TypeParameter === someTypeSymbol.flags
+  ) {
+    const name = typeReferenceNode.typeName as ts.Identifier;
+
+    const mappedType = context.typeArgumentMap.get(String(name.escapedText));
+    // Actually return the type and not some "mutation" of it
+    return mappedType;
+  }
+
+  if (typeReferenceNode.typeArguments) {
+    const evaluatedTypeArguments = typeReferenceNode.typeArguments.map(
+      (typeArgument) => {
+        if (ts.isTypeReferenceNode(typeArgument) && typeArgument.typeArguments)
+          mutateUpwards(typeArgument, checker, {
+            typeArguments: typeArgument.typeArguments,
+          });
+
+        return typeArgument;
+      }
+    ) as ts.TypeNode[];
+    return mutateUpwards(nextIdentifier.parent, checker, {
+      typeArguments: evaluatedTypeArguments,
+    });
+  }
+
+  return mutateUpwards<
     ts.SyntaxKind.InterfaceDeclaration | ts.SyntaxKind.TypeAliasDeclaration
-  >(parent, checker);
-  return result;
+  >(nextIdentifier.parent, checker, context);
 };
 
 export const unionTypeNode = (
   unionTypeNode: ts.UnionTypeNode,
-  checker: ts.TypeChecker
+  checker: ts.TypeChecker,
+  context: Context
 ): ts.ObjectLiteralExpression => {
   const types = unionTypeNode.types;
 
   return createObjectLiteralFrom(
     {
       anyOf: map((type: ts.TypeNode) => {
-        return mutateUpwards<
+        const result = mutateUpwards<
           TypeKeyword | ts.SyntaxKind.TypeReference | ts.SyntaxKind.LiteralType
-        >(type, checker);
+        >(type, checker, context);
+        // FIXME: Result can either be the evaluated type or an object literal expression
+        return ts.isObjectLiteralExpression(result)
+          ? result
+          : mutateUpwards<TypeKeyword>(result, checker, {});
       })(types),
     },
     true
@@ -72,7 +114,8 @@ export const unionTypeNode = (
 
 export const intersectionType = (
   intersection: ts.IntersectionType,
-  checker: ts.TypeChecker
+  checker: ts.TypeChecker,
+  context: Context
 ): ts.ObjectLiteralExpression => {
   const types = (intersection.types as unknown) as ts.TypeNode[];
 
@@ -81,27 +124,32 @@ export const intersectionType = (
       acc,
       mutateUpwards<
         TypeKeyword | ts.SyntaxKind.LiteralType | ts.SyntaxKind.TypeReference
-      >(type, checker) as ts.ObjectLiteralExpression
+      >(type, checker, context) as ts.ObjectLiteralExpression
     );
   }, createObjectLiteralFrom({}))(types);
 };
 
 export const arrayType = (
   arrayTypeNode: ts.ArrayTypeNode,
-  checker: ts.TypeChecker
+  checker: ts.TypeChecker,
+  context: Context
 ): ts.ObjectLiteralExpression => {
   const elementType = arrayTypeNode.elementType;
 
   return createObjectLiteralFrom(
     {
       type: "array",
-      items: mutateUpwards<TypeKeyword>(elementType, checker),
+      items: mutateUpwards<TypeKeyword>(elementType, checker, context),
     },
     true
   );
 };
 
-export const tupleType = (tupleType: ts.TupleType, checker: ts.TypeChecker) => {
+export const tupleType = (
+  tupleType: ts.TupleType,
+  checker: ts.TypeChecker,
+  context: Context
+) => {
   // `elements` does not exist on TupleType for some reason, although it's there
   const elements = (tupleType as any).elements || [];
 
@@ -111,9 +159,45 @@ export const tupleType = (tupleType: ts.TupleType, checker: ts.TypeChecker) => {
       items: map((element) =>
         mutateUpwards<
           TypeKeyword | ts.SyntaxKind.TypeReference | ts.SyntaxKind.LiteralType
-        >(element, checker)
+        >(element, checker, context)
       )(elements),
       additionalItems: false,
+    },
+    true
+  );
+};
+
+const mappedType = (
+  mappedTypeNode: ts.MappedTypeNode,
+  checker: ts.TypeChecker,
+  context: Context
+): ts.ObjectLiteralExpression => {
+  const additionalProperties = mutateUpwards<ts.SyntaxKind.TypeReference>(
+    mappedTypeNode.type,
+    checker,
+    context
+  );
+
+  const propertyNames = mutateUpwards<ts.SyntaxKind.TypeReference>(
+    mappedTypeNode.typeParameter,
+    checker,
+    context
+  );
+
+  return createObjectLiteralFrom(
+    {
+      // FIXME: The previous mutator could've returned a TypeLiteral or a evaluated the type as a JSON schema
+      additionalProperties: ts.isObjectLiteralExpression(additionalProperties)
+        ? additionalProperties
+        : mutateUpwards(additionalProperties, checker, context),
+      propertyNames: ts.isObjectLiteralExpression(propertyNames)
+        ? propertyNames
+        : mutateUpwards<ts.SyntaxKind.TypeReference>(
+            propertyNames,
+            checker,
+            context
+          ),
+      minProperties: mappedTypeNode.questionToken ? 0 : 1,
     },
     true
   );
@@ -126,7 +210,8 @@ const MUTATE_MAP = {
   [ts.SyntaxKind.IntersectionType]: intersectionType,
   [ts.SyntaxKind.ArrayType]: arrayType,
   [ts.SyntaxKind.TupleType]: tupleType,
-  [ts.SyntaxKind.IndexSignature]: indexSignature
+  [ts.SyntaxKind.IndexSignature]: indexSignature,
+  [ts.SyntaxKind.MappedType]: mappedType,
 };
 
 export default MUTATE_MAP;

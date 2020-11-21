@@ -1,7 +1,7 @@
 import * as ts from "typescript";
 import { map, reduce, pipe, filter, reject, equals } from "ramda";
 import * as factory from "@typescript-runtime-schema/factory";
-import mutateUpwards from ".";
+import mutateUpwards, { Context } from ".";
 import { findRootIdentifier } from "@typescript-runtime-schema/compiler-utilities";
 import {
   createObjectLiteralFrom,
@@ -19,46 +19,72 @@ type TypeKeyword =
 
 const propertySignature = (
   propertySignature: ts.PropertySignature,
-  checker: ts.TypeChecker
+  checker: ts.TypeChecker,
+  context: Context
 ): ts.PropertyAssignment => {
   return factory.createPropertyAssignment(propertySignature.name)(
     mutateUpwards<
       TypeKeyword | ts.SyntaxKind.UnionType | ts.SyntaxKind.TypeReference
-    >(propertySignature.type, checker) as ts.Expression
+    >(propertySignature.type, checker, context)
   );
 };
 
 const typeAliasDeclaration = (
   typeAliasDeclaration: ts.TypeAliasDeclaration,
-  checker: ts.TypeChecker
+  checker: ts.TypeChecker,
+  context: Context
 ) => {
+  if (typeAliasDeclaration.typeParameters) {
+    const typeArgumentMap = typeAliasDeclaration.typeParameters.reduce(
+      (map, typeParameter, index) => {
+        map.set(
+          String(typeParameter.name.escapedText),
+          context.typeArguments[index]
+        );
+        return map;
+      },
+      new Map<string, ts.TypeNode>()
+    );
+    const type = typeAliasDeclaration.type;
+    return mutateUpwards<TypeKeyword>(type, checker, {
+      ...context,
+      typeArgumentMap,
+    });
+  }
   const type = typeAliasDeclaration.type;
-  return mutateUpwards<TypeKeyword>(type, checker);
+  return mutateUpwards<TypeKeyword>(type, checker, context);
 };
 
-const identifier = (identifier: ts.Identifier, checker: ts.TypeChecker) => {
+const identifier = (
+  identifier: ts.Identifier,
+  checker: ts.TypeChecker,
+  context: Context
+) => {
   const rootIdentifier = findRootIdentifier(identifier, checker);
 
   return mutateUpwards<ts.SyntaxKind.InterfaceDeclaration>(
     rootIdentifier.parent,
-    checker
+    checker,
+    context
   );
 };
 
 const heritageClause = (
   heritageClause: ts.HeritageClause,
-  checker: ts.TypeChecker
+  checker: ts.TypeChecker,
+  context: Context
 ) => {
   const types = heritageClause.types;
   const result = types.map((type) =>
-    mutateUpwards<ts.SyntaxKind.Identifier>(type.expression, checker)
+    mutateUpwards<ts.SyntaxKind.Identifier>(type.expression, checker, context)
   );
   return result[0];
 };
 
 const interfaceDeclaration = (
   interfaceDeclaration: ts.InterfaceDeclaration,
-  checker: ts.TypeChecker
+  checker: ts.TypeChecker,
+  context: Context
 ) => {
   const members = interfaceDeclaration.members;
 
@@ -74,7 +100,8 @@ const interfaceDeclaration = (
     ? map((heritageClause: ts.HeritageClause) => {
         return mutateUpwards<ts.SyntaxKind.HeritageClause>(
           heritageClause,
-          checker
+          checker,
+          context
         );
       })(interfaceDeclaration.heritageClauses)
     : [factory.createObjectLiteralExpression()([])];
@@ -87,7 +114,11 @@ const interfaceDeclaration = (
         propertySignatures.length > 0
           ? factory.createObjectLiteralExpression(true)(
               propertySignatures.map((member) =>
-                mutateUpwards<ts.SyntaxKind.PropertySignature>(member, checker)
+                mutateUpwards<ts.SyntaxKind.PropertySignature>(
+                  member,
+                  checker,
+                  context
+                )
               )
             )
           : null,
@@ -100,7 +131,8 @@ const interfaceDeclaration = (
 
                 return mutateUpwards<ts.SyntaxKind.Parameter>(
                   parameter,
-                  checker
+                  checker,
+                  context
                 );
               })(propertyNames),
             }
@@ -109,7 +141,8 @@ const interfaceDeclaration = (
           : mutateUpwards<ts.SyntaxKind.Parameter>(
               // Assume only one parameter
               propertyNames[0].parameters[0],
-              checker
+              checker,
+              context
             ),
       required:
         propertySignatures.length > 0
@@ -137,7 +170,8 @@ const interfaceDeclaration = (
 
 const typeLiteralNode = (
   typeLiteralNode: ts.TypeLiteralNode,
-  checker: ts.TypeChecker
+  checker: ts.TypeChecker,
+  context: Context
 ): ts.ObjectLiteralExpression => {
   const members = typeLiteralNode.members;
 
@@ -159,7 +193,8 @@ const typeLiteralNode = (
                 map((member: ts.PropertySignature) => {
                   return mutateUpwards<ts.SyntaxKind.PropertySignature>(
                     member,
-                    checker
+                    checker,
+                    context
                   );
                 })
               )(propertySignatures)
@@ -174,7 +209,8 @@ const typeLiteralNode = (
 
                 return mutateUpwards<ts.SyntaxKind.Parameter>(
                   parameter,
-                  checker
+                  checker,
+                  context
                 );
               }),
             }
@@ -183,7 +219,8 @@ const typeLiteralNode = (
           : mutateUpwards<ts.SyntaxKind.Parameter>(
               // Assume only one parameter
               propertyNames[0].parameters[0],
-              checker
+              checker,
+              context
             ),
       additionalProperties: propertyNames.length > 0,
       required:
@@ -204,9 +241,22 @@ const typeLiteralNode = (
 
 const parameter = (
   parameter: ts.ParameterDeclaration,
-  checker: ts.TypeChecker
+  checker: ts.TypeChecker,
+  context: Context
 ) => {
-  return mutateUpwards<TypeKeyword>(parameter.type, checker);
+  return mutateUpwards<TypeKeyword>(parameter.type, checker, context);
+};
+
+const typeParameterDeclaration = (
+  typeParameter: ts.TypeParameterDeclaration,
+  checker: ts.TypeChecker,
+  context: Context
+) => {
+  return mutateUpwards<ts.SyntaxKind.TypeReference>(
+    typeParameter.constraint,
+    checker,
+    context
+  );
 };
 
 const MUTATE_MAP = {
@@ -217,6 +267,7 @@ const MUTATE_MAP = {
   [ts.SyntaxKind.TypeAliasDeclaration]: typeAliasDeclaration,
   [ts.SyntaxKind.HeritageClause]: heritageClause,
   [ts.SyntaxKind.Parameter]: parameter,
+  [ts.SyntaxKind.TypeParameter]: typeParameterDeclaration,
 };
 
 export default MUTATE_MAP;
