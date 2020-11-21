@@ -1,5 +1,5 @@
 import * as ts from "typescript";
-import { map, reduce, pipe, filter, reject, equals } from "ramda";
+import { map, reduce, pipe, filter, reject, equals, uniq } from "ramda";
 import * as factory from "@typescript-runtime-schema/factory";
 import mutateUpwards, { Context } from ".";
 import { findRootIdentifier } from "@typescript-runtime-schema/compiler-utilities";
@@ -125,16 +125,18 @@ const interfaceDeclaration = (
       propertyNames:
         propertyNames.length > 1
           ? {
-              anyOf: map((member: ts.IndexSignatureDeclaration) => {
-                // Assume only one parameter
-                const parameter = member.parameters[0];
+              anyOf: uniq(
+                map((member: ts.IndexSignatureDeclaration) => {
+                  // Assume only one parameter
+                  const parameter = member.parameters[0];
 
-                return mutateUpwards<ts.SyntaxKind.Parameter>(
-                  parameter,
-                  checker,
-                  context
-                );
-              })(propertyNames),
+                  return mutateUpwards<ts.SyntaxKind.Parameter>(
+                    parameter,
+                    checker,
+                    context
+                  );
+                })(propertyNames)
+              ),
             }
           : propertyNames.length === 0
           ? null
@@ -222,7 +224,29 @@ const typeLiteralNode = (
               checker,
               context
             ),
-      additionalProperties: propertyNames.length > 0,
+      additionalProperties:
+        propertyNames.length > 1
+          ? {
+              anyOf: uniq(
+                propertyNames.map((member) => {
+                  return mutateUpwards<ts.SyntaxKind.Parameter>(
+                    member.type,
+                    checker,
+                    context
+                  );
+                })
+              ),
+            }
+          : propertyNames.length === 0
+          ? null
+          : mutateUpwards<ts.SyntaxKind.Parameter>(
+              // Assume only one parameter
+              propertyNames[0].type,
+              checker,
+              context
+            ),
+      minProperties:
+        propertySignatures.length === 0 && propertyNames.length === 0 ? 0 : 1,
       required:
         propertySignatures.length > 0
           ? propertySignatures.reduce((acc, member) => {
@@ -247,18 +271,6 @@ const parameter = (
   return mutateUpwards<TypeKeyword>(parameter.type, checker, context);
 };
 
-const typeParameterDeclaration = (
-  typeParameter: ts.TypeParameterDeclaration,
-  checker: ts.TypeChecker,
-  context: Context
-) => {
-  return mutateUpwards<ts.SyntaxKind.TypeReference>(
-    typeParameter.constraint,
-    checker,
-    context
-  );
-};
-
 const MUTATE_MAP = {
   [ts.SyntaxKind.TypeLiteral]: typeLiteralNode,
   [ts.SyntaxKind.InterfaceDeclaration]: interfaceDeclaration,
@@ -267,7 +279,6 @@ const MUTATE_MAP = {
   [ts.SyntaxKind.TypeAliasDeclaration]: typeAliasDeclaration,
   [ts.SyntaxKind.HeritageClause]: heritageClause,
   [ts.SyntaxKind.Parameter]: parameter,
-  [ts.SyntaxKind.TypeParameter]: typeParameterDeclaration,
 };
 
 export default MUTATE_MAP;

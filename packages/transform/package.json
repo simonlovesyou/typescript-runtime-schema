@@ -30,6 +30,7 @@
     "@typescript-runtime-schema/get-arbitrary-node-name": "^1.0.0",
     "@typescript-runtime-schema/javascript-template-tag": "^1.0.0",
     "@typescript-runtime-schema/typescript-template-tag": "^1.0.0",
+    "@wessberg/ts-clone-node": "^0.3.18",
     "esquery": "^1.3.1",
     "rambda": "^6.3.1",
     "ramda": "^0.27.1"

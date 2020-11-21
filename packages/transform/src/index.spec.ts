@@ -900,7 +900,8 @@ describe("transform", () => {
                           }
                       },
                       required: ["age", "name"],
-                      additionalProperties: false
+                      additionalProperties: false,
+                      minProperties: 1
                   },
                   {
                       type: 'string'
@@ -980,7 +981,10 @@ describe("transform", () => {
                 propertyNames: {
                     type: 'string'
                 },
-                additionalProperties: true
+                additionalProperties: {
+                    type: 'string'
+                },
+                minProperties: 1
             })({ "string": "string" });
           `.trim()
         );
@@ -1023,9 +1027,7 @@ describe("transform", () => {
       const sourceCode = tsCode`
         import is from "@typescript-runtime-schema/library";
 
-        type Identity<T> = T
-
-        type StringMap = Record<Identity<string> | undefined, string>
+        type StringMap = Record<number | string, string>
 
         is<StringMap>({whatever: "string"});
       `;
@@ -1037,20 +1039,57 @@ describe("transform", () => {
             Object.defineProperty(exports, "__esModule", { value: true });
             var library_1 = require("@typescript-runtime-schema/library");
             library_1.default({
-                additionalProperties: {
-                    type: 'string'
-                },
+                type: 'object',
                 propertyNames: {
                     anyOf: [
                         {
-                            type: 'string'
+                            type: 'number'
                         },
                         {
-                            type: 'undefined'
+                            type: 'string'
+                        }
+                    ]
+                },
+                additionalProperties: {
+                    anyOf: [
+                        {
+                            type: 'string'
                         }
                     ]
                 },
                 minProperties: 1
+            })({ whatever: "string" });
+          `.trim()
+        );
+      });
+    });
+    describe("Partial", () => {
+      const sourceCode = tsCode`
+        import is from "@typescript-runtime-schema/library";
+
+        type Person = { name: string, age: number }
+
+        is<Partial<Person>>({ whatever: "string" });
+      `;
+      it("should transform correctly", () => {
+        expect(transformer).toTransformSourceCode(
+          sourceCode,
+          jsCode`
+            "use strict";
+            Object.defineProperty(exports, "__esModule", { value: true });
+            var library_1 = require("@typescript-runtime-schema/library");
+            library_1.default({
+                type: 'object',
+                properties: {
+                    name: {
+                        type: 'string'
+                    },
+                    age: {
+                        type: 'number'
+                    }
+                },
+                minProperties: 1,
+                required: []
             })({ whatever: "string" });
           `.trim()
         );

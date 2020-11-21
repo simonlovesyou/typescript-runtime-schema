@@ -1,6 +1,11 @@
 import * as ts from "typescript";
 import mutateUpwards, { Context } from ".";
-import { convertTypeToTypeNode } from "@typescript-runtime-schema/compiler-utilities";
+import {
+  convertTypeToTypeNode,
+  findRootIdentifier,
+} from "@typescript-runtime-schema/compiler-utilities";
+import evaluateOver from ".";
+import { cloneNode } from "@wessberg/ts-clone-node";
 
 const typeOperator = (
   typeOperatorNode: ts.TypeOperatorNode,
@@ -12,7 +17,6 @@ const typeOperator = (
       const type = typeOperatorNode.type;
 
       const someTypeSymbol = checker.getTypeAtLocation(type).symbol;
-
       if (
         someTypeSymbol !== undefined &&
         ts.SymbolFlags.TypeParameter === someTypeSymbol.flags
@@ -21,29 +25,19 @@ const typeOperator = (
           type,
           checker,
           context
-        );
-
-        const typeSymbol = checker.getTypeFromTypeNode(evaluatedType);
+        ) as ts.TypeLiteralNode;
 
         return ts.factory.createUnionTypeNode(
-          Array.from(
-            typeSymbol.symbol.members as Map<string, ts.Symbol>
-          ).map(([key]) =>
-            ts.factory.createLiteralTypeNode(
-              ts.factory.createStringLiteral(key)
-            )
-          )
-        );
-      }
-
-      if (ts.isTypeReferenceNode(type)) {
-        const typeSymbol = checker.getTypeFromTypeNode(typeOperatorNode);
-
-        const unionTypeNode = convertTypeToTypeNode(typeSymbol);
-        return mutateUpwards<ts.SyntaxKind.UnionType>(
-          unionTypeNode,
-          checker,
-          context
+          evaluatedType.members.map((member: ts.PropertySignature) => {
+            if (ts.isStringLiteral(member.name)) {
+              return ts.factory.createLiteralTypeNode(cloneNode(member.name));
+            }
+            if (ts.isIdentifier(member.name)) {
+              return ts.factory.createLiteralTypeNode(
+                ts.factory.createStringLiteral(String(member.name.escapedText))
+              );
+            }
+          })
         );
       }
     }

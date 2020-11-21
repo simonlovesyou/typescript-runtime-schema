@@ -608,6 +608,11 @@
   dependencies:
     "@types/yargs-parser" "*"
 
+"@wessberg/ts-clone-node@^0.3.18":
+  version "0.3.18"
+  resolved "https://registry.yarnpkg.com/@wessberg/ts-clone-node/-/ts-clone-node-0.3.18.tgz#e1c552c3ed0d5bfb920ca8d406639da4b250ad4b"
+  integrity sha512-m/QAPt9K7w5+zmiDJbKxFeIzr6hMuo8euLwYxhj7ipRsyLB2AeAu2/6AF21s45hDXdWsaFwSed3F9R6STMrECg==
+
 abab@^2.0.3:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.5.tgz#c0b678fb32d60fc1219c784d6a826fe385aeb79a"
