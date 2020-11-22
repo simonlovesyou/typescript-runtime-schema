@@ -4,6 +4,7 @@ import declarations from "./declarations";
 import literals from "./literals";
 import operators from "./operators";
 import keywords from "./keywords";
+import signatures from "./signatures";
 
 const evaluateMap = {
   ...types,
@@ -11,6 +12,7 @@ const evaluateMap = {
   ...literals,
   ...operators,
   ...keywords,
+  ...signatures
 };
 
 type MutationSyntaxKind = keyof typeof evaluateMap;

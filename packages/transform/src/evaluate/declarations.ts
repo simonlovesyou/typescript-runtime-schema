@@ -32,23 +32,80 @@ const typeParameterDeclaration = (
   checker: ts.TypeChecker,
   context: Context
 ) => {
-  const evaluatedConstraint = evaluateOver<ts.SyntaxKind.TypeReference>(
-    typeParameter.constraint,
-    checker,
-    context
-  );
+  if (typeParameter.constraint) {
+    const evaluatedConstraint = evaluateOver<ts.SyntaxKind.TypeReference>(
+      typeParameter.constraint,
+      checker,
+      context
+    );
+    return ts.factory.updateTypeParameterDeclaration(
+      typeParameter,
+      typeParameter.name,
+      evaluatedConstraint,
+      typeParameter.default
+    );
+  }
 
-  return ts.factory.updateTypeParameterDeclaration(
-    typeParameter,
-    typeParameter.name,
-    evaluatedConstraint,
-    typeParameter.default
+  return typeParameter;
+};
+
+const interfaceDeclaration = (
+  interfaceDeclarationNode: ts.InterfaceDeclaration,
+  checker: ts.TypeChecker,
+  context: Context
+): ts.InterfaceDeclaration => {
+  const {
+    decorators,
+    modifiers,
+    name,
+    typeParameters,
+    heritageClauses,
+  } = interfaceDeclarationNode;
+
+  if (typeParameters) {
+    const typeArgumentMap =
+      context.typeArgumentMap || new Map<string, ts.TypeNode>();
+
+    typeParameters.forEach((typeParameter) => {
+      // TODO: We have to figure out the order here from the context somehow
+      typeArgumentMap.set(
+        String(typeParameter.name.escapedText),
+        context.typeArguments[0]
+      );
+    });
+
+    return ts.factory.updateInterfaceDeclaration(
+      interfaceDeclarationNode,
+      decorators,
+      modifiers,
+      name,
+      [],
+      heritageClauses,
+      interfaceDeclarationNode.members.map((member) =>
+        evaluateOver(member, checker, {
+          ...context,
+        })
+      )
+    );
+  }
+
+  return ts.factory.updateInterfaceDeclaration(
+    interfaceDeclarationNode,
+    decorators,
+    modifiers,
+    name,
+    [],
+    heritageClauses,
+    interfaceDeclarationNode.members.map((member) =>
+      evaluateOver(member, checker, context)
+    )
   );
 };
 
 const EVALUATE_MAP = {
   [ts.SyntaxKind.TypeAliasDeclaration]: typeAliasDeclaration,
   [ts.SyntaxKind.TypeParameter]: typeParameterDeclaration,
+  [ts.SyntaxKind.InterfaceDeclaration]: interfaceDeclaration,
 };
 
 export default EVALUATE_MAP;

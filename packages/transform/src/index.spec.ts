@@ -1095,5 +1095,43 @@ describe("transform", () => {
         );
       });
     });
+    describe("Array", () => {
+      const sourceCode = tsCode`
+        import is from "@typescript-runtime-schema/library";
+
+        type Person = { name: string, age: number }
+
+        is<Array<Person>>({ whatever: "string" });
+      `;
+      it("should transform correctly", () => {
+        expect(transformer).toTransformSourceCode(
+          sourceCode,
+          jsCode`
+            "use strict";
+            Object.defineProperty(exports, "__esModule", { value: true });
+            var library_1 = require("@typescript-runtime-schema/library");
+            library_1.default({
+                type: 'array',
+                items: {
+                    type: 'object',
+                    properties: {
+                        name: {
+                            type: 'string'
+                        },
+                        age: {
+                            type: 'number'
+                        }
+                    },
+                    minProperties: 1,
+                    required: [
+                        "name",
+                        "age"
+                    ]
+                }
+            })({ whatever: "string" });
+          `.trim()
+        );
+      });
+    });
   });
 });

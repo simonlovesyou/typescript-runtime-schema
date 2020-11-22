@@ -17,6 +17,17 @@ export const typeReferenceNode = (
   );
 
   const someTypeSymbol = checker.getTypeAtLocation(typeReferenceNode).symbol;
+
+  if (someTypeSymbol && someTypeSymbol.escapedName === "Array") {
+    const currentSourceFile = nextIdentifier.parent.getSourceFile();
+    // This is quite hacky but should work for most cases
+    if (currentSourceFile.fileName.includes("node_modules/typescript/lib")) {
+      return ts.factory.createArrayTypeNode(
+        evaluateOver(typeReferenceNode.typeArguments[0], checker, context)
+      );
+    }
+  }
+
   if (
     someTypeSymbol !== undefined &&
     ts.SymbolFlags.TypeParameter === someTypeSymbol.flags
@@ -181,11 +192,25 @@ export const unionTypeNode = (
   );
 };
 
+export const arrayType = (
+  arrayTypeNode: ts.ArrayTypeNode,
+  checker: ts.TypeChecker,
+  context: Context
+): ts.ArrayTypeNode => {
+  const type = arrayTypeNode.elementType;
+
+  return ts.factory.updateArrayTypeNode(
+    arrayTypeNode,
+    evaluateOver(type, checker, context)
+  );
+};
+
 const EVALUATE_MAP = {
   [ts.SyntaxKind.TypeReference]: typeReferenceNode,
   [ts.SyntaxKind.MappedType]: mappedType,
   [ts.SyntaxKind.IndexedAccessType]: indexAccessType,
   [ts.SyntaxKind.UnionType]: unionTypeNode,
+  [ts.SyntaxKind.ArrayType]: arrayType,
 };
 
 export default EVALUATE_MAP;
