@@ -115,7 +115,8 @@ export const convertTypeToTypeNode = (type: ts.Type): ts.TypeNode => {
 export const findRootIdentifier = (
   identifier: ts.Identifier,
   checker: ts.TypeChecker,
-  options: { includeImports?: boolean } = { includeImports: true }
+  options: { includeImports?: boolean } = { includeImports: true },
+  stopCondition: (node: ts.Node) => boolean = () => false
 ): ts.Identifier => {
   const symbol = checker.getSymbolAtLocation(identifier);
   const declaration = symbol.declarations[0];
@@ -125,6 +126,9 @@ export const findRootIdentifier = (
       ts.isTypeReferenceNode(declaration.type) &&
       ts.isIdentifier(declaration.type.typeName)
     ) {
+      if (stopCondition(declaration)) {
+        return declaration.name;
+      }
       return findRootIdentifier(declaration.type.typeName, checker);
     }
     return declaration.name;
@@ -135,8 +139,14 @@ export const findRootIdentifier = (
       return identifier;
     }
     if (ts.isIdentifier(initializer)) {
+      if (stopCondition(declaration)) {
+        return initializer;
+      }
       return findRootIdentifier(initializer, checker);
     }
+    throw new Error(
+      "Could not traverse from variable declaration: Not yet implemented"
+    );
   }
   if (ts.isInterfaceDeclaration(declaration)) {
     return declaration.name;
@@ -150,6 +160,10 @@ export const findRootIdentifier = (
       );
       const expressionA = (defaultExport.declarations[0] as ts.ExportAssignment)
         .expression as ts.Identifier;
+
+      if (stopCondition(declaration)) {
+        return expressionA;
+      }
       return findRootIdentifier(expressionA, checker);
     }
     return (declaration && declaration.name) || identifier;
@@ -165,6 +179,10 @@ export const findRootIdentifier = (
       );
       const expressionA = (defaultExport.declarations[0] as ts.ExportAssignment)
         .expression as ts.Identifier;
+
+      if (stopCondition(declaration)) {
+        return expressionA;
+      }
       return findRootIdentifier(expressionA, checker);
     }
     return (declaration && declaration.name) || identifier;
