@@ -8,7 +8,13 @@ import {
   toPairs,
   equals,
   propSatisfies,
+  omit,
+  mapObjIndexed,
+  ifElse,
+  identity,
 } from "ramda";
+import { cloneNode } from "@wessberg/ts-clone-node";
+import omitDeep from "@typescript-runtime-schema/omit-deep";
 
 export const mergeObjectLiteralsRecursivelyLeft = (
   objectLiteralA: ts.ObjectLiteralExpression,
@@ -231,6 +237,28 @@ export const isNode = (node: unknown): node is ts.Node => {
   }
   return false;
 };
+
+const omitDeep = (keys: string[]) => (
+  object: Record<any, any>
+): Record<any, any> =>
+  pipe(
+    () => object,
+    omit(keys),
+    mapObjIndexed(
+      ifElse(
+        Array.isArray,
+        map(ifElse(is(Object), omitDeep(keys), identity)),
+        ifElse(is(Object), omitDeep(keys), identity)
+      )
+    )
+  )();
+
+export const nodeEquals = (nodeA: ts.Node, nodeB: ts.Node) =>
+  nodeA.kind === nodeB.kind &&
+  equals(
+    omitDeep(["_original", "_parent"])(cloneNode(nodeA)),
+    omitDeep(["_original", "_parent"])(cloneNode(nodeB))
+  );
 
 export const isKeyword = (node: ts.Node): boolean => {
   return anyPass([
