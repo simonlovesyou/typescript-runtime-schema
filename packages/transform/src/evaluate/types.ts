@@ -1,5 +1,9 @@
 import * as ts from "typescript";
-import { findRootIdentifier } from "@typescript-runtime-schema/compiler-utilities";
+import {
+  findRootIdentifier,
+  nodeEquals,
+  isTypeNodeAssignableToTypeNode,
+} from "@typescript-runtime-schema/compiler-utilities";
 import evaluateOver, { Context } from ".";
 
 export const typeReferenceNode = (
@@ -16,7 +20,10 @@ export const typeReferenceNode = (
     ts.isTypeAliasDeclaration
   );
 
-  const someTypeSymbol = checker.getTypeAtLocation(typeReferenceNode).symbol;
+  const typeReferenceSymbol = checker.getTypeAtLocation(typeReferenceNode);
+  const someTypeSymbol =
+    //@ts-ignore Because `baseType` is actually there _sometimes_
+    typeReferenceSymbol.symbol || typeReferenceSymbol.baseType;
 
   if (someTypeSymbol && someTypeSymbol.escapedName === "Array") {
     const currentSourceFile = nextIdentifier.parent.getSourceFile();
@@ -205,12 +212,54 @@ export const arrayType = (
   );
 };
 
+export const conditionalType = (
+  conditionalTypeNode: ts.ConditionalTypeNode,
+  checker: ts.TypeChecker,
+  context: Context
+) => {
+  const checkType = evaluateOver<
+    ts.SyntaxKind.TypeReference | ts.KeywordTypeSyntaxKind
+  >(conditionalTypeNode.checkType, checker, context);
+
+  const extendsType = evaluateOver<
+    ts.SyntaxKind.TypeReference | ts.KeywordTypeSyntaxKind
+  >(conditionalTypeNode.extendsType, checker, context);
+
+  const trueType = evaluateOver<
+    ts.SyntaxKind.TypeReference | ts.KeywordTypeSyntaxKind
+  >(conditionalTypeNode.trueType, checker, context);
+
+  const falseType = evaluateOver<
+    ts.SyntaxKind.TypeReference | ts.KeywordTypeSyntaxKind
+  >(conditionalTypeNode.falseType, checker, context);
+
+  if (ts.isUnionTypeNode(checkType)) {
+    const res = checkType.types
+      .reduce((acc: ts.TypeNode[], typeNode) => {
+        if (isTypeNodeAssignableToTypeNode(typeNode, extendsType)) {
+          if (nodeEquals(trueType, checkType)) {
+            return [...acc, typeNode];
+          }
+          return [...acc, trueType];
+        } else {
+          if (nodeEquals(falseType, checkType)) {
+            return [...acc, typeNode];
+          }
+          return [...acc, falseType];
+        }
+      }, [])
+      .filter((node) => node.kind !== ts.SyntaxKind.NeverKeyword);
+    return ts.factory.createUnionTypeNode(res);
+  }
+};
+
 const EVALUATE_MAP = {
   [ts.SyntaxKind.TypeReference]: typeReferenceNode,
   [ts.SyntaxKind.MappedType]: mappedType,
   [ts.SyntaxKind.IndexedAccessType]: indexAccessType,
   [ts.SyntaxKind.UnionType]: unionTypeNode,
   [ts.SyntaxKind.ArrayType]: arrayType,
+  [ts.SyntaxKind.ConditionalType]: conditionalType,
 };
 
 export default EVALUATE_MAP;

@@ -1168,5 +1168,119 @@ describe("transform", () => {
         );
       });
     });
+    describe("Exclude", () => {
+      describe("literal type argument", () => {
+        const sourceCode = tsCode`
+        import is from "@typescript-runtime-schema/library";
+
+        type SomeKeys = 'name' | 'age' | 'length'
+
+        is<Exclude<SomeKeys, 'length'>>({ whatever: "string" });
+      `;
+        it("should transform correctly", () => {
+          expect(transformer).toTransformSourceCode(
+            sourceCode,
+            jsCode`
+              "use strict";
+              Object.defineProperty(exports, "__esModule", { value: true });
+              var library_1 = require("@typescript-runtime-schema/library");
+              library_1.default({
+                  anyOf: [
+                      {
+                          const: 'name'
+                      },
+                      {
+                          const: 'age'
+                      }
+                  ]
+              })({ whatever: "string" });
+          `.trim()
+          );
+        });
+      });
+      describe("union type argument", () => {
+        const sourceCode = tsCode`
+        import is from "@typescript-runtime-schema/library";
+
+        type SomeKeys = 'name' | 'age' | 'length'
+
+        is<Exclude<SomeKeys, 'length' | 'age'>>({ whatever: "string" });
+      `;
+        it("should transform correctly", () => {
+          expect(transformer).toTransformSourceCode(
+            sourceCode,
+            jsCode`
+              "use strict";
+              Object.defineProperty(exports, "__esModule", { value: true });
+              var library_1 = require("@typescript-runtime-schema/library");
+              library_1.default({
+                  anyOf: [
+                      {
+                          const: 'name'
+                      }
+                  ]
+              })({ whatever: "string" });
+          `.trim()
+          );
+        });
+      });
+    });
+    describe("Extract", () => {
+      describe("literal type argument", () => {
+        const sourceCode = tsCode`
+        import is from "@typescript-runtime-schema/library";
+
+        type SomeKeys = 'name' | 'age' | 'length'
+
+        is<Extract<SomeKeys, 'length'>>({ whatever: "string" });
+      `;
+        it("should transform correctly", () => {
+          expect(transformer).toTransformSourceCode(
+            sourceCode,
+            jsCode`
+              "use strict";
+              Object.defineProperty(exports, "__esModule", { value: true });
+              var library_1 = require("@typescript-runtime-schema/library");
+              library_1.default({
+                  anyOf: [
+                      {
+                          const: 'length'
+                      }
+                  ]
+              })({ whatever: "string" });
+          `.trim()
+          );
+        });
+      });
+      describe("union type argument", () => {
+        const sourceCode = tsCode`
+        import is from "@typescript-runtime-schema/library";
+
+        type SomeKeys = 'name' | 'age' | 'length'
+
+        is<Extract<SomeKeys, 'length' | 'age'>>({ whatever: "string" });
+      `;
+        it("should transform correctly", () => {
+          expect(transformer).toTransformSourceCode(
+            sourceCode,
+            jsCode`
+              "use strict";
+              Object.defineProperty(exports, "__esModule", { value: true });
+              var library_1 = require("@typescript-runtime-schema/library");
+              library_1.default({
+                  anyOf: [
+                      {
+                          const: 'age'
+                      },
+                      {
+                          const: 'length'
+                      }
+                  ]
+              })({ whatever: "string" });
+          `.trim()
+          );
+        });
+      });
+    });
   });
 });
