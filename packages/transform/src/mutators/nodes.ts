@@ -254,7 +254,9 @@ const typeLiteralNode = (
                 ? acc
                 : [
                     ...acc,
-                    factory.createStringLiteral(false)(String((member.name as ts.Identifier).escapedText)),
+                    factory.createStringLiteral(false)(
+                      String((member.name as ts.Identifier).escapedText)
+                    ),
                   ];
             }, [])
           : null,

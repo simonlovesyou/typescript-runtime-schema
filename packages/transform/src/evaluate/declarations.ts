@@ -18,13 +18,13 @@ const typeAliasDeclaration = (
       new Map<string, ts.TypeNode>()
     );
     const type = typeAliasDeclaration.type;
-    return evaluateOver(type, checker, {
+    return evaluateOver<ts.KeywordTypeSyntaxKind>(type, checker, {
       ...context,
       typeArgumentMap,
     });
   }
 
-  return evaluateOver(typeAliasDeclaration.type, checker, context);
+  return evaluateOver<ts.KeywordTypeSyntaxKind>(typeAliasDeclaration.type, checker, context);
 };
 
 const typeParameterDeclaration = (
@@ -82,7 +82,7 @@ const interfaceDeclaration = (
       [],
       heritageClauses,
       interfaceDeclarationNode.members.map((member) =>
-        evaluateOver(member, checker, {
+        evaluateOver<ts.SyntaxKind.PropertySignature>(member, checker, {
           ...context,
         })
       )
@@ -97,7 +97,7 @@ const interfaceDeclaration = (
     [],
     heritageClauses,
     interfaceDeclarationNode.members.map((member) =>
-      evaluateOver(member, checker, context)
+      evaluateOver<ts.SyntaxKind.PropertySignature>(member, checker, context)
     )
   );
 };

@@ -7,12 +7,13 @@ export const propertySignature = (
   context: Context
 ): ts.PropertySignature => {
   const { modifiers, name, questionToken, type } = propertySignatureNode;
+
   return ts.factory.updatePropertySignature(
     propertySignatureNode,
     modifiers,
     name,
     questionToken,
-    evaluateOver(type, checker, context)
+    evaluateOver<ts.SyntaxKind.TypeReference | ts.KeywordTypeSyntaxKind>(type, checker, context)
   );
 };
 

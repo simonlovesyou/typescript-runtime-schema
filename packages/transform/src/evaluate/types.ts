@@ -10,7 +10,7 @@ export const typeReferenceNode = (
   typeReferenceNode: ts.TypeReferenceNode,
   checker: ts.TypeChecker,
   context: Context
-): any => {
+): ts.TypeNode => {
   const name = typeReferenceNode.typeName as ts.Identifier;
 
   const nextIdentifier = findRootIdentifier(
@@ -30,11 +30,14 @@ export const typeReferenceNode = (
     // This is quite hacky but should work for most cases
     if (currentSourceFile.fileName.includes("node_modules/typescript/lib")) {
       return ts.factory.createArrayTypeNode(
-        evaluateOver(typeReferenceNode.typeArguments[0], checker, context)
+        evaluateOver<ts.KeywordTypeSyntaxKind>(
+          typeReferenceNode.typeArguments[0],
+          checker,
+          context
+        )
       );
     }
   }
-
   if (
     someTypeSymbol !== undefined &&
     ts.SymbolFlags.TypeParameter === someTypeSymbol.flags
@@ -43,7 +46,7 @@ export const typeReferenceNode = (
 
     const mappedType = context.typeArgumentMap.get(String(name.escapedText));
 
-    return evaluateOver(mappedType, checker, {});
+    return evaluateOver<ts.KeywordTypeSyntaxKind>(mappedType, checker, {});
   }
 
   if (typeReferenceNode.typeArguments) {
@@ -58,11 +61,19 @@ export const typeReferenceNode = (
       }
     ) as ts.TypeNode[];
 
-    return evaluateOver(nextIdentifier.parent, checker, {
-      typeArguments: evaluatedTypeArguments,
-    });
+    return evaluateOver<ts.KeywordTypeSyntaxKind | ts.SyntaxKind.TypeReference>(
+      nextIdentifier.parent,
+      checker,
+      {
+        typeArguments: evaluatedTypeArguments,
+      }
+    );
   } else {
-    return evaluateOver(nextIdentifier.parent, checker, {});
+    return evaluateOver<ts.KeywordTypeSyntaxKind | ts.SyntaxKind.TypeReference>(
+      nextIdentifier.parent,
+      checker,
+      context
+    );
   }
 };
 
@@ -97,10 +108,14 @@ const mappedType = (
               [],
               (type.literal as ts.LiteralExpression).text,
               questionToken,
-              evaluateOver(mappedTypeNode.type, checker, {
-                ...context,
-                typeArgumentMap,
-              })
+              evaluateOver<ts.KeywordTypeSyntaxKind>(
+                mappedTypeNode.type,
+                checker,
+                {
+                  ...context,
+                  typeArgumentMap,
+                }
+              )
             );
           }
           return ts.factory.createIndexSignature(
@@ -116,10 +131,14 @@ const mappedType = (
                 type
               ),
             ],
-            evaluateOver(mappedTypeNode.type, checker, {
-              ...context,
-              typeArgumentMap,
-            })
+            evaluateOver<ts.KeywordTypeSyntaxKind>(
+              mappedTypeNode.type,
+              checker,
+              {
+                ...context,
+                typeArgumentMap,
+              }
+            )
           );
         }
       )
@@ -153,7 +172,7 @@ const mappedType = (
           evaluatedTypeParameter.constraint
         ),
       ],
-      evaluateOver(mappedTypeNode.type, checker, {
+      evaluateOver<ts.KeywordTypeSyntaxKind>(mappedTypeNode.type, checker, {
         ...context,
         typeArgumentMap,
       })
@@ -183,7 +202,8 @@ const indexAccessType = (
   return (evaluatedObjectType.members.find(
     (member) =>
       (member.name as ts.Identifier).escapedText ===
-      evaluatedIndexType.literal.text
+      ((evaluatedIndexType as ts.LiteralTypeNode)
+        .literal as ts.LiteralExpression).text
   ) as ts.PropertySignature).type;
 };
 
@@ -195,7 +215,9 @@ export const unionTypeNode = (
   const types = unionTypeNode.types;
 
   return ts.factory.createUnionTypeNode(
-    types.map((type) => evaluateOver(type, checker, context))
+    types.map((type) =>
+      evaluateOver<ts.KeywordTypeSyntaxKind>(type, checker, context)
+    )
   );
 };
 
@@ -208,7 +230,7 @@ export const arrayType = (
 
   return ts.factory.updateArrayTypeNode(
     arrayTypeNode,
-    evaluateOver(type, checker, context)
+    evaluateOver<ts.KeywordTypeSyntaxKind>(type, checker, context)
   );
 };
 
