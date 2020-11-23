@@ -238,6 +238,32 @@ export const isNode = (node: unknown): node is ts.Node => {
   return false;
 };
 
+export const isTypeNodeAssignableToTypeNode = (
+  source: ts.TypeNode,
+  target: ts.TypeNode
+): boolean => {
+  if (nodeEquals(source, target)) {
+    return true;
+  }
+  if (ts.isUnionTypeNode(source) && ts.isLiteralTypeNode(target)) {
+    return false;
+  }
+  if (ts.isUnionTypeNode(source) && ts.isUnionTypeNode(target)) {
+    return source.types.every((sourceType) =>
+      Boolean(
+        target.types.find((targetType) => nodeEquals(sourceType, targetType))
+      )
+    );
+  }
+  if (ts.isLiteralTypeNode(source) && ts.isUnionTypeNode(target)) {
+    const correspondingType = target.types.find((type) =>
+      nodeEquals(type, source)
+    );
+    return Boolean(correspondingType);
+  }
+  return false;
+};
+
 const omitDeep = (keys: string[]) => (
   object: Record<any, any>
 ): Record<any, any> =>
