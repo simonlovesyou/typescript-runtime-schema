@@ -1319,5 +1319,38 @@ describe("transform", () => {
         });
       });
     });
+    describe("Omit", () => {
+      describe("literal type argument", () => {
+        const sourceCode = tsCode`
+        import is from "@typescript-runtime-schema/library";
+
+        type Person = { name: string, age: number, length: number }
+
+        is<Omit<Person, 'length' | 'age'>>({ whatever: "string" });
+      `;
+        it("should transform correctly", () => {
+          expect(transformer).toTransformSourceCode(
+            sourceCode,
+            jsCode`
+              "use strict";
+              Object.defineProperty(exports, "__esModule", { value: true });
+              var library_1 = require("@typescript-runtime-schema/library");
+              library_1.default({
+                  type: 'object',
+                  properties: {
+                      name: {
+                          type: 'string'
+                      }
+                  },
+                  minProperties: 1,
+                  required: [
+                      "name"
+                  ]
+              })({ whatever: "string" });
+          `.trim()
+          );
+        });
+      });
+    });
   });
 });
