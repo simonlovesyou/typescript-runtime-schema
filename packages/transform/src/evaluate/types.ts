@@ -52,12 +52,7 @@ export const typeReferenceNode = (
   if (typeReferenceNode.typeArguments) {
     const evaluatedTypeArguments = typeReferenceNode.typeArguments.map(
       (typeArgument) => {
-        if (ts.isTypeReferenceNode(typeArgument) && typeArgument.typeArguments)
-          evaluateOver(typeArgument, checker, {
-            typeArguments: typeArgument.typeArguments,
-          });
-
-        return typeArgument;
+        return evaluateOver(typeArgument, checker, context);
       }
     ) as ts.TypeNode[];
 
