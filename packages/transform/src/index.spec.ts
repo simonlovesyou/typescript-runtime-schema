@@ -1352,5 +1352,34 @@ describe("transform", () => {
         });
       });
     });
+    describe("NonNullable", () => {
+      describe("literal type argument", () => {
+        const sourceCode = tsCode`
+        import is from "@typescript-runtime-schema/library";
+
+        is<NonNullable<'length' | 'age' | null>>({ whatever: "string" });
+      `;
+        it("should transform correctly", () => {
+          expect(transformer).toTransformSourceCode(
+            sourceCode,
+            jsCode`
+              "use strict";
+              Object.defineProperty(exports, "__esModule", { value: true });
+              var library_1 = require("@typescript-runtime-schema/library");
+              library_1.default({
+                  anyOf: [
+                      {
+                          const: 'length'
+                      },
+                      {
+                          const: 'age'
+                      }
+                  ]
+              })({ whatever: "string" });
+          `.trim()
+          );
+        });
+      });
+    });
   });
 });
