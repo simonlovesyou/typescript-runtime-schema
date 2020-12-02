@@ -1,0 +1,24 @@
+{
+  "name": "@typescript-runtime-schema/omit-deep",
+  "version": "1.0.0",
+  "description": "Recursively omit the specified keys from an object",
+  "main": "dist/index.js",
+  "author": "Simon Johansson <simonljohansson92@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "test": "jest src/",
+    "build": "yarn build:ts",
+    "build:ts": "./node_modules/.bin/tsc --project tsconfig.json",
+    "prepublish": "yarn build"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.14",
+    "@types/ramda": "^0.27.32",
+    "jest": "^26.6.3",
+    "typescript": "^4.1.2"
+  },
+  "dependencies": {
+    "ramda": "^0.27.1"
+  }
+}
