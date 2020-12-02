@@ -1,6 +1,5 @@
 import * as ts from "typescript";
 import {
-  pipe,
   anyPass,
   propEq,
   is,
@@ -8,10 +7,6 @@ import {
   toPairs,
   equals,
   propSatisfies,
-  omit,
-  mapObjIndexed,
-  ifElse,
-  identity,
 } from "ramda";
 import { cloneNode } from "@wessberg/ts-clone-node";
 import omitDeep from "@typescript-runtime-schema/omit-deep";
@@ -282,20 +277,6 @@ export const isTypeNodeAssignableToTypeNode = (
   return false;
 };
 
-const omitDeep = (keys: string[]) => (
-  object: Record<any, any>
-): Record<any, any> =>
-  pipe(
-    () => object,
-    omit(keys),
-    mapObjIndexed(
-      ifElse(
-        Array.isArray,
-        map(ifElse(is(Object), omitDeep(keys), identity)),
-        ifElse(is(Object), omitDeep(keys), identity)
-      )
-    )
-  )();
 
 export const nodeEquals = (nodeA: ts.Node, nodeB: ts.Node) =>
   nodeA.kind === nodeB.kind &&
