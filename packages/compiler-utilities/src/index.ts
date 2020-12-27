@@ -11,6 +11,16 @@ import {
 import { cloneNode } from "@wessberg/ts-clone-node";
 import omitDeep from "@typescript-runtime-schema/omit-deep";
 
+/**
+ * Merge two object literals recursively into one, with properties from left taking precedence.
+ *
+ * Unique properties will be carried over to the new object literal.
+ * If a key value pair exists in both provided object literals then second object literal will take precedence.
+ * @param objectLiteralA - The first object literal.
+ * @param objectLiteralB - The second object literal that's merged left into objectLiteralA.
+ * @returns The merged object literal from objectLiteralA & objectLiteralB
+ * @public
+ */
 export const mergeObjectLiteralsRecursivelyLeft = (
   objectLiteralA: ts.ObjectLiteralExpression,
   objectLiteralB: ts.ObjectLiteralExpression
@@ -86,6 +96,10 @@ export const mergeObjectLiteralsRecursivelyLeft = (
   ]);
 };
 
+/**
+ * @beta
+ */
+
 /* It's not really a ts.Type, but some sort of "TypeObject" where there's no externally available type */
 export const convertTypeToTypeNode = (type: ts.Type): ts.TypeNode => {
   if (type.flags === ts.TypeFlags.Union) {
@@ -107,6 +121,16 @@ export const convertTypeToTypeNode = (type: ts.Type): ts.TypeNode => {
   throw new Error(`Cannot convert symbol with type flags ${type.flags}`);
 };
 
+/**
+ * Traverse declarations given an identifier to the root identifier.
+ *
+ * @param identifier - The leaf identifier
+ * @param checker - [ts.TypeChecker](https://github.com/microsoft/TypeScript/blob/master/src/compiler/checker.ts)
+ * @param options - Function options
+ * @param stopCondition - Callback to check if we should stop traversing, for whatever reason
+ * @returns The root identifer
+ * @public
+ */
 export const findRootIdentifier = (
   identifier: ts.Identifier,
   checker: ts.TypeChecker,
@@ -185,8 +209,16 @@ export const findRootIdentifier = (
   return identifier;
 };
 
-export const createArrayLiteralFrom = (
-  array: unknown[],
+/**
+ * Creates a typescript array literal from a javascript "native" array.
+ * Any typescript nodes in the provided array will be carried over as is to the created array literal
+ *
+ * @param array - The array we should base the array literal on
+ * @param multiLine - Whether or not the created array literal should be multiline
+ * @public
+ */
+export const createArrayLiteralFrom = <T = unknown>(
+  array: T[],
   multiLine?: boolean
 ): ts.ArrayLiteralExpression => {
   return ts.factory.createArrayLiteralExpression(
@@ -208,6 +240,14 @@ export const createArrayLiteralFrom = (
   );
 };
 
+/**
+ * Creates a typescript object literal from a javascript "native" object.
+ * Any typescript nodes in the provided object will be carried over as is to the created object literal
+ *
+ * @param array - The array we should base the array literal on
+ * @param multiLine - Whether or not the created array literal should be multiline
+ * @public
+ */
 export const createObjectLiteralFrom = (
   object: Record<string, unknown>,
   multiLine?: boolean
@@ -241,6 +281,12 @@ export const createObjectLiteralFrom = (
   );
 };
 
+/**
+ * Naively check whether or not ⋆.ೃ࿔*:･something✧˖*°࿐ is a Typescript node
+ *
+ * @param node - Whatever we're checking if it's a ts.Node
+ * @public
+ */
 export const isNode = (node: unknown): node is ts.Node => {
   if (!is(Object)(node)) {
     return false;
@@ -251,6 +297,13 @@ export const isNode = (node: unknown): node is ts.Node => {
   return false;
 };
 
+/**
+ * Check whether or not source can be assigned to target
+ *
+ * @param source - The TypeNode we're checking whether or not it can be assigned to target
+ * @param target - The TypeNode we're checking assignment against
+ * @public
+ */
 export const isTypeNodeAssignableToTypeNode = (
   source: ts.TypeNode,
   target: ts.TypeNode
@@ -277,6 +330,10 @@ export const isTypeNodeAssignableToTypeNode = (
   return false;
 };
 
+/**
+ * Checks whether or not two typescript nodes are equal
+ * @public
+ */
 
 export const nodeEquals = (nodeA: ts.Node, nodeB: ts.Node) =>
   nodeA.kind === nodeB.kind &&
@@ -285,6 +342,10 @@ export const nodeEquals = (nodeA: ts.Node, nodeB: ts.Node) =>
     omitDeep(["_original", "_parent"])(cloneNode(nodeB))
   );
 
+/**
+ * Checks whether the typescript node is a "keyword"
+ * @public
+ */
 export const isKeyword = (node: ts.Node): boolean => {
   return anyPass([
     propEq("kind", ts.SyntaxKind.BreakKeyword),
