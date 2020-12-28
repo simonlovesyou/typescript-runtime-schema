@@ -93,6 +93,12 @@ export default async function generateDocs(options: {
         );
         return acc + "\n" + result;
       }
+      if (/^(#+? )?LernaPackages/.test(indexEntry)) {
+        const result = symbols.lernaPackages(
+          countCharacter("#")(indexEntry)
+        );
+        return acc + "\n" + result;
+      }
       if (/^(#+? )?License/.test(indexEntry)) {
         return (
           acc +
