@@ -1,7 +1,7 @@
 {
   "name": "@typescript-runtime-schema/generate-docs",
   "version": "1.0.0",
-  "description": "Generate opinionated README.md from source files and/or automatic content",
+  "description": "Generate opinionated documentation from source files and/or provided content",
   "main": "dist/index.js",
   "author": "Simon Johansson <simonljohansson92@gmail.com>",
   "license": "MIT",
