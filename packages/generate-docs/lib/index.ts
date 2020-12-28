@@ -122,6 +122,7 @@ export default async function generateDocs(options: {
           `\n` +
           symbols.packageName(
             packagePackageJson.name,
+            packagePackageJson.version,
             countCharacter("#")(indexEntry)
           )
         );

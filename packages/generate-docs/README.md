@@ -1,4 +1,4 @@
-# @typescript-runtime-schema/generate-docs
+# @typescript-runtime-schema/generate-docs ![version](https://badgen.net/badge/version/1.0.0/blue)
 Generate opinionated README.md from source files and/or automatic content
 
 ## Installation
@@ -99,7 +99,7 @@ Options
 
 ▸ **generateDocs**(`options`: { documentationIndexFilePath: string ; entryFile: string ; overwrite?: boolean ; tsConfigFile: string  }): Promise\<string>
 
-*Defined in [lib/index.ts:34](https://github.com/simonlovesyou/typescript-schema/blob/29dd6cc/packages/generate-docs/lib/index.ts#L34)*
+*Defined in [lib/index.ts:34](https://github.com/simonlovesyou/typescript-schema/blob/b02308f/packages/generate-docs/lib/index.ts#L34)*
 
 **`beta`** 
 
