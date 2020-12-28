@@ -1,18 +1,20 @@
 {
   "name": "@typescript-runtime-schema/is",
   "version": "1.0.0",
-  "description": "`is` function to type guard against given type",
+  "description": "`is` function to type guard against given type. You could consider it to be the swiss knife of type guards. To be used in conjunction with `@typescript-runtime-schema/transform`",
   "main": "dist/index.js",
   "license": "MIT",
-  "private": true,
+  "author": "Simon Johansson <simonljohansson92@gmail.com>",
   "types": "typings/index.d.ts",
   "scripts": {
     "test": "jest src/",
     "build": "yarn build:ts",
     "build:ts": "./node_modules/.bin/tsc --project tsconfig.json",
+    "build:docs": "./node_modules/.bin/generate-docs --index-file-path ./docs/index.md -o README.md",
     "prepublish": "yarn build"
   },
   "devDependencies": {
+    "@typescript-runtime-schema/generate-docs": "^1.0.0",
     "@types/jest": "^26.0.14",
     "@types/joi": "^14.3.4",
     "@types/json-schema": "^7.0.6",
