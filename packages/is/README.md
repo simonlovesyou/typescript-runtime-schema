@@ -1,4 +1,4 @@
-# @typescript-runtime-schema/is
+# @typescript-runtime-schema/is ![version](https://badgen.net/badge/version/1.0.0/blue)
 `is` function to type guard against given type. You could consider it to be the swiss knife of type guards. To be used in conjunction with `@typescript-runtime-schema/transform`
 
 ## Installation
