@@ -7,7 +7,6 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "test": "jest src/",
     "build": "yarn build:ts",
     "build:ts": "./node_modules/.bin/tsc --project tsconfig.json",
     "build:docs": "node bin/index.js --index-file-path ./docs/index.md -o README.md",
