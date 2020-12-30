@@ -24,8 +24,8 @@ declare global {
 
 const toTransformSourceCode = (
   transformer: Transformer,
-  received: string,
-  expectedOutput: string,
+  sourceCode: string,
+  expectedCodeOutput: string,
 ) => {
   const host = ts.createCompilerHost({}, true);
 
@@ -35,7 +35,7 @@ const toTransformSourceCode = (
     options: {},
   });
 
-  const { outputText } = ts.transpileModule(received, {
+  const { outputText } = ts.transpileModule(sourceCode, {
     transformers: { before: [transformer(program)] },
   });
 
@@ -44,17 +44,17 @@ const toTransformSourceCode = (
   return {
     message: () =>
       `expected source code ${printReceived(
-        received
+        sourceCode
       )} to transform to ${printExpected(
-        expectedOutput
+        expectedCodeOutput
       )} using the passed in transformer but it compiled to \n${printReceived(result)}\n\n${printDiffOrStringify(
-        expectedOutput,
+        expectedCodeOutput,
         result,
         "expected",
-        "received",
+        "sourceCode",
         false
       )}`,
-    pass: result === expectedOutput,
+    pass: result === expectedCodeOutput,
   };
 };
 

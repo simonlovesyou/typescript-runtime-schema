@@ -1,17 +1,20 @@
 {
   "name": "@typescript-runtime-schema/expect-transformer-to-transform-source-code",
   "version": "1.0.0",
-  "description": "Expect a piece of source code to be transformed to using the provided transformer",
+  "description": "Expect a transformer to produce certain transpiled code given some source code",
   "main": "dist/index.js",
+  "author": "Simon Johansson <simonljohansson92@gmail.com>",
   "license": "MIT",
   "private": true,
   "scripts": {
     "test": "jest src/",
     "build": "yarn build:ts",
     "build:ts": "./node_modules/.bin/tsc --project tsconfig.json",
+    "build:docs": "./node_modules/.bin/generate-docs --index-file-path ./docs/index.md -o README.md",
     "prepublish": "yarn build"
   },
   "devDependencies": {
+    "@typescript-runtime-schema/generate-docs": "^1.0.0",
     "@types/jest": "^26.0.14",
     "@types/node": "^14.11.8",
     "jest": "^26.5.3",
