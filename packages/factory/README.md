@@ -1,5 +1,5 @@
-# @typescript-runtime-schema/factory
-A wrapper for the typescript factory that provide sensible currying to the API
+# @typescript-runtime-schema/factory ![version](https://badgen.net/badge/version/1.0.0/blue)
+A wrapper for the typescript factory that provide sensible currying to the API. Built specifically for the @typescript-runtime-schema, so your mileage may vary in terms of API coverage
 
 ## Installation
 Using npm:
@@ -49,7 +49,7 @@ yarn add @typescript-runtime-schema/factory
 
 • `Const` **createIdentifier**: createIdentifier = ts.factory.createIdentifier
 
-*Defined in [src/index.ts:34](https://github.com/simonlovesyou/typescript-schema/blob/29dd6cc/packages/factory/src/index.ts#L34)*
+*Defined in [src/index.ts:34](https://github.com/simonlovesyou/typescript-schema/blob/c3d04ff/packages/factory/src/index.ts#L34)*
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 • `Const` **createLoopVariable**: createLoopVariable = ts.factory.createLoopVariable
 
-*Defined in [src/index.ts:69](https://github.com/simonlovesyou/typescript-schema/blob/29dd6cc/packages/factory/src/index.ts#L69)*
+*Defined in [src/index.ts:69](https://github.com/simonlovesyou/typescript-schema/blob/c3d04ff/packages/factory/src/index.ts#L69)*
 
 ### Functions
 
@@ -65,7 +65,7 @@ ___
 
 ▸ `Const`**createAdd**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:73](https://github.com/simonlovesyou/typescript-schema/blob/29dd6cc/packages/factory/src/index.ts#L73)*
+*Defined in [src/index.ts:73](https://github.com/simonlovesyou/typescript-schema/blob/c3d04ff/packages/factory/src/index.ts#L73)*
 
 ##### Parameters:
 
@@ -81,7 +81,7 @@ ___
 
 ▸ `Const`**createArrayLiteralExpression**(`multiLine?`: boolean): (Anonymous function)
 
-*Defined in [src/index.ts:52](https://github.com/simonlovesyou/typescript-schema/blob/29dd6cc/packages/factory/src/index.ts#L52)*
+*Defined in [src/index.ts:52](https://github.com/simonlovesyou/typescript-schema/blob/c3d04ff/packages/factory/src/index.ts#L52)*
 
 ##### Parameters:
 
@@ -97,7 +97,7 @@ ___
 
 ▸ `Const`**createArrowFunction**(`body`: ts.ConciseBody): (Anonymous function)
 
-*Defined in [src/index.ts:78](https://github.com/simonlovesyou/typescript-schema/blob/29dd6cc/packages/factory/src/index.ts#L78)*
+*Defined in [src/index.ts:78](https://github.com/simonlovesyou/typescript-schema/blob/c3d04ff/packages/factory/src/index.ts#L78)*
 
 ##### Parameters:
 
@@ -113,7 +113,7 @@ ___
 
 ▸ `Const`**createAsExpression**(`type`: TypeNode): (Anonymous function)
 
-*Defined in [src/index.ts:96](https://github.com/simonlovesyou/typescript-schema/blob/29dd6cc/packages/factory/src/index.ts#L96)*
+*Defined in [src/index.ts:96](https://github.com/simonlovesyou/typescript-schema/blob/c3d04ff/packages/factory/src/index.ts#L96)*
 
 ##### Parameters:
 
@@ -129,7 +129,7 @@ ___
 
 ▸ `Const`**createAssignment**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:102](https://github.com/simonlovesyou/typescript-schema/blob/29dd6cc/packages/factory/src/index.ts#L102)*
+*Defined in [src/index.ts:102](https://github.com/simonlovesyou/typescript-schema/blob/c3d04ff/packages/factory/src/index.ts#L102)*
 
 ##### Parameters:
 
@@ -145,7 +145,7 @@ ___
 
 ▸ `Const`**createBinaryExpression**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:108](https://github.com/simonlovesyou/typescript-schema/blob/29dd6cc/packages/factory/src/index.ts#L108)*
+*Defined in [src/index.ts:108](https://github.com/simonlovesyou/typescript-schema/blob/c3d04ff/packages/factory/src/index.ts#L108)*
 
 ##### Parameters:
 
@@ -161,7 +161,7 @@ ___
 
 ▸ `Const`**createBindingElement**(`dotDotDotToken`: ts.DotDotDotToken \| undefined, `propertyName`: string \| ts.PropertyName \| undefined, `name`: string \| ts.BindingName): (Anonymous function)
 
-*Defined in [src/index.ts:115](https://github.com/simonlovesyou/typescript-schema/blob/29dd6cc/packages/factory/src/index.ts#L115)*
+*Defined in [src/index.ts:115](https://github.com/simonlovesyou/typescript-schema/blob/c3d04ff/packages/factory/src/index.ts#L115)*
 
 ##### Parameters:
 
@@ -179,7 +179,7 @@ ___
 
 ▸ `Const`**createBitwiseAnd**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:129](https://github.com/simonlovesyou/typescript-schema/blob/29dd6cc/packages/factory/src/index.ts#L129)*
+*Defined in [src/index.ts:129](https://github.com/simonlovesyou/typescript-schema/blob/c3d04ff/packages/factory/src/index.ts#L129)*
 
 ##### Parameters:
 
@@ -195,7 +195,7 @@ ___
 
 ▸ `Const`**createBitwiseOr**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:135](https://github.com/simonlovesyou/typescript-schema/blob/29dd6cc/packages/factory/src/index.ts#L135)*
+*Defined in [src/index.ts:135](https://github.com/simonlovesyou/typescript-schema/blob/c3d04ff/packages/factory/src/index.ts#L135)*
 
 ##### Parameters:
 
@@ -211,7 +211,7 @@ ___
 
 ▸ `Const`**createBitwiseXor**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:141](https://github.com/simonlovesyou/typescript-schema/blob/29dd6cc/packages/factory/src/index.ts#L141)*
+*Defined in [src/index.ts:141](https://github.com/simonlovesyou/typescript-schema/blob/c3d04ff/packages/factory/src/index.ts#L141)*
 
 ##### Parameters:
 
@@ -227,7 +227,7 @@ ___
 
 ▸ `Const`**createBlock**(`multiLine?`: boolean): (Anonymous function)
 
-*Defined in [src/index.ts:147](https://github.com/simonlovesyou/typescript-schema/blob/29dd6cc/packages/factory/src/index.ts#L147)*
+*Defined in [src/index.ts:147](https://github.com/simonlovesyou/typescript-schema/blob/c3d04ff/packages/factory/src/index.ts#L147)*
 
 ##### Parameters:
 
@@ -243,7 +243,7 @@ ___
 
 ▸ `Const`**createBundle**(`prepends?`: readonly (UnparsedSource \| InputFiles)[]): (Anonymous function)
 
-*Defined in [src/index.ts:153](https://github.com/simonlovesyou/typescript-schema/blob/29dd6cc/packages/factory/src/index.ts#L153)*
+*Defined in [src/index.ts:153](https://github.com/simonlovesyou/typescript-schema/blob/c3d04ff/packages/factory/src/index.ts#L153)*
 
 ##### Parameters:
 
@@ -259,7 +259,7 @@ ___
 
 ▸ `Const`**createCallChain**(`questionDotToken`: ts.QuestionDotToken \| undefined, `typeArguments`: readonly TypeNode[] \| undefined, `argumentsArray`: readonly Expression[] \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:160](https://github.com/simonlovesyou/typescript-schema/blob/29dd6cc/packages/factory/src/index.ts#L160)*
+*Defined in [src/index.ts:160](https://github.com/simonlovesyou/typescript-schema/blob/c3d04ff/packages/factory/src/index.ts#L160)*
 
 ##### Parameters:
 
@@ -277,7 +277,7 @@ ___
 
 ▸ `Const`**createCallExpression**(`typeArguments`: readonly TypeNode[] \| undefined, `argumentsArray`: readonly Expression[] \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:176](https://github.com/simonlovesyou/typescript-schema/blob/29dd6cc/packages/factory/src/index.ts#L176)*
+*Defined in [src/index.ts:176](https://github.com/simonlovesyou/typescript-schema/blob/c3d04ff/packages/factory/src/index.ts#L176)*
 
 ##### Parameters:
 
@@ -294,7 +294,7 @@ ___
 
 ▸ `Const`**createNumericLiteral**(`numericLiteralFlags?`: TokenFlags): (Anonymous function)
 
-*Defined in [src/index.ts:63](https://github.com/simonlovesyou/typescript-schema/blob/29dd6cc/packages/factory/src/index.ts#L63)*
+*Defined in [src/index.ts:63](https://github.com/simonlovesyou/typescript-schema/blob/c3d04ff/packages/factory/src/index.ts#L63)*
 
 ##### Parameters:
 
@@ -310,7 +310,7 @@ ___
 
 ▸ `Const`**createObjectLiteralExpression**(`multiLine?`: boolean): (Anonymous function)
 
-*Defined in [src/index.ts:15](https://github.com/simonlovesyou/typescript-schema/blob/29dd6cc/packages/factory/src/index.ts#L15)*
+*Defined in [src/index.ts:15](https://github.com/simonlovesyou/typescript-schema/blob/c3d04ff/packages/factory/src/index.ts#L15)*
 
 ##### Parameters:
 
@@ -326,7 +326,7 @@ ___
 
 ▸ `Const`**createPropertyAccessExpression**(`name`: string \| Identifier \| PrivateIdentifier): (Anonymous function)
 
-*Defined in [src/index.ts:7](https://github.com/simonlovesyou/typescript-schema/blob/29dd6cc/packages/factory/src/index.ts#L7)*
+*Defined in [src/index.ts:7](https://github.com/simonlovesyou/typescript-schema/blob/c3d04ff/packages/factory/src/index.ts#L7)*
 
 ##### Parameters:
 
@@ -342,7 +342,7 @@ ___
 
 ▸ `Const`**createPropertyAssignment**(`name`: string \| Identifier \| PrivateIdentifier \| StringLiteral \| NumericLiteral \| ComputedPropertyName): (Anonymous function)
 
-*Defined in [src/index.ts:21](https://github.com/simonlovesyou/typescript-schema/blob/29dd6cc/packages/factory/src/index.ts#L21)*
+*Defined in [src/index.ts:21](https://github.com/simonlovesyou/typescript-schema/blob/c3d04ff/packages/factory/src/index.ts#L21)*
 
 ##### Parameters:
 
@@ -358,7 +358,7 @@ ___
 
 ▸ `Const`**createStringLiteral**(`singleLine?`: boolean): (Anonymous function)
 
-*Defined in [src/index.ts:58](https://github.com/simonlovesyou/typescript-schema/blob/29dd6cc/packages/factory/src/index.ts#L58)*
+*Defined in [src/index.ts:58](https://github.com/simonlovesyou/typescript-schema/blob/c3d04ff/packages/factory/src/index.ts#L58)*
 
 ##### Parameters:
 
@@ -374,7 +374,7 @@ ___
 
 ▸ `Const`**updateCallExpression**(`identifier?`: string \| Identifier, `typeArguments?`: readonly TypeNode[], `argumentsArray?`: readonly Expression[]): (Anonymous function)
 
-*Defined in [src/index.ts:38](https://github.com/simonlovesyou/typescript-schema/blob/29dd6cc/packages/factory/src/index.ts#L38)*
+*Defined in [src/index.ts:38](https://github.com/simonlovesyou/typescript-schema/blob/c3d04ff/packages/factory/src/index.ts#L38)*
 
 ##### Parameters:
 

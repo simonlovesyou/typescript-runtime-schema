@@ -1,7 +1,7 @@
 {
   "name": "@typescript-runtime-schema/factory",
   "version": "1.0.0",
-  "description": "A wrapper for the typescript factory that provide sensible currying to the API",
+  "description": "A wrapper for the typescript factory that provide sensible currying to the API. Built specifically for the @typescript-runtime-schema, so your mileage may vary in terms of API coverage",
   "main": "dist/index.js",
   "author": "Simon Johansson <simonljohansson92@gmail.com>",
   "license": "MIT",
