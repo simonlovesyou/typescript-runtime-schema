@@ -1,4 +1,4 @@
-# @typescript-runtime-schema/compiler-utilities
+# @typescript-runtime-schema/compiler-utilities ![version](https://badgen.net/badge/version/1.0.0/blue)
 A collection of Typescript compiler utilities
 
 ## Installation
@@ -33,7 +33,7 @@ yarn add @typescript-runtime-schema/compiler-utilities
 
 ▸ `Const`**convertTypeToTypeNode**(`type`: Type): TypeNode
 
-*Defined in [src/index.ts:105](https://github.com/simonlovesyou/typescript-schema/blob/f7c3069/packages/compiler-utilities/src/index.ts#L105)*
+*Defined in [src/index.ts:104](https://github.com/simonlovesyou/typescript-schema/blob/bf7a4d3/packages/compiler-utilities/src/index.ts#L104)*
 
 **`beta`** 
 
@@ -51,7 +51,7 @@ ___
 
 ▸ `Const`**createArrayLiteralFrom**\<T>(`array`: T[], `multiLine?`: boolean): ArrayLiteralExpression
 
-*Defined in [src/index.ts:221](https://github.com/simonlovesyou/typescript-schema/blob/f7c3069/packages/compiler-utilities/src/index.ts#L221)*
+*Defined in [src/index.ts:220](https://github.com/simonlovesyou/typescript-schema/blob/bf7a4d3/packages/compiler-utilities/src/index.ts#L220)*
 
 Creates a typescript array literal from a javascript "native" array.
 Any typescript nodes in the provided array will be carried over as is to the created array literal
@@ -77,7 +77,7 @@ ___
 
 ▸ `Const`**createObjectLiteralFrom**(`object`: Record\<string, unknown>, `multiLine?`: boolean): ObjectLiteralExpression
 
-*Defined in [src/index.ts:252](https://github.com/simonlovesyou/typescript-schema/blob/f7c3069/packages/compiler-utilities/src/index.ts#L252)*
+*Defined in [src/index.ts:251](https://github.com/simonlovesyou/typescript-schema/blob/bf7a4d3/packages/compiler-utilities/src/index.ts#L251)*
 
 Creates a typescript object literal from a javascript "native" object.
 Any typescript nodes in the provided object will be carried over as is to the created object literal
@@ -97,7 +97,7 @@ ___
 
 ▸ `Const`**findRootIdentifier**(`identifier`: Identifier, `checker`: TypeChecker, `options?`: { includeImports?: boolean  }, `stopCondition?`: (node: Node) => boolean): Identifier
 
-*Defined in [src/index.ts:135](https://github.com/simonlovesyou/typescript-schema/blob/f7c3069/packages/compiler-utilities/src/index.ts#L135)*
+*Defined in [src/index.ts:134](https://github.com/simonlovesyou/typescript-schema/blob/bf7a4d3/packages/compiler-utilities/src/index.ts#L134)*
 
 Traverse declarations given an identifier to the root identifier.
 
@@ -120,7 +120,7 @@ ___
 
 ▸ `Const`**isKeyword**(`node`: Node): boolean
 
-*Defined in [src/index.ts:351](https://github.com/simonlovesyou/typescript-schema/blob/f7c3069/packages/compiler-utilities/src/index.ts#L351)*
+*Defined in [src/index.ts:349](https://github.com/simonlovesyou/typescript-schema/blob/bf7a4d3/packages/compiler-utilities/src/index.ts#L349)*
 
 Checks whether the typescript node is a "keyword"
 
@@ -138,7 +138,7 @@ ___
 
 ▸ `Const`**isNode**(`node`: unknown): node is Node
 
-*Defined in [src/index.ts:292](https://github.com/simonlovesyou/typescript-schema/blob/f7c3069/packages/compiler-utilities/src/index.ts#L292)*
+*Defined in [src/index.ts:290](https://github.com/simonlovesyou/typescript-schema/blob/bf7a4d3/packages/compiler-utilities/src/index.ts#L290)*
 
 Naively check whether or not ⋆.ೃ࿔*:･something✧˖*°࿐ is a Typescript node
 
@@ -156,7 +156,7 @@ ___
 
 ▸ `Const`**isTypeNodeAssignableToTypeNode**(`source`: TypeNode, `target`: TypeNode): boolean
 
-*Defined in [src/index.ts:309](https://github.com/simonlovesyou/typescript-schema/blob/f7c3069/packages/compiler-utilities/src/index.ts#L309)*
+*Defined in [src/index.ts:307](https://github.com/simonlovesyou/typescript-schema/blob/bf7a4d3/packages/compiler-utilities/src/index.ts#L307)*
 
 Check whether or not source can be assigned to target
 
@@ -175,7 +175,7 @@ ___
 
 ▸ `Const`**mergeObjectLiteralsRecursivelyLeft**(`objectLiteralA`: ObjectLiteralExpression, `objectLiteralB`: ObjectLiteralExpression): ObjectLiteralExpression
 
-*Defined in [src/index.ts:24](https://github.com/simonlovesyou/typescript-schema/blob/f7c3069/packages/compiler-utilities/src/index.ts#L24)*
+*Defined in [src/index.ts:24](https://github.com/simonlovesyou/typescript-schema/blob/bf7a4d3/packages/compiler-utilities/src/index.ts#L24)*
 
 Merge two object literals recursively into one, with properties from left taking precedence.
 
@@ -199,7 +199,7 @@ ___
 
 ▸ `Const`**nodeEquals**(`nodeA`: Node, `nodeB`: Node): function
 
-*Defined in [src/index.ts:340](https://github.com/simonlovesyou/typescript-schema/blob/f7c3069/packages/compiler-utilities/src/index.ts#L340)*
+*Defined in [src/index.ts:338](https://github.com/simonlovesyou/typescript-schema/blob/bf7a4d3/packages/compiler-utilities/src/index.ts#L338)*
 
 Checks whether or not two typescript nodes are equal
 
