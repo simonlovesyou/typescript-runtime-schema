@@ -1,7 +1,10 @@
 {
   "name": "typescript-runtime-schema",
   "description": "Mono repository for packages related to the runtime schema typescript transformer.",
-  "repository": "git@github.com:simonlovesyou/typescript-schema.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simonlovesyou/typescript-runtime-schema.git"
+  },
   "author": "Simon Johansson <simonljohansson92@gmail.com>",
   "license": "MIT",
   "private": true,
