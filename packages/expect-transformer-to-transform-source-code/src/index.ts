@@ -32,7 +32,11 @@ const toTransformSourceCode = (
   const program = ts.createProgram({
     rootNames: ["whatever.ts"],
     host,
-    options: {},
+    options: {
+      moduleResolution: ts.ModuleResolutionKind.NodeJs,
+      module: ts.ModuleKind.CommonJS,
+      target: ts.ScriptTarget.ES2020,
+    },
   });
 
   const { outputText } = ts.transpileModule(sourceCode, {

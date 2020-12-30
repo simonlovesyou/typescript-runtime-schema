@@ -38,6 +38,15 @@ exports.bar = "bar";
 expect(transformer).toTransformSourceCode(sourceCode, expectedCode)
 ```
 
+### compilerOptions
+`expect-transformer-to-transform-source-code` uses the following compilerOptions:
+```json
+{
+  "moduleResolution": "node",
+  "module": "commonjs",
+  "target": "es2020",
+}
+```
 ## API
 ### .toTransformSourceCode
 `expect(transformer).toTransformSourceCode(sourceCode, expectedCodeOutput)`
