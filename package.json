@@ -9,10 +9,10 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "test": "lerna run test",
-    "lint": "lerna run lint",
-    "scaffold": "node ./.bin/scaffold",
-    "bootstrap": "lerna bootstrap",
+    "test": "yarn lerna run test",
+    "lint": "yarn lerna run lint",
+    "bootstrap": "yarn lerna bootstrap",
+    "build": "yarn lerna run build",
     "clean": "find . -type d -name node_modules -exec rm -rf {} \\;",
     "build:docs": "./node_modules/.bin/generate-docs --index-file-path ./docs/index.md -o README.md"
   },
