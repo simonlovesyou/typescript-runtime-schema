@@ -1,4 +1,4 @@
-# @typescript-runtime-schema/omit-deep
+# @typescript-runtime-schema/omit-deep ![version](https://badgen.net/badge/version/1.0.0/blue)
 Recursively omit the specified keys from an object
 
 ## Installation
