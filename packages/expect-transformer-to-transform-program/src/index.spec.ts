@@ -27,14 +27,14 @@ const transformer = (program: ts.Program) => {
 describe("expect-transformer-to-transform-program", () => {
   it("should transform the typescript code using the transformer", () => {
     expect(transformer).toTransformProgram(
-      { "./foo.ts": `import * as baz from './baz`, "./baz.ts": `export const bar = "foo"`},
+      { "./foo.ts": `import * as bar from './bar`, "./bar.ts": `export const bar = "foo"`},
       { "./foo.js": dedent`
         "use strict";
-        exports.__esModule = true;
-        var baz = require("bar");
-      `, "./baz.js": dedent`
+        Object.defineProperty(exports, "__esModule", { value: true });
+        const bar = require("bar");
+      `, "./bar.js": dedent`
         "use strict";
-        exports.__esModule = true;
+        Object.defineProperty(exports, "__esModule", { value: true });
         exports.bar = void 0;
         exports.bar = "bar";
       ` }

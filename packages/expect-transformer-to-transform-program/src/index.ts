@@ -16,9 +16,9 @@ declare global {
   namespace jest {
     interface Matchers<R> {
       /**
-       * Asserts that the passed in transformer can produce the expected output files on provided source files.
+       * Asserts that the passed in transformer can produce the expected output files by provided source files.
        * @example
-       * expect(transformer: (program: ts.Program) => ts.TranformerFactory<ts.SourceFile>).toTransformSourceCode('"foo";', '"bar";);
+       * expect(transformer: (ts.Program) => (ts.TransformationContext) => (ts.SourceFile) => ts.SourceFile)
        */
       toTransformProgram(
         sourceFiles: Record<string, string>,
@@ -31,13 +31,14 @@ declare global {
 const toTransformProgram = (
   transformer: Transformer,
   inputFiles: Record<string, string>,
-  outputFiles: Record<string, string>
+  expectedOutputFiles: Record<string, string>
 ) => {
   const project = createProjectSync({
     useInMemoryFileSystem: true,
     compilerOptions: {
       moduleResolution: ts.ModuleResolutionKind.NodeJs,
       module: ts.ModuleKind.CommonJS,
+      target: ts.ScriptTarget.ES2020,
       outDir: "/dist",
       declaration: true,
       typeRoots: ["./dist"],
@@ -68,24 +69,24 @@ const toTransformProgram = (
 
   const output = mapObjIndexed((value, path) =>
     project.fileSystem.readFileSync("/dist/" + path).trim()
-  )(outputFiles);
+  )(expectedOutputFiles);
 
   return {
     message: () =>
       `expected source code ${printReceived(
         inputFiles
       )} to transform to ${printExpected(
-        outputFiles
+        expectedOutputFiles
       )} using the passed in transformer but it compiled to \n${printReceived(
         output
       )}\n\n${printDiffOrStringify(
-        outputFiles,
+        expectedOutputFiles,
         output,
         "expected",
         "received",
         false
       )}`,
-    pass: equals(outputFiles as any, output),
+    pass: equals(expectedOutputFiles as any, output),
   };
 };
 
