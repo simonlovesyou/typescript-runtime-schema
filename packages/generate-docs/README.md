@@ -99,7 +99,7 @@ Options
 
 ▸ **generateDocs**(`options`: { documentationIndexFilePath: string ; entryFile: string ; overwrite?: boolean ; tsConfigFile: string  }): Promise\<string>
 
-*Defined in [lib/index.ts:34](https://github.com/simonlovesyou/typescript-schema/blob/bf7a4d3/packages/generate-docs/lib/index.ts#L34)*
+*Defined in [lib/index.ts:34](https://github.com/simonlovesyou/typescript-schema/blob/c3d04ff/packages/generate-docs/lib/index.ts#L34)*
 
 **`beta`** 
 
