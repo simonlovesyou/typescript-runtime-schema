@@ -26,7 +26,6 @@
     "typescript": "^4.0.3"
   },
   "dependencies": {
-    "@phenomnomnominal/tsquery": "^4.1.1",
     "@types/ramda": "^0.27.27",
     "@typescript-runtime-schema/compiler-utilities": "^1.0.0",
     "@typescript-runtime-schema/factory": "^1.0.0",

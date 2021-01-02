@@ -1,5 +1,4 @@
 import * as ts from "typescript";
-import { tsquery } from "@phenomnomnominal/tsquery";
 import { pipe, last, map } from "ramda";
 import { findRootIdentifier } from "@typescript-runtime-schema/compiler-utilities";
 import * as factory from "@typescript-runtime-schema/factory";
@@ -10,7 +9,7 @@ interface TransformerOptions {}
 
 const findLibraryIdentifier = (node: ts.Node): ts.Identifier | undefined => {
   if (ts.isImportDeclaration(node)) {
-    return tsquery<ts.Identifier>(node, 'Identifier[escapedText="is"]')[0];
+    return node?.importClause?.name
   }
 };
 const createVisitor = (program: ts.Program) => (
