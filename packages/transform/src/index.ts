@@ -1,8 +1,7 @@
 import * as ts from "typescript";
-import { pipe, last, map } from "ramda";
+import { pipe } from "ramda";
 import { findRootIdentifier } from "@typescript-runtime-schema/compiler-utilities";
 import * as factory from "@typescript-runtime-schema/factory";
-import getArbitraryNodeName from "@typescript-runtime-schema/get-arbitrary-node-name";
 import mutate from "./mutators";
 
 interface TransformerOptions {}
