@@ -1,0 +1,70 @@
+name: Release
+
+on:
+  push:
+    branches-ignore:
+    - '**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x]
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: add-support-for-basic-types
+    - name: Get yarn cache directory path
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+    - uses: actions/cache@v2
+      id: yarn-cache
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: yarn install --frozen-lockfile
+    - run: yarn bootstrap
+    - run: yarn build
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x]
+    needs: [build]
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: add-support-for-basic-types
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: yarn install --frozen-lockfile
+    - run: yarn bootstrap
+    - run: yarn test
+  release:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x]
+    needs: [test]
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: add-support-for-basic-types
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: yarn install --frozen-lockfile
+    - run: yarn bootstrap
+    - run: echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
+      env:
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
