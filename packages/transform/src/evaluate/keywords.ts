@@ -5,6 +5,10 @@ export const mutate = (node: ts.TypeNode) => {
   return cloneNode<ts.TypeNode>(node);
 };
 
+export const intrinsic = () => {
+  throw new Error('Cannot handle `intrinsic` keyword')
+}
+
 const MUTATE_MAP = {
   [ts.SyntaxKind.AnyKeyword]: mutate,
   [ts.SyntaxKind.BigIntKeyword]: mutate,
@@ -17,6 +21,7 @@ const MUTATE_MAP = {
   [ts.SyntaxKind.UndefinedKeyword]: mutate,
   [ts.SyntaxKind.UnknownKeyword]: mutate,
   [ts.SyntaxKind.VoidKeyword]: mutate,
+  [ts.SyntaxKind.IntrinsicKeyword]: intrinsic,
 };
 
 export default MUTATE_MAP;
