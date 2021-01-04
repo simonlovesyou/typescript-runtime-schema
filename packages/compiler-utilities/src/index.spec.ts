@@ -58,7 +58,7 @@ describe("compiler-utilities", () => {
         expect(
           mergeObjectLiteralsRecursivelyLeft(objectLiteralB, objectLiteralA)
         ).toEqualSourceCode(
-          `{ type: 'object', properties: { name: { type: 'string' }, type: { anyOf: [{ "const": 'vertebrate' }, { "const": 'invertebrate' }] } } }`
+          `{ type: 'object', properties: { name: { type: 'string' }, type: { anyOf: [{ const: 'vertebrate' }, { const: 'invertebrate' }] } } }`
         );
       });
     });
