@@ -1,0 +1,15 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Main
+
+on: push
+
+jobs:
+  pipeline-component:
+    name: Preflight Step
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Debug
+        shell: bash
+        run: 'echo -e "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}\\nGITHUB_EVENT_NAME: ${GITHUB_EVENT_NAME}"'
