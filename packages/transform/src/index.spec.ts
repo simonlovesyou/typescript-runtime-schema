@@ -81,10 +81,10 @@ describe("transform", () => {
           {
             "./lib.js": jsCode`
               "use strict";
-              exports.__esModule = true;
-              var library_1 = require("@typescript-runtime-schema/library");
-              var name = "Morpheus";
-              library_1["default"]({
+              Object.defineProperty(exports, "__esModule", { value: true });
+              const library_1 = require("@typescript-runtime-schema/library");
+              const name = "Morpheus";
+              library_1.default({
                   type: 'string'
               })(name);`.trim(),
           }
@@ -589,10 +589,10 @@ describe("transform", () => {
         expect(transformer).toTransformProgram(sourceFiles, {
           "./lib.js": jsCode`
             "use strict";
-            exports.__esModule = true;
-            var library_1 = require("@typescript-runtime-schema/library");
-            var person = { name: "Morpheus", age: 21 };
-            library_1["default"]({
+            Object.defineProperty(exports, "__esModule", { value: true });
+            const library_1 = require("@typescript-runtime-schema/library");
+            const person = { name: "Morpheus", age: 21 };
+            library_1.default({
                 type: 'object',
                 title: 'Human',
                 properties: {
@@ -602,10 +602,10 @@ describe("transform", () => {
                     type: {
                         anyOf: [
                             {
-                                "const": 'vertebrates'
+                                const: 'vertebrates'
                             },
                             {
-                                "const": 'invertebrates'
+                                const: 'invertebrates'
                             }
                         ]
                     }
@@ -842,10 +842,10 @@ describe("transform", () => {
         expect(transformer).toTransformProgram(sourceFiles, {
           "./lib.js": jsCode`
             "use strict";
-            exports.__esModule = true;
-            var library_1 = require("@typescript-runtime-schema/library");
-            var person = { name: "Morpheus", age: 21 };
-            library_1["default"]({
+            Object.defineProperty(exports, "__esModule", { value: true });
+            const library_1 = require("@typescript-runtime-schema/library");
+            const person = { name: "Morpheus", age: 21 };
+            library_1.default({
                 type: 'object',
                 title: 'Person',
                 properties: {
