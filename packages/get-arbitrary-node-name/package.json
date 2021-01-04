@@ -11,6 +11,9 @@
     "build:ts": "./node_modules/.bin/tsc --project tsconfig.json",
     "prepublish": "yarn build"
   },
+  "peerDependencies": {
+    "typescript": "^4.0.0"
+  },
   "devDependencies": {
     "@types/jest": "^26.0.14",
     "@types/node": "^14.11.8",
