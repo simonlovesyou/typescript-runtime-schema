@@ -12,6 +12,9 @@
     "build:docs": "yarn generate-docs --index-file-path ./docs/index.md -o README.md",
     "prepublish": "yarn build"
   },
+  "peerDependencies": {
+    "typescript": "^4.0.3"
+  },
   "devDependencies": {
     "@typescript-runtime-schema/generate-docs": "^1.0.0",
     "@types/jest": "^26.0.14",
