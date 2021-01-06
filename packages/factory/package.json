@@ -5,7 +5,6 @@
   "main": "dist/index.js",
   "author": "Simon Johansson <simonljohansson92@gmail.com>",
   "license": "MIT",
-  "private": true,
   "peerDependencies": {
     "typescript": "^4.0.0"
   },
