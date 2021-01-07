@@ -1,7 +1,7 @@
 {
   "name": "@typescript-runtime-schema/omit-deep",
   "version": "1.0.0",
-  "description": "Recursively omit the specified keys from an object",
+  "description": "Recursively omit the specified keys from an object. Function signature inspired by ramda.",
   "main": "dist/index.js",
   "author": "Simon Johansson <simonljohansson92@gmail.com>",
   "license": "MIT",
