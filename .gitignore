@@ -105,3 +105,6 @@ dist
 
 # Macos folder meta data
 .DS_Store
+
+# Local secrets
+.env
