@@ -1,7 +1,7 @@
 {
   "name": "@typescript-runtime-schema/parse-node-to-source-text",
   "version": "1.0.0",
-  "description": "Create a Joi string validation schema using typescript",
+  "description": "Get the resulting source code for a TypeScript node",
   "main": "dist/index.js",
   "license": "MIT",
   "private": true,
