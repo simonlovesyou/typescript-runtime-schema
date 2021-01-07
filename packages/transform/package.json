@@ -1,6 +1,6 @@
 {
   "name": "@typescript-runtime-schema/transform",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Typescript transform which enriches source code with runtime schema validation",
   "main": "dist/index.js",
   "author": "Simon Johansson <simonljohansson92@gmail.com>",
