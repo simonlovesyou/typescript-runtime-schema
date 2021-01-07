@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "author": "Simon Johansson <simonljohansson92@gmail.com>",
   "license": "MIT",
-  "private": false,
+  "private": true,
   "scripts": {
     "build": "yarn build:ts",
     "build:ts": "yarn tsc --project tsconfig.json",
