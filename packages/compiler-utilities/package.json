@@ -1,6 +1,6 @@
 {
   "name": "@typescript-runtime-schema/compiler-utilities",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A collection of Typescript compiler utilities",
   "main": "dist/index.js",
   "license": "MIT",
