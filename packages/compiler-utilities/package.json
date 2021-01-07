@@ -4,7 +4,9 @@
   "description": "A collection of Typescript compiler utilities",
   "main": "dist/index.js",
   "license": "MIT",
-  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
   "author": {
     "name": "Simon Johansson",
     "email": "simonljohansson92@gmail.com"

@@ -5,6 +5,9 @@
   "main": "dist/index.js",
   "license": "MIT",
   "private": true,
+  "publishConfig": {
+    "access": "restricted"
+  },
   "scripts": {
     "test": "jest src/",
     "build": "yarn build:ts",

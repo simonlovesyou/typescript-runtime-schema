@@ -6,6 +6,9 @@
   "author": "Simon Johansson <simonljohansson92@gmail.com>",
   "license": "MIT",
   "private": true,
+  "publishConfig": {
+    "access": "restricted"
+  },
   "scripts": {
     "build": "yarn build:ts",
     "build:ts": "yarn tsc --project tsconfig.json",

@@ -6,6 +6,9 @@
   "license": "MIT",
   "author": "Simon Johansson <simonljohansson92@gmail.com>",
   "types": "typings/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "jest src/",
     "build": "yarn build:ts",

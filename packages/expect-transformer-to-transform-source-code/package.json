@@ -5,6 +5,9 @@
   "main": "dist/index.js",
   "author": "Simon Johansson <simonljohansson92@gmail.com>",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "jest src/",
     "build": "yarn build:ts",
