@@ -1,4 +1,4 @@
-# @typescript-runtime-schema/javascript-template-tag
+# @typescript-runtime-schema/javascript-template-tag ![version](https://badgen.net/badge/version/1.0.0/blue)
 A javascript template tag for making sure the template string contains valid javascript
 
 ## Installation
@@ -21,6 +21,7 @@ const validCode = jsCode`
 
 ## API
 
+
 ### Index
 
 #### Functions
@@ -33,7 +34,7 @@ const validCode = jsCode`
 
 ▸ **javascriptTemplatetag**(`strings`: TemplateStringsArray): string
 
-*Defined in [src/index.ts:8](https://github.com/simonlovesyou/typescript-schema/blob/9013522/packages/javascript-template-tag/src/index.ts#L8)*
+*Defined in [src/index.ts:8](https://github.com/simonlovesyou/typescript-schema/blob/d8a9a26/packages/javascript-template-tag/src/index.ts#L8)*
 
 Attempt to parse the code in the provided template tag (Only accepts one for now)
 
@@ -46,7 +47,7 @@ Name | Type | Description |
 **Returns:** string
 
 ## License
-MIT License Copyright (c) 2020 Simon Johansson
+MIT License Copyright (c) 2021 Simon Johansson
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

@@ -1,4 +1,4 @@
-# @typescript-runtime-schema/generate-docs ![version](https://badgen.net/badge/version/1.0.0/blue)
+# @typescript-runtime-schema/generate-docs ![version](https://badgen.net/badge/version/0.1.0/blue)
 Generate opinionated documentation from source files and/or provided content
 
 ## Installation
@@ -99,7 +99,7 @@ Options
 
 ▸ **generateDocs**(`options`: { documentationIndexFilePath: string ; entryFile: string ; overwrite?: boolean ; tsConfigFile: string  }): Promise\<string>
 
-*Defined in [lib/index.ts:34](https://github.com/simonlovesyou/typescript-schema/blob/c3d04ff/packages/generate-docs/lib/index.ts#L34)*
+*Defined in [lib/index.ts:33](https://github.com/simonlovesyou/typescript-schema/blob/d8a9a26/packages/generate-docs/lib/index.ts#L33)*
 
 **`beta`** 
 
@@ -112,7 +112,7 @@ Name | Type |
 **Returns:** Promise\<string>
 
 ## License
-MIT License Copyright (c) 2020 Simon Johansson
+MIT License Copyright (c) 2021 Simon Johansson
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

@@ -1,5 +1,5 @@
-# @typescript-runtime-schema/is ![version](https://badgen.net/badge/version/1.0.0/blue)
-`is` function to type guard against given type. You could consider it to be the swiss knife of type guards. To be used in conjunction with `@typescript-runtime-schema/transform`
+# @typescript-runtime-schema/is ![version](https://badgen.net/badge/version/0.1.0/blue)
+`is` function to type guard against given type. To be used in conjunction with `@typescript-runtime-schema/transform`
 
 ## Installation
 Using npm:
@@ -96,7 +96,7 @@ boolean: `value` is `T`
 
 
 ## License
-MIT License Copyright (c) 2020 Simon Johansson
+MIT License Copyright (c) 2021 Simon Johansson
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
