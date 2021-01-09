@@ -1,0 +1,24 @@
+{
+  "name": "typescript-runtime-schema",
+  "description": "Mono repository for packages related to the runtime schema typescript transformer.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simonlovesyou/typescript-runtime-schema.git"
+  },
+  "author": "Simon Johansson <simonljohansson92@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "test": "yarn lerna run test",
+    "lint": "yarn lerna run lint",
+    "bootstrap": "yarn lerna bootstrap",
+    "build": "yarn lerna run build",
+    "clean": "find . -type d -name node_modules -exec rm -rf {} \\;",
+    "build:docs": "./node_modules/.bin/generate-docs --index-file-path ./docs/index.md -o README.md"
+  },
+  "devDependencies": {
+    "@typescript-runtime-schema/generate-docs": "file:./packages/generate-docs",
+    "lerna": "^3.22.1",
+    "unorepo": "^0.1.0"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@typescript-runtime-schema/lib",
+  "version": "0.1.0",
+  "description": "The main library of @typescript-runtime-schema providing the family of functionality revolving runtime type guarding/assertion of static types",
+  "main": "dist/index.js",
+  "author": "Simon Johansson <simonljohansson92@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "yarn build:ts",
+    "build:ts": "./node_modules/.bin/tsc --project .",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@typescript-runtime-schema/is": "^0.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.5"
+  }
+}
