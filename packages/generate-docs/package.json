@@ -5,13 +5,13 @@
   "main": "dist/index.js",
   "author": "Simon Johansson <simonljohansson92@gmail.com>",
   "license": "MIT",
-  "private": true,
+  "private": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/simonlovesyou/typescript-runtime-schema.git"
   },
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   },
   "scripts": {
     "build": "yarn build:ts",
