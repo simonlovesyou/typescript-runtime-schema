@@ -788,6 +788,52 @@ describe("transform", () => {
           `.trim()
         );
       });
+      describe("mapped type", () => {
+        const sourceCode = tsCode`
+          import is from "@typescript-runtime-schema/library";
+
+          const person = { name: "Morpheus", age: 21 } as any
+
+          type Address = { [key in Exclude<'streetAddress' | 'city' | 'postalCode', 'postalCode'>]: string }
+
+          interface Person {
+            name: string
+            age?: number
+            address: Address
+          }
+
+          is<Person>(person);
+        `;
+        it("should transform correctly", () => {
+          expect(transformer).toTransformSourceCode(
+            sourceCode,
+            dedent`
+              "use strict";
+              Object.defineProperty(exports, "__esModule", { value: true });
+              var library_1 = require("@typescript-runtime-schema/library");
+              var person = { name: "Morpheus", age: 21 };
+              library_1.default({
+                  type: 'object',
+                  title: 'Person',
+                  properties: {
+                      name: {
+                          type: 'string'
+                      },
+                      age: {
+                          type: 'number'
+                      },
+                      address: ()
+                  },
+                  required: [
+                      "name",
+                      "address"
+                  ],
+                  additionalProperties: false
+              })(person);
+            `.trim()
+          );
+        });
+      });
       describe("index signature", () => {
         const sourceCode = tsCode`
           import is from "@typescript-runtime-schema/library";

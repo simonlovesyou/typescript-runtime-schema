@@ -146,6 +146,12 @@ export const tupleType = (
   );
 };
 
+const mappedType = (mappedTypeNode: ts.MappedTypeNode, checker: ts.TypeChecker, context: Context) => {
+  const evaluatedType = evaluateOver(mappedTypeNode, checker, context)
+
+  return evaluatedType
+}
+
 const MUTATE_MAP = {
   [ts.SyntaxKind.LiteralType]: literalTypeNode,
   [ts.SyntaxKind.TypeReference]: typeReferenceNode,
@@ -154,6 +160,7 @@ const MUTATE_MAP = {
   [ts.SyntaxKind.ArrayType]: arrayType,
   [ts.SyntaxKind.TupleType]: tupleType,
   [ts.SyntaxKind.IndexSignature]: indexSignature,
+  [ts.SyntaxKind.MappedType]: mappedType,
 };
 
 export default MUTATE_MAP;
