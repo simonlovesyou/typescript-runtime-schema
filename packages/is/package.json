@@ -6,6 +6,10 @@
   "license": "MIT",
   "author": "Simon Johansson <simonljohansson92@gmail.com>",
   "types": "typings/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simonlovesyou/typescript-runtime-schema.git"
+  },
   "publishConfig": {
     "access": "public"
   },
