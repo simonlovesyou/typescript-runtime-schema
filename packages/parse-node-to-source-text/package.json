@@ -5,6 +5,10 @@
   "main": "dist/index.js",
   "license": "MIT",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simonlovesyou/typescript-runtime-schema.git"
+  },
   "publishConfig": {
     "access": "restricted"
   },
