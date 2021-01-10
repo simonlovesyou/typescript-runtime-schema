@@ -1,6 +1,6 @@
 {
   "name": "@typescript-runtime-schema/transform",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Typescript transform which enriches source code with runtime schema validation",
   "main": "dist/index.js",
   "author": "Simon Johansson <simonljohansson92@gmail.com>",
@@ -26,9 +26,9 @@
     "@types/dedent": "^0.7.0",
     "@types/jest": "^26.0.14",
     "@types/node": "^14.11.8",
-    "@typescript-runtime-schema/generate-docs": "^0.1.0",
-    "@typescript-runtime-schema/expect-transformer-to-transform-program": "^1.0.0",
-    "@typescript-runtime-schema/expect-transformer-to-transform-source-code": "^1.0.0",
+    "@typescript-runtime-schema/expect-transformer-to-transform-program": "^1.0.1",
+    "@typescript-runtime-schema/expect-transformer-to-transform-source-code": "^1.0.1",
+    "@typescript-runtime-schema/generate-docs": "^0.1.1",
     "dedent": "^0.7.0",
     "jest": "^26.5.3",
     "ts-jest": "^26.4.1",
@@ -36,11 +36,11 @@
   },
   "dependencies": {
     "@types/ramda": "^0.27.27",
-    "@typescript-runtime-schema/compiler-utilities": "^0.1.0",
-    "@typescript-runtime-schema/factory": "^1.0.0",
-    "@typescript-runtime-schema/get-arbitrary-node-name": "^1.0.0",
-    "@typescript-runtime-schema/javascript-template-tag": "^1.0.0",
-    "@typescript-runtime-schema/typescript-template-tag": "^0.1.0",
+    "@typescript-runtime-schema/compiler-utilities": "^0.1.1",
+    "@typescript-runtime-schema/factory": "^1.0.1",
+    "@typescript-runtime-schema/get-arbitrary-node-name": "^1.0.1",
+    "@typescript-runtime-schema/javascript-template-tag": "^1.0.1",
+    "@typescript-runtime-schema/typescript-template-tag": "^0.1.1",
     "@wessberg/ts-clone-node": "^0.3.18",
     "ramda": "^0.27.1"
   }

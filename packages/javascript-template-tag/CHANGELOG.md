@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.1 (2021-01-10)
+
+
+### Bug Fixes
+
+* **javascript-template-tag:** Add repository field to package json ([6a45c29](https://github.com/simonlovesyou/typescript-runtime-schema/commit/6a45c29cfee202efbdcaa16d26f5243bc8c65f96))
+
+
+
+
+
 # 1.0.0 (2021-01-10)
 
 

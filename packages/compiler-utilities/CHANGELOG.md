@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.1.1 (2021-01-10)
+
+
+### Bug Fixes
+
+* **compiler-utilities:** Add repository field to package json ([33a6582](https://github.com/simonlovesyou/typescript-runtime-schema/commit/33a6582ed18fdfef9099025d33a0181b2fac1940))
+
+
+
+
+
 # 0.2.0 (2021-01-10)
 
 

@@ -1,4 +1,4 @@
-# @typescript-runtime-schema/javascript-template-tag ![version](https://badgen.net/badge/version/1.0.0/blue)
+# @typescript-runtime-schema/javascript-template-tag ![version](https://badgen.net/badge/version/1.0.1/blue)
 A javascript template tag for making sure the template string contains valid javascript
 
 ## Installation
@@ -34,7 +34,7 @@ const validCode = jsCode`
 
 ▸ **javascriptTemplatetag**(`strings`: TemplateStringsArray): string
 
-*Defined in [src/index.ts:8](https://github.com/simonlovesyou/typescript-schema/blob/88dd63f/packages/javascript-template-tag/src/index.ts#L8)*
+*Defined in [src/index.ts:8](https://github.com/simonlovesyou/typescript-schema/blob/f9dfaf9/packages/javascript-template-tag/src/index.ts#L8)*
 
 Attempt to parse the code in the provided template tag (Only accepts one for now)
 

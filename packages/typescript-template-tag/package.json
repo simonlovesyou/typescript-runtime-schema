@@ -1,6 +1,6 @@
 {
   "name": "@typescript-runtime-schema/typescript-template-tag",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A typescript template tag for making sure the template string contains valid typescript",
   "main": "dist/index.js",
   "license": "MIT",
