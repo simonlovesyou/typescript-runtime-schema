@@ -4,9 +4,8 @@
   "description": "Get an arbitrary typescript node name",
   "main": "dist/index.js",
   "license": "MIT",
-  "private": true,
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   },
   "scripts": {
     "test": "jest src/",
