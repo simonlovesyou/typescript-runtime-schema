@@ -4,6 +4,10 @@
   "description": "A typescript template tag for making sure the template string contains valid typescript",
   "main": "dist/index.js",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simonlovesyou/typescript-runtime-schema.git"
+  },
   "publishConfig": {
     "access": "public"
   },
