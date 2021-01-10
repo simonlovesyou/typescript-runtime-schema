@@ -4,6 +4,10 @@
   "description": "A collection of Typescript compiler utilities",
   "main": "dist/index.js",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simonlovesyou/typescript-runtime-schema.git"
+  },
   "publishConfig": {
     "access": "public"
   },
