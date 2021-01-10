@@ -1,4 +1,4 @@
-# @typescript-runtime-schema/omit-deep ![version](https://badgen.net/badge/version/1.0.0/blue)
+# @typescript-runtime-schema/omit-deep ![version](https://badgen.net/badge/version/1.0.2/blue)
 Recursively omit the specified keys from an object. Function signature inspired by ramda.
 
 ## Installation

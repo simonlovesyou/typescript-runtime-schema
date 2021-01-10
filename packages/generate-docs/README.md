@@ -1,4 +1,4 @@
-# @typescript-runtime-schema/generate-docs ![version](https://badgen.net/badge/version/0.1.0/blue)
+# @typescript-runtime-schema/generate-docs ![version](https://badgen.net/badge/version/0.1.2/blue)
 Generate opinionated documentation from source files and/or provided content
 
 ## Installation
@@ -99,7 +99,7 @@ Options
 
 ▸ **generateDocs**(`options`: { documentationIndexFilePath: string ; entryFile: string ; overwrite?: boolean ; tsConfigFile: string  }): Promise\<string>
 
-*Defined in [lib/index.ts:33](https://github.com/simonlovesyou/typescript-schema/blob/88dd63f/packages/generate-docs/lib/index.ts#L33)*
+*Defined in [lib/index.ts:33](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/generate-docs/lib/index.ts#L33)*
 
 **`beta`** 
 

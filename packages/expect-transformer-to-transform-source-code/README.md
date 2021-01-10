@@ -1,4 +1,4 @@
-# @typescript-runtime-schema/expect-transformer-to-transform-source-code ![version](https://badgen.net/badge/version/1.0.0/blue)
+# @typescript-runtime-schema/expect-transformer-to-transform-source-code ![version](https://badgen.net/badge/version/1.0.2/blue)
 Expect a transformer to produce certain transpiled code given some source code
 
 ## Installation

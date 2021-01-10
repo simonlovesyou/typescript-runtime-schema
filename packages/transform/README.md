@@ -1,4 +1,4 @@
-# @typescript-runtime-schema/transform ![version](https://badgen.net/badge/version/0.1.0/blue)
+# @typescript-runtime-schema/transform ![version](https://badgen.net/badge/version/0.1.2/blue)
 Typescript transform which enriches source code with runtime schema validation
 
 ## Comparison
