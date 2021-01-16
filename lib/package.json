@@ -11,7 +11,8 @@
   "scripts": {
     "build": "yarn build:ts",
     "build:ts": "./node_modules/.bin/tsc --project .",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "prepublish": "yarn build:ts"
   },
   "dependencies": {
     "@typescript-runtime-schema/is": "^0.1.2"
