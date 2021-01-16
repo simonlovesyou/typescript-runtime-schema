@@ -1,6 +1,6 @@
 {
   "name": "@typescript-runtime-schema/compiler-utilities",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A collection of Typescript compiler utilities",
   "main": "dist/index.js",
   "license": "MIT",
@@ -30,9 +30,9 @@
   },
   "dependencies": {
     "@types/ramda": "^0.27.27",
-    "@typescript-runtime-schema/expect-node-to-equal-source-code": "^1.0.4",
-    "@typescript-runtime-schema/generate-docs": "^0.1.4",
-    "@typescript-runtime-schema/omit-deep": "^1.0.4",
+    "@typescript-runtime-schema/expect-node-to-equal-source-code": "^1.0.5",
+    "@typescript-runtime-schema/generate-docs": "^0.1.5",
+    "@typescript-runtime-schema/omit-deep": "^1.0.5",
     "@wessberg/ts-clone-node": "^0.3.18",
     "ramda": "^0.27.1"
   }
