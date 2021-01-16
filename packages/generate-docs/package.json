@@ -12,7 +12,8 @@
     "build": "yarn build:ts",
     "build:ts": "yarn tsc --project tsconfig.json",
     "build:docs": "node bin/index.js --index-file-path ./docs/index.md -o README.md",
-    "prepublish": "yarn build"
+    "prepublish": "yarn build",
+    "preversion": "yarn build:docs"
   },
   "bin": {
     "generate-docs": "./bin/index.js"
