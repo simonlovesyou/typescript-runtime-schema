@@ -4,13 +4,13 @@ import * as ts from "typescript";
  * @public
  */
 export const updateCallExpression = (
-  identifier?: string | ts.Identifier,
+  expression?: string | ts.Identifier | ts.Expression,
   typeArguments?: readonly ts.TypeNode[],
   argumentsArray?: readonly ts.Expression[]
 ) => (callExpression: ts.CallExpression) =>
   ts.factory.updateCallExpression(
     callExpression,
-    typeof identifier === "string" ? createIdentifier(identifier) : identifier,
+    typeof expression === "string" ? createIdentifier(expression) : expression,
     typeArguments || [],
     argumentsArray || []
   );
