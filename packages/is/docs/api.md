@@ -3,12 +3,15 @@
 Default export.
 
 #### Signature
-`function is<T>(value: any) => value is T;`
+`function is<T extends Serializable>(value: any) => value is T;`
 
 #### Type Parameters
 Name | Constraint | Default value | Description |
 ------ | ------ | ------ | ------ |
-`T` | N/A | N/A | The type we are type guarding against. Must be a serializeable value |
+`T` | `Serializeable` | N/A | The type we are type guarding against. Must be a serializeable value |
+
+##### `Serializeable`
+`type Serializeable = string | number | boolean | null | Record<string, Serializeable> | Serializeable[];`
 
 #### Parameters
 Name | Constraint | Default value | Description |
