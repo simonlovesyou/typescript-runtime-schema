@@ -4,9 +4,8 @@
   "description": "Get the resulting source code for a TypeScript node",
   "main": "dist/index.js",
   "license": "MIT",
-  "private": true,
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   },
   "scripts": {
     "test": "jest src/",
