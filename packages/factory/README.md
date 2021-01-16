@@ -313,7 +313,7 @@ yarn add @typescript-runtime-schema/factory
 
 • `Const` **createArrayBindingPattern**: createArrayBindingPattern = ts.factory.createArrayBindingPattern
 
-*Defined in [src/index.ts:71](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L71)*
+*Defined in [src/index.ts:71](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L71)*
 
 ___
 
@@ -321,7 +321,7 @@ ___
 
 • `Const` **createArrayTypeNode**: createArrayTypeNode = ts.factory.createArrayTypeNode
 
-*Defined in [src/index.ts:72](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L72)*
+*Defined in [src/index.ts:72](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L72)*
 
 ___
 
@@ -329,7 +329,7 @@ ___
 
 • `Const` **createAwaitExpression**: createAwaitExpression = ts.factory.createAwaitExpression
 
-*Defined in [src/index.ts:73](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L73)*
+*Defined in [src/index.ts:73](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L73)*
 
 ___
 
@@ -337,7 +337,7 @@ ___
 
 • `Const` **createBigIntLiteral**: createBigIntLiteral = ts.factory.createBigIntLiteral
 
-*Defined in [src/index.ts:74](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L74)*
+*Defined in [src/index.ts:74](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L74)*
 
 ___
 
@@ -345,7 +345,7 @@ ___
 
 • `Const` **createBitwiseNot**: createBitwiseNot = ts.factory.createBitwiseNot
 
-*Defined in [src/index.ts:75](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L75)*
+*Defined in [src/index.ts:75](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L75)*
 
 ___
 
@@ -353,7 +353,7 @@ ___
 
 • `Const` **createBreakStatement**: createBreakStatement = ts.factory.createBreakStatement
 
-*Defined in [src/index.ts:76](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L76)*
+*Defined in [src/index.ts:76](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L76)*
 
 ___
 
@@ -361,7 +361,7 @@ ___
 
 • `Const` **createCaseBlock**: createCaseBlock = ts.factory.createCaseBlock
 
-*Defined in [src/index.ts:77](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L77)*
+*Defined in [src/index.ts:77](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L77)*
 
 ___
 
@@ -369,7 +369,7 @@ ___
 
 • `Const` **createCommaListExpression**: createCommaListExpression = ts.factory.createCommaListExpression
 
-*Defined in [src/index.ts:78](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L78)*
+*Defined in [src/index.ts:78](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L78)*
 
 ___
 
@@ -377,7 +377,7 @@ ___
 
 • `Const` **createComputedPropertyName**: createComputedPropertyName = ts.factory.createComputedPropertyName
 
-*Defined in [src/index.ts:79](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L79)*
+*Defined in [src/index.ts:79](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L79)*
 
 ___
 
@@ -385,7 +385,7 @@ ___
 
 • `Const` **createContinueStatement**: createContinueStatement = ts.factory.createContinueStatement
 
-*Defined in [src/index.ts:80](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L80)*
+*Defined in [src/index.ts:80](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L80)*
 
 ___
 
@@ -393,7 +393,7 @@ ___
 
 • `Const` **createDebuggerStatement**: createDebuggerStatement = ts.factory.createDebuggerStatement
 
-*Defined in [src/index.ts:81](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L81)*
+*Defined in [src/index.ts:81](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L81)*
 
 ___
 
@@ -401,7 +401,7 @@ ___
 
 • `Const` **createDecorator**: createDecorator = ts.factory.createDecorator
 
-*Defined in [src/index.ts:82](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L82)*
+*Defined in [src/index.ts:82](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L82)*
 
 ___
 
@@ -409,7 +409,7 @@ ___
 
 • `Const` **createDefaultClause**: createDefaultClause = ts.factory.createDefaultClause
 
-*Defined in [src/index.ts:83](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L83)*
+*Defined in [src/index.ts:83](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L83)*
 
 ___
 
@@ -417,7 +417,7 @@ ___
 
 • `Const` **createDeleteExpression**: createDeleteExpression = ts.factory.createDeleteExpression
 
-*Defined in [src/index.ts:84](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L84)*
+*Defined in [src/index.ts:84](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L84)*
 
 ___
 
@@ -425,7 +425,7 @@ ___
 
 • `Const` **createEmptyStatement**: createEmptyStatement = ts.factory.createEmptyStatement
 
-*Defined in [src/index.ts:85](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L85)*
+*Defined in [src/index.ts:85](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L85)*
 
 ___
 
@@ -433,7 +433,7 @@ ___
 
 • `Const` **createExportDefault**: createExportDefault = ts.factory.createExportDefault
 
-*Defined in [src/index.ts:86](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L86)*
+*Defined in [src/index.ts:86](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L86)*
 
 ___
 
@@ -441,7 +441,7 @@ ___
 
 • `Const` **createExpressionStatement**: createExpressionStatement = ts.factory.createExpressionStatement
 
-*Defined in [src/index.ts:87](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L87)*
+*Defined in [src/index.ts:87](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L87)*
 
 ___
 
@@ -449,7 +449,7 @@ ___
 
 • `Const` **createExternalModuleExport**: createExternalModuleExport = ts.factory.createExternalModuleExport
 
-*Defined in [src/index.ts:88](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L88)*
+*Defined in [src/index.ts:88](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L88)*
 
 ___
 
@@ -457,7 +457,7 @@ ___
 
 • `Const` **createExternalModuleReference**: createExternalModuleReference = ts.factory.createExternalModuleReference
 
-*Defined in [src/index.ts:89](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L89)*
+*Defined in [src/index.ts:89](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L89)*
 
 ___
 
@@ -465,7 +465,7 @@ ___
 
 • `Const` **createFalse**: createFalse = ts.factory.createFalse
 
-*Defined in [src/index.ts:90](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L90)*
+*Defined in [src/index.ts:90](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L90)*
 
 ___
 
@@ -473,7 +473,7 @@ ___
 
 • `Const` **createIdentifier**: createIdentifier = ts.factory.createIdentifier
 
-*Defined in [src/index.ts:91](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L91)*
+*Defined in [src/index.ts:91](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L91)*
 
 ___
 
@@ -481,7 +481,7 @@ ___
 
 • `Const` **createInferTypeNode**: createInferTypeNode = ts.factory.createInferTypeNode
 
-*Defined in [src/index.ts:94](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L94)*
+*Defined in [src/index.ts:94](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L94)*
 
 ___
 
@@ -489,7 +489,7 @@ ___
 
 • `Const` **createIntersectionTypeNode**: createIntersectionTypeNode = ts.factory.createIntersectionTypeNode
 
-*Defined in [src/index.ts:95](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L95)*
+*Defined in [src/index.ts:95](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L95)*
 
 ___
 
@@ -497,7 +497,7 @@ ___
 
 • `Const` **createJSDocAllType**: createJSDocAllType = ts.factory.createJSDocAllType
 
-*Defined in [src/index.ts:96](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L96)*
+*Defined in [src/index.ts:96](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L96)*
 
 ___
 
@@ -505,7 +505,7 @@ ___
 
 • `Const` **createJSDocNamepathType**: createJSDocNamepathType = ts.factory.createJSDocNamepathType
 
-*Defined in [src/index.ts:97](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L97)*
+*Defined in [src/index.ts:97](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L97)*
 
 ___
 
@@ -513,7 +513,7 @@ ___
 
 • `Const` **createJSDocNonNullableType**: createJSDocNonNullableType = ts.factory.createJSDocNonNullableType
 
-*Defined in [src/index.ts:98](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L98)*
+*Defined in [src/index.ts:98](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L98)*
 
 ___
 
@@ -521,7 +521,7 @@ ___
 
 • `Const` **createJSDocNullableType**: createJSDocNullableType = ts.factory.createJSDocNullableType
 
-*Defined in [src/index.ts:99](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L99)*
+*Defined in [src/index.ts:99](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L99)*
 
 ___
 
@@ -529,7 +529,7 @@ ___
 
 • `Const` **createJSDocOptionalType**: createJSDocOptionalType = ts.factory.createJSDocOptionalType
 
-*Defined in [src/index.ts:100](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L100)*
+*Defined in [src/index.ts:100](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L100)*
 
 ___
 
@@ -537,7 +537,7 @@ ___
 
 • `Const` **createJSDocTypeExpression**: createJSDocTypeExpression = ts.factory.createJSDocTypeExpression
 
-*Defined in [src/index.ts:101](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L101)*
+*Defined in [src/index.ts:101](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L101)*
 
 ___
 
@@ -545,7 +545,7 @@ ___
 
 • `Const` **createJSDocUnknownType**: createJSDocUnknownType = ts.factory.createJSDocUnknownType
 
-*Defined in [src/index.ts:102](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L102)*
+*Defined in [src/index.ts:102](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L102)*
 
 ___
 
@@ -553,7 +553,7 @@ ___
 
 • `Const` **createJSDocVariadicType**: createJSDocVariadicType = ts.factory.createJSDocVariadicType
 
-*Defined in [src/index.ts:103](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L103)*
+*Defined in [src/index.ts:103](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L103)*
 
 ___
 
@@ -561,7 +561,7 @@ ___
 
 • `Const` **createJsxAttributes**: createJsxAttributes = ts.factory.createJsxAttributes
 
-*Defined in [src/index.ts:104](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L104)*
+*Defined in [src/index.ts:104](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L104)*
 
 ___
 
@@ -569,7 +569,7 @@ ___
 
 • `Const` **createJsxClosingElement**: createJsxClosingElement = ts.factory.createJsxClosingElement
 
-*Defined in [src/index.ts:105](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L105)*
+*Defined in [src/index.ts:105](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L105)*
 
 ___
 
@@ -577,7 +577,7 @@ ___
 
 • `Const` **createJsxJsxClosingFragment**: createJsxJsxClosingFragment = ts.factory.createJsxJsxClosingFragment
 
-*Defined in [src/index.ts:106](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L106)*
+*Defined in [src/index.ts:106](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L106)*
 
 ___
 
@@ -585,7 +585,7 @@ ___
 
 • `Const` **createJsxOpeningFragment**: createJsxOpeningFragment = ts.factory.createJsxOpeningFragment
 
-*Defined in [src/index.ts:107](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L107)*
+*Defined in [src/index.ts:107](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L107)*
 
 ___
 
@@ -593,7 +593,7 @@ ___
 
 • `Const` **createJsxSpreadAttribute**: createJsxSpreadAttribute = ts.factory.createJsxSpreadAttribute
 
-*Defined in [src/index.ts:108](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L108)*
+*Defined in [src/index.ts:108](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L108)*
 
 ___
 
@@ -601,7 +601,7 @@ ___
 
 • `Const` **createKeywordTypeNode**: createKeywordTypeNode = ts.factory.createKeywordTypeNode
 
-*Defined in [src/index.ts:109](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L109)*
+*Defined in [src/index.ts:109](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L109)*
 
 ___
 
@@ -609,7 +609,7 @@ ___
 
 • `Const` **createLogicalNot**: createLogicalNot = ts.factory.createLogicalNot
 
-*Defined in [src/index.ts:110](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L110)*
+*Defined in [src/index.ts:110](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L110)*
 
 ___
 
@@ -617,7 +617,7 @@ ___
 
 • `Const` **createLoopVariable**: createLoopVariable = ts.factory.createLoopVariable
 
-*Defined in [src/index.ts:111](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L111)*
+*Defined in [src/index.ts:111](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L111)*
 
 ___
 
@@ -625,7 +625,7 @@ ___
 
 • `Const` **createModifier**: createModifier = ts.factory.createModifier
 
-*Defined in [src/index.ts:112](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L112)*
+*Defined in [src/index.ts:112](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L112)*
 
 ___
 
@@ -633,7 +633,7 @@ ___
 
 • `Const` **createModifiersFromModifierFlags**: createModifiersFromModifierFlags = ts.factory.createModifiersFromModifierFlags
 
-*Defined in [src/index.ts:113](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L113)*
+*Defined in [src/index.ts:113](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L113)*
 
 ___
 
@@ -641,7 +641,7 @@ ___
 
 • `Const` **createModuleBlock**: createModuleBlock = ts.factory.createModuleBlock
 
-*Defined in [src/index.ts:114](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L114)*
+*Defined in [src/index.ts:114](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L114)*
 
 ___
 
@@ -649,7 +649,7 @@ ___
 
 • `Const` **createNamedExports**: createNamedExports = ts.factory.createNamedExports
 
-*Defined in [src/index.ts:115](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L115)*
+*Defined in [src/index.ts:115](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L115)*
 
 ___
 
@@ -657,7 +657,7 @@ ___
 
 • `Const` **createNamedImports**: createNamedImports = ts.factory.createNamedImports
 
-*Defined in [src/index.ts:116](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L116)*
+*Defined in [src/index.ts:116](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L116)*
 
 ___
 
@@ -665,7 +665,7 @@ ___
 
 • `Const` **createNamespaceExport**: createNamespaceExport = ts.factory.createNamespaceExport
 
-*Defined in [src/index.ts:117](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L117)*
+*Defined in [src/index.ts:117](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L117)*
 
 ___
 
@@ -673,7 +673,7 @@ ___
 
 • `Const` **createNamespaceExportDeclaration**: createNamespaceExportDeclaration = ts.factory.createNamespaceExportDeclaration
 
-*Defined in [src/index.ts:118](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L118)*
+*Defined in [src/index.ts:118](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L118)*
 
 ___
 
@@ -681,7 +681,7 @@ ___
 
 • `Const` **createNamespaceImport**: createNamespaceImport = ts.factory.createNamespaceImport
 
-*Defined in [src/index.ts:119](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L119)*
+*Defined in [src/index.ts:119](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L119)*
 
 ___
 
@@ -689,7 +689,7 @@ ___
 
 • `Const` **createNonNullChain**: createNonNullChain = ts.factory.createNonNullChain
 
-*Defined in [src/index.ts:120](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L120)*
+*Defined in [src/index.ts:120](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L120)*
 
 ___
 
@@ -697,7 +697,7 @@ ___
 
 • `Const` **createNonNullExpression**: createNonNullExpression = ts.factory.createNonNullExpression
 
-*Defined in [src/index.ts:121](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L121)*
+*Defined in [src/index.ts:121](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L121)*
 
 ___
 
@@ -705,7 +705,7 @@ ___
 
 • `Const` **createNotEmittedStatement**: createNotEmittedStatement = ts.factory.createNotEmittedStatement
 
-*Defined in [src/index.ts:122](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L122)*
+*Defined in [src/index.ts:122](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L122)*
 
 ___
 
@@ -713,7 +713,7 @@ ___
 
 • `Const` **createNull**: createNull = ts.factory.createNull
 
-*Defined in [src/index.ts:123](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L123)*
+*Defined in [src/index.ts:123](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L123)*
 
 ___
 
@@ -721,7 +721,7 @@ ___
 
 • `Const` **createObjectBindingPattern**: createObjectBindingPattern = ts.factory.createObjectBindingPattern
 
-*Defined in [src/index.ts:124](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L124)*
+*Defined in [src/index.ts:124](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L124)*
 
 ___
 
@@ -729,7 +729,7 @@ ___
 
 • `Const` **createOmittedExpression**: createOmittedExpression = ts.factory.createOmittedExpression
 
-*Defined in [src/index.ts:125](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L125)*
+*Defined in [src/index.ts:125](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L125)*
 
 ___
 
@@ -737,7 +737,7 @@ ___
 
 • `Const` **createOptionalTypeNode**: createOptionalTypeNode = ts.factory.createOptionalTypeNode
 
-*Defined in [src/index.ts:126](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L126)*
+*Defined in [src/index.ts:126](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L126)*
 
 ___
 
@@ -745,7 +745,7 @@ ___
 
 • `Const` **createParenthesizedExpression**: createParenthesizedExpression = ts.factory.createParenthesizedExpression
 
-*Defined in [src/index.ts:127](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L127)*
+*Defined in [src/index.ts:127](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L127)*
 
 ___
 
@@ -753,7 +753,7 @@ ___
 
 • `Const` **createParenthesizedType**: createParenthesizedType = ts.factory.createParenthesizedType
 
-*Defined in [src/index.ts:128](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L128)*
+*Defined in [src/index.ts:128](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L128)*
 
 ___
 
@@ -761,7 +761,7 @@ ___
 
 • `Const` **createPostfixDecrement**: createPostfixDecrement = ts.factory.createPostfixDecrement
 
-*Defined in [src/index.ts:129](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L129)*
+*Defined in [src/index.ts:129](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L129)*
 
 ___
 
@@ -769,7 +769,7 @@ ___
 
 • `Const` **createPostfixIncrement**: createPostfixIncrement = ts.factory.createPostfixIncrement
 
-*Defined in [src/index.ts:130](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L130)*
+*Defined in [src/index.ts:130](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L130)*
 
 ___
 
@@ -777,7 +777,7 @@ ___
 
 • `Const` **createPrefixDecrement**: createPrefixDecrement = ts.factory.createPrefixDecrement
 
-*Defined in [src/index.ts:131](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L131)*
+*Defined in [src/index.ts:131](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L131)*
 
 ___
 
@@ -785,7 +785,7 @@ ___
 
 • `Const` **createPrefixIncrement**: createPrefixIncrement = ts.factory.createPrefixIncrement
 
-*Defined in [src/index.ts:132](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L132)*
+*Defined in [src/index.ts:132](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L132)*
 
 ___
 
@@ -793,7 +793,7 @@ ___
 
 • `Const` **createPrefixMinus**: createPrefixMinus = ts.factory.createPrefixMinus
 
-*Defined in [src/index.ts:133](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L133)*
+*Defined in [src/index.ts:133](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L133)*
 
 ___
 
@@ -801,7 +801,7 @@ ___
 
 • `Const` **createPrefixPlus**: createPrefixPlus = ts.factory.createPrefixPlus
 
-*Defined in [src/index.ts:134](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L134)*
+*Defined in [src/index.ts:134](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L134)*
 
 ___
 
@@ -809,7 +809,7 @@ ___
 
 • `Const` **createPrivateIdentifier**: createPrivateIdentifier = ts.factory.createPrivateIdentifier
 
-*Defined in [src/index.ts:135](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L135)*
+*Defined in [src/index.ts:135](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L135)*
 
 ___
 
@@ -817,7 +817,7 @@ ___
 
 • `Const` **createRegularExpressionLiteral**: createRegularExpressionLiteral = ts.factory.createRegularExpressionLiteral
 
-*Defined in [src/index.ts:136](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L136)*
+*Defined in [src/index.ts:136](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L136)*
 
 ___
 
@@ -825,7 +825,7 @@ ___
 
 • `Const` **createRestTypeNode**: createRestTypeNode = ts.factory.createRestTypeNode
 
-*Defined in [src/index.ts:137](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L137)*
+*Defined in [src/index.ts:137](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L137)*
 
 ___
 
@@ -833,7 +833,7 @@ ___
 
 • `Const` **createReturnStatement**: createReturnStatement = ts.factory.createReturnStatement
 
-*Defined in [src/index.ts:138](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L138)*
+*Defined in [src/index.ts:138](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L138)*
 
 ___
 
@@ -841,7 +841,7 @@ ___
 
 • `Const` **createSemicolonClassElement**: createSemicolonClassElement = ts.factory.createSemicolonClassElement
 
-*Defined in [src/index.ts:139](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L139)*
+*Defined in [src/index.ts:139](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L139)*
 
 ___
 
@@ -849,7 +849,7 @@ ___
 
 • `Const` **createSpreadAssignment**: createSpreadAssignment = ts.factory.createSpreadAssignment
 
-*Defined in [src/index.ts:140](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L140)*
+*Defined in [src/index.ts:140](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L140)*
 
 ___
 
@@ -857,7 +857,7 @@ ___
 
 • `Const` **createSpreadElement**: createSpreadElement = ts.factory.createSpreadElement
 
-*Defined in [src/index.ts:141](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L141)*
+*Defined in [src/index.ts:141](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L141)*
 
 ___
 
@@ -865,7 +865,7 @@ ___
 
 • `Const` **createSuper**: createSuper = ts.factory.createSuper
 
-*Defined in [src/index.ts:142](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L142)*
+*Defined in [src/index.ts:142](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L142)*
 
 ___
 
@@ -873,7 +873,7 @@ ___
 
 • `Const` **createThis**: createThis = ts.factory.createThis
 
-*Defined in [src/index.ts:143](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L143)*
+*Defined in [src/index.ts:143](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L143)*
 
 ___
 
@@ -881,7 +881,7 @@ ___
 
 • `Const` **createThisTypeNode**: createThisTypeNode = ts.factory.createThisTypeNode
 
-*Defined in [src/index.ts:144](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L144)*
+*Defined in [src/index.ts:144](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L144)*
 
 ___
 
@@ -889,7 +889,7 @@ ___
 
 • `Const` **createThrowStatement**: createThrowStatement = ts.factory.createThrowStatement
 
-*Defined in [src/index.ts:145](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L145)*
+*Defined in [src/index.ts:145](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L145)*
 
 ___
 
@@ -897,7 +897,7 @@ ___
 
 • `Const` **createToken**: createToken = ts.factory.createToken
 
-*Defined in [src/index.ts:146](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L146)*
+*Defined in [src/index.ts:146](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L146)*
 
 ___
 
@@ -905,7 +905,7 @@ ___
 
 • `Const` **createTrue**: createTrue = ts.factory.createTrue
 
-*Defined in [src/index.ts:147](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L147)*
+*Defined in [src/index.ts:147](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L147)*
 
 ___
 
@@ -913,7 +913,7 @@ ___
 
 • `Const` **createTypeLiteralNode**: createTypeLiteralNode = ts.factory.createTypeLiteralNode
 
-*Defined in [src/index.ts:148](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L148)*
+*Defined in [src/index.ts:148](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L148)*
 
 ___
 
@@ -921,7 +921,7 @@ ___
 
 • `Const` **createTypeOfExpression**: createTypeOfExpression = ts.factory.createTypeOfExpression
 
-*Defined in [src/index.ts:149](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L149)*
+*Defined in [src/index.ts:149](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L149)*
 
 ___
 
@@ -929,7 +929,7 @@ ___
 
 • `Const` **createTypeQueryNode**: createTypeQueryNode = ts.factory.createTypeQueryNode
 
-*Defined in [src/index.ts:150](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L150)*
+*Defined in [src/index.ts:150](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L150)*
 
 ___
 
@@ -937,7 +937,7 @@ ___
 
 • `Const` **createUnionTypeNode**: createUnionTypeNode = ts.factory.createUnionTypeNode
 
-*Defined in [src/index.ts:151](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L151)*
+*Defined in [src/index.ts:151](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L151)*
 
 ___
 
@@ -945,7 +945,7 @@ ___
 
 • `Const` **createVoidExpression**: createVoidExpression = ts.factory.createVoidExpression
 
-*Defined in [src/index.ts:152](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L152)*
+*Defined in [src/index.ts:152](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L152)*
 
 ___
 
@@ -953,7 +953,7 @@ ___
 
 • `Const` **createVoidZero**: createVoidZero = ts.factory.createVoidZero
 
-*Defined in [src/index.ts:153](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L153)*
+*Defined in [src/index.ts:153](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L153)*
 
 ___
 
@@ -961,7 +961,7 @@ ___
 
 • `Const` **getGeneratedNameForNode**: getGeneratedNameForNode = ts.factory.getGeneratedNameForNode
 
-*Defined in [src/index.ts:154](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L154)*
+*Defined in [src/index.ts:154](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L154)*
 
 ### Functions
 
@@ -969,7 +969,7 @@ ___
 
 ▸ `Const`**createAdd**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:155](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L155)*
+*Defined in [src/index.ts:155](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L155)*
 
 ##### Parameters:
 
@@ -985,7 +985,7 @@ ___
 
 ▸ `Const`**createArrayLiteralExpression**(`multiLine?`: boolean): (Anonymous function)
 
-*Defined in [src/index.ts:156](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L156)*
+*Defined in [src/index.ts:156](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L156)*
 
 ##### Parameters:
 
@@ -1001,7 +1001,7 @@ ___
 
 ▸ `Const`**createArrowFunction**(`body`: ts.ConciseBody): (Anonymous function)
 
-*Defined in [src/index.ts:20](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L20)*
+*Defined in [src/index.ts:20](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L20)*
 
 ##### Parameters:
 
@@ -1017,7 +1017,7 @@ ___
 
 ▸ `Const`**createAsExpression**(`type`: TypeNode): (Anonymous function)
 
-*Defined in [src/index.ts:157](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L157)*
+*Defined in [src/index.ts:157](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L157)*
 
 ##### Parameters:
 
@@ -1033,7 +1033,7 @@ ___
 
 ▸ **createAssignment**(`right`: Expression): function
 
-*Defined in [src/index.ts:158](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L158)*
+*Defined in [src/index.ts:158](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L158)*
 
 ##### Parameters:
 
@@ -1045,7 +1045,7 @@ Name | Type |
 
 ▸ **createAssignment**(`right`: Expression): function
 
-*Defined in [src/index.ts:159](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L159)*
+*Defined in [src/index.ts:159](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L159)*
 
 ##### Parameters:
 
@@ -1061,7 +1061,7 @@ ___
 
 ▸ `Const`**createBinaryExpression**(`operator`: ts.BinaryOperator \| ts.BinaryOperatorToken, `right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:303](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L303)*
+*Defined in [src/index.ts:303](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L303)*
 
 ##### Parameters:
 
@@ -1078,7 +1078,7 @@ ___
 
 ▸ `Const`**createBindingElement**(`dotDotDotToken`: ts.DotDotDotToken \| undefined, `propertyName`: string \| ts.PropertyName \| undefined, `name`: string \| ts.BindingName): (Anonymous function)
 
-*Defined in [src/index.ts:38](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L38)*
+*Defined in [src/index.ts:38](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L38)*
 
 ##### Parameters:
 
@@ -1096,7 +1096,7 @@ ___
 
 ▸ `Const`**createBitwiseAnd**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:168](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L168)*
+*Defined in [src/index.ts:168](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L168)*
 
 ##### Parameters:
 
@@ -1112,7 +1112,7 @@ ___
 
 ▸ `Const`**createBitwiseOr**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:169](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L169)*
+*Defined in [src/index.ts:169](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L169)*
 
 ##### Parameters:
 
@@ -1128,7 +1128,7 @@ ___
 
 ▸ `Const`**createBitwiseXor**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:170](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L170)*
+*Defined in [src/index.ts:170](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L170)*
 
 ##### Parameters:
 
@@ -1144,7 +1144,7 @@ ___
 
 ▸ `Const`**createBlock**(`multiLine?`: boolean): (Anonymous function)
 
-*Defined in [src/index.ts:171](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L171)*
+*Defined in [src/index.ts:171](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L171)*
 
 ##### Parameters:
 
@@ -1160,7 +1160,7 @@ ___
 
 ▸ `Const`**createBundle**(`prepends?`: readonly (UnparsedSource \| InputFiles)[]): (Anonymous function)
 
-*Defined in [src/index.ts:52](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L52)*
+*Defined in [src/index.ts:52](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L52)*
 
 ##### Parameters:
 
@@ -1176,7 +1176,7 @@ ___
 
 ▸ `Const`**createCallChain**(`questionDotToken`: ts.QuestionDotToken \| undefined, `typeArguments`: readonly TypeNode[] \| undefined, `argumentsArray`: readonly Expression[] \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:59](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L59)*
+*Defined in [src/index.ts:59](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L59)*
 
 ##### Parameters:
 
@@ -1194,7 +1194,7 @@ ___
 
 ▸ `Const`**createCallExpression**(`typeArguments`: readonly TypeNode[] \| undefined, `argumentsArray`: readonly Expression[] \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:304](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L304)*
+*Defined in [src/index.ts:304](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L304)*
 
 ##### Parameters:
 
@@ -1211,7 +1211,7 @@ ___
 
 ▸ `Const`**createCallSignature**(`parameters`: readonly ParameterDeclaration[], `type`: TypeNode \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:305](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L305)*
+*Defined in [src/index.ts:305](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L305)*
 
 ##### Parameters:
 
@@ -1228,7 +1228,7 @@ ___
 
 ▸ `Const`**createCaseClause**(`statements`: readonly Statement[]): (Anonymous function)
 
-*Defined in [src/index.ts:172](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L172)*
+*Defined in [src/index.ts:172](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L172)*
 
 ##### Parameters:
 
@@ -1244,7 +1244,7 @@ ___
 
 ▸ `Const`**createCatchClause**(`block`: Block): (Anonymous function)
 
-*Defined in [src/index.ts:173](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L173)*
+*Defined in [src/index.ts:173](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L173)*
 
 ##### Parameters:
 
@@ -1260,7 +1260,7 @@ ___
 
 ▸ `Const`**createComma**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:174](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L174)*
+*Defined in [src/index.ts:174](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L174)*
 
 ##### Parameters:
 
@@ -1276,7 +1276,7 @@ ___
 
 ▸ `Const`**createConstructSignature**(`parameters`: readonly ParameterDeclaration[], `type`: TypeNode \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:307](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L307)*
+*Defined in [src/index.ts:307](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L307)*
 
 ##### Parameters:
 
@@ -1293,7 +1293,7 @@ ___
 
 ▸ `Const`**createConstructorTypeNode**(`parameters`: readonly ParameterDeclaration[], `type`: TypeNode): (Anonymous function)
 
-*Defined in [src/index.ts:306](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L306)*
+*Defined in [src/index.ts:306](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L306)*
 
 ##### Parameters:
 
@@ -1310,7 +1310,7 @@ ___
 
 ▸ `Const`**createDivide**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:175](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L175)*
+*Defined in [src/index.ts:175](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L175)*
 
 ##### Parameters:
 
@@ -1326,7 +1326,7 @@ ___
 
 ▸ `Const`**createDoStatement**(`expression`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:176](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L176)*
+*Defined in [src/index.ts:176](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L176)*
 
 ##### Parameters:
 
@@ -1342,7 +1342,7 @@ ___
 
 ▸ `Const`**createElementAccessChain**(`questionDotToken`: ts.QuestionDotToken \| undefined, `index`: number \| Expression): (Anonymous function)
 
-*Defined in [src/index.ts:308](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L308)*
+*Defined in [src/index.ts:308](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L308)*
 
 ##### Parameters:
 
@@ -1359,7 +1359,7 @@ ___
 
 ▸ `Const`**createElementAccessExpression**(`index`: number \| Expression): (Anonymous function)
 
-*Defined in [src/index.ts:177](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L177)*
+*Defined in [src/index.ts:177](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L177)*
 
 ##### Parameters:
 
@@ -1375,7 +1375,7 @@ ___
 
 ▸ `Const`**createEnumMember**(`initializer`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:178](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L178)*
+*Defined in [src/index.ts:178](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L178)*
 
 ##### Parameters:
 
@@ -1391,7 +1391,7 @@ ___
 
 ▸ `Const`**createEquality**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:179](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L179)*
+*Defined in [src/index.ts:179](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L179)*
 
 ##### Parameters:
 
@@ -1407,7 +1407,7 @@ ___
 
 ▸ `Const`**createExponent**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:180](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L180)*
+*Defined in [src/index.ts:180](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L180)*
 
 ##### Parameters:
 
@@ -1423,7 +1423,7 @@ ___
 
 ▸ `Const`**createExportSpecifier**(`name`: string \| Identifier): (Anonymous function)
 
-*Defined in [src/index.ts:181](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L181)*
+*Defined in [src/index.ts:181](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L181)*
 
 ##### Parameters:
 
@@ -1439,7 +1439,7 @@ ___
 
 ▸ `Const`**createExpressionWithTypeArguments**(`typeArguments`: readonly TypeNode[] \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:182](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L182)*
+*Defined in [src/index.ts:182](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L182)*
 
 ##### Parameters:
 
@@ -1455,7 +1455,7 @@ ___
 
 ▸ `Const`**createForInStatement**(`expression`: Expression, `statement`: Statement): (Anonymous function)
 
-*Defined in [src/index.ts:309](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L309)*
+*Defined in [src/index.ts:309](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L309)*
 
 ##### Parameters:
 
@@ -1472,7 +1472,7 @@ ___
 
 ▸ `Const`**createFunctionTypeNode**(`parameters`: readonly ParameterDeclaration[], `type`: TypeNode): (Anonymous function)
 
-*Defined in [src/index.ts:310](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L310)*
+*Defined in [src/index.ts:310](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L310)*
 
 ##### Parameters:
 
@@ -1489,7 +1489,7 @@ ___
 
 ▸ `Const`**createGreaterThan**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:183](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L183)*
+*Defined in [src/index.ts:183](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L183)*
 
 ##### Parameters:
 
@@ -1505,7 +1505,7 @@ ___
 
 ▸ `Const`**createGreaterThanEquals**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:184](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L184)*
+*Defined in [src/index.ts:184](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L184)*
 
 ##### Parameters:
 
@@ -1521,7 +1521,7 @@ ___
 
 ▸ `Const`**createIfStatement**(`thenStatement`: Statement, `elseStatement`: Statement): (Anonymous function)
 
-*Defined in [src/index.ts:311](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L311)*
+*Defined in [src/index.ts:311](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L311)*
 
 ##### Parameters:
 
@@ -1538,7 +1538,7 @@ ___
 
 ▸ `Const`**createImmediatelyInvokedArrowFunction**(`param`: ParameterDeclaration \| undefined, `paramValue`: Expression \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:312](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L312)*
+*Defined in [src/index.ts:312](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L312)*
 
 ##### Parameters:
 
@@ -1555,7 +1555,7 @@ ___
 
 ▸ `Const`**createImmediatelyInvokedFunctionExpression**(`param`: ParameterDeclaration, `paramValue`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:313](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L313)*
+*Defined in [src/index.ts:313](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L313)*
 
 ##### Parameters:
 
@@ -1572,7 +1572,7 @@ ___
 
 ▸ `Const`**createImportClause**(`name`: Identifier \| undefined, `namedBindings`: ts.NamedImportBindings \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:314](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L314)*
+*Defined in [src/index.ts:314](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L314)*
 
 ##### Parameters:
 
@@ -1589,7 +1589,7 @@ ___
 
 ▸ `Const`**createImportSpecifier**(`name`: Identifier): (Anonymous function)
 
-*Defined in [src/index.ts:185](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L185)*
+*Defined in [src/index.ts:185](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L185)*
 
 ##### Parameters:
 
@@ -1605,7 +1605,7 @@ ___
 
 ▸ `Const`**createIndexedAccessTypeNode**(`indexType`: TypeNode): (Anonymous function)
 
-*Defined in [src/index.ts:186](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L186)*
+*Defined in [src/index.ts:186](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L186)*
 
 ##### Parameters:
 
@@ -1621,7 +1621,7 @@ ___
 
 ▸ `Const`**createInequality**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:187](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L187)*
+*Defined in [src/index.ts:187](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L187)*
 
 ##### Parameters:
 
@@ -1637,7 +1637,7 @@ ___
 
 ▸ `Const`**createJSDocAuthorTag**(`comment?`: string): (Anonymous function)
 
-*Defined in [src/index.ts:188](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L188)*
+*Defined in [src/index.ts:188](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L188)*
 
 ##### Parameters:
 
@@ -1653,7 +1653,7 @@ ___
 
 ▸ `Const`**createJSDocClassTag**(`comment?`: string): (Anonymous function)
 
-*Defined in [src/index.ts:189](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L189)*
+*Defined in [src/index.ts:189](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L189)*
 
 ##### Parameters:
 
@@ -1669,7 +1669,7 @@ ___
 
 ▸ `Const`**createJSDocComment**(`tags`: readonly JSDocTag[] \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:190](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L190)*
+*Defined in [src/index.ts:190](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L190)*
 
 ##### Parameters:
 
@@ -1685,7 +1685,7 @@ ___
 
 ▸ `Const`**createJSDocDeprecatedTag**(`comment?`: string): (Anonymous function)
 
-*Defined in [src/index.ts:191](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L191)*
+*Defined in [src/index.ts:191](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L191)*
 
 ##### Parameters:
 
@@ -1701,7 +1701,7 @@ ___
 
 ▸ `Const`**createJSDocEnumTag**(`typeExpression`: JSDocTypeExpression, `comment?`: string): (Anonymous function)
 
-*Defined in [src/index.ts:315](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L315)*
+*Defined in [src/index.ts:315](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L315)*
 
 ##### Parameters:
 
@@ -1718,7 +1718,7 @@ ___
 
 ▸ `Const`**createJSDocFunctionType**(`type`: TypeNode \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:192](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L192)*
+*Defined in [src/index.ts:192](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L192)*
 
 ##### Parameters:
 
@@ -1734,7 +1734,7 @@ ___
 
 ▸ `Const`**createJSDocPrivateTag**(`comment?`: string): (Anonymous function)
 
-*Defined in [src/index.ts:193](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L193)*
+*Defined in [src/index.ts:193](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L193)*
 
 ##### Parameters:
 
@@ -1750,7 +1750,7 @@ ___
 
 ▸ `Const`**createJSDocProtectedTag**(`comment?`: string): (Anonymous function)
 
-*Defined in [src/index.ts:194](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L194)*
+*Defined in [src/index.ts:194](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L194)*
 
 ##### Parameters:
 
@@ -1766,7 +1766,7 @@ ___
 
 ▸ `Const`**createJSDocPublicTag**(`comment?`: string): (Anonymous function)
 
-*Defined in [src/index.ts:195](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L195)*
+*Defined in [src/index.ts:195](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L195)*
 
 ##### Parameters:
 
@@ -1782,7 +1782,7 @@ ___
 
 ▸ `Const`**createJSDocReadonlyTag**(`comment?`: string): (Anonymous function)
 
-*Defined in [src/index.ts:196](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L196)*
+*Defined in [src/index.ts:196](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L196)*
 
 ##### Parameters:
 
@@ -1798,7 +1798,7 @@ ___
 
 ▸ `Const`**createJSDocReturnTag**(`typeExpression`: JSDocTypeExpression, `comment?`: string): (Anonymous function)
 
-*Defined in [src/index.ts:316](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L316)*
+*Defined in [src/index.ts:316](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L316)*
 
 ##### Parameters:
 
@@ -1815,7 +1815,7 @@ ___
 
 ▸ `Const`**createJSDocSignature**(`parameters`: readonly JSDocParameterTag[], `type`: JSDocReturnTag): (Anonymous function)
 
-*Defined in [src/index.ts:317](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L317)*
+*Defined in [src/index.ts:317](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L317)*
 
 ##### Parameters:
 
@@ -1832,7 +1832,7 @@ ___
 
 ▸ `Const`**createJSDocThisTag**(`typeExpression`: JSDocTypeExpression, `comment?`: string): (Anonymous function)
 
-*Defined in [src/index.ts:318](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L318)*
+*Defined in [src/index.ts:318](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L318)*
 
 ##### Parameters:
 
@@ -1849,7 +1849,7 @@ ___
 
 ▸ `Const`**createJSDocTypeLiteral**(`isArrayType`: boolean): (Anonymous function)
 
-*Defined in [src/index.ts:197](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L197)*
+*Defined in [src/index.ts:197](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L197)*
 
 ##### Parameters:
 
@@ -1865,7 +1865,7 @@ ___
 
 ▸ `Const`**createJSDocTypeTag**(`typeExpression`: JSDocTypeExpression, `comment?`: string): (Anonymous function)
 
-*Defined in [src/index.ts:319](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L319)*
+*Defined in [src/index.ts:319](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L319)*
 
 ##### Parameters:
 
@@ -1882,7 +1882,7 @@ ___
 
 ▸ `Const`**createJSDocUnknownTag**(`comment?`: string): (Anonymous function)
 
-*Defined in [src/index.ts:198](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L198)*
+*Defined in [src/index.ts:198](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L198)*
 
 ##### Parameters:
 
@@ -1898,7 +1898,7 @@ ___
 
 ▸ `Const`**createJsxAttribute**(`initializer`: StringLiteral \| JsxExpression \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:199](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L199)*
+*Defined in [src/index.ts:199](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L199)*
 
 ##### Parameters:
 
@@ -1914,7 +1914,7 @@ ___
 
 ▸ `Const`**createJsxElement**(`children`: readonly ts.JsxChild[], `closingElement`: JsxClosingElement): (Anonymous function)
 
-*Defined in [src/index.ts:320](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L320)*
+*Defined in [src/index.ts:320](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L320)*
 
 ##### Parameters:
 
@@ -1931,7 +1931,7 @@ ___
 
 ▸ `Const`**createJsxExpression**(`expression`: Expression \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:200](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L200)*
+*Defined in [src/index.ts:200](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L200)*
 
 ##### Parameters:
 
@@ -1947,7 +1947,7 @@ ___
 
 ▸ `Const`**createJsxFragment**(`children`: readonly ts.JsxChild[], `closingFragment`: JsxClosingFragment): (Anonymous function)
 
-*Defined in [src/index.ts:321](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L321)*
+*Defined in [src/index.ts:321](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L321)*
 
 ##### Parameters:
 
@@ -1964,7 +1964,7 @@ ___
 
 ▸ `Const`**createJsxOpeningElement**(`typeArguments`: readonly TypeNode[] \| undefined, `attributes`: JsxAttributes): (Anonymous function)
 
-*Defined in [src/index.ts:322](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L322)*
+*Defined in [src/index.ts:322](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L322)*
 
 ##### Parameters:
 
@@ -1981,7 +1981,7 @@ ___
 
 ▸ `Const`**createJsxSelfClosingElement**(`typeArguments`: readonly TypeNode[] \| undefined, `attributes`: JsxAttributes): (Anonymous function)
 
-*Defined in [src/index.ts:323](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L323)*
+*Defined in [src/index.ts:323](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L323)*
 
 ##### Parameters:
 
@@ -1998,7 +1998,7 @@ ___
 
 ▸ `Const`**createJsxText**(`containsOnlyTriviaWhiteSpaces`: boolean): (Anonymous function)
 
-*Defined in [src/index.ts:201](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L201)*
+*Defined in [src/index.ts:201](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L201)*
 
 ##### Parameters:
 
@@ -2014,7 +2014,7 @@ ___
 
 ▸ `Const`**createLabeledStatement**(`statement`: Statement): (Anonymous function)
 
-*Defined in [src/index.ts:202](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L202)*
+*Defined in [src/index.ts:202](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L202)*
 
 ##### Parameters:
 
@@ -2030,7 +2030,7 @@ ___
 
 ▸ `Const`**createLeftShift**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:203](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L203)*
+*Defined in [src/index.ts:203](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L203)*
 
 ##### Parameters:
 
@@ -2046,7 +2046,7 @@ ___
 
 ▸ `Const`**createLessThan**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:204](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L204)*
+*Defined in [src/index.ts:204](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L204)*
 
 ##### Parameters:
 
@@ -2062,7 +2062,7 @@ ___
 
 ▸ `Const`**createLessThanEquals**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:205](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L205)*
+*Defined in [src/index.ts:205](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L205)*
 
 ##### Parameters:
 
@@ -2078,7 +2078,7 @@ ___
 
 ▸ `Const`**createLogicalAnd**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:206](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L206)*
+*Defined in [src/index.ts:206](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L206)*
 
 ##### Parameters:
 
@@ -2094,7 +2094,7 @@ ___
 
 ▸ `Const`**createLogicalOr**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:207](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L207)*
+*Defined in [src/index.ts:207](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L207)*
 
 ##### Parameters:
 
@@ -2110,7 +2110,7 @@ ___
 
 ▸ `Const`**createModulo**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:208](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L208)*
+*Defined in [src/index.ts:208](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L208)*
 
 ##### Parameters:
 
@@ -2126,7 +2126,7 @@ ___
 
 ▸ `Const`**createMultiply**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:209](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L209)*
+*Defined in [src/index.ts:209](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L209)*
 
 ##### Parameters:
 
@@ -2142,7 +2142,7 @@ ___
 
 ▸ `Const`**createNewExpression**(`typeArguments`: readonly TypeNode[] \| undefined, `argumentsArray`: readonly Expression[] \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:324](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L324)*
+*Defined in [src/index.ts:324](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L324)*
 
 ##### Parameters:
 
@@ -2159,7 +2159,7 @@ ___
 
 ▸ `Const`**createNodeArray**\<T>(`hasTrailingComma`: boolean): (Anonymous function)
 
-*Defined in [src/index.ts:210](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L210)*
+*Defined in [src/index.ts:210](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L210)*
 
 ##### Type parameters:
 
@@ -2181,7 +2181,7 @@ ___
 
 ▸ `Const`**createNumericLiteral**(`numericLiteralFlags?`: TokenFlags): (Anonymous function)
 
-*Defined in [src/index.ts:213](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L213)*
+*Defined in [src/index.ts:213](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L213)*
 
 ##### Parameters:
 
@@ -2197,7 +2197,7 @@ ___
 
 ▸ `Const`**createObjectLiteralExpression**(`multiLine?`: boolean): (Anonymous function)
 
-*Defined in [src/index.ts:214](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L214)*
+*Defined in [src/index.ts:214](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L214)*
 
 ##### Parameters:
 
@@ -2213,7 +2213,7 @@ ___
 
 ▸ `Const`**createPartiallyEmittedExpression**(`original`: Node): (Anonymous function)
 
-*Defined in [src/index.ts:215](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L215)*
+*Defined in [src/index.ts:215](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L215)*
 
 ##### Parameters:
 
@@ -2229,7 +2229,7 @@ ___
 
 ▸ `Const`**createPostfixUnaryExpression**(`operator`: ts.PostfixUnaryOperator): (Anonymous function)
 
-*Defined in [src/index.ts:216](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L216)*
+*Defined in [src/index.ts:216](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L216)*
 
 ##### Parameters:
 
@@ -2245,7 +2245,7 @@ ___
 
 ▸ `Const`**createPrefixUnaryExpression**(`operand`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:217](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L217)*
+*Defined in [src/index.ts:217](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L217)*
 
 ##### Parameters:
 
@@ -2261,7 +2261,7 @@ ___
 
 ▸ `Const`**createPropertyAccessChain**(`questionDotToken`: ts.QuestionDotToken \| undefined, `name`: string \| Identifier \| PrivateIdentifier): (Anonymous function)
 
-*Defined in [src/index.ts:325](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L325)*
+*Defined in [src/index.ts:325](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L325)*
 
 ##### Parameters:
 
@@ -2278,7 +2278,7 @@ ___
 
 ▸ `Const`**createPropertyAccessExpression**(`name`: string \| Identifier \| PrivateIdentifier): (Anonymous function)
 
-*Defined in [src/index.ts:218](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L218)*
+*Defined in [src/index.ts:218](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L218)*
 
 ##### Parameters:
 
@@ -2294,7 +2294,7 @@ ___
 
 ▸ `Const`**createPropertyAssignment**(`name`: string \| ts.PropertyName): (Anonymous function)
 
-*Defined in [src/index.ts:222](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L222)*
+*Defined in [src/index.ts:222](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L222)*
 
 This curried function, compared to most other functions, contains the original argument order to the TypeScript factory API
 
@@ -2312,7 +2312,7 @@ ___
 
 ▸ `Const`**createQualifiedName**(`right`: string \| Identifier): (Anonymous function)
 
-*Defined in [src/index.ts:223](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L223)*
+*Defined in [src/index.ts:223](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L223)*
 
 ##### Parameters:
 
@@ -2328,7 +2328,7 @@ ___
 
 ▸ `Const`**createRightShift**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:224](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L224)*
+*Defined in [src/index.ts:224](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L224)*
 
 ##### Parameters:
 
@@ -2344,7 +2344,7 @@ ___
 
 ▸ `Const`**createShorthandPropertyAssignment**(`objectAssignmentInitializer`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:225](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L225)*
+*Defined in [src/index.ts:225](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L225)*
 
 ##### Parameters:
 
@@ -2360,7 +2360,7 @@ ___
 
 ▸ `Const`**createSourceFile**(`endOfFileToken`: ts.EndOfFileToken, `flags`: NodeFlags): (Anonymous function)
 
-*Defined in [src/index.ts:326](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L326)*
+*Defined in [src/index.ts:326](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L326)*
 
 ##### Parameters:
 
@@ -2377,7 +2377,7 @@ ___
 
 ▸ `Const`**createStrictEquality**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:226](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L226)*
+*Defined in [src/index.ts:226](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L226)*
 
 ##### Parameters:
 
@@ -2393,7 +2393,7 @@ ___
 
 ▸ `Const`**createStrictInequality**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:227](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L227)*
+*Defined in [src/index.ts:227](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L227)*
 
 ##### Parameters:
 
@@ -2409,7 +2409,7 @@ ___
 
 ▸ `Const`**createStringLiteral**(`isSingleQuote?`: boolean): (Anonymous function)
 
-*Defined in [src/index.ts:228](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L228)*
+*Defined in [src/index.ts:228](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L228)*
 
 ##### Parameters:
 
@@ -2425,7 +2425,7 @@ ___
 
 ▸ `Const`**createStringLiteralFromNode**(`isSingleQuote?`: boolean): (Anonymous function)
 
-*Defined in [src/index.ts:229](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L229)*
+*Defined in [src/index.ts:229](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L229)*
 
 ##### Parameters:
 
@@ -2441,7 +2441,7 @@ ___
 
 ▸ `Const`**createSubtract**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:230](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L230)*
+*Defined in [src/index.ts:230](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L230)*
 
 ##### Parameters:
 
@@ -2457,7 +2457,7 @@ ___
 
 ▸ `Const`**createSwitchStatement**(`caseBlock`: CaseBlock): (Anonymous function)
 
-*Defined in [src/index.ts:231](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L231)*
+*Defined in [src/index.ts:231](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L231)*
 
 ##### Parameters:
 
@@ -2473,7 +2473,7 @@ ___
 
 ▸ `Const`**createTaggedTemplateExpression**(`typeArguments`: readonly TypeNode[] \| undefined, `template`: ts.TemplateLiteral): (Anonymous function)
 
-*Defined in [src/index.ts:327](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L327)*
+*Defined in [src/index.ts:327](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L327)*
 
 ##### Parameters:
 
@@ -2490,7 +2490,7 @@ ___
 
 ▸ `Const`**createTemplateExpression**(`templateSpans`: readonly TemplateSpan[]): (Anonymous function)
 
-*Defined in [src/index.ts:232](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L232)*
+*Defined in [src/index.ts:232](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L232)*
 
 ##### Parameters:
 
@@ -2506,7 +2506,7 @@ ___
 
 ▸ **createTemplateHead**(`rawText`: string, `templateFlags`: TokenFlags): function
 
-*Defined in [src/index.ts:328](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L328)*
+*Defined in [src/index.ts:328](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L328)*
 
 ##### Parameters:
 
@@ -2519,7 +2519,7 @@ Name | Type |
 
 ▸ **createTemplateHead**(`rawText`: string, `templateFlags`: TokenFlags): function
 
-*Defined in [src/index.ts:329](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L329)*
+*Defined in [src/index.ts:329](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L329)*
 
 ##### Parameters:
 
@@ -2536,7 +2536,7 @@ ___
 
 ▸ `Const`**createTemplateSpan**(`literal`: TemplateMiddle \| TemplateTail): (Anonymous function)
 
-*Defined in [src/index.ts:233](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L233)*
+*Defined in [src/index.ts:233](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L233)*
 
 ##### Parameters:
 
@@ -2552,7 +2552,7 @@ ___
 
 ▸ `Const`**createTryStatement**(`catchClause`: CatchClause \| undefined, `finallyBlock`: Block \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:342](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L342)*
+*Defined in [src/index.ts:342](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L342)*
 
 ##### Parameters:
 
@@ -2569,7 +2569,7 @@ ___
 
 ▸ `Const`**createTypeAssertion**(`expression`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:234](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L234)*
+*Defined in [src/index.ts:234](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L234)*
 
 ##### Parameters:
 
@@ -2585,7 +2585,7 @@ ___
 
 ▸ `Const`**createTypeOperatorNode**(`type`: TypeNode): (Anonymous function)
 
-*Defined in [src/index.ts:235](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L235)*
+*Defined in [src/index.ts:235](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L235)*
 
 ##### Parameters:
 
@@ -2601,7 +2601,7 @@ ___
 
 ▸ `Const`**createTypeParameterDeclaration**(`constraint`: TypeNode, `defaultType`: TypeNode): (Anonymous function)
 
-*Defined in [src/index.ts:343](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L343)*
+*Defined in [src/index.ts:343](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L343)*
 
 ##### Parameters:
 
@@ -2618,7 +2618,7 @@ ___
 
 ▸ `Const`**createTypePredicateNode**(`parameterName`: Identifier \| ThisTypeNode \| string, `type`: TypeNode \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:344](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L344)*
+*Defined in [src/index.ts:344](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L344)*
 
 ##### Parameters:
 
@@ -2635,7 +2635,7 @@ ___
 
 ▸ `Const`**createTypeReferenceNode**(`typeArguments`: readonly TypeNode[]): (Anonymous function)
 
-*Defined in [src/index.ts:236](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L236)*
+*Defined in [src/index.ts:236](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L236)*
 
 ##### Parameters:
 
@@ -2651,7 +2651,7 @@ ___
 
 ▸ `Const`**createUniqueName**(`flags?`: GeneratedIdentifierFlags): (Anonymous function)
 
-*Defined in [src/index.ts:237](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L237)*
+*Defined in [src/index.ts:237](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L237)*
 
 ##### Parameters:
 
@@ -2667,7 +2667,7 @@ ___
 
 ▸ `Const`**createUnsignedRightShift**(`right`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:238](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L238)*
+*Defined in [src/index.ts:238](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L238)*
 
 ##### Parameters:
 
@@ -2683,7 +2683,7 @@ ___
 
 ▸ `Const`**createVariableDeclarationList**(`flags`: NodeFlags): (Anonymous function)
 
-*Defined in [src/index.ts:239](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L239)*
+*Defined in [src/index.ts:239](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L239)*
 
 ##### Parameters:
 
@@ -2699,7 +2699,7 @@ ___
 
 ▸ `Const`**createVariableStatement**(`declarationList`: VariableDeclarationList \| readonly VariableDeclaration[]): (Anonymous function)
 
-*Defined in [src/index.ts:240](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L240)*
+*Defined in [src/index.ts:240](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L240)*
 
 ##### Parameters:
 
@@ -2715,7 +2715,7 @@ ___
 
 ▸ `Const`**createWhileStatement**(`statement`: Statement): (Anonymous function)
 
-*Defined in [src/index.ts:241](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L241)*
+*Defined in [src/index.ts:241](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L241)*
 
 ##### Parameters:
 
@@ -2731,7 +2731,7 @@ ___
 
 ▸ `Const`**createWithStatement**(`statement`: Statement): (Anonymous function)
 
-*Defined in [src/index.ts:242](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L242)*
+*Defined in [src/index.ts:242](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L242)*
 
 ##### Parameters:
 
@@ -2747,7 +2747,7 @@ ___
 
 ▸ `Const`**restoreOuterExpressions**(`innerExpression`: Expression, `kinds`: OuterExpressionKinds): (Anonymous function)
 
-*Defined in [src/index.ts:345](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L345)*
+*Defined in [src/index.ts:345](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L345)*
 
 ##### Parameters:
 
@@ -2764,7 +2764,7 @@ ___
 
 ▸ `Const`**updateArrayBindingPattern**(`elements`: readonly ts.ArrayBindingElement[]): (Anonymous function)
 
-*Defined in [src/index.ts:245](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L245)*
+*Defined in [src/index.ts:245](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L245)*
 
 ##### Parameters:
 
@@ -2780,7 +2780,7 @@ ___
 
 ▸ `Const`**updateArrayLiteralExpression**(`elements`: readonly Expression[]): (Anonymous function)
 
-*Defined in [src/index.ts:246](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L246)*
+*Defined in [src/index.ts:246](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L246)*
 
 ##### Parameters:
 
@@ -2796,7 +2796,7 @@ ___
 
 ▸ `Const`**updateArrayTypeNode**(`elementType`: TypeNode): (Anonymous function)
 
-*Defined in [src/index.ts:247](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L247)*
+*Defined in [src/index.ts:247](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L247)*
 
 ##### Parameters:
 
@@ -2812,7 +2812,7 @@ ___
 
 ▸ `Const`**updateAsExpression**(`expression`: Expression, `type`: TypeNode): (Anonymous function)
 
-*Defined in [src/index.ts:346](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L346)*
+*Defined in [src/index.ts:346](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L346)*
 
 ##### Parameters:
 
@@ -2829,7 +2829,7 @@ ___
 
 ▸ `Const`**updateAwaitExpression**(`expression`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:248](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L248)*
+*Defined in [src/index.ts:248](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L248)*
 
 ##### Parameters:
 
@@ -2845,7 +2845,7 @@ ___
 
 ▸ `Const`**updateBlock**(`statements`: readonly Statement[]): (Anonymous function)
 
-*Defined in [src/index.ts:249](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L249)*
+*Defined in [src/index.ts:249](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L249)*
 
 ##### Parameters:
 
@@ -2861,7 +2861,7 @@ ___
 
 ▸ `Const`**updateBreakStatement**(`label`: Identifier \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:250](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L250)*
+*Defined in [src/index.ts:250](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L250)*
 
 ##### Parameters:
 
@@ -2875,15 +2875,15 @@ ___
 
 #### updateCallExpression
 
-▸ `Const`**updateCallExpression**(`identifier?`: string \| Identifier, `typeArguments?`: readonly TypeNode[], `argumentsArray?`: readonly Expression[]): (Anonymous function)
+▸ `Const`**updateCallExpression**(`expression?`: string \| Identifier \| Expression, `typeArguments?`: readonly TypeNode[], `argumentsArray?`: readonly Expression[]): (Anonymous function)
 
-*Defined in [src/index.ts:6](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L6)*
+*Defined in [src/index.ts:6](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L6)*
 
 ##### Parameters:
 
 Name | Type |
 ------ | ------ |
-`identifier?` | string \| Identifier |
+`expression?` | string \| Identifier \| Expression |
 `typeArguments?` | readonly TypeNode[] |
 `argumentsArray?` | readonly Expression[] |
 
@@ -2895,7 +2895,7 @@ ___
 
 ▸ `Const`**updateCaseBlock**(`clauses`: readonly ts.CaseOrDefaultClause[]): (Anonymous function)
 
-*Defined in [src/index.ts:251](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L251)*
+*Defined in [src/index.ts:251](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L251)*
 
 ##### Parameters:
 
@@ -2911,7 +2911,7 @@ ___
 
 ▸ `Const`**updateCaseClause**(`expression`: Expression, `statements`: readonly Statement[]): (Anonymous function)
 
-*Defined in [src/index.ts:347](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L347)*
+*Defined in [src/index.ts:347](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L347)*
 
 ##### Parameters:
 
@@ -2928,7 +2928,7 @@ ___
 
 ▸ `Const`**updateCatchClause**(`variableDeclaration`: VariableDeclaration \| undefined, `block`: Block): (Anonymous function)
 
-*Defined in [src/index.ts:348](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L348)*
+*Defined in [src/index.ts:348](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L348)*
 
 ##### Parameters:
 
@@ -2945,7 +2945,7 @@ ___
 
 ▸ `Const`**updateCommaListExpression**(`elements`: readonly Expression[]): (Anonymous function)
 
-*Defined in [src/index.ts:252](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L252)*
+*Defined in [src/index.ts:252](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L252)*
 
 ##### Parameters:
 
@@ -2961,7 +2961,7 @@ ___
 
 ▸ `Const`**updateComputedPropertyName**(`expression`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:253](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L253)*
+*Defined in [src/index.ts:253](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L253)*
 
 ##### Parameters:
 
@@ -2977,7 +2977,7 @@ ___
 
 ▸ `Const`**updateContinueStatement**(`label`: Identifier \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:254](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L254)*
+*Defined in [src/index.ts:254](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L254)*
 
 ##### Parameters:
 
@@ -2993,7 +2993,7 @@ ___
 
 ▸ `Const`**updateDecorator**(`expression`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:255](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L255)*
+*Defined in [src/index.ts:255](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L255)*
 
 ##### Parameters:
 
@@ -3009,7 +3009,7 @@ ___
 
 ▸ `Const`**updateDefaultClause**(`statements`: readonly Statement[]): (Anonymous function)
 
-*Defined in [src/index.ts:256](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L256)*
+*Defined in [src/index.ts:256](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L256)*
 
 ##### Parameters:
 
@@ -3025,7 +3025,7 @@ ___
 
 ▸ `Const`**updateDeleteExpression**(`expression`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:257](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L257)*
+*Defined in [src/index.ts:257](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L257)*
 
 ##### Parameters:
 
@@ -3041,7 +3041,7 @@ ___
 
 ▸ `Const`**updateDoStatement**(`statement`: Statement, `expression`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:349](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L349)*
+*Defined in [src/index.ts:349](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L349)*
 
 ##### Parameters:
 
@@ -3058,7 +3058,7 @@ ___
 
 ▸ `Const`**updateElementAccessExpression**(`expression`: Expression, `argumentExpression`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:350](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L350)*
+*Defined in [src/index.ts:350](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L350)*
 
 ##### Parameters:
 
@@ -3075,7 +3075,7 @@ ___
 
 ▸ `Const`**updateEnumMember**(`name`: ts.PropertyName, `initializer`: Expression \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:351](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L351)*
+*Defined in [src/index.ts:351](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L351)*
 
 ##### Parameters:
 
@@ -3092,7 +3092,7 @@ ___
 
 ▸ `Const`**updateExportSpecifier**(`propertyName`: Identifier \| undefined, `name`: Identifier): (Anonymous function)
 
-*Defined in [src/index.ts:352](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L352)*
+*Defined in [src/index.ts:352](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L352)*
 
 ##### Parameters:
 
@@ -3109,7 +3109,7 @@ ___
 
 ▸ `Const`**updateExpressionStatement**(`expression`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:258](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L258)*
+*Defined in [src/index.ts:258](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L258)*
 
 ##### Parameters:
 
@@ -3125,7 +3125,7 @@ ___
 
 ▸ `Const`**updateExpressionWithTypeArguments**(`expression`: Expression, `typeArguments`: readonly TypeNode[] \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:353](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L353)*
+*Defined in [src/index.ts:353](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L353)*
 
 ##### Parameters:
 
@@ -3142,7 +3142,7 @@ ___
 
 ▸ `Const`**updateExternalModuleReference**(`expression`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:259](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L259)*
+*Defined in [src/index.ts:259](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L259)*
 
 ##### Parameters:
 
@@ -3158,7 +3158,7 @@ ___
 
 ▸ `Const`**updateHeritageClause**(`types`: readonly ExpressionWithTypeArguments[]): (Anonymous function)
 
-*Defined in [src/index.ts:260](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L260)*
+*Defined in [src/index.ts:260](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L260)*
 
 ##### Parameters:
 
@@ -3174,7 +3174,7 @@ ___
 
 ▸ `Const`**updateImportSpecifier**(`propertyName`: Identifier \| undefined, `name`: Identifier): (Anonymous function)
 
-*Defined in [src/index.ts:354](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L354)*
+*Defined in [src/index.ts:354](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L354)*
 
 ##### Parameters:
 
@@ -3191,7 +3191,7 @@ ___
 
 ▸ `Const`**updateIndexedAccessTypeNode**(`objectType`: TypeNode, `indexType`: TypeNode): (Anonymous function)
 
-*Defined in [src/index.ts:355](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L355)*
+*Defined in [src/index.ts:355](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L355)*
 
 ##### Parameters:
 
@@ -3208,7 +3208,7 @@ ___
 
 ▸ `Const`**updateInferTypeNode**(`typeParameter`: TypeParameterDeclaration): (Anonymous function)
 
-*Defined in [src/index.ts:261](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L261)*
+*Defined in [src/index.ts:261](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L261)*
 
 ##### Parameters:
 
@@ -3224,7 +3224,7 @@ ___
 
 ▸ `Const`**updateIntersectionTypeNode**(`types`: NodeArray\<TypeNode>): (Anonymous function)
 
-*Defined in [src/index.ts:262](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L262)*
+*Defined in [src/index.ts:262](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L262)*
 
 ##### Parameters:
 
@@ -3240,7 +3240,7 @@ ___
 
 ▸ `Const`**updateJSDocAuthorTag**(`tagName`: Identifier \| undefined, `comment?`: string \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:356](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L356)*
+*Defined in [src/index.ts:356](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L356)*
 
 ##### Parameters:
 
@@ -3257,7 +3257,7 @@ ___
 
 ▸ `Const`**updateJSDocClassTag**(`tagName`: Identifier \| undefined, `comment?`: string \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:357](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L357)*
+*Defined in [src/index.ts:357](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L357)*
 
 ##### Parameters:
 
@@ -3274,7 +3274,7 @@ ___
 
 ▸ `Const`**updateJSDocComment**(`comment?`: string \| undefined, `tags?`: readonly JSDocTag[] \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:358](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L358)*
+*Defined in [src/index.ts:358](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L358)*
 
 ##### Parameters:
 
@@ -3291,7 +3291,7 @@ ___
 
 ▸ `Const`**updateJSDocDeprecatedTag**(`tagName`: Identifier, `comment?`: string): (Anonymous function)
 
-*Defined in [src/index.ts:359](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L359)*
+*Defined in [src/index.ts:359](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L359)*
 
 ##### Parameters:
 
@@ -3308,7 +3308,7 @@ ___
 
 ▸ `Const`**updateJSDocFunctionType**(`parameters`: readonly ParameterDeclaration[], `type`: TypeNode \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:360](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L360)*
+*Defined in [src/index.ts:360](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L360)*
 
 ##### Parameters:
 
@@ -3325,7 +3325,7 @@ ___
 
 ▸ `Const`**updateJSDocNamepathType**(`type`: TypeNode): (Anonymous function)
 
-*Defined in [src/index.ts:263](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L263)*
+*Defined in [src/index.ts:263](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L263)*
 
 ##### Parameters:
 
@@ -3341,7 +3341,7 @@ ___
 
 ▸ `Const`**updateJSDocNonNullableType**(`type`: TypeNode): (Anonymous function)
 
-*Defined in [src/index.ts:264](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L264)*
+*Defined in [src/index.ts:264](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L264)*
 
 ##### Parameters:
 
@@ -3357,7 +3357,7 @@ ___
 
 ▸ `Const`**updateJSDocNullableType**(`type`: TypeNode): (Anonymous function)
 
-*Defined in [src/index.ts:265](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L265)*
+*Defined in [src/index.ts:265](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L265)*
 
 ##### Parameters:
 
@@ -3373,7 +3373,7 @@ ___
 
 ▸ `Const`**updateJSDocOptionalType**(`type`: TypeNode): (Anonymous function)
 
-*Defined in [src/index.ts:266](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L266)*
+*Defined in [src/index.ts:266](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L266)*
 
 ##### Parameters:
 
@@ -3389,7 +3389,7 @@ ___
 
 ▸ `Const`**updateJSDocPrivateTag**(`tagName`: Identifier \| undefined, `comment?`: string \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:361](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L361)*
+*Defined in [src/index.ts:361](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L361)*
 
 ##### Parameters:
 
@@ -3406,7 +3406,7 @@ ___
 
 ▸ `Const`**updateJSDocProtectedTag**(`tagName`: Identifier \| undefined, `comment?`: string \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:362](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L362)*
+*Defined in [src/index.ts:362](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L362)*
 
 ##### Parameters:
 
@@ -3423,7 +3423,7 @@ ___
 
 ▸ `Const`**updateJSDocPublicTag**(`tagName`: Identifier \| undefined, `comment?`: string \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:363](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L363)*
+*Defined in [src/index.ts:363](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L363)*
 
 ##### Parameters:
 
@@ -3440,7 +3440,7 @@ ___
 
 ▸ `Const`**updateJSDocReadonlyTag**(`tagName`: Identifier \| undefined, `comment?`: string \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:364](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L364)*
+*Defined in [src/index.ts:364](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L364)*
 
 ##### Parameters:
 
@@ -3457,7 +3457,7 @@ ___
 
 ▸ `Const`**updateJSDocTypeExpression**(`type`: TypeNode): (Anonymous function)
 
-*Defined in [src/index.ts:267](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L267)*
+*Defined in [src/index.ts:267](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L267)*
 
 ##### Parameters:
 
@@ -3473,7 +3473,7 @@ ___
 
 ▸ `Const`**updateJSDocTypeLiteral**(`jsDocPropertyTags`: readonly JSDocPropertyLikeTag[] \| undefined, `isArrayType`: boolean \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:365](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L365)*
+*Defined in [src/index.ts:365](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L365)*
 
 ##### Parameters:
 
@@ -3490,7 +3490,7 @@ ___
 
 ▸ `Const`**updateJSDocUnknownTag**(`tagName`: Identifier, `comment?`: string \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:366](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L366)*
+*Defined in [src/index.ts:366](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L366)*
 
 ##### Parameters:
 
@@ -3507,7 +3507,7 @@ ___
 
 ▸ `Const`**updateJSDocVariadicType**(`type`: TypeNode): (Anonymous function)
 
-*Defined in [src/index.ts:268](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L268)*
+*Defined in [src/index.ts:268](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L268)*
 
 ##### Parameters:
 
@@ -3523,7 +3523,7 @@ ___
 
 ▸ `Const`**updateJsxAttribute**(`name`: Identifier, `initializer`: StringLiteral \| JsxExpression \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:367](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L367)*
+*Defined in [src/index.ts:367](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L367)*
 
 ##### Parameters:
 
@@ -3540,7 +3540,7 @@ ___
 
 ▸ `Const`**updateJsxAttributes**(`properties`: readonly ts.JsxAttributeLike[]): (Anonymous function)
 
-*Defined in [src/index.ts:269](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L269)*
+*Defined in [src/index.ts:269](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L269)*
 
 ##### Parameters:
 
@@ -3556,7 +3556,7 @@ ___
 
 ▸ `Const`**updateJsxClosingElement**(`tagName`: ts.JsxTagNameExpression): (Anonymous function)
 
-*Defined in [src/index.ts:270](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L270)*
+*Defined in [src/index.ts:270](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L270)*
 
 ##### Parameters:
 
@@ -3572,7 +3572,7 @@ ___
 
 ▸ `Const`**updateJsxExpression**(`expression`: Expression \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:271](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L271)*
+*Defined in [src/index.ts:271](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L271)*
 
 ##### Parameters:
 
@@ -3588,7 +3588,7 @@ ___
 
 ▸ `Const`**updateJsxSpreadAttribute**(`expression`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:272](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L272)*
+*Defined in [src/index.ts:272](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L272)*
 
 ##### Parameters:
 
@@ -3604,7 +3604,7 @@ ___
 
 ▸ `Const`**updateJsxText**(`text`: string, `containsOnlyTriviaWhiteSpaces`: boolean): (Anonymous function)
 
-*Defined in [src/index.ts:368](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L368)*
+*Defined in [src/index.ts:368](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L368)*
 
 ##### Parameters:
 
@@ -3621,7 +3621,7 @@ ___
 
 ▸ `Const`**updateLabeledStatement**(`label`: Identifier, `statement`: Statement): (Anonymous function)
 
-*Defined in [src/index.ts:369](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L369)*
+*Defined in [src/index.ts:369](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L369)*
 
 ##### Parameters:
 
@@ -3638,7 +3638,7 @@ ___
 
 ▸ `Const`**updateLiteralTypeNode**(`literal`: LiteralTypeNode[\"literal\"]): (Anonymous function)
 
-*Defined in [src/index.ts:273](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L273)*
+*Defined in [src/index.ts:273](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L273)*
 
 ##### Parameters:
 
@@ -3654,7 +3654,7 @@ ___
 
 ▸ `Const`**updateMetaProperty**(`name`: Identifier): (Anonymous function)
 
-*Defined in [src/index.ts:274](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L274)*
+*Defined in [src/index.ts:274](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L274)*
 
 ##### Parameters:
 
@@ -3670,7 +3670,7 @@ ___
 
 ▸ `Const`**updateModuleBlock**(`statements`: readonly Statement[]): (Anonymous function)
 
-*Defined in [src/index.ts:275](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L275)*
+*Defined in [src/index.ts:275](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L275)*
 
 ##### Parameters:
 
@@ -3686,7 +3686,7 @@ ___
 
 ▸ `Const`**updateNamedExports**(`elements`: readonly ExportSpecifier[]): (Anonymous function)
 
-*Defined in [src/index.ts:276](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L276)*
+*Defined in [src/index.ts:276](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L276)*
 
 ##### Parameters:
 
@@ -3702,7 +3702,7 @@ ___
 
 ▸ `Const`**updateNamedImports**(`elements`: readonly ImportSpecifier[]): (Anonymous function)
 
-*Defined in [src/index.ts:277](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L277)*
+*Defined in [src/index.ts:277](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L277)*
 
 ##### Parameters:
 
@@ -3718,7 +3718,7 @@ ___
 
 ▸ `Const`**updateNamespaceExport**(`name`: Identifier): (Anonymous function)
 
-*Defined in [src/index.ts:278](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L278)*
+*Defined in [src/index.ts:278](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L278)*
 
 ##### Parameters:
 
@@ -3734,7 +3734,7 @@ ___
 
 ▸ `Const`**updateNamespaceExportDeclaration**(`name`: Identifier): (Anonymous function)
 
-*Defined in [src/index.ts:279](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L279)*
+*Defined in [src/index.ts:279](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L279)*
 
 ##### Parameters:
 
@@ -3750,7 +3750,7 @@ ___
 
 ▸ `Const`**updateNamespaceImport**(`name`: Identifier): (Anonymous function)
 
-*Defined in [src/index.ts:280](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L280)*
+*Defined in [src/index.ts:280](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L280)*
 
 ##### Parameters:
 
@@ -3766,7 +3766,7 @@ ___
 
 ▸ `Const`**updateNonNullChain**(`expression`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:281](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L281)*
+*Defined in [src/index.ts:281](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L281)*
 
 ##### Parameters:
 
@@ -3782,7 +3782,7 @@ ___
 
 ▸ `Const`**updateNonNullExpression**(`expression`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:282](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L282)*
+*Defined in [src/index.ts:282](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L282)*
 
 ##### Parameters:
 
@@ -3798,7 +3798,7 @@ ___
 
 ▸ `Const`**updateObjectBindingPattern**(`elements`: readonly BindingElement[]): (Anonymous function)
 
-*Defined in [src/index.ts:283](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L283)*
+*Defined in [src/index.ts:283](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L283)*
 
 ##### Parameters:
 
@@ -3814,7 +3814,7 @@ ___
 
 ▸ `Const`**updateObjectLiteralExpression**(`properties`: readonly ts.ObjectLiteralElementLike[]): (Anonymous function)
 
-*Defined in [src/index.ts:284](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L284)*
+*Defined in [src/index.ts:284](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L284)*
 
 ##### Parameters:
 
@@ -3830,7 +3830,7 @@ ___
 
 ▸ `Const`**updateOptionalTypeNode**(`type`: TypeNode): (Anonymous function)
 
-*Defined in [src/index.ts:285](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L285)*
+*Defined in [src/index.ts:285](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L285)*
 
 ##### Parameters:
 
@@ -3846,7 +3846,7 @@ ___
 
 ▸ `Const`**updateParenthesizedExpression**(`expression`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:286](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L286)*
+*Defined in [src/index.ts:286](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L286)*
 
 ##### Parameters:
 
@@ -3862,7 +3862,7 @@ ___
 
 ▸ `Const`**updateParenthesizedType**(`type`: TypeNode): (Anonymous function)
 
-*Defined in [src/index.ts:287](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L287)*
+*Defined in [src/index.ts:287](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L287)*
 
 ##### Parameters:
 
@@ -3878,7 +3878,7 @@ ___
 
 ▸ `Const`**updatePartiallyEmittedExpression**(`expression`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:288](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L288)*
+*Defined in [src/index.ts:288](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L288)*
 
 ##### Parameters:
 
@@ -3894,7 +3894,7 @@ ___
 
 ▸ `Const`**updatePostfixUnaryExpression**(`operand`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:289](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L289)*
+*Defined in [src/index.ts:289](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L289)*
 
 ##### Parameters:
 
@@ -3910,7 +3910,7 @@ ___
 
 ▸ `Const`**updatePrefixUnaryExpression**(`operand`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:290](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L290)*
+*Defined in [src/index.ts:290](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L290)*
 
 ##### Parameters:
 
@@ -3926,7 +3926,7 @@ ___
 
 ▸ `Const`**updatePropertyAccessExpression**(`expression`: Expression, `name`: Identifier \| PrivateIdentifier): (Anonymous function)
 
-*Defined in [src/index.ts:370](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L370)*
+*Defined in [src/index.ts:370](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L370)*
 
 ##### Parameters:
 
@@ -3943,7 +3943,7 @@ ___
 
 ▸ `Const`**updatePropertyAssignment**(`name`: ts.PropertyName, `initializer`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:371](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L371)*
+*Defined in [src/index.ts:371](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L371)*
 
 ##### Parameters:
 
@@ -3960,7 +3960,7 @@ ___
 
 ▸ `Const`**updateQualifiedName**(`left`: ts.EntityName, `right`: Identifier): (Anonymous function)
 
-*Defined in [src/index.ts:372](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L372)*
+*Defined in [src/index.ts:372](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L372)*
 
 ##### Parameters:
 
@@ -3977,7 +3977,7 @@ ___
 
 ▸ `Const`**updateRestTypeNode**(`type`: TypeNode): (Anonymous function)
 
-*Defined in [src/index.ts:291](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L291)*
+*Defined in [src/index.ts:291](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L291)*
 
 ##### Parameters:
 
@@ -3993,7 +3993,7 @@ ___
 
 ▸ `Const`**updateReturnStatement**(`expression`: Expression \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:292](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L292)*
+*Defined in [src/index.ts:292](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L292)*
 
 ##### Parameters:
 
@@ -4009,7 +4009,7 @@ ___
 
 ▸ `Const`**updateShorthandPropertyAssignment**(`name`: Identifier, `objectAssignmentInitializer`: Expression \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:373](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L373)*
+*Defined in [src/index.ts:373](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L373)*
 
 ##### Parameters:
 
@@ -4026,7 +4026,7 @@ ___
 
 ▸ `Const`**updateSpreadAssignment**(`expression`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:293](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L293)*
+*Defined in [src/index.ts:293](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L293)*
 
 ##### Parameters:
 
@@ -4042,7 +4042,7 @@ ___
 
 ▸ `Const`**updateSpreadElement**(`expression`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:294](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L294)*
+*Defined in [src/index.ts:294](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L294)*
 
 ##### Parameters:
 
@@ -4058,7 +4058,7 @@ ___
 
 ▸ `Const`**updateSwitchStatement**(`expression`: Expression, `caseBlock`: CaseBlock): (Anonymous function)
 
-*Defined in [src/index.ts:374](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L374)*
+*Defined in [src/index.ts:374](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L374)*
 
 ##### Parameters:
 
@@ -4075,7 +4075,7 @@ ___
 
 ▸ `Const`**updateTemplateExpression**(`head`: TemplateHead, `templateSpans`: readonly TemplateSpan[]): (Anonymous function)
 
-*Defined in [src/index.ts:375](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L375)*
+*Defined in [src/index.ts:375](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L375)*
 
 ##### Parameters:
 
@@ -4092,7 +4092,7 @@ ___
 
 ▸ `Const`**updateTemplateSpan**(`expression`: Expression, `literal`: TemplateMiddle \| TemplateTail): (Anonymous function)
 
-*Defined in [src/index.ts:376](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L376)*
+*Defined in [src/index.ts:376](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L376)*
 
 ##### Parameters:
 
@@ -4109,7 +4109,7 @@ ___
 
 ▸ `Const`**updateThrowStatement**(`expression`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:295](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L295)*
+*Defined in [src/index.ts:295](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L295)*
 
 ##### Parameters:
 
@@ -4125,7 +4125,7 @@ ___
 
 ▸ `Const`**updateTypeAssertion**(`type`: TypeNode, `expression`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:377](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L377)*
+*Defined in [src/index.ts:377](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L377)*
 
 ##### Parameters:
 
@@ -4142,7 +4142,7 @@ ___
 
 ▸ `Const`**updateTypeLiteralNode**(`members`: NodeArray\<TypeElement>): (Anonymous function)
 
-*Defined in [src/index.ts:296](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L296)*
+*Defined in [src/index.ts:296](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L296)*
 
 ##### Parameters:
 
@@ -4158,7 +4158,7 @@ ___
 
 ▸ `Const`**updateTypeOfExpression**(`expression`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:297](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L297)*
+*Defined in [src/index.ts:297](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L297)*
 
 ##### Parameters:
 
@@ -4174,7 +4174,7 @@ ___
 
 ▸ `Const`**updateTypeOperatorNode**(`type`: TypeNode): (Anonymous function)
 
-*Defined in [src/index.ts:298](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L298)*
+*Defined in [src/index.ts:298](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L298)*
 
 ##### Parameters:
 
@@ -4190,7 +4190,7 @@ ___
 
 ▸ `Const`**updateTypeQueryNode**(`exprName`: ts.EntityName): (Anonymous function)
 
-*Defined in [src/index.ts:299](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L299)*
+*Defined in [src/index.ts:299](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L299)*
 
 ##### Parameters:
 
@@ -4206,7 +4206,7 @@ ___
 
 ▸ `Const`**updateTypeReferenceNode**(`typeName`: ts.EntityName, `typeArguments`: NodeArray\<TypeNode> \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:378](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L378)*
+*Defined in [src/index.ts:378](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L378)*
 
 ##### Parameters:
 
@@ -4223,7 +4223,7 @@ ___
 
 ▸ `Const`**updateUnionTypeNode**(`types`: NodeArray\<TypeNode>): (Anonymous function)
 
-*Defined in [src/index.ts:300](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L300)*
+*Defined in [src/index.ts:300](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L300)*
 
 ##### Parameters:
 
@@ -4239,7 +4239,7 @@ ___
 
 ▸ `Const`**updateVariableDeclarationList**(`declarations`: readonly VariableDeclaration[]): (Anonymous function)
 
-*Defined in [src/index.ts:301](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L301)*
+*Defined in [src/index.ts:301](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L301)*
 
 ##### Parameters:
 
@@ -4255,7 +4255,7 @@ ___
 
 ▸ `Const`**updateVariableStatement**(`modifiers`: readonly ts.Modifier[] \| undefined, `declarationList`: VariableDeclarationList): (Anonymous function)
 
-*Defined in [src/index.ts:379](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L379)*
+*Defined in [src/index.ts:379](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L379)*
 
 ##### Parameters:
 
@@ -4272,7 +4272,7 @@ ___
 
 ▸ `Const`**updateVoidExpression**(`expression`: Expression): (Anonymous function)
 
-*Defined in [src/index.ts:302](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L302)*
+*Defined in [src/index.ts:302](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L302)*
 
 ##### Parameters:
 
@@ -4288,7 +4288,7 @@ ___
 
 ▸ `Const`**updateWhileStatement**(`expression`: Expression, `statement`: Statement): (Anonymous function)
 
-*Defined in [src/index.ts:380](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L380)*
+*Defined in [src/index.ts:380](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L380)*
 
 ##### Parameters:
 
@@ -4305,7 +4305,7 @@ ___
 
 ▸ `Const`**updateWithStatement**(`expression`: Expression, `statement`: Statement): (Anonymous function)
 
-*Defined in [src/index.ts:381](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L381)*
+*Defined in [src/index.ts:381](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L381)*
 
 ##### Parameters:
 
@@ -4322,7 +4322,7 @@ ___
 
 ▸ `Const`**updateYieldExpression**(`asteriskToken`: ts.AsteriskToken \| undefined, `expression`: Expression \| undefined): (Anonymous function)
 
-*Defined in [src/index.ts:382](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/factory/src/index.ts#L382)*
+*Defined in [src/index.ts:382](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/factory/src/index.ts#L382)*
 
 ##### Parameters:
 

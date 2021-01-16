@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.3 (2021-01-16)
+
+
+### Bug Fixes
+
+* **factory:** Update function signature of `updateCallExpression` to include Expression in first argument union ([200cb5a](https://github.com/simonlovesyou/typescript-schema/commit/200cb5a58e4a72695fd4770ee38ee2540136dc33))
+
+
+
+
+
 ## 1.0.2 (2021-01-10)
 
 **Note:** Version bump only for package @typescript-runtime-schema/factory

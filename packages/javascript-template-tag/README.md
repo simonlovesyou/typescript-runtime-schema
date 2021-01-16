@@ -34,7 +34,7 @@ const validCode = jsCode`
 
 ▸ **javascriptTemplatetag**(`strings`: TemplateStringsArray): string
 
-*Defined in [src/index.ts:8](https://github.com/simonlovesyou/typescript-schema/blob/cd2159c/packages/javascript-template-tag/src/index.ts#L8)*
+*Defined in [src/index.ts:8](https://github.com/simonlovesyou/typescript-schema/blob/f2786e8/packages/javascript-template-tag/src/index.ts#L8)*
 
 Attempt to parse the code in the provided template tag (Only accepts one for now)
 
