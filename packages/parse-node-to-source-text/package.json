@@ -1,6 +1,6 @@
 {
   "name": "@typescript-runtime-schema/parse-node-to-source-text",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Get the resulting source code for a TypeScript node",
   "main": "dist/index.js",
   "license": "MIT",

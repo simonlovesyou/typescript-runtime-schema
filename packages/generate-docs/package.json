@@ -1,6 +1,6 @@
 {
   "name": "@typescript-runtime-schema/generate-docs",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Generate opinionated documentation from source files and/or provided content",
   "main": "dist/index.js",
   "author": "Simon Johansson <simonljohansson92@gmail.com>",
