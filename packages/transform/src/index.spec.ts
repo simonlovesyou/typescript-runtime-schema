@@ -15,11 +15,66 @@ const tsCode = (strings: TemplateStringsArray) => {
   return dedent(strings);
 };
 
+describe("finding imports", () => {
+  describe("@typescript-runtime-schema/lib", () => {
+    describe("named import", () => {
+      const sourceCode = tsCode`
+        import { is } from "@typescript-runtime-schema/lib";
+
+        const name = "Morpheus"
+
+        type Name = string
+
+        const surelyName = is<Name>(name);
+      `;
+      it("should transform correctly", () => {
+        expect(transformer).toTransformSourceCode(
+          sourceCode,
+          jsCode`
+          "use strict";
+          Object.defineProperty(exports, "__esModule", { value: true });
+          var lib_1 = require("@typescript-runtime-schema/lib");
+          var name = "Morpheus";
+          var surelyName = lib_1.is({
+              type: 'string'
+          })(name);
+        `.trim()
+        );
+      });
+    });
+  });
+  describe("namespace import", () => {
+    const sourceCode = tsCode`
+      import * as something from "@typescript-runtime-schema/lib";
+
+      const name = "Morpheus"
+
+      type Name = string
+
+      const surelyName = something.is<Name>(name);
+    `;
+    it("should transform correctly", () => {
+      expect(transformer).toTransformSourceCode(
+        sourceCode,
+        jsCode`
+          "use strict";
+          Object.defineProperty(exports, "__esModule", { value: true });
+          var something = require("@typescript-runtime-schema/lib");
+          var name = "Morpheus";
+          var surelyName = something.is({
+              type: 'string'
+          })(name);
+        `.trim()
+      );
+    });
+  });
+});
+
 describe("transform", () => {
   describe("string", () => {
     describe("type alias", () => {
       const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
 
         const name = "Morpheus"
 
@@ -33,16 +88,16 @@ describe("transform", () => {
           jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
-            var library_1 = require("@typescript-runtime-schema/library");
+            var lib_1 = require("@typescript-runtime-schema/lib");
             var name = "Morpheus";
-            var surelyName = library_1.default({
+            var surelyName = lib_1.is({
                 type: 'string'
             })(name);`.trim()
         );
       });
       describe("inline value", () => {
         const sourceCode = tsCode`
-          import is from "@typescript-runtime-schema/library";
+          import { is } from "@typescript-runtime-schema/lib";
 
           type Name = string
 
@@ -54,8 +109,8 @@ describe("transform", () => {
             jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
-              var library_1 = require("@typescript-runtime-schema/library");
-              var surelyName = library_1.default({
+              var lib_1 = require("@typescript-runtime-schema/lib");
+              var surelyName = lib_1.is({
                   type: 'string'
               })("Morpheus");
             `.trim()
@@ -65,7 +120,7 @@ describe("transform", () => {
     });
     describe("import", () => {
       const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
         import Str from './str'
 
         const name = "Morpheus" as any
@@ -82,9 +137,9 @@ describe("transform", () => {
             "./lib.js": jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
-              const library_1 = require("@typescript-runtime-schema/library");
+              const lib_1 = require("@typescript-runtime-schema/lib");
               const name = "Morpheus";
-              library_1.default({
+              lib_1.is({
                   type: 'string'
               })(name);`.trim(),
           }
@@ -96,7 +151,7 @@ describe("transform", () => {
   describe("number", () => {
     describe("type alias", () => {
       const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
 
         const num = 21
 
@@ -110,9 +165,9 @@ describe("transform", () => {
           jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
-            var library_1 = require("@typescript-runtime-schema/library");
+            var lib_1 = require("@typescript-runtime-schema/lib");
             var num = 21;
-            var surelyAge = library_1.default({
+            var surelyAge = lib_1.is({
                 type: 'number'
             })(num);
           `.trim()
@@ -120,7 +175,7 @@ describe("transform", () => {
       });
       describe("inline value", () => {
         const sourceCode = tsCode`
-          import is from "@typescript-runtime-schema/library";
+          import { is } from "@typescript-runtime-schema/lib";
 
           type Age = number
 
@@ -132,8 +187,8 @@ describe("transform", () => {
             jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
-              var library_1 = require("@typescript-runtime-schema/library");
-              var surelyAge = library_1.default({
+              var lib_1 = require("@typescript-runtime-schema/lib");
+              var surelyAge = lib_1.is({
                   type: 'number'
               })(21);
             `.trim()
@@ -145,7 +200,7 @@ describe("transform", () => {
   describe("boolean", () => {
     describe("type alias", () => {
       const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
 
         const on = true as any
 
@@ -159,9 +214,9 @@ describe("transform", () => {
           jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
-            var library_1 = require("@typescript-runtime-schema/library");
+            var lib_1 = require("@typescript-runtime-schema/lib");
             var on = true;
-            var definitelyOn = library_1.default({
+            var definitelyOn = lib_1.is({
                 type: 'boolean'
             })(on);
           `.trim()
@@ -170,7 +225,7 @@ describe("transform", () => {
     });
     describe("inline value", () => {
       const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
 
         type Bool = boolean
 
@@ -182,8 +237,8 @@ describe("transform", () => {
           jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
-            var library_1 = require("@typescript-runtime-schema/library");
-            var definitelyOn = library_1.default({
+            var lib_1 = require("@typescript-runtime-schema/lib");
+            var definitelyOn = lib_1.is({
                 type: 'boolean'
             })(true);`.trim()
         );
@@ -193,7 +248,7 @@ describe("transform", () => {
   describe("enum", () => {
     describe("type alias", () => {
       const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
 
         type Num = number
         type Str = string
@@ -206,8 +261,8 @@ describe("transform", () => {
           jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
-            var library_1 = require("@typescript-runtime-schema/library");
-            library_1.default({
+            var lib_1 = require("@typescript-runtime-schema/lib");
+            lib_1.is({
                 anyOf: [
                     {
                         type: 'number'
@@ -222,7 +277,7 @@ describe("transform", () => {
       });
       describe("inline value", () => {
         const sourceCode = tsCode`
-          import is from "@typescript-runtime-schema/library";
+          import { is } from "@typescript-runtime-schema/lib";
 
           type Num = number
           type Str = string
@@ -235,8 +290,8 @@ describe("transform", () => {
             jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
-              var library_1 = require("@typescript-runtime-schema/library");
-              library_1.default({
+              var lib_1 = require("@typescript-runtime-schema/lib");
+              lib_1.is({
                   anyOf: [
                       {
                           type: 'number'
@@ -255,7 +310,7 @@ describe("transform", () => {
   describe("any", () => {
     describe("type alias", () => {
       const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
 
         const age = '21'
 
@@ -269,9 +324,9 @@ describe("transform", () => {
           jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
-            var library_1 = require("@typescript-runtime-schema/library");
+            var lib_1 = require("@typescript-runtime-schema/lib");
             var age = '21';
-            var whatever = library_1.default({
+            var whatever = lib_1.is({
                 type: 'any'
             })(age);
           `.trim()
@@ -279,7 +334,7 @@ describe("transform", () => {
       });
       describe("inline value", () => {
         const sourceCode = tsCode`
-          import is from "@typescript-runtime-schema/library";
+          import { is } from "@typescript-runtime-schema/lib";
 
           type Any = any
 
@@ -291,8 +346,8 @@ describe("transform", () => {
             jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
-              var library_1 = require("@typescript-runtime-schema/library");
-              var whatever = library_1.default({
+              var lib_1 = require("@typescript-runtime-schema/lib");
+              var whatever = lib_1.is({
                   type: 'any'
               })('21');
             `.trim()
@@ -304,7 +359,7 @@ describe("transform", () => {
   describe("object", () => {
     describe("type alias", () => {
       const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
 
         const person = { name: 'Kim' }
 
@@ -318,9 +373,9 @@ describe("transform", () => {
           jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
-            var library_1 = require("@typescript-runtime-schema/library");
+            var lib_1 = require("@typescript-runtime-schema/lib");
             var person = { name: 'Kim' };
-            var object = library_1.default({
+            var object = lib_1.is({
                 type: 'object'
             })(age);
           `.trim()
@@ -328,7 +383,7 @@ describe("transform", () => {
       });
       describe("inline value", () => {
         const sourceCode = tsCode`
-          import is from "@typescript-runtime-schema/library";
+          import { is } from "@typescript-runtime-schema/lib";
 
           type Obj = object
 
@@ -340,8 +395,8 @@ describe("transform", () => {
             jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
-              var library_1 = require("@typescript-runtime-schema/library");
-              var object = library_1.default({
+              var lib_1 = require("@typescript-runtime-schema/lib");
+              var object = lib_1.is({
                   type: 'object'
               })({ name: 'Kim' });
             `.trim()
@@ -353,7 +408,7 @@ describe("transform", () => {
   describe("undefined", () => {
     describe("type alias", () => {
       const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
 
         const undef = undefined
 
@@ -367,9 +422,9 @@ describe("transform", () => {
           jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
-            var library_1 = require("@typescript-runtime-schema/library");
+            var lib_1 = require("@typescript-runtime-schema/lib");
             var undef = undefined;
-            var definitelyUndefined = library_1.default({
+            var definitelyUndefined = lib_1.is({
                 type: 'undefined'
             })(undef);
           `.trim()
@@ -377,7 +432,7 @@ describe("transform", () => {
       });
       describe("inline value", () => {
         const sourceCode = tsCode`
-          import is from "@typescript-runtime-schema/library";
+          import { is } from "@typescript-runtime-schema/lib";
 
           type Undef = undefined
 
@@ -389,8 +444,8 @@ describe("transform", () => {
             jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
-              var library_1 = require("@typescript-runtime-schema/library");
-              var definitelyUndefined = library_1.default({
+              var lib_1 = require("@typescript-runtime-schema/lib");
+              var definitelyUndefined = lib_1.is({
                   type: 'undefined'
               })(undefined);
             `.trim()
@@ -402,7 +457,7 @@ describe("transform", () => {
   describe("null", () => {
     describe("type alias", () => {
       const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
 
         const something = null
 
@@ -416,9 +471,9 @@ describe("transform", () => {
           jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
-            var library_1 = require("@typescript-runtime-schema/library");
+            var lib_1 = require("@typescript-runtime-schema/lib");
             var something = null;
-            var definitelyNull = library_1.default({
+            var definitelyNull = lib_1.is({
                 type: 'null'
             })(something);
           `.trim()
@@ -426,7 +481,7 @@ describe("transform", () => {
       });
       describe("inline value", () => {
         const sourceCode = tsCode`
-          import is from "@typescript-runtime-schema/library";
+          import { is } from "@typescript-runtime-schema/lib";
 
           type Nul = null
 
@@ -438,8 +493,8 @@ describe("transform", () => {
             jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
-              var library_1 = require("@typescript-runtime-schema/library");
-              var definitelyNull = library_1.default({
+              var lib_1 = require("@typescript-runtime-schema/lib");
+              var definitelyNull = lib_1.is({
                   type: 'null'
               })(null);
             `.trim()
@@ -451,7 +506,7 @@ describe("transform", () => {
   describe("void", () => {
     describe("type alias", () => {
       const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
 
         const something = null
 
@@ -465,9 +520,9 @@ describe("transform", () => {
           jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
-            var library_1 = require("@typescript-runtime-schema/library");
+            var lib_1 = require("@typescript-runtime-schema/lib");
             var something = null;
-            var definitelyNil = library_1.default({
+            var definitelyNil = lib_1.is({
                 anyOf: [
                     { type: 'null' },
                     { type: 'undefined' }
@@ -478,7 +533,7 @@ describe("transform", () => {
       });
       describe("inline value", () => {
         const sourceCode = tsCode`
-          import is from "@typescript-runtime-schema/library";
+          import { is } from "@typescript-runtime-schema/lib";
 
           type Nil = void
 
@@ -490,8 +545,8 @@ describe("transform", () => {
             jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
-              var library_1 = require("@typescript-runtime-schema/library");
-              var definitelyNil = library_1.default({
+              var lib_1 = require("@typescript-runtime-schema/lib");
+              var definitelyNil = lib_1.is({
                   anyOf: [
                       { type: 'null' },
                       { type: 'undefined' }
@@ -506,7 +561,7 @@ describe("transform", () => {
   describe("union", () => {
     describe("type reference", () => {
       const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
 
         const name = "Morpheus"
 
@@ -519,9 +574,9 @@ describe("transform", () => {
           jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
-            var library_1 = require("@typescript-runtime-schema/library");
+            var lib_1 = require("@typescript-runtime-schema/lib");
             var name = "Morpheus";
-            library_1.default({
+            lib_1.is({
                 anyOf: [
                     {
                         const: 'Morpheus'
@@ -536,7 +591,7 @@ describe("transform", () => {
       });
       describe("inline value", () => {
         const sourceCode = tsCode`
-          import is from "@typescript-runtime-schema/library";
+          import { is } from "@typescript-runtime-schema/lib";
 
           type Name = 'Morpheus' | 'Kim'
 
@@ -547,8 +602,8 @@ describe("transform", () => {
             jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
-              var library_1 = require("@typescript-runtime-schema/library");
-              library_1.default({
+              var lib_1 = require("@typescript-runtime-schema/lib");
+              lib_1.is({
                   anyOf: [
                       {
                           const: 'Morpheus'
@@ -566,7 +621,7 @@ describe("transform", () => {
     describe("import", () => {
       const sourceFiles = {
         "./lib.ts": tsCode`
-          import is from "@typescript-runtime-schema/library";
+          import { is } from "@typescript-runtime-schema/lib";
           import Human from './human'
 
           const person = { name: "Morpheus", age: 21 } as any
@@ -590,9 +645,9 @@ describe("transform", () => {
           "./lib.js": jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
-            const library_1 = require("@typescript-runtime-schema/library");
+            const lib_1 = require("@typescript-runtime-schema/lib");
             const person = { name: "Morpheus", age: 21 };
-            library_1.default({
+            lib_1.is({
                 type: 'object',
                 title: 'Human',
                 properties: {
@@ -622,7 +677,7 @@ describe("transform", () => {
     describe("[]", () => {
       describe("type reference", () => {
         const sourceCode = tsCode`
-          import is from "@typescript-runtime-schema/library";
+          import { is } from "@typescript-runtime-schema/lib";
   
           const strings = ["foo", "bar"]
   
@@ -635,9 +690,9 @@ describe("transform", () => {
             jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
-              var library_1 = require("@typescript-runtime-schema/library");
+              var lib_1 = require("@typescript-runtime-schema/lib");
               var strings = ["foo", "bar"];
-              library_1.default({
+              lib_1.is({
                   type: 'array',
                   items: {
                       type: 'string'
@@ -648,7 +703,7 @@ describe("transform", () => {
         });
         describe("inline value", () => {
           const sourceCode = tsCode`
-            import is from "@typescript-runtime-schema/library";
+            import { is } from "@typescript-runtime-schema/lib";
   
     
             type Strings = string[]
@@ -660,8 +715,8 @@ describe("transform", () => {
               jsCode`
                 "use strict";
                 Object.defineProperty(exports, "__esModule", { value: true });
-                var library_1 = require("@typescript-runtime-schema/library");
-                library_1.default({
+                var lib_1 = require("@typescript-runtime-schema/lib");
+                lib_1.is({
                     type: 'array',
                     items: {
                         type: 'string'
@@ -676,7 +731,7 @@ describe("transform", () => {
   });
   describe("heritage", () => {
     const sourceCode = tsCode`
-      import is from "@typescript-runtime-schema/library";
+      import { is } from "@typescript-runtime-schema/lib";
 
       const person = { name: "Morpheus", age: 21 } as any
 
@@ -700,9 +755,9 @@ describe("transform", () => {
         jsCode`
           "use strict";
           Object.defineProperty(exports, "__esModule", { value: true });
-          var library_1 = require("@typescript-runtime-schema/library");
+          var lib_1 = require("@typescript-runtime-schema/lib");
           var person = { name: "Morpheus", age: 21 };
-          library_1.default({
+          lib_1.is({
               type: 'object',
               title: 'Person',
               properties: {
@@ -726,7 +781,7 @@ describe("transform", () => {
   describe("interface", () => {
     describe("type alias", () => {
       const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
 
         const person = { name: "Morpheus", age: 21 } as any
 
@@ -749,9 +804,9 @@ describe("transform", () => {
           jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
-            var library_1 = require("@typescript-runtime-schema/library");
+            var lib_1 = require("@typescript-runtime-schema/lib");
             var person = { name: "Morpheus", age: 21 };
-            library_1.default({
+            lib_1.is({
                 type: 'object',
                 title: 'Person',
                 properties: {
@@ -790,7 +845,7 @@ describe("transform", () => {
       });
       describe("mapped type", () => {
         const sourceCode = tsCode`
-          import is from "@typescript-runtime-schema/library";
+          import { is } from "@typescript-runtime-schema/lib";
 
           const person = { name: "Morpheus", age: 21 } as any
 
@@ -810,9 +865,9 @@ describe("transform", () => {
             dedent`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
-              var library_1 = require("@typescript-runtime-schema/library");
+              var lib_1 = require("@typescript-runtime-schema/lib");
               var person = { name: "Morpheus", age: 21 };
-              library_1.default({
+              lib_1.is({
                   type: 'object',
                   title: 'Person',
                   properties: {
@@ -836,7 +891,7 @@ describe("transform", () => {
       });
       describe("index signature", () => {
         const sourceCode = tsCode`
-          import is from "@typescript-runtime-schema/library";
+          import { is } from "@typescript-runtime-schema/lib";
 
           interface StringMap { [index: string]: string }
 
@@ -848,8 +903,8 @@ describe("transform", () => {
             jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
-              var library_1 = require("@typescript-runtime-schema/library");
-              library_1.default({
+              var lib_1 = require("@typescript-runtime-schema/lib");
+              lib_1.is({
                   type: 'object',
                   title: 'StringMap',
                   propertyNames: {
@@ -865,7 +920,7 @@ describe("transform", () => {
     describe("import", () => {
       const sourceFiles = {
         "./lib.ts": tsCode`
-          import is from "@typescript-runtime-schema/library";
+          import { is } from "@typescript-runtime-schema/lib";
           import {Person} from './person'
 
           const person = { name: "Morpheus", age: 21 } as any
@@ -889,9 +944,9 @@ describe("transform", () => {
           "./lib.js": jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
-            const library_1 = require("@typescript-runtime-schema/library");
+            const lib_1 = require("@typescript-runtime-schema/lib");
             const person = { name: "Morpheus", age: 21 };
-            library_1.default({
+            lib_1.is({
                 type: 'object',
                 title: 'Person',
                 properties: {
@@ -912,7 +967,7 @@ describe("transform", () => {
   });
   describe("intersection", () => {
     const sourceCode = tsCode`
-      import is from "@typescript-runtime-schema/library";
+      import { is } from "@typescript-runtime-schema/lib";
 
       const person = { name: "Morpheus", age: 21 } as any
 
@@ -930,9 +985,9 @@ describe("transform", () => {
         jsCode`
           "use strict";
           Object.defineProperty(exports, "__esModule", { value: true });
-          var library_1 = require("@typescript-runtime-schema/library");
+          var lib_1 = require("@typescript-runtime-schema/lib");
           var person = { name: "Morpheus", age: 21 };
-          library_1.default({
+          lib_1.is({
               anyOf: [
                   {
                       type: 'object',
@@ -960,7 +1015,7 @@ describe("transform", () => {
   });
   describe("tuple", () => {
     const sourceCode = tsCode`
-      import is from "@typescript-runtime-schema/library";
+      import { is } from "@typescript-runtime-schema/lib";
 
       const strings = ["foo", "bar"]
 
@@ -975,9 +1030,9 @@ describe("transform", () => {
         jsCode`
           "use strict";
           Object.defineProperty(exports, "__esModule", { value: true });
-          var library_1 = require("@typescript-runtime-schema/library");
+          var lib_1 = require("@typescript-runtime-schema/lib");
           var strings = ["foo", "bar"];
-          library_1.default({
+          lib_1.is({
               type: 'array',
               items: [
                   {
@@ -1009,7 +1064,7 @@ describe("transform", () => {
   describe("object literal", () => {
     describe("index signature", () => {
       const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
 
         type StringMap = { [index: string]: string }
 
@@ -1021,8 +1076,8 @@ describe("transform", () => {
           jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
-            var library_1 = require("@typescript-runtime-schema/library");
-            library_1.default({
+            var lib_1 = require("@typescript-runtime-schema/lib");
+            lib_1.is({
                 type: 'object',
                 propertyNames: {
                     type: 'string'
@@ -1040,7 +1095,7 @@ describe("transform", () => {
   describe("keyof operator", () => {
     describe("inline", () => {
       const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
 
         type Person = { 42: number, name: string }
 
@@ -1052,8 +1107,8 @@ describe("transform", () => {
           jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
-            var library_1 = require("@typescript-runtime-schema/library");
-            library_1.default({
+            var lib_1 = require("@typescript-runtime-schema/lib");
+            lib_1.is({
                 anyOf: [
                     {
                         const: 42
@@ -1071,7 +1126,7 @@ describe("transform", () => {
   describe("utility types", () => {
     describe("Record", () => {
       const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
 
         type StringMap = Record<number | string, string>
 
@@ -1083,8 +1138,8 @@ describe("transform", () => {
           jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
-            var library_1 = require("@typescript-runtime-schema/library");
-            library_1.default({
+            var lib_1 = require("@typescript-runtime-schema/lib");
+            lib_1.is({
                 type: 'object',
                 propertyNames: {
                     anyOf: [
@@ -1111,7 +1166,7 @@ describe("transform", () => {
     });
     describe("Partial", () => {
       const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
 
         type Person = { name: string, age: number }
 
@@ -1123,8 +1178,8 @@ describe("transform", () => {
           jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
-            var library_1 = require("@typescript-runtime-schema/library");
-            library_1.default({
+            var lib_1 = require("@typescript-runtime-schema/lib");
+            lib_1.is({
                 type: 'object',
                 properties: {
                     name: {
@@ -1143,7 +1198,7 @@ describe("transform", () => {
     });
     describe("Array", () => {
       const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
 
         type Person = { name: string, age: number }
 
@@ -1155,8 +1210,8 @@ describe("transform", () => {
           jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
-            var library_1 = require("@typescript-runtime-schema/library");
-            library_1.default({
+            var lib_1 = require("@typescript-runtime-schema/lib");
+            lib_1.is({
                 type: 'array',
                 items: {
                     type: 'object',
@@ -1181,7 +1236,7 @@ describe("transform", () => {
     });
     describe("Pick", () => {
       const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
 
         type Person = { name: string, age: number, length: number }
 
@@ -1193,8 +1248,8 @@ describe("transform", () => {
           jsCode`
             "use strict";
             Object.defineProperty(exports, "__esModule", { value: true });
-            var library_1 = require("@typescript-runtime-schema/library");
-            library_1.default({
+            var lib_1 = require("@typescript-runtime-schema/lib");
+            lib_1.is({
                 type: 'object',
                 properties: {
                     name: {
@@ -1217,7 +1272,7 @@ describe("transform", () => {
     describe("Exclude", () => {
       describe("literal type argument", () => {
         const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
 
         type SomeKeys = 'name' | 'age' | 'length'
 
@@ -1229,8 +1284,8 @@ describe("transform", () => {
             jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
-              var library_1 = require("@typescript-runtime-schema/library");
-              library_1.default({
+              var lib_1 = require("@typescript-runtime-schema/lib");
+              lib_1.is({
                   anyOf: [
                       {
                           const: 'name'
@@ -1246,7 +1301,7 @@ describe("transform", () => {
       });
       describe("union type argument", () => {
         const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
 
         type SomeKeys = 'name' | 'age' | 'length'
 
@@ -1258,8 +1313,8 @@ describe("transform", () => {
             jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
-              var library_1 = require("@typescript-runtime-schema/library");
-              library_1.default({
+              var lib_1 = require("@typescript-runtime-schema/lib");
+              lib_1.is({
                   anyOf: [
                       {
                           const: 'name'
@@ -1274,7 +1329,7 @@ describe("transform", () => {
     describe("Extract", () => {
       describe("literal type argument", () => {
         const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
 
         type SomeKeys = 'name' | 'age' | 'length'
 
@@ -1286,8 +1341,8 @@ describe("transform", () => {
             jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
-              var library_1 = require("@typescript-runtime-schema/library");
-              library_1.default({
+              var lib_1 = require("@typescript-runtime-schema/lib");
+              lib_1.is({
                   anyOf: [
                       {
                           const: 'length'
@@ -1300,7 +1355,7 @@ describe("transform", () => {
       });
       describe("union type argument", () => {
         const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
 
         type SomeKeys = 'name' | 'age' | 'length'
 
@@ -1312,8 +1367,8 @@ describe("transform", () => {
             jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
-              var library_1 = require("@typescript-runtime-schema/library");
-              library_1.default({
+              var lib_1 = require("@typescript-runtime-schema/lib");
+              lib_1.is({
                   anyOf: [
                       {
                           const: 'age'
@@ -1331,7 +1386,7 @@ describe("transform", () => {
     describe("Pick", () => {
       describe("literal type argument", () => {
         const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
 
         type Person = { name: string, age: number, length: number }
 
@@ -1343,8 +1398,8 @@ describe("transform", () => {
             jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
-              var library_1 = require("@typescript-runtime-schema/library");
-              library_1.default({
+              var lib_1 = require("@typescript-runtime-schema/lib");
+              lib_1.is({
                   type: 'object',
                   properties: {
                       name: {
@@ -1368,7 +1423,7 @@ describe("transform", () => {
     describe("Omit", () => {
       describe("literal type argument", () => {
         const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
 
         type Person = { name: string, age: number, length: number }
 
@@ -1380,8 +1435,8 @@ describe("transform", () => {
             jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
-              var library_1 = require("@typescript-runtime-schema/library");
-              library_1.default({
+              var lib_1 = require("@typescript-runtime-schema/lib");
+              lib_1.is({
                   type: 'object',
                   properties: {
                       name: {
@@ -1401,7 +1456,7 @@ describe("transform", () => {
     describe("NonNullable", () => {
       describe("literal type argument", () => {
         const sourceCode = tsCode`
-        import is from "@typescript-runtime-schema/library";
+        import { is } from "@typescript-runtime-schema/lib";
 
         is<NonNullable<'length' | 'age' | null>>({ whatever: "string" });
       `;
@@ -1411,8 +1466,8 @@ describe("transform", () => {
             jsCode`
               "use strict";
               Object.defineProperty(exports, "__esModule", { value: true });
-              var library_1 = require("@typescript-runtime-schema/library");
-              library_1.default({
+              var lib_1 = require("@typescript-runtime-schema/lib");
+              lib_1.is({
                   anyOf: [
                       {
                           const: 'length'
