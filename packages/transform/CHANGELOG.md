@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.2.0 (2021-01-16)
+
+
+### Bug Fixes
+
+* **transform:** Update logic for finding the library identifier ([a2824e0](https://github.com/simonlovesyou/typescript-schema/commit/a2824e03cefbc9f81ba0ada2c2fab9d0850b4bb0))
+
+
+### Features
+
+* **transform:** Add support for mapped types ([6972d30](https://github.com/simonlovesyou/typescript-schema/commit/6972d30a2f8556f48023ef6e4ea3105db157c797))
+
+
+
+
+
 ## 0.1.2 (2021-01-10)
 
 **Note:** Version bump only for package @typescript-runtime-schema/transform
