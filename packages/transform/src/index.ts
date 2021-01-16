@@ -7,8 +7,18 @@ import mutate from "./mutators";
 interface TransformerOptions {}
 
 const findLibraryIdentifier = (node: ts.Node): ts.Identifier | undefined => {
-  if (ts.isImportDeclaration(node)) {
-    return node?.importClause?.name
+  if (
+    ts.isImportDeclaration(node) &&
+    node.moduleSpecifier.getText() === '"@typescript-runtime-schema/lib"' &&
+    node.importClause.namedBindings
+  ) {
+    if(ts.isNamedImports(node.importClause.namedBindings)) {
+      return node.importClause.namedBindings.elements
+        .filter(ts.isImportSpecifier)
+        .find((identifier) => identifier.name.getText() === "is").name;
+    } else if(ts.isNamespaceImport(node.importClause.namedBindings)) {
+      return node.importClause.namedBindings.name
+    }
   }
 };
 const createVisitor = (program: ts.Program) => (
@@ -23,6 +33,20 @@ const createVisitor = (program: ts.Program) => (
 
     if (ts.isCallExpression(node)) {
       const callExpression = node;
+      if(ts.isPropertyAccessExpression(callExpression.expression)) {
+        if(callExpression.expression.expression.getText() === libraryIdentifier.getText()) {
+          const { typeArguments, arguments: args } = callExpression;
+          const [typeArgument] = typeArguments;
+
+          return pipe(
+            factory.updateCallExpression(callExpression.expression, undefined, [
+              mutate(typeArgument, checker, {}) as ts.Expression,
+            ]),
+            factory.createCallExpression(undefined, args)
+          )(callExpression);
+        }
+        return ts.visitEachChild(node, visitor, ctx);
+      }
       if (ts.isIdentifier(callExpression.expression)) {
         const rootIdentifier = findRootIdentifier(
           callExpression.expression,
@@ -40,7 +64,6 @@ const createVisitor = (program: ts.Program) => (
             factory.createCallExpression(undefined, args)
           )(callExpression);
         }
-        return ts.visitEachChild(node, visitor, ctx);
       }
     }
     return ts.visitEachChild(node, visitor, ctx);
