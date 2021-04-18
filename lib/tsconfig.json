@@ -13,8 +13,7 @@
     "incremental": true,
     "plugins": [
       { "transform": "@typescript-runtime-schema/transform" },
-    ],
-    "types": ["./node_modules/@typescript-runtime-schema/is/typings"]
+    ]
   },
   "include": [
     "src/**/*"
