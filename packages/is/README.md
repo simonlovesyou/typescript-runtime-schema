@@ -49,17 +49,33 @@ It supports all type primitives (except `unknown` & `never`, because it wouldn't
 The library supports heritage, intersections & unions
 
 ```ts
-import is from '@typescript-runtime-schema/library'
+// types.ts
 
-type Animal = { type: 'vertebrates' | 'invertebrates' } & { cute: boolean }
+export type Animal = { type: 'vertebrates' | 'invertebrates' } & { cute: boolean }
 
-interface Human extends Animal {
+export interface Human extends Animal {
   name: string
   age: number
   handedness: 'left' | 'right' | 'ambidextrous'
 }
 
-type Alien = { numberOfTentacles: number }
+export type Alien = { numberOfTentacles: number }
+
+export type Being = Human | Alien
+```
+
+Convert type to JSON, either manually or with [typescript-json-schema](https://github.com/YousefED/typescript-json-schema#readme)
+
+
+```
+npx typescript-json-schema --out Being.schema.json types.ts Being
+```
+
+```ts
+import { Being } from './types'
+import BeingSchema from './Being.schema.json'
+
+const isBeing = is<Being>(BeingSchema)
 
 const person = {
   name: 'Simon',
@@ -68,7 +84,7 @@ const person = {
   // cute: true /* Cuteness is in the eye of the beholder */ 
 }
 
-if(is<Alien | Human>(person as any)) {
+if(isBeing(person as any)) {
   console.log("Alien or Human")
 } else {
   console.log("Not a Human or Alien")
