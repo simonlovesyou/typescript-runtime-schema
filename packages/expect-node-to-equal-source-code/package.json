@@ -14,7 +14,7 @@
     "build:ts": "yarn tsc --project tsconfig.json",
     "build:docs": "yarn generate-docs --index-file-path ./docs/index.md -o README.md",
     "prepublish": "yarn build",
-    "preversion": "yarn build:docs"
+    "postversion": "yarn build:docs"
   },
   "peerDependencies": {
     "typescript": "^4.0.3"
