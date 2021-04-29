@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.6 (2021-04-29)
+
+
+### Bug Fixes
+
+* **factory:** Update function signature of `updateCallExpression` to include Expression in first argument union ([cce20b5](https://github.com/simonlovesyou/typescript-schema/commit/cce20b5bb128c13eda2bdc2f92fba5b9e33d1c55))
+
+
+
+
+
 ## 1.0.5 (2021-01-16)
 
 

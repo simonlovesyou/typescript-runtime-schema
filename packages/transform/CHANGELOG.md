@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.3.0 (2021-04-29)
+
+
+### Bug Fixes
+
+* **transform:** Fix identifying the correct library identifier ([64f87ea](https://github.com/simonlovesyou/typescript-schema/commit/64f87ea572cbd1c33c4ff3d5677c104f1cb9deac))
+* **transform:** Update logic for finding the library identifier ([fc02d77](https://github.com/simonlovesyou/typescript-schema/commit/fc02d77eefe9cf555c37261b40fc2d24634aa5e0))
+
+
+### Features
+
+* **transform:** Add support for mapped types ([6972d30](https://github.com/simonlovesyou/typescript-schema/commit/6972d30a2f8556f48023ef6e4ea3105db157c797))
+
+
+
+
+
 # 0.2.0 (2021-01-16)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@typescript-runtime-schema/get-arbitrary-node-name",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Get an arbitrary typescript node name",
   "main": "dist/index.js",
   "license": "MIT",

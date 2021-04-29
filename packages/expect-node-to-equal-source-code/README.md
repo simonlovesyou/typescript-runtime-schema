@@ -1,4 +1,4 @@
-# @typescript-runtime-schema/expect-node-to-equal-source-code ![version](https://badgen.net/badge/version/1.0.2/blue)
+# @typescript-runtime-schema/expect-node-to-equal-source-code ![version](https://badgen.net/badge/version/1.0.6/blue)
 Expect a node to equal some source code
 
 ## Installation

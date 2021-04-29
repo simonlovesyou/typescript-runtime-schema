@@ -1,6 +1,6 @@
 {
   "name": "@typescript-runtime-schema/expect-transformer-to-transform-program",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Expect a set of source files to be transformed to using the provided transformer",
   "main": "dist/index.js",
   "author": "Simon Johansson <simonljohansson92@gmail.com>",
@@ -24,7 +24,7 @@
     "@types/jest": "^26.0.14",
     "@types/node": "^14.11.8",
     "@types/ramda": "^0.27.32",
-    "@typescript-runtime-schema/generate-docs": "^0.1.5",
+    "@typescript-runtime-schema/generate-docs": "^0.1.6",
     "dedent": "^0.7.0",
     "jest": "^26.5.3",
     "ts-jest": "^26.4.1",
