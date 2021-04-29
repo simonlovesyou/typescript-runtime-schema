@@ -9,7 +9,7 @@ interface TransformerOptions {}
 const findLibraryIdentifier = (node: ts.Node): ts.Identifier | undefined => {
   if (
     ts.isImportDeclaration(node) &&
-    node.moduleSpecifier.getText() === '"@typescript-runtime-schema/lib"' &&
+    node.moduleSpecifier.getText().includes('@typescript-runtime-schema/lib') &&
     node.importClause.namedBindings
   ) {
     if(ts.isNamedImports(node.importClause.namedBindings)) {
@@ -54,7 +54,7 @@ const createVisitor = (program: ts.Program) => (
           { includeImports: false }
         );
 
-        if (rootIdentifier.escapedText === libraryIdentifier.escapedText) {
+        if (rootIdentifier && rootIdentifier.getText() === libraryIdentifier?.getText()) {
           const { typeArguments, arguments: args } = callExpression;
           const [typeArgument] = typeArguments;
           return pipe(
